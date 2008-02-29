@@ -1,0 +1,37 @@
+segnum	SegOff	SegOff(Dx.Hdbg)	Description(used)
+0	   0	 1A7	 	functional entry,battle functions,etc
+1	 FA6	114D	 	script functions,
+2	1F33	20DA	 	QB library functions
+3	23B4	255B	 	program entry,float point functions & wrappers
+4	2514	26BB	 	library interrupt handler helper function
+5	276C	2913	Done	QB library functions
+6	2811	29B8	Done	replace int 23(ctrl-break handling)
+7	2814	29BB	Done	Fading function
+8	281D	29C4	Done	function block_tweak
+9	2820	29C7	Done	cross fade functions
+10	284A	29F1	Done	map construction function
+11	285A	2A01	Done	function Generate_Mask & Get_Bit_Mask
+12	285E	2A05	Done	Video functions
+13	286D	2A14	Done	Font Function
+14	28A2	2A49	Done	BrighterDeRLE function
+15	28E4	2A8B	Done	FilterDeRLE function
+16	2927	2ACE	Done	ShadowDeRLE functions
+17	2964	2B0B	 	sprite drawing function
+18	2ACD	2C74	Done	Scanline functions
+19	2B09	2CB0	Done	Char function
+20	2B2C	2CD3	Done	function: store step,calc facing.
+21	2B35	2CDC	Done	palette manipulate
+22	2B51	2CF8	 	sfx functions
+23	2BCC	2D73	Done	map functions
+24	2BFE	2DA5	Done	DeRLE functions
+25	2C44	2DEB	Done	ScanlineDeRLE function
+26	2C89	2E30	Done	DeYJ_1 functions
+27	2D0A	2EB1	Done	Keyboard parse relate
+28	2D31	2ED8	Done	File Operation functions	
+29	2D43	2EEA	 	RIX functions, multiple interrupt handlers
+30	2EA1	3048	Done	XMS functions
+31	2ED7	307E	Done	RNG playing
+32	2F11	30B8	Done	messages
+33	2F21	30C8	 	data,mainly used by library
+34	2F38	30DF	 	data,used by library and script
+35	30F9	32A0	Done	Stack seg

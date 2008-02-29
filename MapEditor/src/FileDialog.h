@@ -1,0 +1,28 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//                              
+//
+////////////////////////////////////////////////////////////////////////////////
+//
+//	文件名：
+//		FileDialog.h
+//
+//	说明：
+//		
+//
+//	函数：
+//		
+//
+//////////////////////////////////////////////////////////////////////////////////
+
+#ifndef _FILEDIALOG_H_
+#define _FILEDIALOG_H_
+
+int OpenFileDialog_DoModal(HWND hParentWnd);
+int SaveFileDialog_DoModal(HWND hParentWnd, LPSTR lpstr);
+
+VOID FileDialog_GetPathName(LPSTR lpstr);       // 获取完整的文件路径
+VOID FileDialog_GetFileName(LPSTR lpstr);       // 获取文件名
+
+
+#endif //_FILEDIALOG_H_

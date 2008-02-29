@@ -1,0 +1,37 @@
+segnum	SegOff	SegOff(Dx.Hdbg)	Description
+0	   0	 191		functional entry
+1	 FA6	1137		script functions?
+2	1F33	20C4		QB library functions
+3	23B4	2545		program entry,system library functions
+4	2514	26A5		
+5	276C	28FD		QB library functions
+6	2811	29A2	Done	replace int 23(ctrl-break handling)
+7	2814	29A5		function
+8	281D	29AE	Done	function block_weaken
+9	2820	28BA		
+10	284A	29DB		function
+11	285A	29EB	Done	function Generate_Mask & Get_Bit_Mask
+12	285E	29EF		
+13	286D	29FE		
+14	28A2	293C		function
+15	28E4	2A75		function
+16	2927	2AB8		function
+17	2964	2A5B		
+18	2ACD	2C5E		memory & mouse functions
+19	2B09	2C00		
+20	2B2C	2CBD		
+21	2B35	2CC6		
+22	2B51	2CE2		
+23	2BCC	2D5D		
+24	2BFE	2D8F		
+25	2C44	2DD5		
+26	2C89	2E1A	Done?	function DeYJ_1 & calc?
+27	2D0A	2E9B		
+28	2D31	2EC2	Done	File Operation functions	
+29	2D43	2ED4		RIX functions
+30	2EA1	3032	Done	XMS functions
+31	2ED7	3068		
+32	2F11	30A2	Done	messages
+33	2F21	30B2		data,mainly used by library
+34	2F38	30C9		data,used by library and script
+35	30F9	328A	Done	Stack seg

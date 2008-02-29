@@ -1,0 +1,196 @@
+<html>
+
+<head>
+<title>
+仙剑DOS版各文件破解进度
+</title>
+</head>
+
+<body>
+
+当前目标综述：EXE解析,编辑器制作,移植.<br>
+<font color=blue>较详细的一个介绍及JAVA实现，参见<a href=http://www.ismyway.com/pal/index.htm>仙剑Java研究</a></font><br>
+<table border=1 width=1000>
+ <tr>
+  <td>文件名</td>
+  <td>功能推测</td>
+  <td><a href="#yj1">YJ_1</a></td>
+  <td>子.空数</td>
+  <td>结构概要</td>
+ </tr>
+ <tr>
+  <td>SETUP.DAT</td>
+  <td>install设定</td>
+  <td> </td>
+  <td> </td>
+  <td>参见<a href=setup.txt>setup.txt</a>(引自<a href=http://www.softwide.ys168.com target=_blank>仙痴的网络U盘)</a>,内附SuperMouse兄以C给出的结构</td>
+ </tr>
+ <tr>
+  <td>WOR16.FON</td>
+  <td>字体.图形</td>
+  <td> </td>
+  <td> </td>
+  <td>682h的<a href="#fon">文件头</a>(作用为简化描点的计算),其后文字如码表序,16*15(感谢SuperMouse)</td>
+ </tr>
+ <tr>
+  <td>WOR16.ASC</td>
+  <td>字体.码表</td>
+  <td> </td>
+  <td> </td>
+  <td>2字节一个字,big5</td>
+ </tr>
+ <tr>
+  <td>M.MSG</td>
+  <td>全部对话/提示</td>
+  <td> </td>
+  <td> </td>
+  <td>同上</td>
+ </tr>
+ <tr>
+  <td>WORD.DAT</td>
+  <td>所有文字</td>
+  <td> </td>
+  <td></td>
+  <td>同上</td>
+ </tr>
+ <tr>
+  <td>*.rpg</td>
+  <td>存档</td>
+  <td> </td>
+  <td></td>
+  <td>参见<a href=save.txt>save.txt</a>,<a href=rpg.txt>rpg.txt</a>,<a href=FIX_BOOK痴子.TXT>仙痴总结的修改资料</a></td>
+ </tr>
+ <tr>
+  <td>MIDI.<a href="#mkf">mkf</a></td>
+  <td>FM档</td>
+  <td>否</td>
+  <td>88.2</td>
+  <td>标准MIDI0</td>
+ </tr>
+ <tr>
+  <td>MUS.<a href="#mkf">mkf</a></td>
+  <td>midi档</td>
+  <td>否</td>
+  <td>88.2</td>
+  <td>参见<a href=rix/derix.c>derix.c</a>(BSPAL的杰作,感谢Pei Chengtong的<a href=rix/playrix.asm>先驱工作</a>),中华大圣补译的<a href="rix/adlib/Programming the AdLib-SoundBlaster FM Music Chips.htm">ADLIB资料</a></td>
+ </tr>
+ <tr>
+  <td>VOC.<a href="#mkf">mkf</a></td>
+  <td>音效档</td>
+  <td>否</td>
+  <td>275.65</td>
+  <td>标准voc</td>
+ </tr>
+ <tr>
+  <td>GOP.<a href="#mkf">mkf</a></td>
+  <td>图元集</td>
+  <td>否</td>
+  <td>226.3</td>
+  <td>226个图元包,包内为类似MKF的打包结构(每指针2字节，偏移/2)，其内每个图元均为<a href="#rle">RLE</a>,形状是菱形</td>
+ </tr>
+ <tr>
+  <td>MAP.<a href="#mkf">mkf</a></td>
+  <td>地图档</td>
+  <td>是</td>
+  <td>226.3</td>
+  <td>见<a href=#map>map原理</a></td>
+ </tr>
+ <tr>
+  <td>RNG.<a href="#mkf">mkf</a></td>
+  <td>过场动画</td>
+  <td>否</td>
+  <td>12.0</td>
+  <td>未知</td>
+ </tr>
+ <tr>
+  <td>DATA.<a href="#mkf">mkf</a></td>
+  <td>大量设定</td>
+  <td>有</td>
+  <td>15.0</td>
+  <td>各子包不同,参见<a href=data.htm>data.htm</a></td>
+ </tr>
+ <tr>
+  <td>SSS.<a href="#mkf">mkf</a></td>
+  <td>脚本集</td>
+  <td>否</td>
+  <td>5.0</td>
+  <td>各子包不同,参见夜烟的<a href=sss.txt>sss.txt</a>,<a href=sss.2.txt>sss.2.txt</a>,外塞之雾的<a href=sssplusA.txt>sssplusA.txt</a>,<a href=sssplusB.txt>sssplusB.txt</a></td>
+  <td> </td>
+ </tr>
+ <tr>
+  <td>PAT.<a href="#mkf">mkf</a></td>
+  <td>调色板</td>
+  <td>否</td>
+  <td>9.-2</td>
+  <td>RGB次序,每色1字节,256色调色板</td>
+ </tr>
+ <tr>
+  <td>BALL.<a href="#mkf">mkf</a></td>
+  <td>物品图片档</td>
+  <td>否</td>
+  <td>231.0</td>
+  <td><a href="#rle">RLE</a></td>
+ </tr>
+ <tr>
+  <td>RGM.<a href="#mkf">mkf</a></td>
+  <td>人物头像档</td>
+  <td>否</td>
+  <td>91.2</td>
+  <td><a href="#rle">RLE</a></td>
+ </tr>
+ <tr>
+  <td>FBP.<a href="#mkf">mkf</a></td>
+  <td>背景图</td>
+  <td>是</td>
+  <td>72.0</td>
+  <td>解压后320*200索引位图</td>
+ </tr>
+ <tr>
+  <td>F.<a href="#mkf">mkf</a></td>
+  <td>我战斗形象</td>
+  <td>是</td>
+  <td>19.0</td>
+  <td>子包解开YJ_1后，同GOP子包结构</td>
+ </tr>
+ <tr>
+  <td>FIRE.<a href="#mkf">mkf</a></td>
+  <td>法术效果图</td>
+  <td>是</td>
+  <td>55.0</td>
+  <td>同上</td>
+ </tr>
+ <tr>
+  <td>ABC.<a href="#mkf">mkf</a></td>
+  <td>敌战斗形象</td>
+  <td>是</td>
+  <td>153.0</td>
+  <td>同上</td>
+  <td> </td>
+ </tr>
+ <tr>
+  <td>MGO.<a href="#mkf">mkf</a></td>
+  <td>各种人物形象</td>
+  <td>是</td>
+  <td>637.1</td>
+  <td>同上</td>
+ </tr>
+<tr>
+<table border=1 width=1000>
+<tr><td>
+<a name="mkf">mkf压缩原理</a>:头部索引,指向内部偏移,每索引对应一个文件或空文件,最末一个索引除外.(<a href="mkf">压缩/解压程序</a>)
+</td></tr><tr><td>
+<a name="yj1">YJ_1压缩原理</a>:参见<a href="YJ_1">YJ_1文件夹</a>内
+</td></tr><tr><td>
+<a name="rle">rle压缩原理(仙剑)</a>:四字节(版本号?),两字节宽度,两字节长度.其后:0x80以上表示有多少透明像素,以下表示之后有多少个字节为显示像素(256色调色板索引),直到结束.(<a href="Pic">图片查看程序</a>)
+</td></tr><tr><td>
+<a name="map">map原理：解YJ_1后，每0x200字节为一行。每行中，每邻接四字节为一图元索引，每邻接两图元索引为左上/右下邻接,每隔接图元索引水平。每图元索引中，低二字节为底层图元索引，高二字节为覆盖图元索引。上两种基本图元索引中，低字节和高字节第五位联合，指定图元在对应的GOP组中的索引。基本图元索引高字节第6位指定该索引所代表的位置是否阻隔。高字节1、2、3、4位表层级高度，7、8位意义待查。(<a href="map">地图察看程序</a>)
+</td></tr><tr><td>
+<a name="fon">wor16.fon文件头格式</a>:最前0x202字节为索引，每字形之任一字节取得后在此取索引，即可得其透明-覆盖-反复的列表（若开头一个为0x8x则为覆盖-透明-反复），这样就不必作位的运算。因对所有形态完备，故增加字这里也无必要修改。
+</td></tr>
+</table>
+</tr>
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+BOOL GetImage(LPBYTE lpImageCode, DWORD dwImage, LPBYTE lpBuffer, DWORD dwBufferLen);

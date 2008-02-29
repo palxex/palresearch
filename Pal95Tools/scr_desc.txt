@@ -1,0 +1,235 @@
+该文件源于 ylmson 的脚本查看器，由 OopsWare 测试并修改。
+因程序需要转成 BG2312 码。
+
+@ffff: 显示对话 MessageID
+将参数一指向的文字显示在屏幕上
+参数一 文字索引
+示例
+001a: ffff 0000 0000 0000; Message `此门已上锁`
+文字中有些特殊字符，在对白中不显示，但有其作用
+' '：单引号对中的内容以红色显示
+- -: 减号对中的内容以青色文本显示(Win版不再使用这个标记，但是以":"结束的字符串会显示青色，全文只有两处，没必要考虑了)
+" "：双引号对中的内容以黄色显示
+(：表情，汗滴
+)：表情，爱心
+~n：对话自动中断，不须按空格。n为文字显示完毕后，等待的时间
+$n：文字显示速度，n越大，显示越慢（影响之后的所有文字显示，直至遇另一个$n或重新游戏而改变）
+
+@0000: ===========================================
+@0001: 停止执行，将调用地址替换为下一条命令
+@0002: 停止执行，将调用地址替换为 ScriptID Int16 ;NewScript Count(continues after Count replacements are made, 0=always replace)
+@0003: 跳转 ScriptID Int16 ;Script Count
+@0004: 调用 ScriptID
+@0005: 屏幕重绘 Null Int16 Boolean ; Boolean 为是否执行事件物体脚本 (求测****)
+@0006: 几率继续 Int16 ScriptID
+@0009: 屏幕重绘并等待 Int16 ;Time /*清屏并等待*/
+@000a: 选否则继续 ScriptID
+
+---- 经 OopsWare 确认部分 -----
+
+与对话框相关
+@008e: 清空对话
+@003b: 中间显示 FaceID Null Int16 ;Face IsPlayingMovie(if is playing,it is ffff)
+@003c: 上部显示 FaceID Null Int16
+@003d: 下部显示 FaceID Null Int16
+@003e: 显示框架
+@00A7: 属性显示;WIN 版转用
+
+队伍相关
+@0015: 设置队员方向/帧 DirectionID Int16 TeamMemberID ;Direction Frame# TeamMember
+@0017: 装备属性 BodyPartID AttributeID Int16
+@0018: 装备 BodyPartID WordID
+@002d: 设置我方状态 ConditionID Int16 ScriptID ;Condition Rounds FailureScript
+@0046: 设置队员块位置 Int16 Int16 Int16 ;XBlock YBlock HalfBlock
+@0065: 设置队员形象 TeamMemberID SpriteID Boolean ;TeamMember Sprite Immediate?(求测****)
+@0075: 组队 CharacterID CharacterID CharacterID
+
+事件物体相关
+@0049: 设置对象状态 ObjectID Int16 ; 2:启动其自动脚本(测试***) 2=hero cannot walk over
+场景2中李大婶跟李逍遥对话完后即走出屋子，这段脚本是其自动脚本上的，这时参数2是让该事件物体可视并执行其脚本
+让该物体向门外走，这个脚本应该是跟主脚本同步并行的，同时主脚本也可以来控制这个物体，比如该物体自动脚本中的
+让其移动到一个指定位置，场景脚本中还有该物体的部分，即让移动中的李大婶转身说话后再继续走出屋子。这个脚本应该
+在切换场景时被中止，因为有死循环的情况存在，如脚本0x9756处，实现三更声效的那段。
+
+属性相关
+
+@001e: 调整金钱 Int16 ScriptID ;Amount InsufficientMoneyScript
+@001f: 创建道具 WordID Int16 ;Item Quantity
+
+
+@007f: 移动视线 Int16 Int16 Int16 ;X offset, Y offset, times
+
+
+---- 尚未确认 ----
+
+@0085: Wait Int16
+
+---- 原始信息 -----
+
+@0073: ClearWithEffect TransitionEffectID Int16 ;Effect(征集TransitionEffectID.txt，清屏切换效果名称*) Duration
+@004f: 全屏泛红
+@0050: 淡出
+@0054: 淡入淡出
+@0080: FadeToDayNight Boolean ;(false=night, true=day?(未测***))
+
+
+@000b: 本对象向南行
+@000c: 本对象向西行
+@000d: 本对象向北行
+@000e: 本对象向东行
+@000f: 本对象转向 DirectionID Int16 ;Direction Frame
+@0010: 本对象走到 Int16 Int16 Int16 ; XBlock YBlock HalfBlock, no edge check
+@0082: 本对象跑到 Int16 Int16 Int16 ;XBlock YBlock HalfBlock
+@0014: CurrentObjectSetFrame Int16
+@0087: CurrentObjectWalkAtPlace
+@0044: CurrentObjectCarryHeroToBlock Int16 Int16 Int16 ;XBlock YBlock HalfBlock
+@0016: 设置对象动作 ObjectID Int16 Int16 ; Object #WalkingFramesPerDirection CurrentFrame
+@006c: WalkObjectByOffset ObjectID Int16 Int16 ; Object XOffset YOffset, Trigger method must not be 1?
+@007c: WalkObjectToBlock Int16 Int16 Int16 ;XBlock YBlock HalfBlock
+@007d: MoveObjectByOffset ObjectID Int16 Int16 ; Object XOffset YOffset
+@0084: 放置对象 ObjectID Int16 ScriptID ;Object ?(求推测***) FailureScript
+@0083: 陷住对象 ObjectID Int16 ScriptID ;ObjectSprite ?(求推测***) FailureScript
+@007e: SetObjectLayer ObjectID Int16 ; Object Layer
+@0013: SetObjectLocation ObjectID Int16 Int16 ; Object X Y
+@0024: 设置对象自动脚本 ObjectID ScriptID
+@0025: 设置对象触发脚本 ObjectID ScriptID
+@0040: 设置对象触发方式 ObjectID TriggerMethodID ;Object TriggerMethod(征集TriggerMethodID.txt，对象事件触发方式*)
+@009a: 设置对象状态2 ObjectID ObjectID Int16 ;Obj1 Obj2 ActivationState
+@0094: GotoOnObjectState ObjectID Int16 ScriptID
+@0081: GotoIfNotFacingObjectWithState ObjectID Int16 ScriptID ; Object State?(求确认***) Script
+@0086: GotoIfNotWearing WordID TeamMemberID ScriptID ; InventoryItem TeamMember?(求确认***) Script
+
+
+@004e: 调入最后存档
+@00a0: 退出游戏
+@0043: 音乐 Int16
+@0077: 停止音乐 Boolean ; fade?(求测***)
+@0047: 音效 Int16
+@00a3: 播放CD音轨 CDID Int16 ;音轨号 ?(求测**) 
+@0036: 设置动画 MovieID
+@0037: 播放动画帧 Int16 Int16 Int16 ;StartFrame StopFrame(0=play all) Speed
+@006e: WalkHeroByOffset Int16 Int16 Int16 ;XOffset YOffset ?(求含义****)
+@0070: WalkHeroToBlock Int16 Int16 Int16 ;XBlock YBlock HalfBlock
+@0059: 转到场景 SceneID
+@006d: SetSceneEnterScript SceneID ScriptID ;SceneID EnterScript
+@0038: EscapeScene ScriptID ;FailureScript
+
+@0019: IncreaseAttribute AttributeID Int16 CharacterID
+Choose character if omit arg3
+@001a: SetAttribute AttributeID Int16 CharacterID
+
+@0023: 卸下装备 CharacterID BodyPartID ;Character BodyArmorPart (0 = all)
+@0055: 习得仙术 WordID CharacterID
+@0056: 丧失仙术 WordID CharacterID
+@008f: 金钱减半
+@0020: 删除道具 WordID Int16 ScriptID ;Item Quantity InsufficientScript
+@0058: 无物品则跳转 WordID Int16 ScriptID ;Item Quantity Script
+@0074: 我方受伤则跳转 ScriptID
+@0026: 启动店铺 ShopID
+@0027: 启动当铺
+
+-----Battle Related-----
+@0007: 开战 EnemyTeamID ScriptID ScriptID ;EnemyTeam VictoryScript DefeatScript
+@004b: 结束战斗
+@0078: 战后返回地图
+@0028: 对敌下毒 Boolean WordID ;ApplyToAll Poison
+@0029: 对我下毒 Boolean WordID ;ApplyToAll Poison
+@005d: GotoIfHeroNotPoisonedWith WordID ScriptID
+@005e: GotoIfEnemyNotPoisonedWith WordID ScriptID
+@0033: DrainEnergyWithGourd ScriptID ;FailureScript
+@0034: CreateItemFromGourd ScriptID ;InsufficientEnergyScript
+@0060: 敌方阵亡
+@005f: 我方阵亡
+@0061: GotoIfHeroNotPoisoned ScriptID
+@0064: GotoIfEnemyHPLessThanPercent Int16 ScriptID ScriptID ; Percent Script OtherwiseScript
+@0068: GotoIfTargetingHero ScriptID
+@002a: CurePoisonForEnemy Boolean WordID ;ApplyToAll Poison
+@002b: CurePoisonForHero Boolean WordID ;ApplyToAll Poison
+@002c: CureMultiplePoisonHero Boolean Int16 ;ApplyToAll PoisonLevel
+@002e: 设置敌方状态 ConditionID Int16 ScriptID ;Condition Rounds FailureScript
+@002f: RemoveConditionForHero ConditionID
+@0030: IncreaseAttributeByPercent AttributeID Int16 ;Attribute PercentageChange
+@001b: RecoverHeroHP Boolean Int16
+@001c: RecoverHeroMP Boolean Int16
+@001d: RecoverHeroHPMP Boolean Int16 Int16 ;ApplyToAll HPMP MP(if specified, arg2 becomes HP)
+@0022: ReviveHero Boolean Int16
+@005a: HalveHeroHP
+@005c: HeroInvisibleInBattle Int16 ;Rounds
+@005b: HalveEnemyHPIfUnder UInt16 ;IfUnder?Max?(求测****)
+@0021: DamageEnemy Boolean Int16
+@0057: DamageEnemyByEMP Int16 ;BaseDamage?(求测****) (does Eight * MP damage to enemy)
+@0066: DamageEnemyByThrowingWeaon Int16 Int16 ;Type/Sound?(求测****) BaseDamage?(求测****)
+@0039: AbsorbEnemyLife Int16 ;Amount
+@0042: HeroUseMagic WordID Boolean ;Magic ApplyToAll?
+@0067: EnemyUseMagic WordID Boolean
+@0069: EnemyEscape Boolean ;ApplyToAll?(未测***)
+@009f: EnemyPolymorph WordID
+@009c: EnemyDuplicate
+@009e: EnemySummon WordID Int16 ;EnemyType Number
+@008d: LevelUp Int16 ;#UpLevels?(求测***)
+@003a: LeaveNonBossBattle ScriptID ;FailureScript
+@006a: StealFromEnemy Int16 ;FailurePercent?
+@0035: 震动屏幕 Int16 ;Time
+@004a: 设置战场环境 BattleFieldID ;BattleField
+@0045: 设置战斗音乐 Int16 ;Music
+@0052: VanishCurrentObject Int16 ;VanishTime
+
+-----Untested(以下是贫测区，省略求测)-----
+Add/remove beginning @ to enable/disable translation.
+@0089: EndBattleAndReturn ;(可否带参数?***)
+@0079: GotoIfHasTeamMembers Binary ScriptID ;TeamMemberComposition Script
+
+@0071: SceneEffect Int16 Int16 ;Effect? ?(***)
+@008b: SceneEffect1 Int16 ;Effect?(***)
+^(两者区别?****)
+
+@008c: FadeScreenWithTint Int16 Int16 Int16 ;? ? ? (***)
+@006f: ReplaceCurrentObjectWith ObjectID ;Used to open doors
+@004c: CurrentObjectChaseHero Int16 Int16 Int16 ;?(****) Speed?(**) Boolean?(**)
+@0011: CurrentObjectWalkToBlockFaster? Int16 Int16 Int16 ; XBlock YBlock HalfBlock, no edge check
+@0031: ChangeCurrentHeroBattleSprite BattleSpriteID
+@004d: 等待击键
+
+@007a: WalkHeroToBlock1 Int16 Int16 Int16 ;X Y Half
+@007b: WalkHeroToBlock2 Int16 Int16 Int16 ;X Y Half
+^(两者区别?****)
+
+@00a4: 卷动图片 PictureID Int16 Int16 ;Picture(征集PictureID.txt，战场背景名称/演员表图画*) Up/Down?(***) Speed?(***)
+@00a5: 淡入图片 PictureID Int16 Int16 ;EndAnim
+@0076: ShowPicture PictureID Int16 ;
+
+-----以下为暂命名指令试验红区，唤曰锁妖塔-----
+0012: FadeMusic? Int16 Int16 Int16
+003f: MoveShip? Int16 Int16
+0008: Next2? (求与01的区别****)
+
+0062: StopChasingEnemiesOnMap Int16 ;Time?(**)
+0063: ReviveEnemies Int16 ;Time? (****)
+006b: ShiftEnemiesInBattle Int16 ;Amount? (***)
+
+0088: ThrowMoney Int16 ;BaseDamage?(****)
+
+@0090: ClearEnemyBattleBeginScript? WordID ;EnemyName(***)
+0091: 停止音效? ;(****)
+
+0092: HeroPrepareMagic? CharacterID ;Character?(***)
+
+0096: CharacterFly??
+0097: CharacterMove?? Int16 Int16
+
+0099: ChangeMapBackground1? Int16 Int16(***)
+009b: ChangeMapBackground2? Int16 Int16
+00a1: GatherTeamMembers?
+00a2: 00a2 Int16 ;Battle
+00a3: 00a3 Int16 Int16 Int16 ;EndAnim
+0041: ClearFrame?
+
+*****Unnamed以下为未命名区，唤曰魔界*****
+@0051: 淡入 Boolean; ?
+0053: 淡出 Boolean; ?
+0093: ? Int16
+
+008a: 难!
+0095: 难!
+0098:
+00a6: 难!

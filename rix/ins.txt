@@ -1,0 +1,22 @@
+WAVE ENABLE NO	波形启用
+NOTE SELECT NO	律音选择
+SPEECH SYNT NO	语音同步
+TREMOLO DEP NO	振音深度
+VIBRATO DEP NO	颤音深度
+
+振荡器1
+
+ATTACK  0x22		打击
+DECAY   0x28		衰减
+SUSTAIN LEVEL   0x24	延音度
+RELEASE   0x2A		释音
+KSL     NO		？？
+FM      0x1E		调频
+PC      0x1A		？？
+TREMOLO 0x2E		振音
+VIBRATO 0x30		颤音
+SUSTAIN  0x26		延音
+KS RATE  0x32		？速
+
+WAVE 0x38	波形
+OUT 0x2C	释出

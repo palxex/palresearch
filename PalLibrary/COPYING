@@ -1,0 +1,736 @@
+$ Id: COPYING 1.00 2006-05-24 14:34:50 +8:00 $
+
+		  GNU LESSER GENERAL PUBLIC LICENSE
+		       Version 2.1, February 1999
+
+ Copyright (C) 1991, 1999 Free Software Foundation, Inc.
+ 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+[This is the first released version of the Lesser GPL.  It also counts
+ as the successor of the GNU Library Public License, version 2, hence
+ the version number 2.1.]
+
+			    Preamble
+
+  The licenses for most software are designed to take away your
+freedom to share and change it.  By contrast, the GNU General Public
+Licenses are intended to guarantee your freedom to share and change
+free software--to make sure the software is free for all its users.
+
+  This license, the Lesser General Public License, applies to some
+specially designated software packages--typically libraries--of the
+Free Software Foundation and other authors who decide to use it.  You
+can use it too, but we suggest you first think carefully about whether
+this license or the ordinary General Public License is the better
+strategy to use in any particular case, based on the explanations below.
+
+  When we speak of free software, we are referring to freedom of use,
+not price.  Our General Public Licenses are designed to make sure that
+you have the freedom to distribute copies of free software (and charge
+for this service if you wish); that you receive source code or can get
+it if you want it; that you can change the software and use pieces of
+it in new free programs; and that you are informed that you can do
+these things.
+
+  To protect your rights, we need to make restrictions that forbid
+distributors to deny you these rights or to ask you to surrender these
+rights.  These restrictions translate to certain responsibilities for
+you if you distribute copies of the library or if you modify it.
+
+  For example, if you distribute copies of the library, whether gratis
+or for a fee, you must give the recipients all the rights that we gave
+you.  You must make sure that they, too, receive or can get the source
+code.  If you link other code with the library, you must provide
+complete object files to the recipients, so that they can relink them
+with the library after making changes to the library and recompiling
+it.  And you must show them these terms so they know their rights.
+
+  We protect your rights with a two-step method: (1) we copyright the
+library, and (2) we offer you this license, which gives you legal
+permission to copy, distribute and/or modify the library.
+
+  To protect each distributor, we want to make it very clear that
+there is no warranty for the free library.  Also, if the library is
+modified by someone else and passed on, the recipients should know
+that what they have is not the original version, so that the original
+author's reputation will not be affected by problems that might be
+introduced by others.
+
+  Finally, software patents pose a constant threat to the existence of
+any free program.  We wish to make sure that a company cannot
+effectively restrict the users of a free program by obtaining a
+restrictive license from a patent holder.  Therefore, we insist that
+any patent license obtained for a version of the library must be
+consistent with the full freedom of use specified in this license.
+
+  Most GNU software, including some libraries, is covered by the
+ordinary GNU General Public License.  This license, the GNU Lesser
+General Public License, applies to certain designated libraries, and
+is quite different from the ordinary General Public License.  We use
+this license for certain libraries in order to permit linking those
+libraries into non-free programs.
+
+  When a program is linked with a library, whether statically or using
+a shared library, the combination of the two is legally speaking a
+combined work, a derivative of the original library.  The ordinary
+General Public License therefore permits such linking only if the
+entire combination fits its criteria of freedom.  The Lesser General
+Public License permits more lax criteria for linking other code with
+the library.
+
+  We call this license the "Lesser" General Public License because it
+does Less to protect the user's freedom than the ordinary General
+Public License.  It also provides other free software developers Less
+of an advantage over competing non-free programs.  These disadvantages
+are the reason we use the ordinary General Public License for many
+libraries.  However, the Lesser license provides advantages in certain
+special circumstances.
+
+  For example, on rare occasions, there may be a special need to
+encourage the widest possible use of a certain library, so that it becomes
+a de-facto standard.  To achieve this, non-free programs must be
+allowed to use the library.  A more frequent case is that a free
+library does the same job as widely used non-free libraries.  In this
+case, there is little to gain by limiting the free library to free
+software only, so we use the Lesser General Public License.
+
+  In other cases, permission to use a particular library in non-free
+programs enables a greater number of people to use a large body of
+free software.  For example, permission to use the GNU C Library in
+non-free programs enables many more people to use the whole GNU
+operating system, as well as its variant, the GNU/Linux operating
+system.
+
+  Although the Lesser General Public License is Less protective of the
+users' freedom, it does ensure that the user of a program that is
+linked with the Library has the freedom and the wherewithal to run
+that program using a modified version of the Library.
+
+  The precise terms and conditions for copying, distribution and
+modification follow.  Pay close attention to the difference between a
+"work based on the library" and a "work that uses the library".  The
+former contains code derived from the library, whereas the latter must
+be combined with the library in order to run.
+
+		  GNU LESSER GENERAL PUBLIC LICENSE
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+  0. This License Agreement applies to any software library or other
+program which contains a notice placed by the copyright holder or
+other authorized party saying it may be distributed under the terms of
+this Lesser General Public License (also called "this License").
+Each licensee is addressed as "you".
+
+  A "library" means a collection of software functions and/or data
+prepared so as to be conveniently linked with application programs
+(which use some of those functions and data) to form executables.
+
+  The "Library", below, refers to any such software library or work
+which has been distributed under these terms.  A "work based on the
+Library" means either the Library or any derivative work under
+copyright law: that is to say, a work containing the Library or a
+portion of it, either verbatim or with modifications and/or translated
+straightforwardly into another language.  (Hereinafter, translation is
+included without limitation in the term "modification".)
+
+  "Source code" for a work means the preferred form of the work for
+making modifications to it.  For a library, complete source code means
+all the source code for all modules it contains, plus any associated
+interface definition files, plus the scripts used to control compilation
+and installation of the library.
+
+  Activities other than copying, distribution and modification are not
+covered by this License; they are outside its scope.  The act of
+running a program using the Library is not restricted, and output from
+such a program is covered only if its contents constitute a work based
+on the Library (independent of the use of the Library in a tool for
+writing it).  Whether that is true depends on what the Library does
+and what the program that uses the Library does.
+  
+  1. You may copy and distribute verbatim copies of the Library's
+complete source code as you receive it, in any medium, provided that
+you conspicuously and appropriately publish on each copy an
+appropriate copyright notice and disclaimer of warranty; keep intact
+all the notices that refer to this License and to the absence of any
+warranty; and distribute a copy of this License along with the
+Library.
+
+  You may charge a fee for the physical act of transferring a copy,
+and you may at your option offer warranty protection in exchange for a
+fee.
+
+  2. You may modify your copy or copies of the Library or any portion
+of it, thus forming a work based on the Library, and copy and
+distribute such modifications or work under the terms of Section 1
+above, provided that you also meet all of these conditions:
+
+    a) The modified work must itself be a software library.
+
+    b) You must cause the files modified to carry prominent notices
+    stating that you changed the files and the date of any change.
+
+    c) You must cause the whole of the work to be licensed at no
+    charge to all third parties under the terms of this License.
+
+    d) If a facility in the modified Library refers to a function or a
+    table of data to be supplied by an application program that uses
+    the facility, other than as an argument passed when the facility
+    is invoked, then you must make a good faith effort to ensure that,
+    in the event an application does not supply such function or
+    table, the facility still operates, and performs whatever part of
+    its purpose remains meaningful.
+
+    (For example, a function in a library to compute square roots has
+    a purpose that is entirely well-defined independent of the
+    application.  Therefore, Subsection 2d requires that any
+    application-supplied function or table used by this function must
+    be optional: if the application does not supply it, the square
+    root function must still compute square roots.)
+
+These requirements apply to the modified work as a whole.  If
+identifiable sections of that work are not derived from the Library,
+and can be reasonably considered independent and separate works in
+themselves, then this License, and its terms, do not apply to those
+sections when you distribute them as separate works.  But when you
+distribute the same sections as part of a whole which is a work based
+on the Library, the distribution of the whole must be on the terms of
+this License, whose permissions for other licensees extend to the
+entire whole, and thus to each and every part regardless of who wrote
+it.
+
+Thus, it is not the intent of this section to claim rights or contest
+your rights to work written entirely by you; rather, the intent is to
+exercise the right to control the distribution of derivative or
+collective works based on the Library.
+
+In addition, mere aggregation of another work not based on the Library
+with the Library (or with a work based on the Library) on a volume of
+a storage or distribution medium does not bring the other work under
+the scope of this License.
+
+  3. You may opt to apply the terms of the ordinary GNU General Public
+License instead of this License to a given copy of the Library.  To do
+this, you must alter all the notices that refer to this License, so
+that they refer to the ordinary GNU General Public License, version 2,
+instead of to this License.  (If a newer version than version 2 of the
+ordinary GNU General Public License has appeared, then you can specify
+that version instead if you wish.)  Do not make any other change in
+these notices.
+
+  Once this change is made in a given copy, it is irreversible for
+that copy, so the ordinary GNU General Public License applies to all
+subsequent copies and derivative works made from that copy.
+
+  This option is useful when you wish to copy part of the code of
+the Library into a program that is not a library.
+
+  4. You may copy and distribute the Library (or a portion or
+derivative of it, under Section 2) in object code or executable form
+under the terms of Sections 1 and 2 above provided that you accompany
+it with the complete corresponding machine-readable source code, which
+must be distributed under the terms of Sections 1 and 2 above on a
+medium customarily used for software interchange.
+
+  If distribution of object code is made by offering access to copy
+from a designated place, then offering equivalent access to copy the
+source code from the same place satisfies the requirement to
+distribute the source code, even though third parties are not
+compelled to copy the source along with the object code.
+
+  5. A program that contains no derivative of any portion of the
+Library, but is designed to work with the Library by being compiled or
+linked with it, is called a "work that uses the Library".  Such a
+work, in isolation, is not a derivative work of the Library, and
+therefore falls outside the scope of this License.
+
+  However, linking a "work that uses the Library" with the Library
+creates an executable that is a derivative of the Library (because it
+contains portions of the Library), rather than a "work that uses the
+library".  The executable is therefore covered by this License.
+Section 6 states terms for distribution of such executables.
+
+  When a "work that uses the Library" uses material from a header file
+that is part of the Library, the object code for the work may be a
+derivative work of the Library even though the source code is not.
+Whether this is true is especially significant if the work can be
+linked without the Library, or if the work is itself a library.  The
+threshold for this to be true is not precisely defined by law.
+
+  If such an object file uses only numerical parameters, data
+structure layouts and accessors, and small macros and small inline
+functions (ten lines or less in length), then the use of the object
+file is unrestricted, regardless of whether it is legally a derivative
+work.  (Executables containing this object code plus portions of the
+Library will still fall under Section 6.)
+
+  Otherwise, if the work is a derivative of the Library, you may
+distribute the object code for the work under the terms of Section 6.
+Any executables containing that work also fall under Section 6,
+whether or not they are linked directly with the Library itself.
+
+  6. As an exception to the Sections above, you may also combine or
+link a "work that uses the Library" with the Library to produce a
+work containing portions of the Library, and distribute that work
+under terms of your choice, provided that the terms permit
+modification of the work for the customer's own use and reverse
+engineering for debugging such modifications.
+
+  You must give prominent notice with each copy of the work that the
+Library is used in it and that the Library and its use are covered by
+this License.  You must supply a copy of this License.  If the work
+during execution displays copyright notices, you must include the
+copyright notice for the Library among them, as well as a reference
+directing the user to the copy of this License.  Also, you must do one
+of these things:
+
+    a) Accompany the work with the complete corresponding
+    machine-readable source code for the Library including whatever
+    changes were used in the work (which must be distributed under
+    Sections 1 and 2 above); and, if the work is an executable linked
+    with the Library, with the complete machine-readable "work that
+    uses the Library", as object code and/or source code, so that the
+    user can modify the Library and then relink to produce a modified
+    executable containing the modified Library.  (It is understood
+    that the user who changes the contents of definitions files in the
+    Library will not necessarily be able to recompile the application
+    to use the modified definitions.)
+
+    b) Use a suitable shared library mechanism for linking with the
+    Library.  A suitable mechanism is one that (1) uses at run time a
+    copy of the library already present on the user's computer system,
+    rather than copying library functions into the executable, and (2)
+    will operate properly with a modified version of the library, if
+    the user installs one, as long as the modified version is
+    interface-compatible with the version that the work was made with.
+
+    c) Accompany the work with a written offer, valid for at
+    least three years, to give the same user the materials
+    specified in Subsection 6a, above, for a charge no more
+    than the cost of performing this distribution.
+
+    d) If distribution of the work is made by offering access to copy
+    from a designated place, offer equivalent access to copy the above
+    specified materials from the same place.
+
+    e) Verify that the user has already received a copy of these
+    materials or that you have already sent this user a copy.
+
+  For an executable, the required form of the "work that uses the
+Library" must include any data and utility programs needed for
+reproducing the executable from it.  However, as a special exception,
+the materials to be distributed need not include anything that is
+normally distributed (in either source or binary form) with the major
+components (compiler, kernel, and so on) of the operating system on
+which the executable runs, unless that component itself accompanies
+the executable.
+
+  It may happen that this requirement contradicts the license
+restrictions of other proprietary libraries that do not normally
+accompany the operating system.  Such a contradiction means you cannot
+use both them and the Library together in an executable that you
+distribute.
+
+  7. You may place library facilities that are a work based on the
+Library side-by-side in a single library together with other library
+facilities not covered by this License, and distribute such a combined
+library, provided that the separate distribution of the work based on
+the Library and of the other library facilities is otherwise
+permitted, and provided that you do these two things:
+
+    a) Accompany the combined library with a copy of the same work
+    based on the Library, uncombined with any other library
+    facilities.  This must be distributed under the terms of the
+    Sections above.
+
+    b) Give prominent notice with the combined library of the fact
+    that part of it is a work based on the Library, and explaining
+    where to find the accompanying uncombined form of the same work.
+
+  8. You may not copy, modify, sublicense, link with, or distribute
+the Library except as expressly provided under this License.  Any
+attempt otherwise to copy, modify, sublicense, link with, or
+distribute the Library is void, and will automatically terminate your
+rights under this License.  However, parties who have received copies,
+or rights, from you under this License will not have their licenses
+terminated so long as such parties remain in full compliance.
+
+  9. You are not required to accept this License, since you have not
+signed it.  However, nothing else grants you permission to modify or
+distribute the Library or its derivative works.  These actions are
+prohibited by law if you do not accept this License.  Therefore, by
+modifying or distributing the Library (or any work based on the
+Library), you indicate your acceptance of this License to do so, and
+all its terms and conditions for copying, distributing or modifying
+the Library or works based on it.
+
+  10. Each time you redistribute the Library (or any work based on the
+Library), the recipient automatically receives a license from the
+original licensor to copy, distribute, link with or modify the Library
+subject to these terms and conditions.  You may not impose any further
+restrictions on the recipients' exercise of the rights granted herein.
+You are not responsible for enforcing compliance by third parties with
+this License.
+
+  11. If, as a consequence of a court judgment or allegation of patent
+infringement or for any other reason (not limited to patent issues),
+conditions are imposed on you (whether by court order, agreement or
+otherwise) that contradict the conditions of this License, they do not
+excuse you from the conditions of this License.  If you cannot
+distribute so as to satisfy simultaneously your obligations under this
+License and any other pertinent obligations, then as a consequence you
+may not distribute the Library at all.  For example, if a patent
+license would not permit royalty-free redistribution of the Library by
+all those who receive copies directly or indirectly through you, then
+the only way you could satisfy both it and this License would be to
+refrain entirely from distribution of the Library.
+
+If any portion of this section is held invalid or unenforceable under any
+particular circumstance, the balance of the section is intended to apply,
+and the section as a whole is intended to apply in other circumstances.
+
+It is not the purpose of this section to induce you to infringe any
+patents or other property right claims or to contest validity of any
+such claims; this section has the sole purpose of protecting the
+integrity of the free software distribution system which is
+implemented by public license practices.  Many people have made
+generous contributions to the wide range of software distributed
+through that system in reliance on consistent application of that
+system; it is up to the author/donor to decide if he or she is willing
+to distribute software through any other system and a licensee cannot
+impose that choice.
+
+This section is intended to make thoroughly clear what is believed to
+be a consequence of the rest of this License.
+
+  12. If the distribution and/or use of the Library is restricted in
+certain countries either by patents or by copyrighted interfaces, the
+original copyright holder who places the Library under this License may add
+an explicit geographical distribution limitation excluding those countries,
+so that distribution is permitted only in or among countries not thus
+excluded.  In such case, this License incorporates the limitation as if
+written in the body of this License.
+
+  13. The Free Software Foundation may publish revised and/or new
+versions of the Lesser General Public License from time to time.
+Such new versions will be similar in spirit to the present version,
+but may differ in detail to address new problems or concerns.
+
+Each version is given a distinguishing version number.  If the Library
+specifies a version number of this License which applies to it and
+"any later version", you have the option of following the terms and
+conditions either of that version or of any later version published by
+the Free Software Foundation.  If the Library does not specify a
+license version number, you may choose any version ever published by
+the Free Software Foundation.
+
+  14. If you wish to incorporate parts of the Library into other free
+programs whose distribution conditions are incompatible with these,
+write to the author to ask for permission.  For software which is
+copyrighted by the Free Software Foundation, write to the Free
+Software Foundation; we sometimes make exceptions for this.  Our
+decision will be guided by the two goals of preserving the free status
+of all derivatives of our free software and of promoting the sharing
+and reuse of software generally.
+
+			    NO WARRANTY
+
+  15. BECAUSE THE LIBRARY IS LICENSED FREE OF CHARGE, THERE IS NO
+WARRANTY FOR THE LIBRARY, TO THE EXTENT PERMITTED BY APPLICABLE LAW.
+EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR
+OTHER PARTIES PROVIDE THE LIBRARY "AS IS" WITHOUT WARRANTY OF ANY
+KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE
+LIBRARY IS WITH YOU.  SHOULD THE LIBRARY PROVE DEFECTIVE, YOU ASSUME
+THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+  16. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN
+WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY
+AND/OR REDISTRIBUTE THE LIBRARY AS PERMITTED ABOVE, BE LIABLE TO YOU
+FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR
+CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE
+LIBRARY (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
+RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
+FAILURE OF THE LIBRARY TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
+SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
+DAMAGES.
+
+		     END OF TERMS AND CONDITIONS
+
+==========================================================================================
+
+声明
+
+这不是 GNU 通用公共许可证的正式的中文翻译。不是由自由软件基金会发布的，在法律上
+不代表使用 GNU GPL 许可证的软件的发布术语，——只有 GNU GPL 的原始英语描述才具有
+这样的效力。但是我们希望此翻译能帮助说中文的人能更好地理解 GNU GPL 。
+
+
+			 GNU 次通用公共许可证
+			1999 年 2 月, 版本 2.1
+
+版权所有 (C) 1991, 1999 Free Software Foundation, Inc.
+ 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+任何人都可以复制和发布这一许可证原始文档的副本，但绝对不允许对它进行任何修改。
+
+[这是次通用公共许可证的第一个发布版本。也可以认为它是GNU库通用公共许可证
+(GNU Library Public License)版本2的后继版本，因此它的版本号为2.1。]
+
+				　　导言
+
+	大多数软件许可证刻意剥夺你的共享和修改软件的自由。对比之下，GNU通用公共许可
+证力图保证你的共享和修改自由软件的自由——保证自由软件对所有用户是自由的。
+
+	本许可证——次通用公共许可证，适用于特定的属于自由软件基金会(FSF)的软件包
+（典型的如库函数）以及其他决定使用本许可证的作者。你也可以使用它，但是我们建议你
+在下面的解释的基础上，首先仔细考虑在某个特定情况下，使用本许可证和普通的通用公共
+许可证哪个更好。
+
+	当我们谈到自由软件时，我们指的是使用自由而不是价格。我们的GNU通用公共许可证
+决意保证你有发布自由软件的自由（如果你愿意，你可以对此项服务收取一定的费用）；保
+证你能收到源程序或者在你需要时能得到它；保证你能修改软件或将它的一部分用于新的自
+由软件；而且还保证你知道你能做这些事情。
+
+	为了保护你的权利，我们需要作出规定：禁止任何人不承认你的权利，或者要求你放弃
+这些权利。如果你发布的拷贝或者修改了库，这些规定就转化为你的责任。
+
+	例如，如果你发布一个库的副本，不管是收费的还是免费的，你必须将我们给予你的一
+切权利给予你的接受者；你必须保证他们能收到或得到源程序。如果其他代码中链接了一个
+库，你必须把全部目标文件提供给使用者，这样使用者在对库进行修改和重新编译之后，可
+以对它们进行重新链接。同时你必须将这些条款给他们看，使他们知道他们有这样的权利。
+
+	我们采取两项措施来保护你的权利：(1)给库以版权保护。(2)给你提供许可证，它给你
+复制，发布和修改库的法律许可。
+
+	同样，为了保护每个作者，我们需要清楚地让每个人明白：自由库没有担保。如果由于
+其他某个人修改了库，并继续加以传播。我们需要它的接受者明白：他们所得到的并不是原
+来的自由软件，由其他人引人的任何问题，不应损害原作者的声誉。
+
+	最后，任何民有自由程序不断受到软件专利的威胁。我们希望保证，任何公司不能有效
+地通过持有专利所有者有限制的许可证，来限制自由程序的使用者。因此，我们坚持，任何
+针对某一个版本库的专利许可证必须与本许可证所规定的完全自由使用的原则相一致。
+
+	大多数GNU软件，包括一些库，都是在普通的GNU通用公共许可证下分发。本许可证——
+GNU次通用公共许可证适用于特别指定的库，与一般的通用公共许可证有很大不同。我们为
+特定的库而使用这个许可证，是为了允许把这些库与非自由的软件进行链接。
+
+	当一个程序和一个库链接的时，不管是静态库还是共享库，抑或二者的组合，在法律上
+来说是一个组合作品，是原始库的继承。因此在普通通用公共许可证中，只有当全部组合都
+满足它的自由规则时，才允许这样的链接。次通用公共许可证对库与其他代码的链接许可更
+为宽松。
+
+	我们把本许可证称为“次”通用公共许可证，是因为它与普通通用公共许可证相比，在
+保护用户的自由上做得较少。它也给其他自由软件开发者在与非自由软件的竞争上提供了更
+少的好处。这些缺点正是我们对许多库都使用一般通用公共许可证的原因。但是，次通用公
+共许可证在某些特定的场合有着很多好处。
+
+	例如，在某些很少见的情况下，也许有一些特定的需要来鼓励对某一个库尽可能广泛地
+使用，使它成为一个既成事实的标准。为了达到这一目的，必须允许非自由软件使用这个库。
+更常见的一种情况是，一个自由库与一个非自由库做的相同的工作。在这种情况下，把自由
+库限制在自由软件的范围内没有什么好处，所以我们使用次通用公共许可证。
+
+	在其他一些情况下，允许非自由软件中使用某些库可以促使更多的人大量地使用自由软
+件。例如，在非自由程序中允许使用GNU C库，使得更多人开始使用整个GNU操作系统，以及
+它的变体，GNU/Linux操作系统。
+
+	尽管次通用公共许可证对用户的自由作了较少的保护，但它确实保证了链接某个库的程
+序的使用者有修改库、运行那些使用了新的库的程序的自由和必要手段。后面是针对拷贝、
+分发和修改的精确条款和条件。请务必注意“基于库的作品”和“使用库的作品”之间的差
+别。前者包含了来自库的代码，而后者必须与库组合才能运行。
+
+			针对拷贝、发布和修改的精确条款和条件
+
+	0.本许可证条约适用于任何软件库，也适用于包含一份版权所有者和其他授权方放置的
+声称程序和作品可以在LGPL（也叫“本许可证”）条款约束下发布的声明的其他程序。每个
+许可证接受者用“你”来称呼。
+
+	“库”表示一个软件函数和/或数据的集合，可以方便地与应用程序（该应用程序使用
+了其中的一些函数和数据）链接，从而形成可执行程序。
+
+	下面的“本库”指的是任何在这里的条款下分发的软件库或者软件作品。“基于本库的
+作品”指的是库或者任何受版权法约束的衍生作品：也就是说包含本库或本库的一部分的作
+品，可以是原封不动的，或经过修改的和/或直接翻译成其他语言的(库)。（在下文中，翻
+译包含在修改条款中，但修改的类型不限于翻译。）
+
+	一个作品的“源码”表示该作品在需要修改时候的首选形式。对应一个库来说，全部源
+码表示它所包含的所有模块的源码，加上任何相关的接口定义文件，以及用来控制库的编译
+和安装的所有脚本。
+
+	本许可证条款不适用于复制、分布和修改以外的行为。这些行为超出了这些条款的范围。
+使用本库运行程序的活动不受条款限止。仅当程序的内容组成了基于本库的作品时，这一条
+款才适用（与使用了本库的用来编写程序的工具无关）。是否适用取决于本库可以做什么，
+以及程序使用本库来做什么。
+
+	1.只要你在每一拷贝上明显和恰当地发布版权声明和不承担担保的声明，保持此许可证
+的声明和没有担保的声明完整无损，并和本库一起发布一份许可证的拷贝，你就可以用任何
+方式复制和发布你收到的原始的库的全部源码。
+
+	你可以为转让拷贝的实际行动收取一定费用，你也有权选择提供但保以换取一定费用。
+
+	2.你可以修改本库或它的某一部分的一个或多个拷贝，以此形成基于本库的作品。只要
+你同时满足下面的所有条件，你就可以按前面第一款的要求复制和发布这一修改或作品。
+
+	(1)已修改的作品本身必须是一个软件库。
+	(2)你必须在修改的文件中附有明确的通告，声明你修改了这一文件及具体的修改日期。
+	(3)你必须把整个作品在本许可证的条款下免费分发给任何第三方。
+	(4)如果在修改的库中有一个程序引用了调用它的应用程序所提供的函数、数据表，
+	而不是调用时传人的参数，那么你必须保证：在应用程序没有提供这样的函数和数据
+	表的情况下，该功能块仍然能够操作和完成，它的任何一部分都仍然有意义。
+
+    （例如：一个用来计算平方根的库函数，已经按照它的目的完整地定义好了，与应用程
+序无关。因此，第2小节要求这个库函数在使用应用程序提供的函数或者数据时，必须是可
+自由选择的——如果应用程序没有提供这些函数和数据，平方根函数仍然能计算平方根。）
+
+	这些要求适用于修改了的作品的整体。如果能够确定作品的一部分并非本库的衍生产品，
+可以合理的地认为这部分是独立的，是不同的作品。当你将它作为独立的作品发布时，这些
+部分不受此许可证和它的条款的约束。但是当你将这部分作为基于本库的作品的一部分发布
+时，作为整体它将受到许可证条款约束，准予其他许可证持有人的使用范围扩大到整个产品，
+也就是每个部分，不管它是谁写的。
+
+	因此，本条款的意图不在于索取权利或剥夺全部由你写成的作品的权利。而是履行权利
+来控制基于本库的集体作品或衍生作品的发布。
+
+	此外，将与库无关的作品和该库或基于该库的作品一起放在存贮体或发布媒体的同一卷
+上，并不导致将其他作品置于此许可证的约束范围之内。
+
+	3.你可以选择将一般GNU通用公共许可证而不是本许可证应用于本库的拷贝。在这样做之
+前，你必须把所有的针对本许可证的声明换成一般GNU通用公共许可证第二版。（如果有新的
+一般GNU GPL版本出现，你可以根据自己的意愿使用新版本。）不要对这些声明作任何改变。
+
+	一旦这种改变发生在已知拷贝上，对该拷贝来说这个改变就是不可撤回的，这样一般GNU
+通用公共许可证将适用于所有的后续拷贝和衍生作品。
+
+	该选项在你希望从本库中拷贝部分代码，用到非本库的程序中时非常有用。
+
+	4.你可以在前面的第1、2款的规定下以目标代码或可执行形式复制或发布本库（或符合
+第2款的基于本库的作品)，只要你附上完整的相应机器可读的源码。这些源码的发布应符合
+上面的第1、2款的要求，放在通常用做软件交换的媒体上。
+
+	如果采用提供对指定地点的访问和复制的方式发布可执行代码或目标代码，那么，在同一
+地点提供对源码访问和复制满足发布源码的要求，即使第三方没有被强迫与目标码一起复制源
+码。
+
+	5.如果一个程序没有包含本库的任何部分的衍生代码，而是设计为通过与本库进行编译、
+链接而工作，这样的程序叫做“使用本库的作品”。这样的作品是孤立的，不是库的衍生作品，
+因此不在本许可证的范围之内。
+
+	但是，把一个“使用本库的作品”与本库链接产生一个可执行文件，该文件就是本库的衍
+生作品（因为它包含了库的一部分），而不是“使用库的作品”。因此，可执行文件受本许可
+证的限制。第6节对这样的可执行文件的发布有相应的条款说明。
+
+	当一个“使用本库的作品”使用了本库中一个前导文件的资料时，该作品的目标码可能就
+是库的衍生作品，即使它的源码不是。判断的依据特别重要：该作品是否可以在没有本库的情
+况下链接，或者是否作品本身就是一个库。这一界限并没有被法律精确定义。
+
+	如果这样的目标文件只使用数字类型的参数、数据结构的设计方式、一些附件、一些小的
+宏和小的内联函数（10行长度或者更短），那么该目标文件的使用就不受限制的，不管它在法
+律上是否是衍生作品。（包含这些目标代码以及本库的一部分的可执行文件，仍然属于第6节
+的限制范围。）
+
+	另一方面，如果作品本身是本库的衍生作品，你要在第6节的条款下发布作品目标码。任
+何包含该作品的可执行文件也属于第6节的范围，不管它们是否直接与库链接。
+
+	6.作为上一节的例外，你也可以把一个“使用本库的作品”与本库组合或者链接，产生一
+个包含本库的一部分的作品，然后按你自己选择的条款发布它，只要该条款允许客户根据自己
+的使用进行修改，以及允许在调试这样的修改时进行逆向工程。
+
+	你必须在每一个作品的拷贝中附上明确声明：该作品使用了本库，本库和该作品的使用受
+本许可证的限制。你必须提供一个本许可证的拷贝。如果程序在执行的过程中显示了版权声明，
+你必须在其中加入本库的版权声明，同时还要有一个引用，可以将使用者引导到本许可证的一
+个拷贝。同时，你必须做下面这些事情中的一件：
+
+		(1)把完整的符合机器可读的库源码与作品一起发布，同时包含在作品中用到的任何改
+		变（必须在第1、2小节的限制下发布）；如果作品是与库链接的可执行文件，而要带
+		有完整的机器可读的“使用本库的作品”，以目标码和（或者）源码的形式发布，这
+		样使用者可以修改库，然后重新链接，生成包含了修改过的库的新的可执行文件。
+		（用户改变库中的定义文件的内容后，不是每次都需要重新编译应用程序来达到修改
+		的目的。）
+		(2)使用合适的共享库机制来链接库。其中一个适当的机制是：<1>在运行时使用用户
+		电脑中已经存在的库的拷贝，不需要把库函数拷贝到执行文件。<2>如果用户安装了
+		一个库的修改版本，只要修改版本在接口上与产生作品的版本兼容，就可以进行适当
+		操作。
+		(3)和作品一起，附上一份书面支持，有效期不少于3年，同时给该用户(1)中所规定
+		的材料，收取一定的费用，但不能超过完成发布的成本。
+		(4)如果对作品的发布以对指定地方的访问然后拷贝来提供，那么以同样的方式在同
+		样的地方提供上面所规定的材料。
+		(5)确认使用者已经收到了这些材料的拷贝，或者你已经把拷贝寄给了使用者。
+
+	对于可执行文件来说，“使用本库的作品”中必须包含所有的数据和实用程序，从而可以
+重新产生可执行文件。但是作为一个特例，将要发布的材料不需要包含任何已经与可执行文件
+的内容（不管是源码形式还是二进制形式），除非此主要组件自己只有可执行文件。
+
+	这个需求也许会与其他并不伴随操作系统发布的私有库的许可限制相抵触。这样的抵触表
+明你不能在发布的可执行文件中同时使用私有库和本库。
+
+	7.可以把一些库程序（属于基于本库的作品）与不受许可证约束的其他库程序并列放在一
+个单一库中，然后发布这样一个组合库，只要同样允许把基于本库的作品和那些其他库程序进
+行拆分，前提是你要做下面的两件事：
+
+		(1)附上相同的基于本库的作品的拷贝（不与其他库程序组合），也组合库一起发布。
+		必须在上面条款的约束下发布。
+		(2)在发布组合库时附上明确的声明，表明它的一部分是基于本库的作品，同时说明
+		在哪里可以找到一起发布的非组合形式的该作品。
+
+	8.除非你明确按许可证提出的要求去做，否则你不能复制、修改、发布从属许可证、链接
+或者发布库。任何试图用其他方式复制、修改、发行从属许可证和发布库都是无效的，而且将
+自动结束许可证赋予你的权利。然而，对那些从你那里按许可证条款得到拷贝和权利的人，只
+要他们继续全面履行条款，许可证赋予他们的权利仍然有效。
+
+	9.你没有在许可证上签字，因而你没有必要一定接受这一许可证。然而，没有任何其他东
+西赋予你修改和发布本库及其衍生作品的权利。如果你不接受许可证，这些行为是法律禁止的。
+因此，如果你修改或发布库(或任何基于本库的作品)，你就表明你接受这一许可证以及它的所
+有有关复制、发布和修改库或基于本库的作品的条款和条件。
+
+	10.每当你重新发布本库（或任何基于本库的作品）时，接受者自动从原始许可证颁发者
+那里得到受这些条款和条件支配的复制、发布或修改程序的许可证。你不可以对接受者履行这
+里赋予他们的权利强加其他限制。你也没有强求第三方履行许可证条款的义务。
+
+	11.如果由于法院判决或侵犯专利指控或任何其他原因（不限于专利问题），强加于你的
+条件（不管是法院判决，协议或其他）和许可证的条件有冲突，这些都不能用许可证条款为你
+开脱。在你不能同时满足本许可证规定的义务及其他相关的义务时，你可以根本不发布本库。
+例如，如果某一专利许可证不允许所有那些直接或间接从你那里接受拷贝的人们在不付专利费
+的情况下重新发布库，惟一能同时满足两方面要求的办法是停止发布本库。
+
+	如果本条款的某些部分在特定的环境下无效或无法实施，就使用条款的其余部分，作为整
+体的条款将用于其他环境。
+
+	本条款的目的不在于引诱你侵犯专利或其他财产权的声明，或争论这种声明的有效性。它
+是通过公共许可证的应用来实现的，许多人坚持应用这一系统，已经通过这一系统发布大量自
+由软件，作出了慷慨的贡献。作者/捐赠者有权决定他/她是否通过任何其他系统发布软件。许
+可证不能强制这种选择。
+
+	本节的目的在于明确说明许可证其余部分可能产生的结果。
+
+	12.如果由于专利或者由于有版权接口问题，本库在某些国家的发布和/或者使用受到限制，
+那么将本库置于许可证约束下的原始版权拥有者可以增加限制发布地区的条款，将这些国家明
+确排除在外，只有这些国家以外的地区发布库。在这种情况下，许可证与限制条款的组合如同
+把限制条款放入许可证正文一样有效。
+
+	13.自由软件基金会可能随时出版次通用公共许可证的修订版和/或新版。新版和当前的版
+本在原则上保持一致，但在涉及新问题或有关事项时，在细节上可能出现差别。
+
+	每一版本都有不同的版本号。如果库指定了适用于它的许可证版本以及“任何较新的版本”，
+你有权选择遵循该指定版本或自由软件基金会出版的较新版本，如果库未指定许可证版本，你
+可选择自由软件基金会已经出版的任何版本。
+
+	14.如果你原意将本库的一部分结合到其他自由程序中，而它们的发布条件不兼容，请写
+信给作者，要求准予使用。如果是自由软件基金会加以版权保护的软件，写信给自由软件基金
+会。我们有时会作为例外的情况处理。我们的决定受两个主要目标的指导。这两个主要目标是：
+我们的自由软件的衍生作品继续保持自由状态；从整体上促进软件的共享和重用。
+
+				　　没有担保
+
+	1.由于库准予自由使用，在适用法律准许的范围内，对库没有担保。除非另有书面说明，
+版权所有者和/或其他提供库的人们“一样”不提供任何类型的担保。不论是明确的，还是隐
+含的。包括但不限于隐含的适销性和适合特定用途的保证。全部的风险，如库的质量和性能问
+题都由你来承担。如果库证明有缺陷，你承担所有必要的服务、修复和改正的费用。
+
+	2.除非适用法律或书面协议的要求，在任何情况下，任何版权所有者或任何按许可证条款
+修改和发布库的人们都不对你的损失负有任何责任。包括由于使用或不能使用库引起的任何一
+般的，特殊的，偶然的或必然的损失（包括但不限于数据的损失，提供的数据不精确，或者你
+或第三方的受到的损失，或者库不能和其他软件协调运行等）。即使版权所有者和其他人已经
+通知了这种损失的可能性。
+
+				  条款和条件结束
