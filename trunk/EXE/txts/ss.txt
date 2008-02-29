@@ -1,0 +1,12 @@
+特别注意：SS系统是Big Endian的！
+ss版似乎没有DOS/98这种统一的格式(MKF)，而比较复杂。列几个已知的。
+PX:	无压缩，每子文件占空0x10000，头无格式，子文件为320x200像素列表。
+	FBP.PX，LOG1.PX,LOG2.PX.
+	调色板直接写在子文件0xFA00处之后，BGR555最高位1。
+J:	GOP变形
+	一级子文件:MKF变形(2字节*0x800寻址)
+	二级子文件:头2字节为子文件数，之后为宽、长组，再次为0透明无压缩像素列表。
+	调色板：mgo:alldat@0(起始画面处个别同对应PX)，ABC/FFF:alldat@1。
+NEW:	MGO,AIF:GOP变形?MGO在二级更改为多个J二级结构并放。
+	FB:子GOPMKF。地面残留法术效果。
+JOE:	一级子文件：各自分割(RGM:0x2800,PPAIF:0x9800,MDAIF:0xF000,MID:0x33000,MAPIC未知,MGOP疑似J类)

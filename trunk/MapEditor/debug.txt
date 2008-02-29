@@ -1,0 +1,15 @@
+Path:H:\research\backup\research\MapEditor 
+------------Starting Init Game------------ 
+Grp3Ddraw -------------> ok 
+Grp3Dput -------------> ok 
+GrpInput -------------> ok 
+Particle -------------> ok 
+FightField -------------> ok 
+InitPolyMemory ªì©l¤Æ¥¢±Ñ!! 
+free_map 
+del_all_effect_list 
+Act_Memoryer_Free 
+FreePolyMemory 
+Memoryer_Free 
+FreeMapMemory 
+free_mark 

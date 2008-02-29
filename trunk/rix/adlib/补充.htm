@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>关于AdLib声卡FM合成器的一点解说</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<p align=center><font face="黑体" size="5">关于AdLib声卡FM音源的解说</font></p>
+<p align=center>中华大圣</p> 
+<p>&nbsp;</p>
+<p>AdLib的FM音源发声单元就是两个振荡器。它们对应Jeffrey的文章中提到的操作单元。所有的声音都是它们发出来的。</p>
+<p>请看AdLib声卡的工作模式示意图（节奏模式关闭状态）</p>
+<p><img src="AdLib.gif" width="409" height="325"></p>
+<p>简单地讲，就是以下流程：</p>
+<p><font color="#FF0000"><b>设定总控制器组的值，对FM合成器整体进行调整</b></font><b>〉<font color="#FF9900">设定每一个通道的音色</font>〉<font color="#009900">按顺序发送发声/停止命令，演奏音乐</font>。</b></p>
+<p>要注意的是，<b><font color="#FF0000">每一项设定都是可以实时改变的</font></b>。</p>
+<p>AdLib的FM音源有9个通道（还有一种模式有6个，我后面要专门解释）。在一个“通道”里，前一个音结束前后一个音是发不出来的，举例：假如我要同时演奏10个音符，那么肯定有1个要丢了。所以，事实上这里的“通道”代表的是“复音”！</p>
+<p>但是，为了方便，下文中仍称它们“通道”。</p>
+<p>在每一个通道之中，振荡器1、2可以各自独立发声来进行“合唱”（注意，它们不可以“各自为政”，你只能一起控制它们，让它们“唱”同样的音。），也可以用振荡器1来调制振荡器2产生的波形，从而合成复杂一点的音色。 
+</p>
+<p><br>
+</p>
+<p>我们分别看这些寄存器对应的控制功能。先说总控制器组：</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="0" bordercolor="#0000FF">
+  <tr>
+    <td align="center" bgcolor="#00CCFF"><b>总控制器组</b></td>
+  </tr>
+  <tr> 
+    <td>01<br>
+      测试SI/启动波形控制</td>
+  </tr>
+  <tr> 
+    <td>02<br>
+      定时器1数据</td>
+  </tr>
+  <tr> 
+    <td>03<br>
+      定时器2数据</td>
+  </tr>
+  <tr> 
+    <td>04<br>
+      定时器控制标志</td>
+  </tr>
+  <tr> 
+    <td>08<br>
+      音色合成模式/键盘分割音符选择</td>
+  </tr>
+  <tr> 
+    <td>BD<br>
+      调幅程度/颤音深度/节奏乐器控制</td>
+  </tr>
+
+</table>
+<p>它们关系着整个FM合成器的运作。BD处的设置对所有通道都有效。</p>
+<p>&nbsp;</p>
+<p>按通道分组的控制器：</p>
+<table width="100%" border="1" cellspacing="0" cellpadding="0" bordercolor="#0000FF">
+  <tr> 
+    <td align="center" bgcolor="#00CCFF"><b>按通道分组的控制器</b></td>
+  </tr>
+  <tr> 
+    <td>20..35<br>
+      调幅/颤音/包络发生模式/音符缩放比例/频率调节倍率</td>
+  </tr>
+  <tr> 
+    <td>40..55<br>
+      音符缩放比例电平/操作单元输出电平</td>
+  </tr>
+  <tr> 
+    <td>60..75<br>
+      起音率/衰减率</td>
+  </tr>
+  <tr> 
+    <td>80..95<br>
+      延音电平/释音率</td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFCCFF">A0..A8<br>
+      频率（低八位字节）</td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFCCFF">B0..B8<br>
+      <font color="#FF0000">发音开关</font>/八度音/频率（高二位字节）</td>
+  </tr>
+  <tr>
+    <td>C0..C8<br>
+      回馈强度/运算方式</td>
+  </tr>
+  <tr>
+    <td>C0..C8<br>
+      回馈强度/运算方式</td>
+  </tr>
+  <tr>
+    <td>E0..F5<br>
+      波形选择</td>
+  </tr>
+</table>
+<p><br>
+  每一个通道都有只针对自己的一套控制器，具体的分组方法请见Jeffrey的文档。</p>
+<p><font color="#FF0000">A0..A8 B0..B8这两组控制器关系着通道的发声/静音和具体音高。</font>至于具体的发声时间……当然是在你打开发声开关的时候发声。</p>
+<p>除此之外的控制器都是有关音色设置。<br>
+</p>
+</body>
+</html>

@@ -1,0 +1,778 @@
+$ Id: FORMATS 1.00 2006-05-24 14:34:50 +8:00 $
+
+ * PAL file formats description
+ *
+ * Copyright (C) 2006  Lou Yihua.
+ *
+ * This file is part of PAL library.
+ *
+ * Permission is granted to copy, distribute and/or modify this document
+ * under the terms of the GNU Free Documentation License, Version 1.2
+ * or any later version published by the Free Software Foundation;
+ * with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+ * A copy of the license is included in the section entitled "GNU Free
+ * Documentation License".
+
+ * 《仙剑奇侠传》文件格式描述
+ *
+ * 版权所有 (C) 2006  Lou Yihua.
+ *
+ * 本文件是《仙剑奇侠传》库的一部分。
+ *
+ * 你可以遵照自由软件基金会出版的GNU自由文档协议 2.1 版或者任何较新的版本来
+ * 复制、修改和重新发布这一文档（没有固定章节、封面文字、封底文字）。在本文
+ * 档中名为“GNU自由文档协议”的章节中包含了这一协议的副本。
+
+
+		GNU Free Documentation License
+		  Version 1.2, November 2002
+
+
+ Copyright (C) 2000,2001,2002  Free Software Foundation, Inc.
+     51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+
+0. PREAMBLE
+
+The purpose of this License is to make a manual, textbook, or other
+functional and useful document "free" in the sense of freedom: to
+assure everyone the effective freedom to copy and redistribute it,
+with or without modifying it, either commercially or noncommercially.
+Secondarily, this License preserves for the author and publisher a way
+to get credit for their work, while not being considered responsible
+for modifications made by others.
+
+This License is a kind of "copyleft", which means that derivative
+works of the document must themselves be free in the same sense.  It
+complements the GNU General Public License, which is a copyleft
+license designed for free software.
+
+We have designed this License in order to use it for manuals for free
+software, because free software needs free documentation: a free
+program should come with manuals providing the same freedoms that the
+software does.  But this License is not limited to software manuals;
+it can be used for any textual work, regardless of subject matter or
+whether it is published as a printed book.  We recommend this License
+principally for works whose purpose is instruction or reference.
+
+
+1. APPLICABILITY AND DEFINITIONS
+
+This License applies to any manual or other work, in any medium, that
+contains a notice placed by the copyright holder saying it can be
+distributed under the terms of this License.  Such a notice grants a
+world-wide, royalty-free license, unlimited in duration, to use that
+work under the conditions stated herein.  The "Document", below,
+refers to any such manual or work.  Any member of the public is a
+licensee, and is addressed as "you".  You accept the license if you
+copy, modify or distribute the work in a way requiring permission
+under copyright law.
+
+A "Modified Version" of the Document means any work containing the
+Document or a portion of it, either copied verbatim, or with
+modifications and/or translated into another language.
+
+A "Secondary Section" is a named appendix or a front-matter section of
+the Document that deals exclusively with the relationship of the
+publishers or authors of the Document to the Document's overall subject
+(or to related matters) and contains nothing that could fall directly
+within that overall subject.  (Thus, if the Document is in part a
+textbook of mathematics, a Secondary Section may not explain any
+mathematics.)  The relationship could be a matter of historical
+connection with the subject or with related matters, or of legal,
+commercial, philosophical, ethical or political position regarding
+them.
+
+The "Invariant Sections" are certain Secondary Sections whose titles
+are designated, as being those of Invariant Sections, in the notice
+that says that the Document is released under this License.  If a
+section does not fit the above definition of Secondary then it is not
+allowed to be designated as Invariant.  The Document may contain zero
+Invariant Sections.  If the Document does not identify any Invariant
+Sections then there are none.
+
+The "Cover Texts" are certain short passages of text that are listed,
+as Front-Cover Texts or Back-Cover Texts, in the notice that says that
+the Document is released under this License.  A Front-Cover Text may
+be at most 5 words, and a Back-Cover Text may be at most 25 words.
+
+A "Transparent" copy of the Document means a machine-readable copy,
+represented in a format whose specification is available to the
+general public, that is suitable for revising the document
+straightforwardly with generic text editors or (for images composed of
+pixels) generic paint programs or (for drawings) some widely available
+drawing editor, and that is suitable for input to text formatters or
+for automatic translation to a variety of formats suitable for input
+to text formatters.  A copy made in an otherwise Transparent file
+format whose markup, or absence of markup, has been arranged to thwart
+or discourage subsequent modification by readers is not Transparent.
+An image format is not Transparent if used for any substantial amount
+of text.  A copy that is not "Transparent" is called "Opaque".
+
+Examples of suitable formats for Transparent copies include plain
+ASCII without markup, Texinfo input format, LaTeX input format, SGML
+or XML using a publicly available DTD, and standard-conforming simple
+HTML, PostScript or PDF designed for human modification.  Examples of
+transparent image formats include PNG, XCF and JPG.  Opaque formats
+include proprietary formats that can be read and edited only by
+proprietary word processors, SGML or XML for which the DTD and/or
+processing tools are not generally available, and the
+machine-generated HTML, PostScript or PDF produced by some word
+processors for output purposes only.
+
+The "Title Page" means, for a printed book, the title page itself,
+plus such following pages as are needed to hold, legibly, the material
+this License requires to appear in the title page.  For works in
+formats which do not have any title page as such, "Title Page" means
+the text near the most prominent appearance of the work's title,
+preceding the beginning of the body of the text.
+
+A section "Entitled XYZ" means a named subunit of the Document whose
+title either is precisely XYZ or contains XYZ in parentheses following
+text that translates XYZ in another language.  (Here XYZ stands for a
+specific section name mentioned below, such as "Acknowledgements",
+"Dedications", "Endorsements", or "History".)  To "Preserve the Title"
+of such a section when you modify the Document means that it remains a
+section "Entitled XYZ" according to this definition.
+
+The Document may include Warranty Disclaimers next to the notice which
+states that this License applies to the Document.  These Warranty
+Disclaimers are considered to be included by reference in this
+License, but only as regards disclaiming warranties: any other
+implication that these Warranty Disclaimers may have is void and has
+no effect on the meaning of this License.
+
+
+2. VERBATIM COPYING
+
+You may copy and distribute the Document in any medium, either
+commercially or noncommercially, provided that this License, the
+copyright notices, and the license notice saying this License applies
+to the Document are reproduced in all copies, and that you add no other
+conditions whatsoever to those of this License.  You may not use
+technical measures to obstruct or control the reading or further
+copying of the copies you make or distribute.  However, you may accept
+compensation in exchange for copies.  If you distribute a large enough
+number of copies you must also follow the conditions in section 3.
+
+You may also lend copies, under the same conditions stated above, and
+you may publicly display copies.
+
+
+3. COPYING IN QUANTITY
+
+If you publish printed copies (or copies in media that commonly have
+printed covers) of the Document, numbering more than 100, and the
+Document's license notice requires Cover Texts, you must enclose the
+copies in covers that carry, clearly and legibly, all these Cover
+Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on
+the back cover.  Both covers must also clearly and legibly identify
+you as the publisher of these copies.  The front cover must present
+the full title with all words of the title equally prominent and
+visible.  You may add other material on the covers in addition.
+Copying with changes limited to the covers, as long as they preserve
+the title of the Document and satisfy these conditions, can be treated
+as verbatim copying in other respects.
+
+If the required texts for either cover are too voluminous to fit
+legibly, you should put the first ones listed (as many as fit
+reasonably) on the actual cover, and continue the rest onto adjacent
+pages.
+
+If you publish or distribute Opaque copies of the Document numbering
+more than 100, you must either include a machine-readable Transparent
+copy along with each Opaque copy, or state in or with each Opaque copy
+a computer-network location from which the general network-using
+public has access to download using public-standard network protocols
+a complete Transparent copy of the Document, free of added material.
+If you use the latter option, you must take reasonably prudent steps,
+when you begin distribution of Opaque copies in quantity, to ensure
+that this Transparent copy will remain thus accessible at the stated
+location until at least one year after the last time you distribute an
+Opaque copy (directly or through your agents or retailers) of that
+edition to the public.
+
+It is requested, but not required, that you contact the authors of the
+Document well before redistributing any large number of copies, to give
+them a chance to provide you with an updated version of the Document.
+
+
+4. MODIFICATIONS
+
+You may copy and distribute a Modified Version of the Document under
+the conditions of sections 2 and 3 above, provided that you release
+the Modified Version under precisely this License, with the Modified
+Version filling the role of the Document, thus licensing distribution
+and modification of the Modified Version to whoever possesses a copy
+of it.  In addition, you must do these things in the Modified Version:
+
+A. Use in the Title Page (and on the covers, if any) a title distinct
+   from that of the Document, and from those of previous versions
+   (which should, if there were any, be listed in the History section
+   of the Document).  You may use the same title as a previous version
+   if the original publisher of that version gives permission.
+B. List on the Title Page, as authors, one or more persons or entities
+   responsible for authorship of the modifications in the Modified
+   Version, together with at least five of the principal authors of the
+   Document (all of its principal authors, if it has fewer than five),
+   unless they release you from this requirement.
+C. State on the Title page the name of the publisher of the
+   Modified Version, as the publisher.
+D. Preserve all the copyright notices of the Document.
+E. Add an appropriate copyright notice for your modifications
+   adjacent to the other copyright notices.
+F. Include, immediately after the copyright notices, a license notice
+   giving the public permission to use the Modified Version under the
+   terms of this License, in the form shown in the Addendum below.
+G. Preserve in that license notice the full lists of Invariant Sections
+   and required Cover Texts given in the Document's license notice.
+H. Include an unaltered copy of this License.
+I. Preserve the section Entitled "History", Preserve its Title, and add
+   to it an item stating at least the title, year, new authors, and
+   publisher of the Modified Version as given on the Title Page.  If
+   there is no section Entitled "History" in the Document, create one
+   stating the title, year, authors, and publisher of the Document as
+   given on its Title Page, then add an item describing the Modified
+   Version as stated in the previous sentence.
+J. Preserve the network location, if any, given in the Document for
+   public access to a Transparent copy of the Document, and likewise
+   the network locations given in the Document for previous versions
+   it was based on.  These may be placed in the "History" section.
+   You may omit a network location for a work that was published at
+   least four years before the Document itself, or if the original
+   publisher of the version it refers to gives permission.
+K. For any section Entitled "Acknowledgements" or "Dedications",
+   Preserve the Title of the section, and preserve in the section all
+   the substance and tone of each of the contributor acknowledgements
+   and/or dedications given therein.
+L. Preserve all the Invariant Sections of the Document,
+   unaltered in their text and in their titles.  Section numbers
+   or the equivalent are not considered part of the section titles.
+M. Delete any section Entitled "Endorsements".  Such a section
+   may not be included in the Modified Version.
+N. Do not retitle any existing section to be Entitled "Endorsements"
+   or to conflict in title with any Invariant Section.
+O. Preserve any Warranty Disclaimers.
+
+If the Modified Version includes new front-matter sections or
+appendices that qualify as Secondary Sections and contain no material
+copied from the Document, you may at your option designate some or all
+of these sections as invariant.  To do this, add their titles to the
+list of Invariant Sections in the Modified Version's license notice.
+These titles must be distinct from any other section titles.
+
+You may add a section Entitled "Endorsements", provided it contains
+nothing but endorsements of your Modified Version by various
+parties--for example, statements of peer review or that the text has
+been approved by an organization as the authoritative definition of a
+standard.
+
+You may add a passage of up to five words as a Front-Cover Text, and a
+passage of up to 25 words as a Back-Cover Text, to the end of the list
+of Cover Texts in the Modified Version.  Only one passage of
+Front-Cover Text and one of Back-Cover Text may be added by (or
+through arrangements made by) any one entity.  If the Document already
+includes a cover text for the same cover, previously added by you or
+by arrangement made by the same entity you are acting on behalf of,
+you may not add another; but you may replace the old one, on explicit
+permission from the previous publisher that added the old one.
+
+The author(s) and publisher(s) of the Document do not by this License
+give permission to use their names for publicity for or to assert or
+imply endorsement of any Modified Version.
+
+
+5. COMBINING DOCUMENTS
+
+You may combine the Document with other documents released under this
+License, under the terms defined in section 4 above for modified
+versions, provided that you include in the combination all of the
+Invariant Sections of all of the original documents, unmodified, and
+list them all as Invariant Sections of your combined work in its
+license notice, and that you preserve all their Warranty Disclaimers.
+
+The combined work need only contain one copy of this License, and
+multiple identical Invariant Sections may be replaced with a single
+copy.  If there are multiple Invariant Sections with the same name but
+different contents, make the title of each such section unique by
+adding at the end of it, in parentheses, the name of the original
+author or publisher of that section if known, or else a unique number.
+Make the same adjustment to the section titles in the list of
+Invariant Sections in the license notice of the combined work.
+
+In the combination, you must combine any sections Entitled "History"
+in the various original documents, forming one section Entitled
+"History"; likewise combine any sections Entitled "Acknowledgements",
+and any sections Entitled "Dedications".  You must delete all sections
+Entitled "Endorsements".
+
+
+6. COLLECTIONS OF DOCUMENTS
+
+You may make a collection consisting of the Document and other documents
+released under this License, and replace the individual copies of this
+License in the various documents with a single copy that is included in
+the collection, provided that you follow the rules of this License for
+verbatim copying of each of the documents in all other respects.
+
+You may extract a single document from such a collection, and distribute
+it individually under this License, provided you insert a copy of this
+License into the extracted document, and follow this License in all
+other respects regarding verbatim copying of that document.
+
+
+7. AGGREGATION WITH INDEPENDENT WORKS
+
+A compilation of the Document or its derivatives with other separate
+and independent documents or works, in or on a volume of a storage or
+distribution medium, is called an "aggregate" if the copyright
+resulting from the compilation is not used to limit the legal rights
+of the compilation's users beyond what the individual works permit.
+When the Document is included in an aggregate, this License does not
+apply to the other works in the aggregate which are not themselves
+derivative works of the Document.
+
+If the Cover Text requirement of section 3 is applicable to these
+copies of the Document, then if the Document is less than one half of
+the entire aggregate, the Document's Cover Texts may be placed on
+covers that bracket the Document within the aggregate, or the
+electronic equivalent of covers if the Document is in electronic form.
+Otherwise they must appear on printed covers that bracket the whole
+aggregate.
+
+
+8. TRANSLATION
+
+Translation is considered a kind of modification, so you may
+distribute translations of the Document under the terms of section 4.
+Replacing Invariant Sections with translations requires special
+permission from their copyright holders, but you may include
+translations of some or all Invariant Sections in addition to the
+original versions of these Invariant Sections.  You may include a
+translation of this License, and all the license notices in the
+Document, and any Warranty Disclaimers, provided that you also include
+the original English version of this License and the original versions
+of those notices and disclaimers.  In case of a disagreement between
+the translation and the original version of this License or a notice
+or disclaimer, the original version will prevail.
+
+If a section in the Document is Entitled "Acknowledgements",
+"Dedications", or "History", the requirement (section 4) to Preserve
+its Title (section 1) will typically require changing the actual
+title.
+
+
+9. TERMINATION
+
+You may not copy, modify, sublicense, or distribute the Document except
+as expressly provided for under this License.  Any other attempt to
+copy, modify, sublicense or distribute the Document is void, and will
+automatically terminate your rights under this License.  However,
+parties who have received copies, or rights, from you under this
+License will not have their licenses terminated so long as such
+parties remain in full compliance.
+
+
+10. FUTURE REVISIONS OF THIS LICENSE
+
+The Free Software Foundation may publish new, revised versions
+of the GNU Free Documentation License from time to time.  Such new
+versions will be similar in spirit to the present version, but may
+differ in detail to address new problems or concerns.  See
+http://www.gnu.org/copyleft/.
+
+Each version of the License is given a distinguishing version number.
+If the Document specifies that a particular numbered version of this
+License "or any later version" applies to it, you have the option of
+following the terms and conditions either of that specified version or
+of any later version that has been published (not as a draft) by the
+Free Software Foundation.  If the Document does not specify a version
+number of this License, you may choose any version ever published (not
+as a draft) by the Free Software Foundation.
+
+=============================================================================
+
+声明 
+
+这不是 GNU 自由文档协议的正式中文翻译。它不是由自由软件基金会发布的，在法律上
+不代表使用 GNU FDL 发布的软件的术语，──只有 GNU FDL 的原始英文描述才具有这
+样的效力。但是我们希望此翻译能帮助说中文的人更好地理解 GNU FDL 。 
+
+GNU 自由文档协议 
+版本 1.2, 2002年11月 
+
+
+版权所有 (C) 2000,2001,2002 Free Software Foundation, Inc. 
+59 Temple Place, Suite 330, Boston, MA 02111-1307 USA 
+允许每个人复制和发布这一协议原始文档的副本，但绝对不允许对它进行任何修改。 
+
+0. 导言 
+
+本协议着意于保证手册、教程或其它功能、用途的文档的自由: 以确保任何人不管在商业
+领域还是非商业领域都可以复制和(修改或没有修改并)重新发布这些文档的自由。其次，
+本协议保护文档作者和发布者由他们的工作获得的信誉不会因他人对其文档的修改而受损。 
+
+本协议是一种"copyleft"，其含义为:文档的派生产物必须与原文档同样是自由的。本文档
+是 GNU 通用公共协议(为自由软件设计的一种copyleft协议)的补充。 
+
+我们设计本协议供自由软件的手册使用，因为自由软件需要自由文档：一个自由的程序附
+带的手册当然要享有与该软件同等的自由。不过本协议并不仅限于对程序的手册使用，所有
+的文档作品都可以使用本协议。我们鼓励那些指导性质或参考书性质的文档作品使用本协议。 
+
+1. 适用范围和约定 
+
+本协议适用于任何媒体上的任何手册或其它文档，文档版权所有者只需在文档中声明使用本
+协议的条款发布。该声明允许了在后文中的规定下，在世界范围、免版税、无时限地使用该
+作品。以下的“文档”都是指此类(使用GFDL发布的)手册或作品。公众的任何一个人都是本
+协议的许可对象，这里将用“你”来称呼。如果你复制、修改或发布了这些(某种意义上也
+可以说是在版权法保护下的)文档，就表明你已经接受了本协议。 
+
+文档的“Modified Version(修正版)”是指任何包含全部或部分文档的作品，不论是照搬照
+抄还是经过加工修改或是翻译成其它语言。 
+
+“Secondary Section(附属章节)”是指定的附录或文档的前序部分，专门描述有关文档主
+题的文档出版者或作者的相关信息 (或对一些相关情况进行说明)并且包含文档主题不会直
+接提及的内容。 (如果文档是数学教材的一部分，附属章节或许连一点数学都不会提到。) 
+这些相关信息可以是与主题有关的历史关联、相关事物或者相关的法律、商业、哲理、道
+德或政治立场。 
+
+“Invariant Sections(固定章节)”是某些指定了标题的附属章节，固定章节做为文档的一
+部分也象声明提到的那样，在本协议的保护下发布。如果某章节不符合上面关于附属章节的
+定义，那它就不能被称为固定章节。文档可以没有固定章节。如果看不出文档中有什么固定
+章节，那就是没有了。 
+
+“Cover Texts(封皮文字)”是那些简短的小段文字列，就象封面或封底的文字。封皮文字
+做为文档的一部分也象声明提到的那样，在本协议的保护下发布。封面文字一般最多5个词
+语，封底文字一般最多25个词语。 
+
+文档的“Transparent(透明，此处理解为 兼容、开放)”副本是指可以用计算机处理的副本，
+表现为其格式符合一般通用规范，这样就适于直接用通用文本编辑器或通用绘画程序(对由
+像素构成的图片)或那些被广泛应用的图像编辑器(用来绘图)修改文档，并且其格式适于输
+入文本格式器或可转换为适于输入文本格式器的兼容格式。如果某副本(不论有没有标记)为
+反对或防止读者的后续修正而采用其它格式，那么就是不兼容的。如果图片格式的使用有任
+何实质性专利条文的限制，那么该图片格式就是不兼容(封闭)的。文档副本的不“Transparent”
+我们称为“Opaque(不透明，此处理解为 不兼容、封闭)”。 
+
+文档副本适用的兼容格式包括没有标记的纯ASCII码、Texinfo格式、LaTeX格式、 SGML格式
+或XML格式这些公认有效的文件(格式)类型定义，还有与标准兼容的精简HTML、PostScript
+或PDF这些便于编辑的格式。图片适用的兼容格式包括PNG、XCF和JPG。不兼容格式包括用专
+有文档处理器才能阅读编辑的专有格式、使用非公认的文件格式定义和/或使用非公认的处
+理工具的SGML格式或XML格式，还有那些机器生成的HTML及某些文档处理器产生的PostScript
+或PDF等只用于输出的格式。 
+
+“Title Page(扉页)”是指刊印成册的书的扉页本身及附加下列有必要明显地保留的页面：
+本协议要求在扉页出现的材料。象那些版式中没有扉页的作品，“Title Page”是指在作品
+正文之前最显著的标题附近的文字。 
+
+章节“Entitled XYZ(题为XYZ)”意为文档某指定片断标题恰为或包含XYZ，后面括号中用不
+同的术语解释XYZ。(这里的XYZ代指下面提及的特殊章节的名称，例如：鸣谢、贡献、注记、
+历史。) 当你修改文档时，对此类章节要“Preserve the Title(维持标题)”，就是说，要
+依据这里的定义保留该章节题为XYZ。 
+
+文档可能会在声明本协议适用于该文档的通告后包含免责声明。这个免责声明被考虑包含到
+本协议的参考中，但仅仅关于免责：该免责声明的任何其它可能的含义是无效的，并对本协
+议的含义不造成影响。 
+
+2. 原样复制 
+
+在提供本协议和版权声明，同时在许可声明中指明文档及其所有副本均在本协议保护下，并
+且不加入任何其它条件到文档的协议的前提下，你可以在任何媒体复制和发布该文档，不论
+是用于商业或非商业。你不可以对你 制作或发布 的副本进行技术处理以 妨碍或控制 阅读
+或再复制。不过，你可以因交换副本而接受他人给你的一些补偿。如果你发布的副本数量大
+到一定程度，你还必须看看下面的第3节。 
+
+在与上述相同的情形下，你还可以出借文档副本和公开展示文档副本。 
+
+3. 大量发布 
+
+如果你发布了付印的文档副本(或使用其它一般有印有封皮的媒质的副本)数量超过100份，
+你必须把副本用清晰明了地印有文档的许可声明所要求的封皮文字的封皮封装好，这些封皮
+文字包括封面文字和封底文字。封面和封底还都必须写明你是该副本的发布者。封面必须印
+上完整的书名，书名的每个字都必须同样地显著。你可以在封面添一些其它素材做为补充。
+在满足了遵循对封皮改动的限制、维持文档标题等这些条件下，副本在某方面上可以被视同
+原样复制的副本。 
+
+如果封面或封底必要的文字太多而导致看起来不清晰明了，那么你可以把优先的条目(尽量
+适合地)列在封面或封底，剩下的那些接在邻近的页面里。 
+
+如果你出版或分发不兼容的文档副本数量超过100份，那么，你要么随同每份不兼容副本带
+一份 可机读 的兼容副本，要么在每份不兼容副本里或随同该副本指明一个计算机网络的地
+址，让大部分使用网络的群众可以用通用网络通信协议到该处下载完全兼容的没有附加材料
+的文档副本。如果你采用后一种办法，你必须适当采取一些慎重的措施：当你开始大量发行
+不兼容副本时，要保证这些兼容副本在你(直接或通过你的代理商或零售商)发布最后一份对
+应版本的不兼容副本后至少一年在指定的地址可以访问到。 
+
+在你对文档副本进行大量再发布前取得与文档作者良好的联系，这虽然不是必须的，但是是
+有必要的，这样你就有机会得到他们提供的文档的最新版本。 
+
+4. 修正 
+
+你可以在上文2、3两节的条件下复制和发布文档的修正版，只要你严格地在本协议下发布承
+担了原来文档的任务的 修正版，这样就允许任何持有该修正版一份副本的人可对修正版进行
+发行和修改。而且，你必须对修正版做如下一些事情： 
+
+A. 在扉页(如果有封皮，则封皮和扉页都要)使用的书名要与原来文档的书名明显地区别开来，
+以及那些先前版本(哪些是需要区别的呢？如果原来文档有历史小节，那么历史小节中列出的
+都是)。如果最初的发行人允许的话，你也可以使用相同的书名。 
+B. 扉页上必须列出作者、对修正版文档的修改负责的个人或团体或机构、文档的至少五个主
+要作者(如果主要作者少于五个，就全部写上)，除非他们允许你不这么做。 
+C. 在扉页放上修正版文档的发布者的名字，如同(前面文档副本的)发布者那样。 
+D. 保留原有文档的所有版权声明不变。 
+E. 在其它版权声明附近为你所做的修正添加适当的版权声明。 
+F. 在版权声明后面立即接上允许公众在本协议下使用修正版文档的许可声明，其形式如下面
+附录所示。 
+G. 在文档的许可声明里保留所有固定章节和封皮文字所要求的许可声明。 
+H. 放上这些许可证的一份原件。 
+I. 保留题为“历史”的章节，不要改动其标题，并且给它添加一条包括修改版的书名、日期、
+作者、发布者的条目，就像扉页里给出的那样。如果原文档没有题为“历史”的章节，你就建
+立该章节，创建一条包括原文档的书名、日期、作者、发布者的条目，如原文档的扉页里给出
+的那样，然后再象上面规定那样，添一条描述修改版的条目。 
+J. 如果文档中给出了访问兼容文档的链接，你应该保护网址的有效，并且该网址还应该提供
+该文档的前承版本。这些链结可以在“历史”章节给出。如果前承文档发布已超过四年或者原
+作者在文档中提到不必指明前承版本，那么你可以在作品中略去其链结。 
+K. 原文档中的任何题为“鸣谢”或“贡献”的章节都必须维持其标题和章节中对每位贡献者
+的谢词的原旨和感情。 
+L. 维持原文档的固定章节的标题和内容不变。当然，章节标号不属于章节标题的一部分(可以
+改动)。 
+M. 删除原文档中任何题为“注记”的章节。这些章节可能是之针对原文档的。 
+N. 不要把任何已有章节标题改为“注记”，或改为与固定章节有冲突的标题。 
+O. 保留原文所有免责声明。 
+如果文档修正版包含了新的没有从原文档摘取素材的有附属章节资格的前序章节或附录，你可
+以在自己的选择下指定这些章节的全部或一些为固定章节。你需要为修正版的许可声明中的固
+定章节序列添加标题。这些标题必须与其它章节的标题明显地区别开来。 
+
+你可以添加题为“注记”的章节，只要包含各方面对你的修正版的评议，例如：综合评论或被
+某组织认可的某标准的权威定义的原文。 
+
+你可以在修正版封皮文字序列末尾添加5个词左右的书名和25个词左右的封底文字。一个实体
+(进行出版的个人或组织)可能只会添加(或通过整理形成)一段封面文字和封底文字。如果文档
+已经包含同样用于封皮的封皮文字(先前由你添加或由你代理的实体整理)，你就不要再另外添
+加了；不过在添加旧封皮的原发布者的明确许可下你可以把旧的替换掉。 
+
+本协议不允许文档作者和发布者用他们的名字公开声称或暗示对任何修正版的认可。 
+
+5. 合并文档 
+
+你可以在本协议下依据第4节里对修正版定义的条款把文档与其它文档合并起来发布，只要你
+在合并文档里原封不动地包含所有原始文档的所有固定章节，并在你的合并文档的许可声明中
+将其全部列为固定章节，而且保留其所有免责声明。 
+
+合并后文档只需包含一份本协议，重复的多处固定章节应该用单独的章节替代。如果重复的固
+定章节只是标题相同，但内容是不同的，就在每一小段标题末端的括号里添加已知的原作者或
+原发布者(的名字)，或给每小段一个唯一的标号。在合并文档的许可声明里的固定章节中的章
+节标题也要做相应的调整。 
+
+在合并文档里，你必须把不同原文档的“历史”章节合并成一个“历史”章节；同样需要合并
+的章节有“鸣谢”、“贡献”。你还必需把所有“注记”章节删除。 
+
+6. 文档合集 
+
+如果你对每份文档不论在哪方面都遵循了本协议的原样复制条款，那么你可以在本协议下发布
+你以该文档和其他文档制作的合集，并以一个单独的副本来替代合集中各文档里分别使用的本
+协议副本。 
+
+你可以从该合集中提取一个单独的文档，并在本协议下单独发布，只要你在该提取出的文档中
+加入一份本协议的副本，并在文档的其他所有方面都遵循本协议的原样复制的条款。 
+
+7. 独立作品汇集 
+
+文档和其它独立的不受本协议约束的派生文档或作品编纂在一个大文库中或大媒体上，如果汇
+编作品的版权对该汇编作品用户的权利限制没有超出那些独立作品的许可范围，该汇编作品称
+为“aggregate(集合体，这里译为：汇集或汇编)”。当文档被包含在汇集中的时候，本协议
+不对汇集中该文档的非直承(不是以本协议发布的)作品起作用。 
+
+如果第3节中对封皮文字的要求适用于文档的该副本，那么如果文档在汇集中所占的比例小于
+全文的一半，文档的封皮文字可以被置于汇集内该文档的内封页上，或是电子文档中的等效部
+分(如果文档以电子版发布)。否则，必须将其现于封装整个汇集的印好的封皮上。 
+
+8. 翻译 
+
+我们认为翻译是一种修改，所以你可以按照第4节的条款发布文档的翻译版本。如果要将文档
+的固定章节用译文取代，需要得到版权持有者的许可，但你可以将部分或全部固定章节的译文
+附加在原始版本的后面。你可以包含一份本协议、所有许可声明及免责声明的译文，只要你同
+时包含其原始英文版本即可。当译文和原文有歧义的时候，以原文为准。 
+
+文档中的鸣谢、贡献、历史等要求维持其标题的章节这里必须将其标题替换成当前译文的标题。 
+
+9. 协议终止 
+
+除非你明确遵循本协议，否则你不可以对文档进行复制、修改、分授许可及发布。对文档的任
+何其它(违反本协议的)意图的复制、修改、分授许可及发布是无效的，并且这将自动终止你在
+本协议下享有的权利。不过，从你这里获得文档副本或权利的群体的协议不会被终止，只要他
+们完全遵循本协议。 
+
+10. 本协议的未来修订版 
+
+自由软件基金会有时会发布新的 GNU自由文档协议 修订版。新版本将会和当前版本体现类似
+的精神，但在处理某些新的问题和利害关系的细节上会有所不同。参见http://www.gnu.org/copyleft/。 
+
+本协议的每个版本都有一个唯一的版本号。如果文档指定遵循一个特定的本协议版本"或任何后
+续版本"，你可以选择遵循指定版本或自由软件基金会发布的任何后续(非草案)版本的条款和条
+件。如果文档没有指定本许可证的版本，那么你可以选择遵循任何自由软件基金会已发布的(非
+草案)版本。 
+
+=========================================================================================
+
+YJ_1编码格式详解（By Lou Yihua, 2006-05-20）
+（致谢：除HUFFMAN编码树结构外，其余数据均由阅读鲁痴兄的Deyj1.h得来）
+
+<YJ_1文件头><HUFFMAN编码树><编码块>...<编码块>
+YJ_1对于较大的文件采取了分块处理的方式，每一块分别处理LZSS编码，通常每0x4000(16K)
+划分为一块，最后不足0x4000的部分也划分为一块，但HUFFMAN编码为全部数据共享
+
+YJ_1文件头：
+typedef struct _YJ_1_FILEHEADER
+{
+	DWORD	Signature;		//YJ_1文件标识'YJ_1'
+	DWORD	UncompressedLength;	//压缩前长度
+	DWORD	CompressedLength;	//压缩后长度
+	WORD	BlockCount;		//划分为16K块的数目
+	BYTE	Unknown;		//未知数据，可能仅为填充使用
+	BYTE	HuffmanTreeLength;	//HUFFMAN编码树的长度，为实际存储长度的1/2
+} YJ_1_FILEHEADER;
+
+
+HUFFMAN编码树结构：
+<节点值><节点值>……<节点值><标识字>……<标识字>
+|                          ||                  |
++-------------+------------++---------+--------+
+ 共HuffmanTreeLength * 2个    共 (HuffmanTreeLength * 2) / 16 个（运算值向上取整）
+
+HUFFMAN编码树为完全二叉树，YJ_1中的HUFFMAN编码树存储了除根节点以外的所有节点
+对于叶子节点，存储的是该叶子节点所代表的字符值；对于非叶子节点，则存储了其子节点的
+位置（以存储头为0，则：左子节点，value * 2；右子节点，value * 2 + 1），均为字节值
+为了区分是否是叶子节点，YJ_1在存储完节点值之后存储了节点类型的标识
+标识字的每一位都表示一个节点的类型，为1时表示非叶节点，为0时表示叶节点。
+举例：假设HUFFMAN编码树共存储了16 * A + B个节点（节点号从0到16 * A + B - 1），则：
+标识字0的第15位表示了HUFFMAN编码树节点0的类型，
+标识字0的第14位表示了HUFFMAN编码树节点1的类型，
+…………
+标识字0的第0位表示了HUFFMAN编码树节点15的类型，
+标识字1的第15位表示了HUFFMAN编码树节点16的类型，
+……
+标识字1的第0位表示了HUFFMAN编码树节点31的类型，
+……
+标识字A的第0位表示了HUFFMAN编码树节点16 * A - 1的类型，
+标识字A + 1的第15位表示了HUFFMAN编码树节点16 * A的类型，
+……
+标识字A + 1的第16 - B位表示了HUFFMAN编码树节点16 * A + B - 1的类型。
+
+编码块的结构：
+<编码块头><编码数据>
+编码块头：
+typedef struct _YJ_1_BLOCKHEADER
+{
+	WORD	UncompressedLength;		//本块压缩前长度，最大为0x4000
+	WORD	CompressedLength;		//本块压缩后长度，含块头
+	WORD	LZSSRepeatTable[4];		//LZSS重复次数表
+	BYTE	LZSSOffsetCodeLengthTable[4];	//LZSS偏移量编码长度表
+	BYTE	LZSSRepeatCodeLengthTable[3];	//LZSS重复次数编码长度表
+	BYTE	CodeCountCodeLengthTable[3];	//同类编码的编码数的编码长度表
+	BYTE	CodeCountTable[2];		//同类编码的编码数表
+} YJ_1_BLOCKHEADER;
+编码块头各部分含义：
+
+LZSS重复次数表：按从高到低的顺序存放本块中出现频率最高的四个重复次数
+
+LZSS偏移量编码长度表：将偏移量转换为二进制之后，划分为4个长度级别（保证能够表示
+所有的偏移量数值，并能够使平均编码长度尽可能短），并将这4个长度值按从小到大存储
+于本表中
+
+LZSS重复次数编码长度表：对于未在“LZSS重复次数表”出现的重复次数，类似于“LZSS偏
+移量编码长度表”的方式，划分为3个长度级别，并将这3个长度值按从小到大存储于本表中
+
+同类编码的编码数的编码长度表：本表与“LZSS重复次数编码长度表”的存储方式类似，
+作用在下面给出同类编码的编码数表：作用与上表同，存储方式与“LZSS重复次数表”同
+
+YJ_1每个编码块中的编码由两种编码混合而成：HUFFMAN编码（编码未由LZSS压缩的所有数据）
+及LZSS压缩编码YJ_1将整个编码数据划分为若干个小块，以HUFFMAN编码开始，由HUFFMAN编
+码和LZSS压缩编码交替组成，如下所示：
+[HUFFMAN编码块][LZSS编码块][HUFFMAN编码块][LZSS编码块]...
+为了区分这两种编码的编码块，在具体编码数据之前，需要先存放一个编码数，用于告知解
+码程序对于本块需要做几个解码循环。如果某个块的编码数为0，则表示这整个编码数据的结束。
+所有的编码数据都是一个比特流，并与前述HUFFMAN编码树表中的“标识字”的存储方式相同。
+
+具体编码方式：
+1、编码数
+编码	值			长度
+1	CodeCountTable[0]	-
+000	CodeCountTable[1]	-
+001	接下来的位数据		CodeCountCodeLengthTable[0]
+010	接下来的位数据		CodeCountCodeLengthTable[1]
+011	接下来的位数据		CodeCountCodeLengthTable[2]
+
+HUFFMAN编码：
+从根节点开始，编码值为0表示取左子节点，编码值为1表示取右子节点，重复直至取到叶节点
+为止，叶节点值即为实际值
+
+LZSS编码：
+1、重复次数
+编码	值			长度
+00	LZSSRepeatTable[0]	-
+010	LZSSRepeatTable[1]	-
+100	LZSSRepeatTable[2]	-
+110	LZSSRepeatTable[3]	-
+011	接下来的位数据		LZSSRepeatCodeLengthTable[0]
+101	接下来的位数据		LZSSRepeatCodeLengthTable[1]
+111	接下来的位数据		LZSSRepeatCodeLengthTable[2]
+
+2、偏移量
+编码	值			长度
+00	接下来的位数据		LZSSOffsetCodeLengthTable[0]
+01	接下来的位数据		LZSSOffsetCodeLengthTable[1]
+10	接下来的位数据		LZSSOffsetCodeLengthTable[2]
+11	接下来的位数据		LZSSOffsetCodeLengthTable[3]
+
+=========================================================================================
+
+PAL95编码格式详解（By Lou Yihua, 2006-05-22）
+
+相比于YJ_1编码格式，由于使用了自适应技术，PAL95编码格式则简单许多，其格式为：
+<解码后数据长度><数据流>
+|              |
++-------+------+
+     DWORD值
+与YJ_1的数据流不同，这里的数据流部分都是经过Huffman编码的，经过Huffman解码之后才
+能确定其是否为LZSS编码后的数据。确定的方法是：如果解码后的数据为0x00~0xff之间，
+则直接输出到输出流中，否则，则代表了LZSS编码二元组中的<重复次数（匹配长度）>字段，
+另一个<偏移量>字段则由后续的位数据给出。同时，为了减少编码后的长度，这里的后续位
+数据也是编码过的，但编码表是固定的。
+
+=========================================================================================
+
+RNG编码格式详解（By Lou Yihua, 2006-05-24）
+
+RNG格式是PAL中用于存储动画的一种无损编码格式，它的原理就在于只存储两帧之间的差异。通常而
+言，在RNG格式的动画中，只有第一帧是关键帧，后面所有的帧都是增量存储的。
+
+RNG格式较为简单，其基本格式如下：
+<指令><数据><指令><数据>......
+其中：
+<指令>字段占一个字节
+<数据>字段占零个或多个字节
+
+RNG中用到的指令共18种，编号为0x00~0x13（其中，0x13与0x00、0x01与0x05作用相同，只算一种）
+各指令格式如下（其中的B、W分别表示字节、字，凡是涉及到数据操作的均隐含移动指针）：
+
+<0x00>：编码结束（0x13同）
+<0x01>：空指令（0x05同）
+<0x02>：目的指针后移 1 个字
+<0x03><次数(B)>：目的指针后移 (<次数> + 1) 个字
+<0x04><次数(W)>：目的指针后移 (<次数> + 1) 个字
+<0x06><数据(W)>：复制 1 个字数据
+<0x07><数据(W * 2)>：复制 2 个字数据
+<0x08><数据(W * 3)>：复制 3 个字数据
+<0x09><数据(W * 4)>：复制 4 个字数据
+<0x0a><数据(W * 5)>：复制 5 个字数据
+<0x0b><次数(B)><数据(W * <次数>)>：复制 <次数> 个字数据
+<0x0c><次数(W)><数据(W * <次数>)>：复制 <次数> 个字数据
+<0x0d><数据(W)>：使用 <数据> 填充 2 个字
+<0x0e><数据(W)>：使用 <数据> 填充 3 个字
+<0x0f><数据(W)>：使用 <数据> 填充 4 个字
+<0x10><数据(W)>：使用 <数据> 填充 5 个字
+<0x11><次数(B)><数据(W)>：使用 <数据> 填充 (<次数> + 1) 个字
+<0x12><次数(W)><数据(W)>：使用 <数据> 填充 (<次数> + 1) 个字
+
+=========================================================================================
