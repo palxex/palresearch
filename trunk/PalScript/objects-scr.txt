@@ -1,0 +1,7241 @@
+@0000: Null       0000 0000 0000 0000 0000 0000 
+@0001: Empty      0000 0000 0000 0000 0000 0000 
+@0002: 经验值     0000 0000 0000 0000 0000 0000 
+@0003: 状态       0000 0000 0000 0000 0000 0000 
+@0004: 仙术       0000 0000 0000 0000 0000 0000 
+@0005: 物品       0000 0000 0000 0000 0000 0000 
+@0006: 系统       0000 0000 0000 0000 0000 0000 
+@0007: 梦幻之旅   0000 0000 0000 0000 0000 0000 
+@0008: 前尘忆梦   0000 0000 0000 0000 0000 0000 
+@0009: 打败敌人得 0000 0000 0000 0000 0000 0000 
+@000a: 文钱       0000 0000 0000 0000 0000 0000 
+@000b: 储存进度   0000 0000 0000 0000 0000 0000 
+@000c: 读取进度   0000 0000 0000 0000 0000 0000 
+@000d: 音乐       0000 0000 0000 0000 0000 0000 
+@000e: 音效       0000 0000 0000 0000 0000 0000 
+@000f: 结束游戏   0000 0000 0000 0000 0000 0000 
+@0010: 储存完毕   0000 0000 0000 0000 0000 0000 
+@0011: 关         0000 0000 0000 0000 0000 0000 
+@0012: 开         0000 0000 0000 0000 0000 0000 
+@0013: 否         0000 0000 0000 0000 0000 0000 
+@0014: 是         0000 0000 0000 0000 0000 0000 
+@0015: 金钱       0000 0000 0000 0000 0000 0000 
+@0016: 装备       0000 0000 0000 0000 0000 0000 
+@0017: 使用       0000 0000 0000 0000 0000 0000 
+@0018: 投掷       0060 0000 0000 0000 0000 0002 
+@0019: 售价       0000 0000 0000 0000 0000 0000 
+@001a: 封         0000 0000 0000 0000 0000 0000 
+@001b: 定         0000 0000 0000 0000 0000 0000 
+@001c: 眠         0000 0000 0000 0000 0000 0000 
+@001d: 乱         0000 0000 0000 0000 0000 0000 
+@001e: 获得经验值 0000 0000 0000 0000 0000 0000 
+@001f: 逃跑失败   0000 0000 0000 0000 0000 0000 
+@0020: 提升       0000 0000 0000 0000 0000 0000 
+@0021: 练成       0000 0000 0000 0000 0000 0000 
+@0022: 获得       0000 0000 0000 0000 0000 0000 
+@0023: 现有       0000 0000 0000 0000 0000 0000 
+@0024: 李逍遥     0000 0000 a4fa 0000 0000 0000 
+-----Script1-----
+a4fa: ChanceContinue 75 a504
+a4fb: ChanceContinue 66 a50b
+a4fc: ChanceContinue 50 a512
+a4fd: DialogBottom 0005 0
+a4fe: Message `　　啊∼！~60`
+a4ff: DialogFrame
+a500: Message `李逍遙怒火燃燒，體力恢復`
+a501: RecoverHP False 9999
+a502: IncreaseAttributeByPercent 武术 5
+a503: End
+
+a50b: DialogBottom 0005 0
+a50c: Message `　　　可惡∼！~60`
+a50d: DialogFrame
+a50e: Message `李逍遙發出怒吼，力量提高`
+a50f: IncreaseAttributeByPercent 武术 25
+a510: IncreaseAttributeByPercent 灵力 25
+a511: End
+
+a504: DialogBottom 0005 0
+a505: Message `　可惡的傢伙！~60`
+a506: DialogFrame
+a507: Message `李逍遙鬥志燃燒，真氣恢復`
+a508: RecoverMP False 9999
+a509: IncreaseAttributeByPercent 灵力 10
+a50a: End
+
+a512: DialogBottom 000a 0
+a513: Message `　　啊．．糟了∼！~60`
+a514: IncreaseAttributeByPercent 身法 90
+a515: IncreaseAttributeByPercent 吉运 90
+a516: End
+-----------------
+
+@0025: 赵灵儿     0000 0000 0000 a4b3 0000 0000 
+-----Script2-----
+a4b3: ChanceContinue 75 a4b9
+a4b4: ChanceContinue 66 a4bf
+a4b5: ChanceContinue 50 a4c6
+a4b6: DialogBottom 000f 0
+a4b7: Message `我．．支持不住了．．~60`
+a4b8: End
+
+a4bf: DialogBottom 0002 0
+a4c0: Message `哎呀，妳傷得不輕呢！`
+a4c1: Message `先替妳療傷再說~60`
+a4c2: DialogTop 000b 0
+a4c3: Message `謝謝．．逍遙哥哥`
+a4c4: Message `你自己也受了傷吧~60`
+a4c5: End
+
+a4b9: DialogBottom 0002 0
+a4ba: Message `靈兒∼妳還好吧？~60`
+a4bb: DialogTop 000f 0
+a4bc: Message `我．．我沒事．`
+a4bd: Message `這點傷．．我還捱得了~60`
+a4be: End
+
+a4c6: DialogTop 000f 0
+a4c7: Message `逍遙哥哥．．對不起．．`
+a4c8: Message `我．．都是我連累了你~60`
+a4c9: DialogBottom 0009 0
+a4ca: Message `說這什麼傻話！`
+a4cb: Message `我保護妳是應該的~60`
+a4cc: End
+-----------------
+
+@0026: 林月如     0000 0000 a517 a4cd 0000 0000 
+-----Script1-----
+a517: ChanceContinue 75 a521
+a518: ChanceContinue 66 a528
+a519: ChanceContinue 50 a52f
+a51a: DialogBottom 0017 0
+a51b: Message `　可惡∼看招！~60`
+a51c: DialogFrame
+a51d: Message `林月如力量突然提高`
+a51e: IncreaseAttributeByPercent 武术 25
+a51f: IncreaseAttributeByPercent 灵力 25
+a520: End
+
+a521: DialogBottom 0017 0
+a522: Message `可惡∼我替你報仇！~60`
+a523: DialogFrame
+a524: Message `林月如怒火燃燒，體力恢復`
+a525: RecoverHP False 9999
+a526: IncreaseAttributeByPercent 武术 5
+a527: End
+
+a52f: DialogBottom 0018 0
+a530: Message `　哇∼　怎麼辦！~60`
+a531: IncreaseAttributeByPercent 身法 50
+a532: IncreaseAttributeByPercent 吉运 90
+a533: End
+
+a528: DialogBottom 0016 0
+a529: Message `　真沒用∼看我的！~60`
+a52a: DialogFrame
+a52b: Message `林月如鬥志燃燒，真氣恢復`
+a52c: RecoverMP False 9999
+a52d: IncreaseAttributeByPercent 灵力 9
+a52e: End
+-----Script2-----
+a4cd: ChanceContinue 75 a4d3
+a4ce: ChanceContinue 66 a4d6
+a4cf: ChanceContinue 50 a4e1
+a4d0: DialogTop 0018 0
+a4d1: Message `喂∼人家受傷了，站不起來啦~60`
+a4d2: End
+
+a4d6: DialogTop 0016 0
+a4d7: Message `喂∼人家不行了啦！`
+a4d8: Message `你看見了沒有？~60`
+a4d9: DialogBottom 0008 0
+a4da: Message `我的大小姐，妳還真麻煩呢~60`
+a4db: Clear 0
+a4dc: DialogTop 0016 0
+a4dd: Message `嗚．．你根本就不關心我~60`
+a4de: DialogBottom 000a 0
+a4df: Message `這．．妳說到哪去了~60`
+a4e0: End
+
+a4e1: DialogTop 0016 0
+a4e2: Message `喂∼別只是顧著對付敵人`
+a4e3: Message `人家受了傷，你都不管嗎？~60`
+a4e4: DialogBottom 0009 0
+a4e5: Message `我來護著妳，趕快療傷吧~60`
+a4e6: End
+
+a4d3: DialogBottom 0018 0
+a4d4: Message `嗚．．好痛喔∼不來了啦！~60`
+a4d5: End
+-----------------
+
+@0027: 阿奴       0000 0000 0000 a4e7 0000 0000 
+-----Script2-----
+a4e7: ChanceContinue 75 a4ed
+a4e8: ChanceContinue 66 a4f1
+a4e9: ChanceContinue 50 a4f4
+a4ea: DialogBottom 001f 0
+a4eb: Message `逍遙哥哥，阿奴快沒體力了~60`
+a4ec: End
+
+a4ed: DialogTop 001f 0
+a4ee: Message `逍遙哥哥，阿奴受了傷呢∼`
+a4ef: Message `你怎麼都不管阿奴．．~60`
+a4f0: End
+
+a4f1: DialogBottom 001f 0
+a4f2: Message `嗚．．好痛喔．．~60`
+a4f3: End
+
+a4f4: DialogBottom 0002 0
+a4f5: Message `阿奴．．妳還撐得住嗎？~60`
+a4f6: DialogTop 001f 0
+a4f7: Message `嗚．．逍遙哥哥，對不起`
+a4f8: Message `都是阿奴拖累了你．．~60`
+a4f9: End
+-----------------
+
+@0028: 巫后       0000 0000 0000 0000 0000 0000 
+@0029: 盖罗娇     0000 0000 0000 0000 0000 0000 
+@002a: 炼出       0000 0000 0000 0000 0000 0000 
+@002b: 进度一     0000 0000 0000 0000 0000 0000 
+@002c: 进度二     0000 0000 0000 0000 0000 0000 
+@002d: 进度三     0000 0000 0000 0000 0000 0000 
+@002e: 进度四     0000 0000 0000 0000 0000 0000 
+@002f: 进度五     0000 0000 0000 0000 0000 0000 
+@0030: 修行       0000 0000 0000 0000 0000 0000 
+@0031: 体力       0000 0000 0000 0000 0000 0000 
+@0032: 真气       0000 0000 0000 0000 0000 0000 
+@0033: 武术       0000 0000 0000 0000 0000 0000 
+@0034: 灵力       0000 0000 0000 0000 0000 0000 
+@0035: 防御       0000 0000 0000 0000 0000 0000 
+@0036: 身法       0000 0000 0000 0000 0000 0000 
+@0037: 吉运       0000 0000 0000 0000 0000 0000 
+@0038: 围攻       0000 0000 0000 0000 0000 0000 
+@0039: 道具       0000 0000 0000 0000 0000 0000 
+@003a: 防御       0000 0000 0000 0000 0000 0000 
+@003b: 逃跑       0000 0000 0000 0000 0000 0000 
+@003c: 状态       0000 0000 0000 0000 0000 0000 
+@003d: 观音符     00c5 03e8 045f 0000 0000 0029 
+-----Script1-----
+045f: ConditionHero 防御加强 3 0000
+0460: End
+
+0000: End
+-----------------
+
+@003e: 圣灵符     00dd 1388 04a1 0000 0000 0029 
+-----Script1-----
+04a1: SetArmorAttribute 0011 风抗 30
+04a2: SetArmorAttribute 0011 雷抗 30
+04a3: SetArmorAttribute 0011 水抗 30
+04a4: SetArmorAttribute 0011 火抗 30
+04a5: SetArmorAttribute 0011 土抗 30
+04a6: End
+-----------------
+
+@003f: 金刚符     00d8 09c4 9a91 0000 0000 0029 
+-----Script1-----
+9a91: ConditionHero 防御加强 7 0000
+9a92: End
+
+0000: End
+-----------------
+
+@0040: 净衣符     00d9 0078 99be 0000 0000 0029 
+-----Script1-----
+99be: CurePoisonForHero False 赤毒
+99bf: CurePoisonForHero False 瘴毒
+99c0: CurePoisonForHero False 屍毒
+99c1: End
+-----------------
+
+@0041: 灵心符     00da 0078 99c2 0000 0000 0029 
+-----Script1-----
+99c2: RemoveConditionForHero 疯魔
+99c3: RemoveConditionForHero 定身
+99c4: RemoveConditionForHero 昏睡
+99c5: RemoveConditionForHero 咒封
+99c6: End
+-----------------
+
+@0042: 天师符     00c4 03e8 0461 0000 9a98 002d 
+-----Script1-----
+0461: ChanceContinue 30 0000
+0462: ConditionHero 咒封 3 0000
+0463: RecoverMP False -50
+0464: End
+
+0000: End
+-----Script3-----
+9a98: HeroUseMagic 天師符法 False
+9a99: End
+-----------------
+
+@0043: 风灵符     00c0 05dc 9a9a 0000 0000 0029 
+-----Script1-----
+9a9a: SetArmorAttribute 0011 风抗 30
+9a9b: End
+-----------------
+
+@0044: 雷灵符     00c1 05dc 9a9c 0000 0000 0029 
+-----Script1-----
+9a9c: SetArmorAttribute 0011 雷抗 30
+9a9d: End
+-----------------
+
+@0045: 水灵符     00c2 05dc 9a9e 0000 0000 0029 
+-----Script1-----
+9a9e: SetArmorAttribute 0011 水抗 30
+9a9f: End
+-----------------
+
+@0046: 火灵符     0098 05dc 9aa0 0000 0000 0029 
+-----Script1-----
+9aa0: SetArmorAttribute 0011 火抗 30
+9aa1: End
+-----------------
+
+@0047: 土灵符     0090 05dc 9aa6 0000 0000 0029 
+-----Script1-----
+9aa6: SetArmorAttribute 0011 土抗 30
+9aa7: End
+-----------------
+
+@0048: 舍利子     00d6 0000 9a85 0000 0000 0009 
+-----Script1-----
+9a85: IncreaseAttribute 真气最大值 3 0000
+9a86: End
+-----------------
+
+@0049: 玉菩提     0095 0000 9a87 0000 0000 0009 
+-----Script1-----
+9a87: IncreaseAttribute 真气最大值 5 0000
+9a88: End
+-----------------
+
+@004a: 银杏子     0028 0000 9a89 0000 0000 0009 
+-----Script1-----
+9a89: IncreaseAttribute 体力最大值 3 0000
+9a8a: End
+-----------------
+
+@004b: 龙爪花     00cc 0000 99cc 0000 0000 0009 
+-----Script1-----
+99cc: IncreaseAttribute 武术 4 0000
+99cd: End
+-----------------
+
+@004c: 糯米糕     0023 0064 99ce 0000 0000 0029 
+-----Script1-----
+99ce: RecoverHP False 25
+99cf: CurePoisonForHero False 屍毒
+99d0: End
+-----------------
+
+@004d: 流风散     0021 0000 9aa8 0000 0000 0009 
+-----Script1-----
+9aa8: IncreaseAttribute 身法 2 0000
+9aa9: End
+-----------------
+
+@004e: 茶叶蛋     001e 0028 9aad 0000 0000 0029 
+-----Script1-----
+9aad: RecoverHPMP False 15 0
+9aae: End
+-----------------
+
+@004f: 行运丸     0020 0000 9aab 0000 0000 0009 
+-----Script1-----
+9aab: IncreaseAttribute 吉运 1 0000
+9aac: End
+-----------------
+
+@0050: 糖葫芦     0011 0014 9a8d 0000 0000 0029 
+-----Script1-----
+9a8d: RecoverHPMP False 22 0
+9a8e: End
+-----------------
+
+@0051: 蜡烛       000c 0032 0000 0000 0000 0000 
+@0052: 符纸       0017 0008 0000 0000 0000 0000 
+@0053: 檀香       001b 001e 0000 0000 0000 0000 
+@0054: 大蒜       001c 000c 9a7d 0000 0000 0029 
+-----Script1-----
+9a7d: SetArmorAttribute 0011 毒抗 30
+9a7e: End
+-----------------
+
+@0055: 七心海棠   0000 0000 0555 0000 046b 000d 
+-----Script1-----
+0555: HalveHP
+0556: PoisonHero False 赤毒
+0557: PoisonHero False 屍毒
+0558: PoisonHero False 瘴毒
+0559: PoisonHero False 毒絲
+055a: ChanceContinue 33 055e
+055b: PoisonHero False 三屍蠱毒
+055c: PoisonHero False 血海棠毒
+055d: End
+
+055e: ChanceContinue 50 0562
+055f: PoisonHero False 鶴頂紅毒
+0560: PoisonHero False 孔雀膽毒
+0561: End
+
+0562: PoisonHero False 斷腸草毒
+0563: PoisonHero False 金蠶蠱毒
+0564: End
+-----Script3-----
+046b: HeroUseMagic 投擲 False
+046c: PoisonEnemy False 赤毒
+046d: PoisonEnemy False 屍毒
+046e: PoisonEnemy False 瘴毒
+046f: PoisonEnemy False 毒絲
+0470: PoisonEnemy False 三屍蠱毒
+0471: PoisonEnemy False 鶴頂紅毒
+0472: PoisonEnemy False 孔雀膽毒
+0473: PoisonEnemy False 血海棠毒
+0474: PoisonEnemy False 斷腸草毒
+0475: PoisonEnemy False 金蠶蠱毒
+0476: End
+-----------------
+
+@0056: 酒         0024 0050 99d1 0000 0000 0029 
+-----Script1-----
+99d1: RecoverHPMP False 40 0
+99d2: ConditionHero 普通攻击加强 3 0000
+99d3: End
+
+0000: End
+-----------------
+
+@0057: 雄黄       0094 0032 99d6 0000 0000 0029 
+-----Script1-----
+99d6: CurePoisonForHero False 瘴毒
+99d7: CurePoisonForHero False 赤毒
+99d8: End
+-----------------
+
+@0058: 灵葫仙丹   006d 0000 9bbf 0000 0000 0009 
+-----Script1-----
+9bbf: IncreaseAttribute 体力最大值 4 0000
+9bc0: IncreaseAttribute 真气最大值 3 0000
+9bc1: End
+-----------------
+
+@0059: 九节菖蒲   00a5 014a 99d9 0000 0000 0029 
+-----Script1-----
+99d9: CureMultiplePoisonHero False 2
+99da: End
+-----------------
+
+@005a: 驱魔香     002c 0bb8 9aaf 0000 0000 0039 
+-----Script1-----
+9aaf: 0062 0258 0000 0000
+9ab0: End
+-----------------
+
+@005b: 十里香     002f 0280 9ab1 0000 0000 0039 
+-----Script1-----
+9ab1: 0063 0258 0000 0000
+9ab2: End
+-----------------
+
+@005c: 水果       0025 0019 9a7f 0000 0000 0029 
+-----Script1-----
+9a7f: RecoverHPMP False 20 0
+9a80: End
+-----------------
+
+@005d: 鸳鸯五珍脍 0000 2ee0 9a81 0000 0000 0039 
+-----Script1-----
+9a81: RecoverHPMP True 999 0
+9a82: End
+-----------------
+
+@005e: 腌肉       009b 0226 9a83 0000 0000 0029 
+-----Script1-----
+9a83: RecoverHPMP False 75 0
+9a84: End
+-----------------
+
+@005f: 还魂香     009a 0226 a438 0000 0000 0029 
+-----Script1-----
+a438: Revive False 1
+a439: End
+-----------------
+
+@0060: 赎魂灯     0099 05dc a43a 0000 0000 0029 
+-----Script1-----
+a43a: Revive False 3
+a43b: End
+-----------------
+
+@0061: 孟婆汤     002a 0af0 9942 0000 0000 0029 
+-----Script1-----
+9942: Revive False 5
+9943: End
+-----------------
+
+@0062: 天香续命露 00a6 1388 9944 0000 0000 0029 
+-----Script1-----
+9944: Revive False 10
+9945: End
+-----------------
+
+@0063: 止血草     0088 0050 9928 0000 0000 0029 
+-----Script1-----
+9928: RecoverHP False 70
+9929: End
+-----------------
+
+@0064: 行军丹     0089 00c8 992a 0000 0000 0029 
+-----Script1-----
+992a: RecoverHP False 140
+992b: End
+-----------------
+
+@0065: 金创药     008a 01b8 992c 0000 0000 0029 
+-----Script1-----
+992c: RecoverHP False 280
+992d: End
+-----------------
+
+@0066: 蟠果       002e 0384 992e 0000 0000 0029 
+-----Script1-----
+992e: RecoverHP False 560
+992f: End
+-----------------
+
+@0067: 紫菁玉蓉膏 00b3 07d0 9930 0000 0000 0029 
+-----Script1-----
+9930: RecoverHP False 1000
+9931: End
+-----------------
+
+@0068: 鼠儿果     008e 0050 9932 0000 0000 0029 
+-----Script1-----
+9932: RecoverMP False 36
+9933: End
+-----------------
+
+@0069: 还神丹     00c3 00c8 9934 0000 0000 0029 
+-----Script1-----
+9934: RecoverMP False 50
+9935: End
+-----------------
+
+@006a: 龙涎草     008b 01b8 9936 0000 0000 0029 
+-----Script1-----
+9936: RecoverMP False 110
+9937: End
+-----------------
+
+@006b: 灵山仙芝   002d 0384 9938 0000 0000 0029 
+-----Script1-----
+9938: RecoverMP False 260
+9939: End
+-----------------
+
+@006c: 雪莲子     008f 07d0 993a 0000 0000 0029 
+-----Script1-----
+993a: RecoverMP False 400
+993b: End
+-----------------
+
+@006d: 天仙玉露   00a3 0fa0 993c 0000 0000 0029 
+-----Script1-----
+993c: RecoverMP False 700
+993d: End
+-----------------
+
+@006e: 神仙茶     0029 157c 993e 0000 0000 0029 
+-----Script1-----
+993e: RecoverHPMP False 440 0
+993f: End
+-----------------
+
+@006f: 牡丹花露   001a 09c4 9940 0000 0000 0029 
+-----Script1-----
+9940: RecoverHPMP False 250 0
+9941: End
+-----------------
+
+@0070: 试炼果     0093 0000 994a 0000 0000 0009 
+-----Script1-----
+994a: IncreaseAttribute 灵力 3 0000
+994b: End
+-----------------
+
+@0071: 女娲石     0087 0000 994c 0000 0000 0009 
+-----Script1-----
+994c: IncreaseAttribute 防御 3 0000
+994d: End
+-----------------
+
+@0072: 八仙石     006c 0000 994e 0000 0000 0009 
+-----Script1-----
+994e: IncreaseAttribute 防御 2 0000
+994f: End
+-----------------
+
+@0073: 蜂巢       00d3 0000 0000 0000 9ab3 001c 
+-----Script3-----
+9ab3: HeroUseMagic 御蜂術 False
+9ab4: End
+-----------------
+
+@0074: 尸腐肉     0073 0000 99c7 0000 99c9 000d 
+-----Script1-----
+99c7: PoisonHero False 屍毒
+99c8: End
+-----Script3-----
+99c9: HeroUseMagic 投擲 False
+99ca: PoisonEnemy False 屍毒
+99cb: End
+-----------------
+
+@0075: 自动售货机 0000 0000 0519 0000 0000 0011 
+-----Script1-----
+0519: Clear 0
+051a: ChanceContinue 33 051d
+051b: CallShop (银针|梅花镖|袖里剑|透骨钉|雷火珠|毒龙砂|吸星锁|无影神针|血玲珑)
+051c: End
+
+051d: ChanceContinue 50 0520
+051e: CallShop (蛊|化尸水|食妖虫|碧血蚕|迷魂香|驱魔香|十里香|赤蝎粉|毒龙砂)
+051f: End
+
+0520: CallShop (蟠果|紫菁玉蓉膏|雪莲子|天仙玉露|孟婆汤|天香续命露|牡丹花露|九阴散|毒龙胆)
+0521: End
+-----------------
+
+@0076: 废品回收器 0000 0000 0522 0000 0000 0011 
+-----Script1-----
+0522: Clear 0
+0523: CallPawnShop
+0524: End
+-----------------
+
+@0077: 食品加工站 0000 0000 297b 0000 0000 0011 
+-----Script1-----
+297b: RemoveInventory 糯米糕 1 2978
+297c: RemoveInventory 茶葉蛋 1 2978
+297d: RemoveInventory 糖葫蘆 1 2978
+297e: RemoveInventory 水果 1 2978
+297f: RemoveInventory 鼠兒果 1 2978
+2980: RemoveInventory 酒 1 2978
+2981: RemoveInventory 醃肉 1 2978
+2982: RemoveInventory 蟠果 1 2978
+2983: RemoveInventory 雪蓮子 1 2978
+2984: RemoveInventory 神仙茶 1 2978
+2985: CreateInventory 鴛鴦五珍膾 1
+2986: DialogFrame
+2987: Message `製作出一盤"鴛鴦五珍膾"`
+2988: End
+
+2978: DialogFrame
+2979: Message `原材料不足，無法進行`
+297a: End
+-----------------
+
+@0078: 金蚕培养皿 0000 0000 2989 0000 0000 0011 
+-----Script1-----
+2989: RemoveInventory 赤血蠶 1 2978
+298a: RemoveInventory 靈蠱 1 2978
+298b: RemoveInventory 行運丸 1 2978
+298c: RemoveInventory 流風散 1 2978
+298d: RemoveInventory 八仙石 1 2978
+298e: RemoveInventory 試煉果 1 2978
+298f: RemoveInventory 龍爪花 1 2978
+2990: RemoveInventory 銀杏子 1 2978
+2991: RemoveInventory 玉菩提 1 2978
+2992: CreateInventory 金蠶王 1
+2993: DialogFrame
+2994: Message `培養出一隻"金蠶王"`
+2995: End
+
+2978: DialogFrame
+2979: Message `原材料不足，無法進行`
+297a: End
+-----------------
+
+@0079: 毒物合成室 0000 0000 2996 0000 0000 0011 
+-----Script1-----
+2996: RemoveInventory 毒蟲卵 1 2978
+2997: RemoveInventory 屍腐肉 1 2978
+2998: RemoveInventory 腹蛇涎 1 2978
+2999: RemoveInventory 纏魂絲 1 2978
+299a: RemoveInventory 鶴頂紅 1 2978
+299b: RemoveInventory 孔雀膽 1 2978
+299c: RemoveInventory 血海棠 1 2978
+299d: RemoveInventory 斷腸草 1 2978
+299e: RemoveInventory 三屍蠱 1 2978
+299f: RemoveInventory 金蠶蠱 1 2978
+29a0: RemoveInventory 無影毒 1 2978
+29a1: CreateInventory 七心海棠 1
+29a2: DialogFrame
+29a3: Message `煉化出一株"七心海棠"`
+29a4: End
+
+2978: DialogFrame
+2979: Message `原材料不足，無法進行`
+297a: End
+-----------------
+
+@007a: 鹤顶红     009e 0000 9a20 0000 9a49 000d 
+-----Script1-----
+9a20: GotoIfHeroNotPoisonedWith 血海棠毒 9a23
+9a21: CurePoisonForHero False 血海棠毒
+9a22: End
+
+9a23: GotoIfHeroNotPoisonedWith 孔雀膽毒 9a26
+9a24: KillHero
+9a25: End
+
+9a26: PoisonHero False 鶴頂紅毒
+9a27: End
+-----Script3-----
+9a49: HeroUseMagic 投擲 False
+9a4a: PoisonEnemy False 鶴頂紅毒
+9a4b: GotoIfEnemyNotPoisonedWith 孔雀膽毒 9a4d
+9a4c: KillEnemy
+9a4d: End
+
+9a4d: End
+-----------------
+
+@007b: 孔雀胆     0074 0000 9a30 0000 9a53 000d 
+-----Script1-----
+9a30: GotoIfHeroNotPoisonedWith 金蠶蠱毒 9a33
+9a31: CurePoisonForHero False 金蠶蠱毒
+9a32: End
+
+9a33: GotoIfHeroNotPoisonedWith 鶴頂紅毒 9a36
+9a34: KillHero
+9a35: End
+
+9a36: PoisonHero False 孔雀膽毒
+9a37: End
+-----Script3-----
+9a53: HeroUseMagic 投擲 False
+9a54: PoisonEnemy False 孔雀膽毒
+9a55: GotoIfEnemyNotPoisonedWith 鶴頂紅毒 9a57
+9a56: KillEnemy
+9a57: End
+
+9a57: End
+-----------------
+
+@007c: 血海棠     00a2 0000 9a18 0000 9a44 000d 
+-----Script1-----
+9a18: GotoIfHeroNotPoisonedWith 斷腸草毒 9a1b
+9a19: CurePoisonForHero False 斷腸草毒
+9a1a: End
+
+9a1b: GotoIfHeroNotPoisonedWith 三屍蠱毒 9a1e
+9a1c: KillHero
+9a1d: End
+
+9a1e: PoisonHero False 血海棠毒
+9a1f: End
+-----Script3-----
+9a44: HeroUseMagic 投擲 False
+9a45: PoisonEnemy False 血海棠毒
+9a46: GotoIfEnemyNotPoisonedWith 三屍蠱毒 9a48
+9a47: KillEnemy
+9a48: End
+
+9a48: End
+-----------------
+
+@007d: 断肠草     009c 0000 9a10 0000 9a3f 000d 
+-----Script1-----
+9a10: GotoIfHeroNotPoisonedWith 三屍蠱毒 9a13
+9a11: CurePoisonForHero False 三屍蠱毒
+9a12: End
+
+9a13: GotoIfHeroNotPoisonedWith 金蠶蠱毒 9a16
+9a14: KillHero
+9a15: End
+
+9a16: PoisonHero False 斷腸草毒
+9a17: End
+-----Script3-----
+9a3f: HeroUseMagic 投擲 False
+9a40: PoisonEnemy False 斷腸草毒
+9a41: GotoIfEnemyNotPoisonedWith 金蠶蠱毒 9a43
+9a42: KillEnemy
+9a43: End
+
+9a43: End
+-----------------
+
+@007e: 醍醐香     00a0 0000 99e5 0000 99e8 000d 
+-----Script1-----
+99e5: ConditionHero 定身 4 0000
+99e6: RecoverHP False -1
+99e7: End
+
+0000: End
+-----Script3-----
+99e8: HeroUseMagic 投擲 False
+99e9: ConditionEnemy 定身 4 978c
+99ea: DamageEnemy False 1
+99eb: End
+
+978c: DialogFrame
+978d: Message `攻擊無效`
+978e: End
+-----------------
+
+@007f: 忘魂花     00ab 0000 99ec 0000 99ef 000d 
+-----Script1-----
+99ec: ConditionHero 昏睡 3 0000
+99ed: RecoverHP False -1
+99ee: End
+
+0000: End
+-----Script3-----
+99ef: HeroUseMagic 投擲 False
+99f0: ConditionEnemy 昏睡 3 978c
+99f1: DamageEnemy False 1
+99f2: End
+
+978c: DialogFrame
+978d: Message `攻擊無效`
+978e: End
+-----------------
+
+@0080: 紫罂粟     00aa 0000 99f3 0000 99f6 000d 
+-----Script1-----
+99f3: ConditionHero 疯魔 3 0000
+99f4: RecoverHP False -1
+99f5: End
+
+0000: End
+-----Script3-----
+99f6: HeroUseMagic 投擲 False
+99f7: ConditionEnemy 疯魔 3 978c
+99f8: DamageEnemy False 3
+99f9: End
+
+978c: DialogFrame
+978d: Message `攻擊無效`
+978e: End
+-----------------
+
+@0081: 鬼枯藤     00a1 0000 9a93 0000 0000 0009 
+-----Script1-----
+9a93: CureMultiplePoisonHero False 2
+9a94: RecoverHP False -30
+9a95: End
+-----------------
+
+@0082: 腹蛇涎     009f 0000 99b9 0000 99bb 000d 
+-----Script1-----
+99b9: PoisonHero False 瘴毒
+99ba: End
+-----Script3-----
+99bb: HeroUseMagic 投擲 False
+99bc: PoisonEnemy False 瘴毒
+99bd: End
+-----------------
+
+@0083: 蜂王蜜     009d 04b0 9a8b 0000 0000 0029 
+-----Script1-----
+9a8b: RecoverHPMP False 150 0
+9a8c: End
+-----------------
+
+@0084: 雪蛤蟆     00a4 0000 9946 0000 0000 0009 
+-----Script1-----
+9946: IncreaseAttribute 武术 2 0000
+9947: IncreaseAttribute 防御 2 0000
+9948: IncreaseAttribute 灵力 2 0000
+9949: End
+-----------------
+
+@0085: 赤蝎粉     00af 02bc 0000 0000 9969 003c 
+-----Script3-----
+9969: HeroUseMagic 萬蠱蝕天 False
+996a: PoisonEnemy True 赤毒
+996b: End
+-----------------
+
+@0086: 化尸水     00ac 0708 0000 0000 9ab5 002c 
+-----Script3-----
+9ab5: GotoIfEnemyHPLessThanPercent 16 9789 0000
+9ab6: KillEnemy
+9ab7: End
+
+0000: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+-----------------
+
+@0087: 迷魂香     00a7 0514 99de 0000 99e1 000d 
+-----Script1-----
+99de: ConditionHero 昏睡 5 0000
+99df: RecoverHP False -1
+99e0: End
+
+0000: End
+-----Script3-----
+99e1: HeroUseMagic 投擲 False
+99e2: ConditionEnemy 昏睡 5 978c
+99e3: DamageEnemy False 1
+99e4: End
+
+978c: DialogFrame
+978d: Message `攻擊無效`
+978e: End
+-----------------
+
+@0088: 九阴散     00ae 044c 9a5b 0000 0000 0029 
+-----Script1-----
+9a5b: GotoIfHeroNotPoisoned 9a5e
+9a5c: RecoverHP False 999
+9a5d: End
+
+9a5e: KillHero
+9a5f: End
+-----------------
+
+@0089: 无影毒     00ad 0000 9a38 0000 9a58 000d 
+-----Script1-----
+9a38: HalveHP
+9a39: End
+-----Script3-----
+9a58: HeroUseMagic 投擲 False
+9a59: HalveEnemyHPIfUnder 1000
+9a5a: End
+-----------------
+
+@008a: 三尸蛊     0083 0000 9a08 0000 9a3a 000d 
+-----Script1-----
+9a08: GotoIfHeroNotPoisonedWith 孔雀膽毒 9a0b
+9a09: CurePoisonForHero False 孔雀膽毒
+9a0a: End
+
+9a0b: GotoIfHeroNotPoisonedWith 血海棠毒 9a0e
+9a0c: KillHero
+9a0d: End
+
+9a0e: PoisonHero False 三屍蠱毒
+9a0f: End
+-----Script3-----
+9a3a: HeroUseMagic 投擲 False
+9a3b: PoisonEnemy False 三屍蠱毒
+9a3c: GotoIfEnemyNotPoisonedWith 血海棠毒 9a3e
+9a3d: KillEnemy
+9a3e: End
+
+9a3e: End
+-----------------
+
+@008b: 金蚕蛊     0085 0000 9a28 0000 9a4e 000d 
+-----Script1-----
+9a28: GotoIfHeroNotPoisonedWith 鶴頂紅毒 9a2b
+9a29: CurePoisonForHero False 鶴頂紅毒
+9a2a: End
+
+9a2b: GotoIfHeroNotPoisonedWith 斷腸草毒 9a2e
+9a2c: KillHero
+9a2d: End
+
+9a2e: PoisonHero False 金蠶蠱毒
+9a2f: End
+-----Script3-----
+9a4e: HeroUseMagic 投擲 False
+9a4f: PoisonEnemy False 金蠶蠱毒
+9a50: GotoIfEnemyNotPoisonedWith 斷腸草毒 9a52
+9a51: KillEnemy
+9a52: End
+
+9a52: End
+-----------------
+
+@008c: 幻蛊       007f 0000 9a62 0000 9a65 000d 
+-----Script1-----
+9a62: ConditionHero 疯魔 5 0000
+9a63: RecoverHP False -1
+9a64: End
+
+0000: End
+-----Script3-----
+9a65: HeroUseMagic 投擲 False
+9a66: ConditionEnemy 疯魔 5 978c
+9a67: DamageEnemy False 1
+9a68: End
+
+978c: DialogFrame
+978d: Message `攻擊無效`
+978e: End
+-----------------
+
+@008d: 隐蛊       0078 0000 a5ef 0000 0000 0019 
+-----Script1-----
+a5ef: GotoOnObjectState (1384,坐巫王) 0 a5f2
+a5f0: BattleHeroInvisible 3
+a5f1: End
+
+a5f2: BattleHeroInvisible 1
+a5f3: End
+-----------------
+
+@008e: 冰蚕蛊     00c9 0000 0000 0000 9aa2 001c 
+-----Script3-----
+9aa2: HeroUseMagic 風雪冰天 False
+9aa3: End
+-----------------
+
+@008f: 火蚕蛊     007c 0000 0000 0000 9aa4 000c 
+-----Script3-----
+9aa4: HeroUseMagic 炎殺咒 False
+9aa5: End
+-----------------
+
+@0090: 食妖虫     0081 0320 0000 0000 9a69 000c 
+-----Script3-----
+9a69: HeroUseMagic 投擲 False
+9a6a: PoisonEnemy False 食妖蟲附
+9a6b: End
+-----------------
+
+@0091: 灵蛊       0082 0000 9a71 0000 0000 0019 
+-----Script1-----
+9a71: RecoverMP True 250
+9a72: End
+-----------------
+
+@0092: 爆烈蛊     007a 0000 0000 0000 9ac8 000c 
+-----Script3-----
+9ac8: HeroUseMagic 爆炸蠱 False
+9ac9: End
+-----------------
+
+@0093: 碧血蚕     007d 0320 0000 0000 9a6c 000c 
+-----Script3-----
+9a6c: HeroUseMagic 投擲 False
+9a6d: PoisonEnemy False 碧血蠶附
+9a6e: End
+-----------------
+
+@0094: 蛊         0084 0064 0000 0000 0000 0028 
+@0095: 赤血蚕     007e 0000 9a73 0000 0000 0019 
+-----Script1-----
+9a73: RecoverHP True 350
+9a74: End
+-----------------
+
+@0096: 金蚕王     0079 3a98 9a96 0000 0000 0029 
+-----Script1-----
+9a96: LevelUp 1
+9a97: End
+-----------------
+
+@0097: 毒虫卵     00bd 0000 99b4 0000 99b6 000d 
+-----Script1-----
+99b4: PoisonHero False 赤毒
+99b5: End
+-----Script3-----
+99b6: HeroUseMagic 投擲 False
+99b7: PoisonEnemy False 赤毒
+99b8: End
+-----------------
+
+@0098: 傀儡虫     007b 0000 9a6f 0000 0000 0009 
+-----Script1-----
+9a6f: ConditionHero 死者继续攻击 9 0000
+9a70: End
+
+0000: End
+-----------------
+
+@0099: 梅花镖     0071 0168 0000 0000 9950 002c 
+-----Script3-----
+9950: HeroUseMagic 投擲 False
+9951: DamageEnemy False 120
+9952: End
+-----------------
+
+@009a: 袖里剑     0051 0320 0000 0000 9956 002c 
+-----Script3-----
+9956: HeroUseMagic 投擲 False
+9957: DamageEnemy False 210
+9958: End
+-----------------
+
+@009b: 透骨钉     0049 06a4 0000 0000 9959 002c 
+-----Script3-----
+9959: HeroUseMagic 投擲 False
+995a: DamageEnemy False 380
+995b: End
+-----------------
+
+@009c: 雷火珠     0076 0960 0000 0000 9962 002c 
+-----Script3-----
+9962: HeroUseMagic 爆炸 False
+9963: DamageEnemy False 300
+9964: End
+-----------------
+
+@009d: 毒龙砂     0092 0834 0000 0000 9965 003c 
+-----Script3-----
+9965: HeroUseMagic 萬蠱蝕天 False
+9966: PoisonEnemy True 瘴毒
+9967: DamageEnemy True 200
+9968: End
+-----------------
+
+@009e: 吸星锁     0086 05dc 0000 0000 996c 002c 
+-----Script3-----
+996c: HeroUseMagic 投擲 False
+996d: 0039 00b4 0000 0000
+996e: End
+-----------------
+
+@009f: 缠魂丝     0048 0000 9972 0000 996f 000d 
+-----Script1-----
+9972: PoisonHero False 毒絲
+9973: End
+-----Script3-----
+996f: HeroUseMagic 投擲 False
+9970: PoisonEnemy False 毒絲
+9971: End
+-----------------
+
+@00a0: 困仙绳     00cf 0384 99fa 0000 99fd 002d 
+-----Script1-----
+99fa: ConditionHero 定身 5 0000
+99fb: RecoverHP False -4
+99fc: End
+
+0000: End
+-----Script3-----
+99fd: HeroUseMagic 投擲 False
+99fe: ConditionEnemy 定身 5 978c
+99ff: DamageEnemy False 4
+9a00: End
+
+978c: DialogFrame
+978d: Message `攻擊無效`
+978e: End
+-----------------
+
+@00a1: 无影神针   0050 0ed8 0000 0000 995c 002c 
+-----Script3-----
+995c: HeroUseMagic 投擲 False
+995d: DamageEnemy False 750
+995e: End
+-----------------
+
+@00a2: 血玲珑     00ca 1194 0000 0000 995f 003c 
+-----Script3-----
+995f: HeroUseMagic 氣劍指 False
+9960: DamageEnemy True 450
+9961: End
+-----------------
+
+@00a3: 长鞭       0010 06a4 0000 9b01 9978 012e 
+-----Script2-----
+9b01: PutOn 武器 長鞭
+9b02: SetArmorAttribute 武器 武术 25
+9b03: SetArmorAttribute 武器 身法 25
+9b04: SetAttribute 可否攻击全体 1 0000
+9b05: SetAttribute 战斗模型 6 0000
+9b06: End
+-----Script3-----
+9978: 0066 0182 0020 0000
+9979: End
+-----------------
+
+@00a4: 九截鞭     0012 1130 0000 9b07 998a 012e 
+-----Script2-----
+9b07: PutOn 武器 九截鞭
+9b08: SetArmorAttribute 武器 武术 91
+9b09: SetArmorAttribute 武器 身法 53
+9b0a: SetAttribute 可否攻击全体 1 0000
+9b0b: SetAttribute 战斗模型 6 0000
+9b0c: End
+-----Script3-----
+998a: 0066 0182 0073 0000
+998b: End
+-----------------
+
+@00a5: 金蛇鞭     0014 2774 0000 9b0d 9994 012e 
+-----Script2-----
+9b0d: PutOn 武器 金蛇鞭
+9b0e: SetArmorAttribute 武器 武术 159
+9b0f: SetArmorAttribute 武器 身法 100
+9b10: SetAttribute 可否攻击全体 1 0000
+9b11: SetAttribute 战斗模型 6 0000
+9b12: End
+-----Script3-----
+9994: 0066 0182 00ff 0000
+9995: End
+-----------------
+
+@00a6: 木剑       0038 0032 0000 9870 9974 016e 
+-----Script2-----
+9870: PutOn 武器 木劍
+9871: SetArmorAttribute 武器 武术 2
+9872: SetArmorAttribute 武器 身法 3
+9873: End
+-----Script3-----
+9974: 0066 0163 0000 0000
+9975: End
+-----------------
+
+@00a7: 短刀       0030 00c8 0000 9874 9976 016e 
+-----Script2-----
+9874: PutOn 武器 短刀
+9875: SetArmorAttribute 武器 武术 6
+9876: SetArmorAttribute 武器 身法 -5
+9877: End
+-----Script3-----
+9976: 0066 0163 000a 0000
+9977: End
+-----------------
+
+@00a8: 铁剑       0031 0352 0000 9878 997a 016e 
+-----Script2-----
+9878: PutOn 武器 鐵劍
+9879: SetArmorAttribute 武器 武术 10
+987a: SetArmorAttribute 武器 防御 3
+987b: End
+-----Script3-----
+997a: 0066 0163 001e 0000
+997b: End
+-----------------
+
+@00a9: 大刀       004c 0384 0000 987c 997c 006e 
+-----Script2-----
+987c: PutOn 武器 大刀
+987d: SetArmorAttribute 武器 武术 16
+987e: SetArmorAttribute 武器 防御 1
+987f: End
+-----Script3-----
+997c: 0066 0163 0024 0000
+997d: End
+-----------------
+
+@00aa: 仙女剑     003f 07d0 0000 9880 997e 00ae 
+-----Script2-----
+9880: PutOn 武器 仙女劍
+9881: SetArmorAttribute 武器 武术 8
+9882: SetArmorAttribute 武器 防御 5
+9883: ConditionHero 两次攻击 32760 0000
+9884: End
+
+0000: End
+-----Script3-----
+997e: 0066 0163 002c 0000
+997f: End
+-----------------
+
+@00ab: 长剑       003b 05dc 0000 9885 9982 016e 
+-----Script2-----
+9885: PutOn 武器 長劍
+9886: SetArmorAttribute 武器 武术 30
+9887: End
+-----Script3-----
+9982: 0066 0163 0046 0000
+9983: End
+-----------------
+
+@00ac: 红缨刀     0034 079e 0000 9888 9984 016e 
+-----Script2-----
+9888: PutOn 武器 紅纓刀
+9889: SetArmorAttribute 武器 武术 48
+988a: End
+-----Script3-----
+9984: 0066 0163 004e 0000
+9985: End
+-----------------
+
+@00ad: 越女剑     00b8 03e8 0000 988b 9980 01ae 
+-----Script2-----
+988b: PutOn 武器 越女劍
+988c: SetArmorAttribute 武器 武术 22
+988d: SetArmorAttribute 武器 身法 8
+988e: End
+-----Script3-----
+9980: 0066 0163 0034 0000
+9981: End
+-----------------
+
+@00ae: 戒刀       003c 09c4 0000 9894 998c 006e 
+-----Script2-----
+9894: PutOn 武器 戒刀
+9895: SetArmorAttribute 武器 武术 70
+9896: SetArmorAttribute 武器 防御 10
+9897: SetArmorAttribute 武器 灵力 15
+9898: End
+-----Script3-----
+998c: 0066 0163 0082 0000
+998d: End
+-----------------
+
+@00af: 玄铁剑     0058 12c0 0000 989f 9990 006e 
+-----Script2-----
+989f: PutOn 武器 玄鐵劍
+98a0: SetArmorAttribute 武器 武术 90
+98a1: SetArmorAttribute 武器 身法 -20
+98a2: SetArmorAttribute 武器 灵力 -15
+98a3: SetArmorAttribute 武器 防御 29
+98a4: End
+-----Script3-----
+9990: 0066 0163 00b2 0000
+9991: End
+-----------------
+
+@00b0: 芙蓉刀     0040 0514 0000 988f 9986 00ae 
+-----Script2-----
+988f: PutOn 武器 芙蓉刀
+9890: SetArmorAttribute 武器 武术 21
+9891: SetArmorAttribute 武器 身法 8
+9892: ConditionHero 两次攻击 32760 0000
+9893: End
+
+0000: End
+-----Script3-----
+9986: 0066 0163 005a 0000
+9987: End
+-----------------
+
+@00b1: 柳月刀     004d 0a28 0000 9899 998e 00ae 
+-----Script2-----
+9899: PutOn 武器 柳月刀
+989a: SetArmorAttribute 武器 武术 43
+989b: SetArmorAttribute 武器 身法 17
+989c: SetArmorAttribute 武器 防御 8
+989d: ConditionHero 两次攻击 32760 0000
+989e: End
+
+0000: End
+-----Script3-----
+998e: 0066 0163 0091 0000
+998f: End
+-----------------
+
+@00b2: 青锋剑     003a 13ec 0000 98ab 9992 016e 
+-----Script2-----
+98ab: PutOn 武器 青鋒劍
+98ac: SetArmorAttribute 武器 武术 110
+98ad: SetArmorAttribute 武器 身法 30
+98ae: End
+-----Script3-----
+9992: 0066 0163 00d2 0000
+9993: End
+-----------------
+
+@00b3: 苗刀       0033 1388 0000 9b13 9988 042e 
+-----Script2-----
+9b13: PutOn 武器 苗刀
+9b14: SetArmorAttribute 武器 武术 100
+9b15: SetArmorAttribute 武器 身法 52
+9b16: SetAttribute 战斗模型 7 0000
+9b17: End
+-----Script3-----
+9988: 0066 0163 0069 0000
+9989: End
+-----------------
+
+@00b4: 凤鸣刀     0042 36b0 0000 98c1 99a6 012e 
+-----Script2-----
+98c1: PutOn 武器 鳳鳴刀
+98c2: SetArmorAttribute 武器 武术 194
+98c3: SetArmorAttribute 武器 防御 29
+98c4: SetArmorAttribute 武器 身法 62
+98c5: SetArmorAttribute 武器 灵力 46
+98c6: End
+-----Script3-----
+99a6: 0066 0163 01e0 0000
+99a7: End
+-----------------
+
+@00b5: 双龙剑     003d 1c20 0000 98a5 9996 00ae 
+-----Script2-----
+98a5: PutOn 武器 雙龍劍
+98a6: SetArmorAttribute 武器 武术 112
+98a7: SetArmorAttribute 武器 防御 24
+98a8: SetArmorAttribute 武器 身法 24
+98a9: ConditionHero 两次攻击 32760 0000
+98aa: End
+
+0000: End
+-----Script3-----
+9996: 0066 0163 012c 0000
+9997: End
+-----------------
+
+@00b6: 玉女剑     003e 2ee0 0000 98b4 999c 01ae 
+-----Script2-----
+98b4: PutOn 武器 玉女劍
+98b5: SetArmorAttribute 武器 武术 145
+98b6: SetArmorAttribute 武器 灵力 30
+98b7: SetArmorAttribute 武器 身法 40
+98b8: SetArmorAttribute 武器 吉运 50
+98b9: End
+-----Script3-----
+999c: 0066 0163 01b8 0000
+999d: End
+-----------------
+
+@00b7: 金童剑     0036 2ee0 0000 98ba 999e 006e 
+-----Script2-----
+98ba: PutOn 武器 金童劍
+98bb: SetArmorAttribute 武器 武术 145
+98bc: SetArmorAttribute 武器 吉运 50
+98bd: SetArmorAttribute 武器 身法 40
+98be: SetArmorAttribute 武器 灵力 30
+98bf: SetArmorAttribute 武器 防御 3
+98c0: End
+-----Script3-----
+999e: 0066 0163 01b8 0000
+999f: End
+-----------------
+
+@00b8: 龙泉剑     0032 2328 0000 98af 999a 016e 
+-----Script2-----
+98af: PutOn 武器 龍泉劍
+98b0: SetArmorAttribute 武器 武术 128
+98b1: SetArmorAttribute 武器 身法 40
+98b2: SetArmorAttribute 武器 吉运 42
+98b3: End
+-----Script3-----
+999a: 0066 0163 014c 0000
+999b: End
+-----------------
+
+@00b9: 鬼牙刀     0041 32c8 0000 9b18 99a0 042e 
+-----Script2-----
+9b18: PutOn 武器 鬼牙刀
+9b19: SetArmorAttribute 武器 武术 150
+9b1a: SetArmorAttribute 武器 身法 66
+9b1b: SetArmorAttribute 武器 吉运 -9
+9b1c: SetAttribute 战斗模型 7 0000
+9b1d: End
+-----Script3-----
+99a0: 0066 0163 019a 0000
+99a1: End
+-----------------
+
+@00ba: 七星剑     0039 3e80 0000 98c7 99a4 006e 
+-----Script2-----
+98c7: PutOn 武器 七星劍
+98c8: SetArmorAttribute 武器 武术 170
+98c9: SetArmorAttribute 武器 灵力 100
+98ca: SetArmorAttribute 武器 身法 52
+98cb: SetArmorAttribute 武器 吉运 53
+98cc: SetArmorAttribute 武器 防御 17
+98cd: End
+-----Script3-----
+99a4: 0066 0163 01cc 0000
+99a5: End
+-----------------
+
+@00bb: 玄冥宝刀   0043 4e20 0000 9b1e 99aa 042e 
+-----Script2-----
+9b1e: PutOn 武器 玄冥寶刀
+9b1f: SetArmorAttribute 武器 武术 148
+9b20: SetArmorAttribute 武器 身法 148
+9b21: SetArmorAttribute 配戴 吉运 148
+9b22: SetAttribute 战斗模型 7 0000
+9b23: SetAttribute 可否攻击全体 1 0000
+9b24: ConditionHero 两次攻击 32760 0000
+9b25: End
+
+0000: End
+-----Script3-----
+99aa: 0066 0163 023a 0000
+99ab: End
+-----------------
+
+@00bc: 巫月神刀   0035 6d60 0000 9b26 99ae 042e 
+-----Script2-----
+9b26: PutOn 武器 巫月神刀
+9b27: SetArmorAttribute 武器 武术 212
+9b28: SetArmorAttribute 武器 灵力 95
+9b29: SetArmorAttribute 武器 防御 49
+9b2a: SetArmorAttribute 武器 身法 75
+9b2b: SetArmorAttribute 武器 吉运 66
+9b2c: SetAttribute 战斗模型 7 0000
+9b2d: End
+-----Script3-----
+99ae: 0066 0163 0294 0000
+99af: End
+-----------------
+
+@00bd: 磐龙剑     0037 5dc0 0000 98ce 99ac 006e 
+-----Script2-----
+98ce: PutOn 武器 磐龍劍
+98cf: SetArmorAttribute 武器 武术 204
+98d0: SetArmorAttribute 武器 灵力 67
+98d1: SetArmorAttribute 武器 防御 18
+98d2: SetArmorAttribute 武器 身法 60
+98d3: SetArmorAttribute 武器 吉运 52
+98d4: End
+-----Script3-----
+99ac: 0066 0163 0262 0000
+99ad: End
+-----------------
+
+@00be: 太极剑     00b9 7530 0000 98d5 99b0 006e 
+-----Script2-----
+98d5: PutOn 武器 太極劍
+98d6: SetArmorAttribute 武器 武术 228
+98d7: SetArmorAttribute 武器 灵力 150
+98d8: SetArmorAttribute 武器 防御 55
+98d9: SetArmorAttribute 武器 身法 80
+98da: SetArmorAttribute 武器 吉运 53
+98db: End
+-----Script3-----
+99b0: 0066 0163 02d0 0000
+99b1: End
+-----------------
+
+@00bf: 无尘剑     00ba 7d00 0000 98dc 99b2 006e 
+-----Script2-----
+98dc: PutOn 武器 無塵劍
+98dd: SetArmorAttribute 武器 武术 300
+98de: SetArmorAttribute 武器 防御 40
+98df: SetArmorAttribute 武器 身法 127
+98e0: SetArmorAttribute 武器 吉运 63
+98e1: End
+-----Script3-----
+99b2: 0066 0163 0320 0000
+99b3: End
+-----------------
+
+@00c0: 青蛇杖     0047 1964 0000 98e2 9998 04ae 
+-----Script2-----
+98e2: PutOn 武器 青蛇杖
+98e3: SetArmorAttribute 武器 武术 65
+98e4: SetArmorAttribute 武器 灵力 92
+98e5: SetArmorAttribute 武器 防御 11
+98e6: End
+-----Script3-----
+9998: 0066 0163 0140 0000
+9999: End
+-----------------
+
+@00c1: 鬼头杖     0045 36b0 0000 98e7 99a2 04ae 
+-----Script2-----
+98e7: PutOn 武器 鬼頭杖
+98e8: SetArmorAttribute 武器 武术 100
+98e9: SetArmorAttribute 武器 灵力 148
+98ea: SetArmorAttribute 武器 防御 21
+98eb: End
+-----Script3-----
+99a2: 0066 0163 00fa 0000
+99a3: End
+-----------------
+
+@00c2: 冥蛇杖     0046 6978 0000 98ec 99a8 04ae 
+-----Script2-----
+98ec: PutOn 武器 冥蛇杖
+98ed: SetArmorAttribute 武器 武术 138
+98ee: SetArmorAttribute 武器 灵力 200
+98ef: SetArmorAttribute 武器 防御 42
+98f0: End
+-----Script3-----
+99a8: 0066 0163 0190 0000
+99a9: End
+-----------------
+
+@00c3: 天蛇杖     0044 7918 0000 98f1 0000 02aa 
+-----Script2-----
+98f1: PutOn 武器 天蛇杖
+98f2: SetArmorAttribute 武器 武术 150
+98f3: SetArmorAttribute 武器 灵力 240
+98f4: SetArmorAttribute 武器 防御 63
+98f5: SetArmorAttribute 武器 吉运 66
+98f6: End
+-----------------
+
+@00c4: 头巾       00b0 0028 0000 9792 0000 05ea 
+-----Script2-----
+9792: PutOn 头部 頭巾
+9793: SetArmorAttribute 头部 防御 1
+9794: End
+-----------------
+
+@00c5: 青丝巾     00a9 0064 0000 9795 0000 05aa 
+-----Script2-----
+9795: PutOn 头部 青絲巾
+9796: SetArmorAttribute 头部 防御 2
+9797: End
+-----------------
+
+@00c6: 发饰       00b1 003c 0000 9798 0000 05aa 
+-----Script2-----
+9798: PutOn 头部 髮飾
+9799: SetArmorAttribute 头部 防御 3
+979a: End
+-----------------
+
+@00c7: 银钗       0091 01a4 0000 979b 0000 05aa 
+-----Script2-----
+979b: PutOn 头部 銀釵
+979c: SetArmorAttribute 头部 防御 5
+979d: End
+-----------------
+
+@00c8: 翠玉金钗   00b2 0708 0000 979e 0000 05aa 
+-----Script2-----
+979e: PutOn 头部 翠玉金釵
+979f: SetArmorAttribute 头部 防御 19
+97a0: End
+-----------------
+
+@00c9: 皮帽       0055 0186 0000 97a1 0000 006a 
+-----Script2-----
+97a1: PutOn 头部 皮帽
+97a2: SetArmorAttribute 头部 防御 4
+97a3: End
+-----------------
+
+@00ca: 珍珠冠     00b6 0a8c 0000 97a4 0000 062a 
+-----Script2-----
+97a4: PutOn 头部 珍珠冠
+97a5: SetArmorAttribute 头部 防御 28
+97a6: End
+-----------------
+
+@00cb: 天师帽     00b4 0ce4 0000 97a7 0000 006a 
+-----Script2-----
+97a7: PutOn 头部 天師帽
+97a8: SetArmorAttribute 头部 防御 21
+97a9: SetArmorAttribute 头部 灵力 13
+97aa: End
+-----------------
+
+@00cc: 紫金冠     00b5 15e0 0000 97ab 0000 006a 
+-----Script2-----
+97ab: PutOn 头部 紫金冠
+97ac: SetArmorAttribute 头部 防御 43
+97ad: End
+-----------------
+
+@00cd: 天蚕丝带   00a8 2af8 0000 97ae 0000 05ea 
+-----Script2-----
+97ae: PutOn 头部 天蠶絲帶
+97af: SetArmorAttribute 头部 防御 55
+97b0: SetArmorAttribute 头部 身法 28
+97b1: End
+-----------------
+
+@00ce: 凤凰羽毛   00ce 1388 0000 97b2 0000 05aa 
+-----Script2-----
+97b2: PutOn 头部 鳳凰羽毛
+97b3: SetArmorAttribute 头部 防御 22
+97b4: SetArmorAttribute 头部 身法 44
+97b5: SetArmorAttribute 头部 吉运 24
+97b6: End
+-----------------
+
+@00cf: 冲天冠     00b7 4d58 0000 97b7 0000 006a 
+-----Script2-----
+97b7: PutOn 头部 沖天冠
+97b8: SetArmorAttribute 头部 防御 68
+97b9: SetArmorAttribute 头部 身法 25
+97ba: SetArmorAttribute 头部 灵力 18
+97bb: SetArmorAttribute 头部 吉运 18
+97bc: End
+-----------------
+
+@00d0: 布袍       004e 0064 0000 97bd 0000 05ea 
+-----Script2-----
+97bd: PutOn 肩部 布袍
+97be: SetArmorAttribute 肩部 防御 3
+97bf: End
+-----------------
+
+@00d1: 藤甲       004a 0190 0000 97c4 0000 05ea 
+-----Script2-----
+97c4: PutOn 肩部 籐甲
+97c5: SetArmorAttribute 肩部 防御 7
+97c6: End
+-----------------
+
+@00d2: 丝衣       00c6 02ee 0000 97c0 0000 07aa 
+-----Script2-----
+97c0: PutOn 肩部 絲衣
+97c1: SetArmorAttribute 肩部 防御 3
+97c2: SetArmorAttribute 肩部 身法 4
+97c3: End
+-----------------
+
+@00d3: 铁锁衣     00d5 04ce 0000 97c7 0000 006a 
+-----Script2-----
+97c7: PutOn 肩部 鐵鎖衣
+97c8: SetArmorAttribute 肩部 防御 13
+97c9: SetArmorAttribute 肩部 身法 -10
+97ca: End
+-----------------
+
+@00d4: 夜行衣     0052 07d0 0000 97d0 0000 05ea 
+-----Script2-----
+97d0: PutOn 肩部 夜行衣
+97d1: SetArmorAttribute 肩部 防御 28
+97d2: SetArmorAttribute 肩部 身法 17
+97d3: SetArmorAttribute 肩部 吉运 17
+97d4: End
+-----------------
+
+@00d5: 青铜甲     00e1 0c80 0000 97d5 0000 006a 
+-----Script2-----
+97d5: PutOn 肩部 青銅甲
+97d6: SetArmorAttribute 肩部 防御 42
+97d7: SetArmorAttribute 肩部 身法 -23
+97d8: End
+-----------------
+
+@00d6: 罗汉袍     00bb 0fa0 0000 97cb 0000 006a 
+-----Script2-----
+97cb: PutOn 肩部 羅漢袍
+97cc: SetArmorAttribute 肩部 防御 15
+97cd: SetArmorAttribute 肩部 吉运 15
+97ce: SetArmorAttribute 肩部 灵力 15
+97cf: End
+-----------------
+
+@00d7: 铁鳞甲     004f 1964 0000 97d9 0000 05ea 
+-----Script2-----
+97d9: PutOn 肩部 鐵鱗甲
+97da: SetArmorAttribute 肩部 防御 53
+97db: SetArmorAttribute 肩部 身法 -9
+97dc: End
+-----------------
+
+@00d8: 天师道袍   004b 1f40 0000 97dd 0000 016a 
+-----Script2-----
+97dd: PutOn 肩部 天師道袍
+97de: SetArmorAttribute 肩部 防御 53
+97df: SetArmorAttribute 肩部 灵力 48
+97e0: End
+-----------------
+
+@00d9: 精铁战甲   0053 26ac 0000 97e1 0000 05ea 
+-----Script2-----
+97e1: PutOn 肩部 精鐵戰甲
+97e2: SetArmorAttribute 肩部 防御 80
+97e3: SetArmorAttribute 肩部 身法 -17
+97e4: End
+-----------------
+
+@00da: 金缕衣     00d0 2ee0 0000 97e5 0000 05ea 
+-----Script2-----
+97e5: PutOn 肩部 金縷衣
+97e6: SetArmorAttribute 肩部 防御 97
+97e7: SetArmorAttribute 肩部 身法 -10
+97e8: End
+-----------------
+
+@00db: 鬼针胄     005d 39d0 0000 97e9 0000 05ea 
+-----Script2-----
+97e9: PutOn 肩部 鬼針冑
+97ea: SetArmorAttribute 肩部 防御 105
+97eb: SetArmorAttribute 肩部 武术 19
+97ec: End
+-----------------
+
+@00dc: 天蚕宝衣   00e6 4650 0000 97ed 0000 05ea 
+-----Script2-----
+97ed: PutOn 肩部 天蠶寶衣
+97ee: SetArmorAttribute 肩部 防御 170
+97ef: End
+-----------------
+
+@00dd: 青龙宝甲   00d1 733c 0000 97f0 0000 00aa 
+-----Script2-----
+97f0: PutOn 肩部 青龍寶甲
+97f1: SetArmorAttribute 肩部 防御 200
+97f2: End
+-----------------
+
+@00de: 白虎之铠   00d2 55f0 0000 97f3 0000 012a 
+-----Script2-----
+97f3: PutOn 肩部 白虎之鎧
+97f4: SetArmorAttribute 肩部 防御 180
+97f5: End
+-----------------
+
+@00df: 玄武战袍   0059 61a8 0000 97f6 0000 006a 
+-----Script2-----
+97f6: PutOn 肩部 玄武戰袍
+97f7: SetArmorAttribute 肩部 防御 180
+97f8: End
+-----------------
+
+@00e0: 朱雀战衣   00e4 5dc0 0000 97f9 0000 042a 
+-----Script2-----
+97f9: PutOn 肩部 朱雀戰衣
+97fa: SetArmorAttribute 肩部 防御 180
+97fb: End
+-----------------
+
+@00e1: 披风       005f 00a0 0000 97fc 0000 016a 
+-----Script2-----
+97fc: PutOn 身体 披風
+97fd: SetArmorAttribute 身体 防御 2
+97fe: End
+-----------------
+
+@00e2: 护肩       0054 0190 0000 97ff 0000 05ea 
+-----Script2-----
+97ff: PutOn 身体 護肩
+9800: SetArmorAttribute 身体 防御 6
+9801: End
+-----------------
+
+@00e3: 武士披风   005b 0384 0000 9802 0000 016a 
+-----Script2-----
+9802: PutOn 身体 武士披風
+9803: SetArmorAttribute 身体 防御 17
+9804: End
+-----------------
+
+@00e4: 护心镜     005e 07d0 0000 9805 0000 05ea 
+-----Script2-----
+9805: PutOn 身体 護心鏡
+9806: SetArmorAttribute 身体 防御 30
+9807: End
+-----------------
+
+@00e5: 霓虹羽衣   00e5 0f3c 0000 9808 0000 05aa 
+-----Script2-----
+9808: PutOn 身体 霓虹羽衣
+9809: SetArmorAttribute 身体 防御 28
+980a: SetArmorAttribute 身体 身法 28
+980b: SetArmorAttribute 身体 吉运 28
+980c: End
+-----------------
+
+@00e6: 菩提袈裟   00cd 1004 0000 980d 0000 006a 
+-----Script2-----
+980d: PutOn 身体 菩提袈裟
+980e: SetArmorAttribute 身体 防御 51
+980f: SetArmorAttribute 身体 灵力 26
+9810: End
+-----------------
+
+@00e7: 虎纹披风   005a 2328 0000 9811 0000 05ea 
+-----Script2-----
+9811: PutOn 身体 虎紋披風
+9812: SetArmorAttribute 身体 防御 70
+9813: End
+-----------------
+
+@00e8: 凤纹披风   0057 3a98 0000 9814 0000 05aa 
+-----Script2-----
+9814: PutOn 身体 鳳紋披風
+9815: SetArmorAttribute 身体 防御 102
+9816: End
+-----------------
+
+@00e9: 龙纹披风   0056 3e80 0000 9817 0000 01ea 
+-----Script2-----
+9817: PutOn 身体 龍紋披風
+9818: SetArmorAttribute 身体 防御 110
+9819: End
+-----------------
+
+@00ea: 圣灵披风   00e2 7530 0000 981a 0000 02aa 
+-----Script2-----
+981a: PutOn 身体 聖靈披風
+981b: SetArmorAttribute 身体 防御 116
+981c: SetArmorAttribute 身体 灵力 80
+981d: End
+-----------------
+
+@00eb: 草鞋       0061 001e 0000 981e 0000 01ea 
+-----Script2-----
+981e: PutOn 脚部 草鞋
+981f: SetArmorAttribute 脚部 防御 1
+9820: End
+-----------------
+
+@00ec: 木鞋       0062 0050 0000 9821 0000 01ea 
+-----Script2-----
+9821: PutOn 脚部 木鞋
+9822: SetArmorAttribute 脚部 防御 2
+9823: End
+-----------------
+
+@00ed: 布靴       00d4 0078 0000 9824 0000 01ea 
+-----Script2-----
+9824: PutOn 脚部 布靴
+9825: SetArmorAttribute 脚部 防御 3
+9826: SetArmorAttribute 脚部 身法 2
+9827: End
+-----------------
+
+@00ee: 绣花鞋     006b 01c2 0000 9828 0000 01aa 
+-----Script2-----
+9828: PutOn 脚部 繡花鞋
+9829: SetArmorAttribute 脚部 防御 4
+982a: End
+-----------------
+
+@00ef: 铁履       0060 044c 0000 982b 0000 01ea 
+-----Script2-----
+982b: PutOn 脚部 鐵履
+982c: SetArmorAttribute 脚部 防御 11
+982d: End
+-----------------
+
+@00f0: 武僧靴     0066 07d0 0000 982e 0000 006a 
+-----Script2-----
+982e: PutOn 脚部 武僧靴
+982f: SetArmorAttribute 脚部 防御 13
+9830: SetArmorAttribute 脚部 身法 11
+9831: End
+-----------------
+
+@00f1: 鹿皮靴     0069 0f3c 0000 9832 0000 01ea 
+-----Script2-----
+9832: PutOn 脚部 鹿皮靴
+9833: SetArmorAttribute 脚部 防御 21
+9834: SetArmorAttribute 脚部 身法 19
+9835: End
+-----------------
+
+@00f2: 疾风靴     0064 1644 0000 9836 0000 01ea 
+-----Script2-----
+9836: PutOn 脚部 疾風靴
+9837: SetArmorAttribute 脚部 防御 24
+9838: SetArmorAttribute 脚部 身法 42
+9839: End
+-----------------
+
+@00f3: 莲花靴     0065 1770 0000 983a 0000 02aa 
+-----Script2-----
+983a: PutOn 脚部 蓮花靴
+983b: SetArmorAttribute 脚部 防御 43
+983c: SetArmorAttribute 脚部 身法 15
+983d: End
+-----------------
+
+@00f4: 虎皮靴     006a 2328 0000 983e 0000 05ea 
+-----Script2-----
+983e: PutOn 脚部 虎皮靴
+983f: SetArmorAttribute 脚部 防御 46
+9840: SetArmorAttribute 脚部 身法 31
+9841: End
+-----------------
+
+@00f5: 龙鳞靴     0067 2710 0000 9842 0000 01ea 
+-----Script2-----
+9842: PutOn 脚部 龍鱗靴
+9843: SetArmorAttribute 脚部 防御 55
+9844: SetArmorAttribute 脚部 身法 32
+9845: End
+-----------------
+
+@00f6: 步云靴     0068 4650 0000 9846 0000 006a 
+-----Script2-----
+9846: PutOn 脚部 步雲靴
+9847: SetArmorAttribute 脚部 防御 53
+9848: SetArmorAttribute 脚部 身法 75
+9849: End
+-----------------
+
+@00f7: 魅影神靴   0063 6978 0000 984a 0000 042a 
+-----Script2-----
+984a: PutOn 脚部 魅影神靴
+984b: SetArmorAttribute 脚部 防御 62
+984c: SetArmorAttribute 脚部 身法 96
+984d: End
+-----------------
+
+@00f8: 香袋       00e3 000a 0000 98f7 0000 05ea 
+-----Script2-----
+98f7: PutOn 配戴 香袋
+98f8: SetArmorAttribute 配戴 灵力 8
+98f9: SetArmorAttribute 配戴 吉运 9
+98fa: SetArmorAttribute 配戴 毒抗 20
+98fb: End
+-----------------
+
+@00f9: 护腕       00e0 0046 0000 984e 0000 05ea 
+-----Script2-----
+984e: PutOn 配戴 護腕
+984f: SetArmorAttribute 配戴 防御 2
+9850: End
+-----------------
+
+@00fa: 铁护腕     000a 0168 0000 9851 0000 05ea 
+-----Script2-----
+9851: PutOn 配戴 鐵護腕
+9852: SetArmorAttribute 配戴 防御 5
+9853: End
+-----------------
+
+@00fb: 竹笛       0080 0064 0000 9854 0000 05f2 
+-----Script2-----
+9854: PutOn 配戴 竹笛
+9855: SetArmorAttribute 配戴 吉运 66
+9856: End
+-----------------
+
+@00fc: 珍珠       008c 0190 0000 985b 0000 05aa 
+-----Script2-----
+985b: PutOn 配戴 珍珠
+985c: SetArmorAttribute 配戴 吉运 20
+985d: End
+-----------------
+
+@00fd: 玉镯       001d 03b6 0000 9857 0000 05aa 
+-----Script2-----
+9857: PutOn 配戴 玉鐲
+9858: SetArmorAttribute 配戴 防御 5
+9859: SetArmorAttribute 配戴 吉运 9
+985a: End
+-----------------
+
+@00fe: 念珠       0075 0046 0000 985e 0000 05ea 
+-----Script2-----
+985e: PutOn 配戴 唸珠
+985f: SetArmorAttribute 配戴 灵力 5
+9860: SetArmorAttribute 配戴 防御 5
+9861: End
+-----------------
+
+@00ff: 银针       0013 01f4 9923 0000 9953 002d 
+-----Script1-----
+9923: RecoverHP False -9
+9924: RemoveConditionForHero 定身
+9925: RemoveConditionForHero 昏睡
+9926: RemoveConditionForHero 疯魔
+9927: End
+-----Script3-----
+9953: HeroUseMagic 投擲 False
+9954: DamageEnemy False 120
+9955: End
+-----------------
+
+@0100: 铜镜       0018 0320 0000 986d 0000 05aa 
+-----Script2-----
+986d: PutOn 配戴 銅鏡
+986e: SetArmorAttribute 配戴 防御 6
+986f: End
+-----------------
+
+@0101: 八卦镜     0026 0c1c 0000 9862 0000 05ea 
+-----Script2-----
+9862: PutOn 配戴 八卦鏡
+9863: SetArmorAttribute 配戴 灵力 18
+9864: SetArmorAttribute 配戴 防御 18
+9865: End
+-----------------
+
+@0102: 乾坤镜     0027 1324 0000 9866 0000 05ea 
+-----Script2-----
+9866: PutOn 配戴 乾坤鏡
+9867: SetArmorAttribute 配戴 灵力 34
+9868: SetArmorAttribute 配戴 防御 34
+9869: End
+-----------------
+
+@0103: 豹牙手环   0019 1130 0000 986a 0000 05ea 
+-----Script2-----
+986a: PutOn 配戴 豹牙手環
+986b: SetArmorAttribute 配戴 防御 39
+986c: End
+-----------------
+
+@0104: 圣灵珠     0002 0000 9b65 9902 0000 0293 
+-----Script1-----
+9b65: GotoIfNotFacingObject (133b,空) 1 9789
+9b66: SetObjectState (133b,空) 0
+9b67: SetObjectState (133c,水灵珠) 1
+9b68: RemoveInventory 聖靈珠 0 0000
+9b69: Clear 0
+9b6a: FadeScreen
+9b6b: ShiftView 35 66 -1
+9b6c: SetObjectState2 (133d,灵珠坛) (1341,灵珠坛) 2
+9b6d: Sound 260
+9b6e: Transition 0002 0
+9b6f: FadeScreen
+9b70: ShiftView 0 0 0
+9b71: End
+
+0000: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+-----Script2-----
+9902: PutOn 配戴 聖靈珠
+9903: SetAttribute 合体法术 367 0000
+9904: SetArmorAttribute 配戴 灵力 208
+9905: SetArmorAttribute 配戴 防御 35
+9906: SetArmorAttribute 配戴 毒抗 35
+9907: End
+-----------------
+
+@0105: 金罡珠     000d 2710 0000 990c 0000 05e2 
+-----Script2-----
+990c: PutOn 配戴 金罡珠
+990d: SetArmorAttribute 配戴 防御 150
+990e: End
+-----------------
+
+@0106: 五毒珠     0003 2710 0000 99db 0000 05e2 
+-----Script2-----
+99db: PutOn 配戴 五毒珠
+99dc: SetArmorAttribute 配戴 毒抗 100
+99dd: End
+-----------------
+
+@0107: 风灵珠     0007 0000 9b72 990f 0000 05d3 
+-----Script1-----
+9b72: GotoIfNotFacingObject (133d,灵珠坛) 0 9b9d
+9b73: SetObjectState (133d,灵珠坛) 3
+9b74: SetObjectAnimationFrames (133d,灵珠坛) 0 4
+9b75: RemoveInventory 風靈珠 0 0000
+9b76: Goto 9b90
+
+0000: End
+
+9b90: GotoOnObjectState (133d,灵珠坛) 0 0000
+9b91: GotoOnObjectState (133e,灵珠坛) 0 0000
+9b92: GotoOnObjectState (133f,灵珠坛) 0 0000
+9b93: GotoOnObjectState (1340,灵珠坛) 0 0000
+9b94: GotoOnObjectState (1341,灵珠坛) 0 0000
+9b95: GotoOnObjectState (133d,灵珠坛) 2 0000
+9b96: GotoOnObjectState (133e,灵珠坛) 2 0000
+9b97: GotoOnObjectState (133f,灵珠坛) 2 0000
+9b98: GotoOnObjectState (1340,灵珠坛) 2 0000
+9b99: GotoOnObjectState (1341,灵珠坛) 2 0000
+9b9a: FadeScreen
+9b9b: GotoScene 大理·祭坛(已摆满，动画前）
+9b9c: End
+
+9b9d: 0095 00b2 9ba0 0000
+9b9e: Goto 9789
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+-----Script2-----
+990f: PutOn 配戴 風靈珠
+9910: SetArmorAttribute 配戴 风抗 50
+9911: SetAttribute 合体法术 319 0000
+9912: End
+-----------------
+
+@0108: 雷灵珠     0005 0000 9b78 9913 0000 05d3 
+-----Script1-----
+9b78: GotoIfNotFacingObject (133f,灵珠坛) 0 9789
+9b79: SetObjectState (133f,灵珠坛) 3
+9b7a: SetObjectAnimationFrames (133f,灵珠坛) 0 2
+9b7b: RemoveInventory 雷靈珠 0 0000
+9b7c: Goto 9b90
+
+0000: End
+
+9b90: GotoOnObjectState (133d,灵珠坛) 0 0000
+9b91: GotoOnObjectState (133e,灵珠坛) 0 0000
+9b92: GotoOnObjectState (133f,灵珠坛) 0 0000
+9b93: GotoOnObjectState (1340,灵珠坛) 0 0000
+9b94: GotoOnObjectState (1341,灵珠坛) 0 0000
+9b95: GotoOnObjectState (133d,灵珠坛) 2 0000
+9b96: GotoOnObjectState (133e,灵珠坛) 2 0000
+9b97: GotoOnObjectState (133f,灵珠坛) 2 0000
+9b98: GotoOnObjectState (1340,灵珠坛) 2 0000
+9b99: GotoOnObjectState (1341,灵珠坛) 2 0000
+9b9a: FadeScreen
+9b9b: GotoScene 大理·祭坛(已摆满，动画前）
+9b9c: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+-----Script2-----
+9913: PutOn 配戴 雷靈珠
+9914: SetArmorAttribute 配戴 雷抗 50
+9915: SetAttribute 合体法术 325 0000
+9916: End
+-----------------
+
+@0109: 水灵珠     0001 0000 9b7e 9917 0000 05d3 
+-----Script1-----
+9b7e: GotoIfNotFacingObject (1341,灵珠坛) 0 9789
+9b7f: SetObjectState (1341,灵珠坛) 3
+9b80: SetObjectAnimationFrames (1341,灵珠坛) 0 3
+9b81: RemoveInventory 水靈珠 0 0000
+9b82: Goto 9b90
+
+0000: End
+
+9b90: GotoOnObjectState (133d,灵珠坛) 0 0000
+9b91: GotoOnObjectState (133e,灵珠坛) 0 0000
+9b92: GotoOnObjectState (133f,灵珠坛) 0 0000
+9b93: GotoOnObjectState (1340,灵珠坛) 0 0000
+9b94: GotoOnObjectState (1341,灵珠坛) 0 0000
+9b95: GotoOnObjectState (133d,灵珠坛) 2 0000
+9b96: GotoOnObjectState (133e,灵珠坛) 2 0000
+9b97: GotoOnObjectState (133f,灵珠坛) 2 0000
+9b98: GotoOnObjectState (1340,灵珠坛) 2 0000
+9b99: GotoOnObjectState (1341,灵珠坛) 2 0000
+9b9a: FadeScreen
+9b9b: GotoScene 大理·祭坛(已摆满，动画前）
+9b9c: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+-----Script2-----
+9917: PutOn 配戴 水靈珠
+9918: SetArmorAttribute 配戴 水抗 50
+9919: SetAttribute 合体法术 330 0000
+991a: End
+-----------------
+
+@010a: 火灵珠     0004 0000 9b84 991b 0000 05d3 
+-----Script1-----
+9b84: GotoIfNotFacingObject (133e,灵珠坛) 0 9789
+9b85: SetObjectState (133e,灵珠坛) 3
+9b86: SetObjectAnimationFrames (133e,灵珠坛) 0 1
+9b87: RemoveInventory 火靈珠 0 0000
+9b88: Goto 9b90
+
+0000: End
+
+9b90: GotoOnObjectState (133d,灵珠坛) 0 0000
+9b91: GotoOnObjectState (133e,灵珠坛) 0 0000
+9b92: GotoOnObjectState (133f,灵珠坛) 0 0000
+9b93: GotoOnObjectState (1340,灵珠坛) 0 0000
+9b94: GotoOnObjectState (1341,灵珠坛) 0 0000
+9b95: GotoOnObjectState (133d,灵珠坛) 2 0000
+9b96: GotoOnObjectState (133e,灵珠坛) 2 0000
+9b97: GotoOnObjectState (133f,灵珠坛) 2 0000
+9b98: GotoOnObjectState (1340,灵珠坛) 2 0000
+9b99: GotoOnObjectState (1341,灵珠坛) 2 0000
+9b9a: FadeScreen
+9b9b: GotoScene 大理·祭坛(已摆满，动画前）
+9b9c: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+-----Script2-----
+991b: PutOn 配戴 火靈珠
+991c: SetArmorAttribute 配戴 火抗 50
+991d: SetAttribute 合体法术 337 0000
+991e: End
+-----------------
+
+@010b: 土灵珠     0006 0000 9b8a 991f 0000 05d3 
+-----Script1-----
+9b8a: GotoIfNotFacingObject (1340,灵珠坛) 0 9afc
+9b8b: SetObjectState (1340,灵珠坛) 3
+9b8c: SetObjectAnimationFrames (1340,灵珠坛) 0 5
+9b8d: RemoveInventory 土靈珠 0 0000
+9b8e: Goto 9b90
+
+0000: End
+
+9b90: GotoOnObjectState (133d,灵珠坛) 0 0000
+9b91: GotoOnObjectState (133e,灵珠坛) 0 0000
+9b92: GotoOnObjectState (133f,灵珠坛) 0 0000
+9b93: GotoOnObjectState (1340,灵珠坛) 0 0000
+9b94: GotoOnObjectState (1341,灵珠坛) 0 0000
+9b95: GotoOnObjectState (133d,灵珠坛) 2 0000
+9b96: GotoOnObjectState (133e,灵珠坛) 2 0000
+9b97: GotoOnObjectState (133f,灵珠坛) 2 0000
+9b98: GotoOnObjectState (1340,灵珠坛) 2 0000
+9b99: GotoOnObjectState (1341,灵珠坛) 2 0000
+9b9a: FadeScreen
+9b9b: GotoScene 大理·祭坛(已摆满，动画前）
+9b9c: End
+
+9afc: Clear 0
+9afd: EscapeScene 9789
+9afe: Sound 45
+9aff: 00a1 0000 0000 0000
+9b00: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+-----Script2-----
+991f: PutOn 配戴 土靈珠
+9920: SetArmorAttribute 配戴 土抗 50
+9921: SetAttribute 合体法术 342 0000
+9922: End
+-----------------
+
+@010c: 炼蛊皿     0009 03e8 9abb 0000 0000 0031 
+-----Script1-----
+9abb: GotoIfNotHaveInventory 毒蟲卵 9 9ab8
+9abc: RemoveInventory 毒蟲卵 9 0000
+9abd: CreateInventory 蠱 9
+9abe: DialogFrame
+9abf: Message `煉成九隻蠱．．`
+9ac0: End
+
+0000: End
+
+9ab8: DialogFrame
+9ab9: Message `煉蠱的材料不足`
+9aba: End
+-----------------
+
+@010d: 寿葫芦     0008 2198 0000 9908 0000 0422 
+-----Script2-----
+9908: PutOn 配戴 壽葫蘆
+9909: PoisonHero False 壽葫蘆
+990a: End
+-----------------
+
+@010e: 紫金葫芦   0015 0000 9b2e 0000 0000 0011 
+-----Script1-----
+9b2e: 0034 9789 0000 0000
+9b2f: End
+-----------------
+
+@010f: 布包       0000 0000 9b30 0000 0000 0011 
+-----Script1-----
+9b30: GotoIfNotFacingObject (0742,古董商) 1 9b33
+9b31: SetObjectTriggerScript (0742,古董商) 4827
+9b32: End
+
+4827: RemoveInventory 布包 0 0000
+4828: Message `古董商：`
+4829: Message `啊∼太好了！`
+482a: SetObjectAutoScript Current 4867
+482b: ClearAndWait 4
+482c: SetObjectState (0743,商人布包) 1
+482d: ClearAndWait 4
+482e: SetObjectAnimationFrames (0743,商人布包) 0 1
+482f: ClearAndWait 6
+4830: Message `古董商：`
+4831: Message `咦．．？　怎麼少了一樣`
+4832: SetObjectAutoScript Current 4869
+4833: ClearAndWait 5
+4834: Clear 0
+4835: Message `古董商：`
+4836: Message `我的"紫金葫蘆"呢？`
+4837: Message `是不是你們偷藏起來了`
+4838: Message `你們跟飛賊是不是一夥的！`
+4839: Clear 0
+483a: DialogBottom 0017 0
+483b: Message `林月如：`
+483c: Message `是我們冒著生命危險才把你的`
+483d: Message `東西搶回來的，你不但不感激`
+483e: Message `反而誣賴起我們來了！？`
+483f: Clear 0
+4840: DialogBottom 0002 0
+4841: Message `李逍遙：`
+4842: Message `這位員外，我們若是真的拿`
+4843: Message `了你的葫蘆，又何必把這包`
+4844: Message `東西還你！？`
+4845: Clear 0
+4846: DialogTop 0000 0
+4847: Message `古董商：`
+4848: Message `那紫金葫蘆可是我花了大半`
+4849: Message `輩子的積蓄才弄到手的！`
+484a: MessageClear
+484b: Message `不．．我要去報官`
+484c: Message `對∼報官！`
+484d: SetObjectAnimationFrames (0742,古董商) 1 0
+484e: SetObjectAutoScript Current 486c
+484f: ClearAndWait 13
+4850: SetCharacterSpriteFrame West 0 0
+4851: ClearAndWait 2
+4852: SetCharacterSpriteFrame West 0 1
+4853: ClearAndWait 15
+4854: DialogTop 0016 0
+4855: Message `林月如：`
+4856: Message `真是好心沒好報`
+4857: Message `這種人被偷光了活該！`
+4858: DialogBottom 0001 0
+4859: Message `李逍遙：`
+485a: Message `如妹！　算了．．`
+485b: Message `我看咱們是中了那女飛賊的`
+485c: Message `計了，那位員外少的寶物一`
+485d: Message `定是在那女飛賊的手中`
+485e: Message `我們搶回來的，只是其它`
+485f: Message `無關緊要的東西`
+4860: Clear 0
+4861: DialogTop 0017 0
+4862: Message `林月如：`
+4863: Message `我們豈不是白忙一場！？`
+4864: SetObjectState (06bd,少妇1) 0
+4865: SetObjectState2 (06be,姬三娘) (06c6,闺秀1) 2
+4866: End
+
+0000: End
+
+4867: CurrentObjectWalkToBlock 43 24 1
+4868: End
+
+4869: CurrentObjectWalkToBlock 44 25 0
+486a: CurrentObjectTurn West
+486b: End
+
+486c: CurrentObjectWalkToBlock 43 24 1
+486d: SetObjectState (0743,商人布包) 0
+486e: Next
+486f: Next
+4870: CurrentObjectWalkToBlock 40 28 0
+4871: SetObjectState Current 0
+4872: End
+
+9b33: GotoIfNotFacingObject (0968,原地女居民1) 1 9789
+9b34: SetObjectTriggerScript (0968,原地女居民1) 51d3
+9b35: RemoveInventory 布包 0 0000
+9b36: End
+
+51d3: SetObjectTriggerMethod Current 0002
+51d4: DialogTop 0000 0
+51d5: Message `宋氏：`
+51d6: Message `這．．這是我家相公`
+51d7: Message `出門時帶的包袱．．`
+51d8: Message `怎麼會在你們手上！？`
+51d9: Clear 0
+51da: DialogBottom 0001 0
+51db: Message `李逍遙：`
+51dc: Message `我們經過山谷時發現妳丈夫`
+51dd: Message `的屍首，這些是他的遺物．．`
+51de: Clear 0
+51df: DialogTop 0000 0
+51e0: Message `宋氏：`
+51e1: Message `嗚．．．嗚．．都怪我`
+51e2: Message `當初我應該勸他不要去的`
+51e3: Clear 0
+51e4: DialogBottom 0001 0
+51e5: Message `李逍遙：`
+51e6: Message `夫人．．請您節哀．．`
+51e7: Message `您點點看，包袱中的物品`
+51e8: Message `可有短缺？`
+51e9: ClearAndWait 2
+51ea: CurrentObjectTurn West
+51eb: Clear 0
+51ec: DialogTop 0000 0
+51ed: Message `宋氏：`
+51ee: Message `嗯．．．．`
+51ef: CurrentObjectTurn North
+51f0: Clear 0
+51f1: DialogTop 0000 0
+51f2: Message `宋氏：`
+51f3: Message `您千里迢迢替把這些東西`
+51f4: Message `送回來，我們已經很感激了`
+51f5: MessageClear
+51f6: Message `唉．．都是為了這紫金葫蘆`
+51f7: Clear 0
+51f8: DialogBottom 0015 0
+51f9: Message `林月如：`
+51fa: Message `這葫蘆有什麼不對嗎？`
+51fb: Clear 0
+51fc: DialogTop 0000 0
+51fd: Message `宋氏：`
+51fe: Message `不．．姑娘別誤會`
+51ff: Message `這葫蘆是我相公向一個盜墓`
+5200: Message `者買來的，據說是上古神物`
+5201: MessageClear
+5202: Message `自從相公得到這葫蘆後`
+5203: Message `家中就多次遭到妖魔的侵擾`
+5204: Message `後來聽說揚州有人出高價要`
+5205: Message `買這葫蘆，相公就去談價錢`
+5206: Message `想不到．．竟．．`
+5207: Clear 0
+5208: DialogBottom 0001 0
+5209: Message `李逍遙：`
+520a: Message `妖魔！？　想必．．`
+520b: Message `這葫蘆若不是神靈之器`
+520c: Message `就是不祥之物`
+520d: Clear 0
+520e: DialogTop 0000 0
+520f: Message `宋氏：`
+5210: Message `我曾聽我相公說過．．`
+5211: Message `紫金葫蘆若由會仙術的人`
+5212: Message `持有，會是相當厲害的寶貝`
+5213: MessageClear
+5214: Message `我們一介婦孺留這東西也沒用`
+5215: Message `二位大俠若不嫌棄，我想把這`
+5216: Message `紫金葫蘆相贈．．`
+5217: Clear 0
+5218: DialogFrame
+5219: Message `獲得紫金葫蘆`
+521a: CreateInventory 紫金葫蘆 0
+521b: Clear 0
+521c: DialogTop 0000 0
+521d: Message `宋氏：`
+521e: Message `葫蘆底部有些文字，據說是`
+521f: Message `使用它的咒語，可惜我們不`
+5220: Message `會法術，不會使用`
+5221: DialogBottom 0001 0
+5222: Message `李逍遙：`
+5223: Message `哦？　讓我看看．．`
+5224: DialogFrame
+5225: Message `得到靈葫咒`
+5226: LearnMagic 靈葫咒 李逍遥
+5227: Next
+5228: Message `宋氏：`
+5229: Message `嗚．．我好可憐吶`
+522a: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+-----------------
+
+@0110: 桂花酒     006e 0000 9aec 0000 0000 0011 
+-----Script1-----
+9aec: Clear 0
+9aed: GotoIfNotFacingObject (003f,醉倒酒剑仙) 1 9789
+9aee: SetObjectTriggerScript (003f,醉倒酒剑仙) 13ca
+9aef: End
+
+13ca: Clear 0
+13cb: DialogTop 0025 0
+13cc: Message `醉道士：`
+13cd: Message `酒••求求．．你．．`
+13ce: Message `一口．．喝一口．．就好`
+13cf: DialogBottom 0001 0
+13d0: Message `李逍遙：`
+13d1: Message `看你可憐，就給你喝一口吧`
+13d2: Message `喂∼只能喝一口喔！`
+13d3: Clear 0
+13d4: CurrentObjectSetFrame 2
+13d5: Transition 0000 0
+13d6: SetObjectAutoScript Current 0000
+13d7: DialogTop 0025 0
+13d8: Message `醉道士：`
+13d9: Message `啊．．．．好酒！`
+13da: Clear 0
+13db: DialogBottom 000a 0
+13dc: Message `李逍遙：`
+13dd: Message `哎呀．．你怎麼喝光了！`
+13de: Clear 0
+13df: DialogTop 0025 0
+13e0: Message `醉道士：`
+13e1: Message `嗝∼我一口就是那麼大口`
+13e2: Message `真是不好意思．．`
+13e3: DialogBottom 0005 0
+13e4: Message `李逍遙：`
+13e5: Message `你．．．你要賠我！`
+13e6: Clear 0
+13e7: DialogTop 0025 0
+13e8: Message `醉道士：`
+13e9: Message `呵呵．．要錢我可沒有`
+13ea: Message `你不是很想學劍嗎？`
+13eb: DialogBottom 000a 0
+13ec: Message `李逍遙：`
+13ed: Message `你怎麼知道？`
+13ee: Clear 0
+13ef: DialogTop 0025 0
+13f0: Message `醉道士：`
+13f1: Message `看在酒的份上`
+13f2: Message `貧道可以破例指點你幾招`
+13f3: Clear 0
+13f4: DialogBottom 0002 0
+13f5: Message `李逍遙：`
+13f6: Message `．．你．．你要教我劍法？？`
+13f7: SetCharacterSpriteFrame North 0 0
+13f8: ClearAndWait 8
+13f9: SetCharacterSpriteFrame West 0 0
+13fa: Clear 0
+13fb: DialogBottom 0009 0
+13fc: Message `李逍遙：`
+13fd: Message `老伯．．您別逗我了`
+13fe: Message `您還是快走吧，要是給我嬸嬸`
+13ff: Message `知道我拿酒給你喝，準罵人的`
+1400: ClearAndWait 0
+1401: SetCharacterSpriteFrame North 0 0
+1402: ClearAndWait 4
+1403: DialogTop 0025 0
+1404: Message `醉道士：`
+1405: Message `哈哈哈！那就明晚三更`
+1406: Message `十里坡"山神廟"。不見不散！`
+1407: SetObjectState Current 0
+1408: Transition 0000 0
+1409: DialogCenter 0000 0
+140a: Message `"醉道士話說完一溜煙地`
+140b: Message `就不見了．．"`
+140c: SetCharacterSpriteFrame West 0 0
+140d: Clear 0
+140e: DialogBottom 0002 0
+140f: Message `咦∼人呢？`
+1410: RemoveInventory 桂花酒 0 0000
+1411: SetObjectState (0011,酒菜) 0
+1412: SetObjectTriggerScript (0014,李大娘) 1425
+1413: Clear 0
+1414: DialogTop 0037 0
+1415: Message `李大娘：`
+1416: Message `逍遙∼你過來一下！`
+1417: SetCharacterSpriteFrame North 0 0
+1418: Clear 0
+1419: DialogBottom 0000 0
+141a: Message `李逍遙：`
+141b: Message `　啊．．(`
+141c: Next
+141d: End
+
+0000: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+
+1425: DialogTop 0000 0
+1426: Message `李大娘：`
+1427: Message `你要是有空的話，就到菜市場`
+1428: Message `幫我買幾斤新鮮的蝦回來，要`
+1429: Message `是在市場買不到，就向打漁的`
+142a: Message `船家們問看看`
+142b: DialogFrame
+142c: Message `得到五十文錢`
+142d: AdjustMoney 50 0000
+142e: Clear 0
+142f: DialogBottom 0000 0
+1430: Message `李逍遙低聲道：`
+1431: Message `呼．．．還好`
+1432: Clear 0
+1433: DialogTop 0037 0
+1434: Message `李大娘：`
+1435: Message `你在嘀咕什麼？`
+1436: Clear 0
+1437: DialogBottom 000a 0
+1438: Message `李逍遙：`
+1439: Message `沒事！我馬上就去`
+143a: Clear 0
+143b: 0008 0000 0000 0000
+143c: DialogTop 0000 0
+143d: Message `李大娘：`
+143e: Message `記得哦！要新鮮的才買`
+143f: NextReplace 1375 0000
+
+1375: Message `李大娘：`
+1376: Message `別愣在這裡，幫幫忙吧`
+1377: Message `我都快忙不過來了！`
+1378: End
+-----------------
+
+@0111: 紫金丹     008d 0000 9ae9 0000 0000 0011 
+-----Script1-----
+9ae9: GotoIfNotFacingObject (0023,病李大婶) 1 9789
+9aea: SetObjectTriggerScript (0023,病李大婶) 17b8
+9aeb: End
+
+17b8: SetObjectState2 (0066,门扇) (0067,门扇) 2
+17b9: SetObjectTriggerScript (0066,门扇) 0019
+17ba: SetObjectTriggerScript (0067,门扇) 0019
+17bb: SetObjectState2 (0068,门扇开) (0069,门扇开) 2
+17bc: SetObjectTriggerScript (0068,门扇开) 0019
+17bd: SetObjectTriggerScript (0069,门扇开) 0019
+17be: SetObjectState (001a,黑苗喽罗) 0
+17bf: SetObjectState (001b,持棍苗兵) 0
+17c0: SetObjectState (003d,黑苗喽罗) 2
+17c1: SetObjectState (003e,持棍苗兵) 2
+17c2: SetObjectState (003c,黑苗头领) 2
+17c3: SetObjectTriggerScript (003c,黑苗头领) 186e
+17c4: SetObjectTriggerMethod (003c,黑苗头领) 0007
+17c5: SetObjectAutoScript (003c,黑苗头领) 0000
+17c6: SetObjectAutoScript (003d,黑苗喽罗) 0000
+17c7: SetObjectAutoScript (003e,持棍苗兵) 0000
+17c8: SetObjectTriggerMethod (003d,黑苗喽罗) 0000
+17c9: SetObjectTriggerMethod (003e,持棍苗兵) 0000
+17ca: SetObjectLocation (003c,黑苗头领) 1032 1672
+17cb: SetObjectLocation (003d,黑苗喽罗) 1008 1656
+17cc: SetObjectLocation (003e,持棍苗兵) 1056 1680
+17cd: SetObjectState (0071,原地林木匠) 0
+17ce: SetObjectState (00c8,原地林木匠) 2
+17cf: SetObjectTriggerScript (00c9,儿童9) 2048
+17d0: SetObjectState (00c2,原地桃村长) 0
+17d1: SetObjectState (00b0,病老人) 1
+17d2: SetObjectState (00b1,丁香兰) 2
+17d3: SetObjectState (00b2,丁秀兰) 2
+17d4: SetObjectState2 (004e,跳绳小孩们) (005e,小鸡) 0
+17d5: SetObjectState 0000 0
+17d6: SetObjectTriggerScript (0060,空) 1ef4
+17d7: SetObjectState 0000 0
+17d8: SetObjectState (0023,病李大婶) 1
+17d9: Clear 0
+17da: DialogCenter 0000 0
+17db: Message `"李大娘服下紫金丹．．"`
+17dc: RemoveInventory 紫金丹 0 0000
+17dd: Clear 0
+17de: DialogBottom 0000 0
+17df: Message `李逍遙：`
+17e0: Message `怎．．怎麼頭昏昏的？`
+17e1: Clear 0
+17e2: MusicOff False
+17e3: SetCharacterSpriteFrame South 0 0
+17e4: ClearAndWait 6
+17e5: WalkHero -4 -2 0
+17e6: ClearAndWait 2
+17e7: WalkHero -8 -4 0
+17e8: ClearAndWait 0
+17e9: WalkHero -8 -4 0
+17ea: ClearAndWait 2
+17eb: WalkHero -8 -4 0
+17ec: ClearAndWait 0
+17ed: WalkHero -8 -4 0
+17ee: ClearAndWait 3
+17ef: WalkHero -12 -6 0
+17f0: Clear 0
+17f1: SetCharacterSpriteFrame West 0 0
+17f2: Clear 0
+17f3: SetCharacterSpriteFrame North 0 0
+17f4: Clear 0
+17f5: SetCharacterSpriteFrame East 0 0
+17f6: Clear 0
+17f7: SetCharacterSpriteFrame South 0 0
+17f8: ClearAndWait 4
+17f9: WalkHero -32 0 0
+17fa: SetCharacterSprite 0 (00c1,躺李逍遥) True
+17fb: SetCharacterSpriteFrame West 0 0
+17fc: Clear 0
+17fd: Sound 93
+17fe: DialogCenter 0000 0
+17ff: Message `"李逍遙先前服下的忘憂散"`
+1800: Message `"發作，昏倒在地．．"`
+1801: FadeScreen
+1802: SetObjectState Current 0
+1803: SetObjectState (0028,被胁李大婶) 1
+1804: SetObjectState (0073,空) 1
+1805: SetObjectState (004c,空) 1
+1806: Music 36
+1807: 0054 0000 0000 0000
+1808: Clear 0
+1809: DialogCenter 0000 0
+180a: Message `"夜晚．．"`
+180b: Clear 0
+180c: DialogBottom 0037 0
+180d: Message `李大娘：`
+180e: Message `逍遙！你不在自己房裡睡`
+180f: Message `躺在這兒幹嘛？`
+1810: Clear 0
+1811: DialogTop 000a 0
+1812: Message `李逍遙：`
+1813: Message `唔．．．　我怎麼會在這！？`
+1814: SetCharacterSprite 0 (0002,李逍遥) True
+1815: SetCharacterSpriteFrame South 0 0
+1816: Clear 0
+1817: DialogTop 0003 0
+1818: Message `李逍遙：`
+1819: Message `對了！嬸嬸．．`
+181a: Message `我有很重要的事要跟您說`
+181b: DialogBottom 0037 0
+181c: Message `什麼事？！`
+181d: Clear 0
+181e: DialogTop 000a 0
+181f: Message `李逍遙：`
+1820: Message `是．．是．．`
+1821: Message `咦？怎麼突然想不起來了`
+1822: Message `我明明．．明明．．．`
+1823: Clear 0
+1824: Message `"李逍遙從昨天出發到仙靈島"`
+1825: Message `"至拿藥回來的記憶全失去了"`
+1826: Clear 0
+1827: DialogBottom 0037 0
+1828: Message `李大娘：`
+1829: Message `我看你又是在作夢！`
+182a: Message `回房間睡覺去！`
+182b: FadeScreen
+182c: SetObjectState (0031,空) 1
+182d: SetObjectState (0047,左门板) 2
+182e: SetObjectState (0048,右门板) 2
+182f: SetObjectAnimationFrames (0047,左门板) 0 0
+1830: SetObjectAnimationFrames (0048,右门板) 0 0
+1831: SetObjectState (0028,被胁李大婶) 0
+1832: SetCharacterSprite 0 (00c1,躺李逍遥) True
+1833: CallScene 余杭·客栈各分立房间(原始) 1836
+1834: GotoScene 余杭·客栈各分立房间(原始)
+1835: End
+
+0000: End
+
+186e: SetObjectTriggerMethod Current 0002
+186f: DialogBottom 003b 0
+1870: Message `苗人頭領：`
+1871: Message `小兄弟，求得靈藥了吧？`
+1872: DialogTop 0007 0
+1873: Message `李逍遙：`
+1874: Message `靈藥！？　什麼靈藥？`
+1875: Clear 0
+1876: DialogBottom 003b 0
+1877: Message `苗人頭領：`
+1878: Message `呵呵．．果然有效．．`
+1879: Message `對了！現在是什麼時辰了`
+187a: DialogTop 0001 0
+187b: Message `李逍遙：`
+187c: Message `哦．．三更天了`
+187d: Clear 0
+187e: DialogBottom 003b 0
+187f: Message `苗人頭領：`
+1880: Message `嗯∼是時候了`
+1881: Clear 0
+1882: DialogBottom 003b 0
+1883: Message `苗人頭領：`
+1884: Message `小兄弟，我們現在有事要出去`
+1885: Message `一趟，明天一早才會回來，你`
+1886: Message `現在可以打烊，不必等我們了`
+1887: SetObjectState 0000 2
+1888: SetObjectAutoScript (003c,黑苗头领) 18a3
+1889: SetObjectAutoScript (003d,黑苗喽罗) 18a6
+188a: SetObjectAutoScript (003e,持棍苗兵) 18aa
+188b: ClearAndWait 10
+188c: DialogTop 0001 0
+188d: Message `李逍遙：`
+188e: Message `這麼晚了，三位要上哪去呀？`
+188f: DialogBottom 003b 0
+1890: Message `苗人頭領：`
+1891: Message `小兄弟．．少知道一些事情`
+1892: Message `可以活久一點！`
+1893: Clear 0
+1894: DialogBottom 003b 0
+1895: Message `苗人頭領：`
+1896: Message `要不是看你蠻聽話的，昨天我`
+1897: Message `就賞你一顆金蠶蠱啦！`
+1898: Message `哈．．哈．．哈∼`
+1899: ClearAndWait 26
+189a: DialogTop 0007 0
+189b: Message `李逍遙：`
+189c: Message `哼、裝得神秘兮兮的．．`
+189d: Message `一定不是去幹啥好事！`
+189e: Clear 0
+189f: DialogTop 0001 0
+18a0: Message `李逍遙：`
+18a1: Message `算了！　客人的閒事少管．．`
+18a2: End
+
+1ef4: Message `半夜三更的，菜市場早打烊了`
+1ef5: SetCharacterSpriteFrame South 0 0
+1ef6: ClearAndWait 0
+1ef7: SetCharacterSpriteFrame West 0 0
+1ef8: ClearAndWait 0
+1ef9: WalkHero -8 4 0
+1efa: ClearAndWait 0
+1efb: WalkHero -8 4 0
+1efc: ClearAndWait 0
+1efd: WalkHero -8 4 0
+1efe: ClearAndWait 0
+1eff: WalkHero -8 4 0
+1f00: ClearAndWait 0
+1f01: End
+
+2048: Clear 0
+2049: DialogBottom 0002 0
+204a: Message `啊！前輩，是你！`
+204b: Clear 0
+204c: SetObjectAnimationFrames (10fa,剑圣) 0 0
+204d: DialogTop 0000 0
+204e: Message `咦！你認識我？`
+204f: Clear 0
+2050: DialogBottom 0001 0
+2051: Message `李逍遙：`
+2052: Message `晚輩李逍遙`
+2053: Message `實情是這樣的：晚輩來自十年`
+2054: Message `之後，並於那時見過前輩一面`
+2055: Clear 0
+2056: DialogTop 0000 0
+2057: Message `原來如此．．．`
+2058: Message `你怎會到這裡來？`
+2059: DialogBottom 0001 0
+205a: Message `因為晚輩在十年前承蒙巫后娘`
+205b: Message `娘召喚，然後就糊里糊塗來到`
+205c: Message `了這裡`
+205d: Clear 0
+205e: DialogTop 0000 0
+205f: Message `巫后娘娘為什麼要送你來？`
+2060: Clear 0
+2061: DialogBottom 0001 0
+2062: Message `巫后娘娘是晚輩妻子的母親`
+2063: Message `她也沒明說送我來此的目的，`
+2064: Message `只說叫我去完成一件我本該完`
+2065: Message `成的事  不過現在我隱約猜到`
+2066: Message `一點  巫后娘娘應該是叫我來`
+2067: Message `保護她女兒安全脫離，並激勵`
+2068: Message `十年前的她勇於面對一切`
+2069: Clear 0
+206a: DialogTop 0000 0
+206b: Message `這麼說，剛才你一直在娘娘身`
+206c: Message `邊？`
+206d: DialogBottom 0004 0
+206e: Message `我還是沒能挽救娘娘．．．`
+206f: Clear 0
+2070: DialogTop 0000 0
+2071: Message `唉，青兒，你實在太像你娘`
+2072: Message `難道女媧族的宿命永遠無法改`
+2073: Message `變？`
+2074: DialogBottom 0002 0
+2075: Message `前輩似乎認識巫后娘娘？`
+2076: Clear 0
+2077: ClearAndWait 5
+2078: DialogTop 0000 0
+2079: Message `青兒是我一位故人的女兒．．`
+207a: Message `她和她母親一樣，為了天下蒼`
+207b: Message `生，可以犧牲一切，不，應該`
+207c: Message `說，所有女媧族人，都是這樣`
+207d: Message `可青兒你是否清楚，你這樣做`
+207e: Message `，也只能將水魔獸暫時封印而`
+207f: Message `已，一旦有人蓄意破壞封印，`
+2080: Message `水魔獸就會慢慢復蘇，那時，`
+2081: Message `世間會再遭劫數`
+2082: Clear 0
+2083: DialogBottom 0001 0
+2084: Message `啊！您是說，巫后娘娘的犧牲`
+2085: Message `全無價值？`
+2086: Clear 0
+2087: DialogTop 0000 0
+2088: Message `也不盡然  至少，`
+2089: Message `要想水魔獸復蘇，必須獻上五`
+208a: Message `百童男童女的鮮血，並等待`
+208b: Message `十年時間  當年，合我與紫萱`
+208c: Message `二人之力，也只能堪堪抵擋住`
+208d: Message `水魔獸的攻勢，最後動用神器`
+208e: Message `之力才將其封住`
+208f: Message `青兒你真不賴，竟然只憑一己`
+2090: Message `之力就做到這一點，或許，你`
+2091: Message `已經是歷代女媧族裔中，實力`
+2092: Goto 04ad
+
+04ad: Message `最強者`
+04ae: DialogBottom 0001 0
+04af: Message `十年．．．`
+04b0: Clear 0
+04b1: DialogTop 0000 0
+04b2: Message `或許，不，很有可能，因為罪`
+04b3: Message `魁禍首未除，十年後，即你的`
+04b4: Message `時代，水魔獸會再度現世`
+04b5: Message `唉，真不希望看到那種情景`
+04b6: Clear 0
+04b7: DialogBottom 0004 0
+04b8: Message `當真無法挽回？`
+04b9: Clear 0
+04ba: DialogTop 0000 0
+04bb: Message `．．．來，我送你一件東西`
+04bc: Message `它叫"息壤"，是上古時期大禹`
+04bd: Message `治水所依靠的神器`
+04be: Message `當年為了封印水魔獸，我取自`
+04bf: Message `大禹之陵寢`
+04c0: Message `只可惜，它所蘊含的土靈之力`
+04c1: Message `已於上一次使用消耗殆盡，重`
+04c2: Message `新凝集至少需要百年時間，顯`
+04c3: Message `然是不夠的`
+04c4: Goto 0543
+
+0543: Message `唉，無論如何，還是送給你吧`
+0544: Message `你記住，使用它需要純陽之質`
+0545: Message `，如果有機會用到，當你祭起`
+0546: Message `它時，心中必須有一往無前的`
+0547: Message `執著，必要時甚至不惜犧牲自`
+0548: Message `己的生命，想想當年大禹的感`
+0549: Message `受，這樣才能發揮最大威力`
+054a: Clear 0
+054b: CreateInventory 息壤 0
+054c: DialogBottom 0001 0
+054d: Message `晚輩明白了`
+054e: Goto 6024
+
+6024: Clear 0
+6025: DialogTop 0000 0
+6026: Message `好了，你也應該走了`
+6027: Message `十年後再見吧`
+6028: SetObjectState (10fa,剑圣) 0
+6029: Transition 0002 0
+602a: ClearAndWait 5
+602b: Goto a5a3
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+
+1836: SetLocation 41 15 True
+1837: SetCharacterSpriteFrame West 11 0
+1838: ClearAndWait 15
+1839: DialogBottom 0008 0
+183a: Message `奇怪．．好像有件很重要的事`
+183b: Message `就是想不起來．．？`
+183c: ClearAndWait 10
+183d: SetCharacterSpriteFrame West 10 0
+183e: Clear 0
+183f: DialogBottom 0003 0
+1840: Message `哎呀．．差點給忘了！`
+1841: Message `那位討酒喝的老道士說∼`
+1842: Message `山神廟．．要教我劍法．．`
+1843: SetLocation 41 16 False
+1844: SetCharacterSpriteFrame West 1 0
+1845: Clear 0
+1846: SetLocation 41 17 False
+1847: Clear 0
+1848: SetCharacterSpriteFrame West 2 0
+1849: Clear 0
+184a: SetCharacterSprite 0 (0002,李逍遥) True
+184b: SetCharacterSpriteFrame West 0 0
+184c: Clear 0
+184d: DialogBottom 0009 0
+184e: Message `反正睡不著，何不去會他一會？`
+184f: Message `說不定我真的是遇到高人了`
+1850: Next
+1851: End
+
+18a6: CurrentObjectWalkToBlockUnchecked 32 104 1
+18a7: CurrentObjectWalkToBlock 30 106 1
+18a8: SetObjectState Current 0
+18a9: End
+
+18aa: CurrentObjectWalkToBlockUnchecked 33 105 0
+18ab: CurrentObjectWalkToBlockUnchecked 31 107 0
+18ac: SetObjectState Current 0
+18ad: End
+
+0019: DialogCenter 0000 0
+001a: Message `此門已上鎖`
+001b: End
+
+a5a3: SetObjectState (10fc,金翅凤凰) 1
+a5a4: Goto 8f9e
+
+8f9e: ClearAndWait 14
+8f9f: SetCharacterSpriteFrame East 0 0
+8fa0: ClearAndWait 4
+8fa1: SetCharacterSpriteFrame South 0 0
+8fa2: ClearAndWait 2
+8fa3: End
+
+18a3: CurrentObjectWalkToBlockUnchecked 30 106 1
+18a4: SetObjectState Current 0
+18a5: End
+-----------------
+
+@0112: 玉佛珠     000b 0000 0000 98fc 0000 0082 
+-----Script2-----
+98fc: PutOn 配戴 玉佛珠
+98fd: SetArmorAttribute 配戴 灵力 128
+98fe: SetArmorAttribute 配戴 防御 28
+98ff: SetArmorAttribute 配戴 毒抗 30
+9900: SetAttribute 合体法术 395 0000
+9901: End
+-----------------
+
+@0113: 金凤凰蛋壳 0070 0000 0000 0000 0000 0000 
+@0114: 火眼麒麟角 005c 0000 0000 0000 0000 0000 
+@0115: 青龙碧血玉 0096 0000 0000 a5b8 0000 0102 
+-----Script2-----
+a5b8: PutOn 配戴 青龍碧血玉
+a5b9: SetArmorAttribute 配戴 武术 50
+a5ba: SetArmorAttribute 配戴 灵力 50
+a5bb: SetArmorAttribute 配戴 防御 50
+a5bc: SetArmorAttribute 配戴 身法 50
+a5bd: SetArmorAttribute 配戴 吉运 50
+a5be: End
+-----------------
+
+@0116: 毒龙胆     00d7 07d0 9b62 0000 0000 0029 
+-----Script1-----
+9b62: GotoIfHeroNotPoisoned 9a5e
+9b63: CureMultiplePoisonHero False 3
+9b64: End
+
+9a5e: KillHero
+9a5f: End
+-----------------
+
+@0117: 破天锤     0000 0000 9add 0000 0000 0011 
+-----Script1-----
+9add: GotoIfNotFacingObject (00ee,阿修罗像) 1 9adf
+9ade: End
+
+9adf: GotoIfNotFacingObject (00ef,阿修罗像) 1 9ae1
+9ae0: End
+
+9ae1: GotoIfNotFacingObject (00f0,阿修罗像) 1 9ae3
+9ae2: End
+
+9ae3: GotoIfNotFacingObject (00f1,阿修罗像) 1 9ae5
+9ae4: End
+
+9ae5: GotoIfNotFacingObject (00f2,阿修罗像) 1 9ae7
+9ae6: End
+
+9ae7: GotoIfNotFacingObject (00f3,阿修罗像) 1 9789
+9ae8: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+-----------------
+
+@0118: 包袱       0000 0000 9aca 0000 0000 0019 
+-----Script1-----
+9aca: Clear 0
+9acb: DialogCenter 0000 0
+9acc: Message `打開包袱，裡面有５００文錢`
+9acd: Message `一本手卷，一些療傷藥、一雙`
+9ace: Message `繡花鞋、玉鐲子、以及一把略`
+9acf: Message `為生?的鐵劍．．`
+9ad0: AdjustMoney 500 0000
+9ad1: CreateInventory 金創藥 5
+9ad2: CreateInventory 還神丹 5
+9ad3: CreateInventory 繡花鞋 0
+9ad4: CreateInventory 玉鐲 0
+9ad5: CreateInventory 鐵劍 0
+9ad6: CreateInventory 手卷 0
+9ad7: Clear 0
+9ad8: DialogBottom 0000 0
+9ad9: Message `咦？這不是爹的配劍嗎，我還`
+9ada: Message `以為不見了呢，原來嬸嬸一直`
+9adb: Message `把它收藏著．．`
+9adc: End
+
+0000: End
+-----------------
+
+@0119: 银杏果     0000 0000 0000 0000 0000 0000 
+@011a: 鲤鱼       0000 0000 0000 0000 0000 0000 
+@011b: 鹿茸       0000 0000 0000 0000 0000 0000 
+@011c: 钓竿       0000 0000 9af0 0000 0000 0011 
+-----Script1-----
+9af0: GotoIfNotFacingObject (033f,空) 1 9789
+9af1: SetObjectTriggerScript (033f,空) 3816
+9af2: End
+
+3816: FadeScreen
+3817: SetCharacterSprite 0 (0103,垂钓李逍遥) False
+3818: Team 李逍遥 0000 0000
+3819: SetCharacterSpriteFrame West 0 0
+381a: SetLocation 7 91 False
+381b: ClearAndWait 8
+381c: SetCharacterSpriteFrame West 1 0
+381d: ClearAndWait 2
+381e: SetCharacterSpriteFrame West 2 0
+381f: ClearAndWait 2
+3820: SetCharacterSpriteFrame West 3 0
+3821: ClearAndWait 2
+3822: SetCharacterSpriteFrame West 4 0
+3823: ClearAndWait 2
+3824: SetCharacterSpriteFrame West 5 0
+3825: ClearAndWait 2
+3826: SetCharacterSpriteFrame West 4 0
+3827: ClearAndWait 2
+3828: SetCharacterSpriteFrame West 5 0
+3829: ClearAndWait 2
+382a: SetCharacterSpriteFrame West 6 0
+382b: ClearAndWait 5
+382c: SetCharacterSpriteFrame West 7 0
+382d: ClearAndWait 2
+382e: SetCharacterSpriteFrame West 8 0
+382f: ClearAndWait 2
+3830: SetCharacterSpriteFrame West 9 0
+3831: ClearAndWait 2
+3832: SetCharacterSpriteFrame West 10 0
+3833: ClearAndWait 2
+3834: SetCharacterSpriteFrame West 11 0
+3835: ClearAndWait 2
+3836: SetCharacterSpriteFrame West 12 0
+3837: ClearAndWait 2
+3838: SetCharacterSpriteFrame West 13 0
+3839: ClearAndWait 2
+383a: SetCharacterSpriteFrame West 14 0
+383b: ClearAndWait 2
+383c: SetCharacterSpriteFrame West 15 0
+383d: ClearAndWait 2
+383e: SetCharacterSpriteFrame West 16 0
+383f: ClearAndWait 40
+3840: SetObjectState (0334,白河鲤) 0
+3841: SetCharacterSpriteFrame West 17 0
+3842: ClearAndWait 2
+3843: SetCharacterSpriteFrame West 18 0
+3844: ClearAndWait 2
+3845: SetCharacterSpriteFrame West 17 0
+3846: ClearAndWait 10
+3847: SetCharacterSpriteFrame West 18 0
+3848: ClearAndWait 2
+3849: SetCharacterSpriteFrame West 17 0
+384a: ClearAndWait 6
+384b: SetCharacterSpriteFrame West 18 0
+384c: ClearAndWait 2
+384d: SetCharacterSpriteFrame West 19 0
+384e: ClearAndWait 2
+384f: SetCharacterSpriteFrame West 20 0
+3850: ClearAndWait 2
+3851: SetCharacterSpriteFrame West 21 0
+3852: ClearAndWait 2
+3853: SetCharacterSpriteFrame West 22 0
+3854: ClearAndWait 2
+3855: SetCharacterSpriteFrame West 23 0
+3856: ClearAndWait 2
+3857: SetCharacterSpriteFrame West 24 0
+3858: ClearAndWait 2
+3859: SetCharacterSpriteFrame West 25 0
+385a: ClearAndWait 2
+385b: SetCharacterSpriteFrame West 26 0
+385c: ClearAndWait 0
+385d: DialogFrame
+385e: Message `釣到一條鯉魚`
+385f: FadeScreen
+3860: CreateInventory 鯉魚 0
+3861: SetObjectTriggerScript (036d,原地钓者) 37ac
+3862: SetCharacterSprite 0 (0002,李逍遥) True
+3863: SetCharacterSpriteFrame West 0 0
+3864: SetObjectState Current 0
+3865: SetLocation 8 87 True
+3866: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+
+37ac: DialogBottom 0000 0
+37ad: Message `李逍遙：`
+37ae: Message `釣竿還您，謝謝！`
+37af: RemoveInventory 釣竿 0 0000
+37b0: Next
+37b1: Message `村民：`
+37b2: Message `釣魚可以修身養性`
+37b3: Message `是項不錯的休閒娛樂`
+37b4: End
+
+0000: End
+-----------------
+
+@011d: 捕兽夹     0000 0000 9af3 0000 0000 0019 
+-----Script1-----
+9af3: 0084 031e 0002 9af5
+9af4: End
+-----------------
+
+@011e: 六神丹     0000 0000 9af9 0000 0000 0019 
+-----Script1-----
+9af9: GotoIfNotFacingObject (0389,睡灵儿) 1 9789
+9afa: SetObjectTriggerScript (0389,睡灵儿) 3a10
+9afb: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+
+3a10: Clear 0
+3a11: DialogFrame
+3a12: Message `讓趙靈兒飲下藥湯`
+3a13: MusicOff True
+3a14: FadeScreen
+3a15: 00a3 0005 0037 0000
+3a16: CallScene 白河村 3c9d
+3a17: CurrentObjectTurn West
+3a18: Clear 0
+3a19: DialogTop 0013 0
+3a1a: Message `趙靈兒：`
+3a1b: Message `逍遙哥哥．．你們．．`
+3a1c: Clear 0
+3a1d: DialogBottom 0003 0
+3a1e: Message `李逍遙：`
+3a1f: Message `啊∼妳還不要起來`
+3a20: Message `乖乖的躺著休息`
+3a21: Clear 0
+3a22: DialogTop 0041 0
+3a23: Message `韓醫仙：`
+3a24: Message `呵．．沒關係`
+3a25: Message `趙姑娘已經可以下床走動了`
+3a26: SetObjectState Current 0
+3a27: SetLocation 44 37 True
+3a28: Team 李逍遥 赵灵儿 林月如
+3a29: SetCharacterSpriteFrame North 0 1
+3a2a: SetCharacterSpriteFrame West 0 0
+3a2b: SetObjectAnimationFrames (038a,商人) 3 0
+3a2c: SetObjectAutoScript (038a,商人) 0000
+3a2d: SetObjectAnimationFrames (038d,女居民) 1 0
+3a2e: FadeScreen
+3a2f: ClearAndWait 0
+3a30: DialogBottom 000b 0
+3a31: Message `趙靈兒：`
+3a32: Message `我想留下來，以我的法術多少`
+3a33: Message `可以幫韓大夫醫治一些村民`
+3a34: Clear 0
+3a35: DialogTop 0041 0
+3a36: Message `韓醫仙：`
+3a37: Message `這附近一帶的村子飽受屍妖肆`
+3a38: Message `孽，能搬走的人早就都走了，`
+3a39: Message `本村幸有河水阻隔，才暫時得`
+3a3a: Message `以安泰。三位既不是本地人，`
+3a3b: Message `老夫勸你們還是早點離開吧。`
+3a3c: DialogBottom 000b 0
+3a3d: Message `趙靈兒：`
+3a3e: Message `不．．看到村民們遭受這般苦`
+3a3f: Message `難，我覺得．．我應該替村民`
+3a40: Message `們做點事，以報答醫仙的恩情`
+3a41: Clear 0
+3a42: DialogTop 0041 0
+3a43: Message `趙姑娘這般慈悲心腸`
+3a44: Message `老夫實在太感激了．．`
+3a45: SetCharacterSpriteFrame North 0 0
+3a46: Clear 0
+3a47: DialogBottom 0001 0
+3a48: Message `李逍遙：`
+3a49: Message `光是醫人也不能解決問題吧！`
+3a4a: Message `屍妖一日不除，這裡的居民還`
+3a4b: Message `是永無寧日。大家何不想個辦`
+3a4c: Message `法來把屍妖除掉？`
+3a4d: Clear 0
+3a4e: DialogTop 0041 0
+3a4f: Message `韓醫仙：`
+3a50: Message `唉．．談何容易。屍妖不同於`
+3a51: Message `其它妖怪。他們刀槍不侵、水`
+3a52: Message `火不入，更可怕的是會放屍毒`
+3a53: Message `一旦毒氣攻心，老夫也醫不活`
+3a54: Message `以前只有在沒有月光的夜晚才`
+3a55: Message `會出現，到了最近，在大白天`
+3a56: Message `都會四處橫行。再這樣下去，`
+3a57: Message `連這白河村也不能住人了`
+3a58: DialogBottom 0001 0
+3a59: Message `李逍遙：`
+3a5a: Message `您身為村長怎可說這般喪氣話`
+3a5b: Message `天下一物剋一物，妖怪也不例`
+3a5c: Message `外。我不相信沒人能治得了那`
+3a5d: Message `些屍妖`
+3a5e: Clear 0
+3a5f: DialogBottom 0032 0
+3a60: Message `韓夢慈：`
+3a61: Message `我知道有個人能對付屍妖！`
+3a62: SetCharacterSpriteFrame South 0 0
+3a63: ClearAndWait 2
+3a64: SetCharacterSpriteFrame South 0 1
+3a65: Clear 0
+3a66: DialogTop 0001 0
+3a67: Message `李逍遙：`
+3a68: Message `哦！韓姑娘知道？`
+3a69: Clear 0
+3a6a: DialogBottom 0032 0
+3a6b: Message `韓夢慈：`
+3a6c: Message `大約一個月前"玉佛寺"的主持`
+3a6d: Message `智修大師曾驅退一群屍妖，救`
+3a6e: Message `了江家的三位公子的命，後來`
+3a6f: Message `三兄弟還一起出家成為智修大`
+3a70: Message `師門下弟子。據說這件事之後`
+3a71: Message `屍妖都不敢再靠近玉佛寺`
+3a72: SetCharacterSpriteFrame West 0 0
+3a73: Clear 0
+3a74: DialogTop 0003 0
+3a75: Message `李逍遙：`
+3a76: Message `那好極了，我們這就去請`
+3a77: Message `玉佛寺的和尚下山收妖！`
+3a78: Clear 0
+3a79: DialogBottom 0033 0
+3a7a: Message `韓夢慈：`
+3a7b: Message `不．．但是．．你．．`
+3a7c: Message `還是打消這念頭。因為．．`
+3a7d: DialogTop 0041 0
+3a7e: Message `韓醫仙：`
+3a7f: Message `夢慈∼讓爹來說吧．．`
+3a80: SetCharacterSpriteFrame North 0 0
+3a81: SetObjectAnimationFrames (038d,女居民) 2 0
+3a82: Clear 0
+3a83: SetCharacterSpriteFrame East 0 1
+3a84: SetObjectAnimationFrames (038d,女居民) 3 0
+3a85: Clear 0
+3a86: DialogTop 0041 0
+3a87: Message `韓醫仙：`
+3a88: Message `坦白說．．老夫也曾派人去請`
+3a89: Message `智修大師下山，但是．．至今`
+3a8a: Message `見過主持方丈的人，沒有一個`
+3a8b: Message `人回來`
+3a8c: DialogBottom 0001 0
+3a8d: Message `李逍遙：`
+3a8e: Message `不會吧．．．`
+3a8f: Message `難不成那些和尚會吃人！？`
+3a90: Clear 0
+3a91: DialogTop 0041 0
+3a92: Message `韓醫仙：`
+3a93: Message `當然不．．而是都當了和尚`
+3a94: ClearAndWait 2
+3a95: SetCharacterSpriteFrame South 0 0
+3a96: ClearAndWait 4
+3a97: SetCharacterSpriteFrame West 0 0
+3a98: ClearAndWait 0
+3a99: DialogBottom 0001 0
+3a9a: Message `李逍遙：`
+3a9b: Message `也許．．`
+3a9c: Message `那位大師真的是佛法無邊`
+3a9d: Clear 0
+3a9e: DialogTop 0041 0
+3a9f: Message `韓醫仙：`
+3aa0: Message `不．．少俠且聽我說`
+3aa1: SetCharacterSpriteFrame North 0 0
+3aa2: Clear 0
+3aa3: SetCharacterSpriteFrame North 0 1
+3aa4: Clear 0
+3aa5: DialogTop 0041 0
+3aa6: Message `韓醫仙：`
+3aa7: Message `小女夢慈和江家大公子少雲自`
+3aa8: Message `幼就訂了親的，倆人感情一向`
+3aa9: Message `很好。前不久兩家才說好，等`
+3aaa: Message `到夢慈滿十六歲就要來下聘。`
+3aab: Message `一個月前老夫聽說玉佛寺的智`
+3aac: Message `修大師法力高深，於是想請他`
+3aad: Message `下山除妖。少雲和二個弟弟便`
+3aae: Message `自告奮勇前往，結果一去不返`
+3aaf: Message `老夫和小女多次前往查問，才`
+3ab0: Message `知道兄弟三人都出家當了和尚`
+3ab1: Message `這件事至今仍令人想不透．．`
+3ab2: Clear 0
+3ab3: SetCharacterSpriteFrame West 0 0
+3ab4: ClearAndWait 4
+3ab5: SetCharacterSpriteFrame East 0 1
+3ab6: ClearAndWait 4
+3ab7: DialogBottom 0001 0
+3ab8: Message `李逍遙：`
+3ab9: Message `聽起來．．這村子的`
+3aba: Message `災難還真不少．．`
+3abb: SetObjectTriggerScript (038a,商人) 3aca
+3abc: SetObjectTriggerScript (038d,女居民) 3ace
+3abd: MoveObject (032e,白河民夫) 0 32
+3abe: SetObjectTriggerScript (032e,白河民夫) 3b92
+3abf: SetObjectState (032f,空) 0
+3ac0: SetObjectState (0330,空) 0
+3ac1: End
+
+0000: End
+
+3b92: Message `守橋壯丁：`
+3b93: Message `過了此橋往西北走便是"玉佛寺"`
+3b94: Message `往東北方是"黑水鎮"，那裡鬧`
+3b95: Message `屍妖鬧得很凶，已經沒住人了`
+3b96: Clear 0
+3b97: Message `往西南方是"鬼陰山"，從前是`
+3b98: Message `自稱鬼陰幫的山賊賊窟。`
+3b99: Message `山賊被趕跑後，最近出現了一`
+3b9a: Message `群來路不明的苗人，殺人不眨`
+3b9b: Message `眼，比山賊還可怕，你們最好`
+3b9c: Message `不要隨便靠近那一帶`
+3b9d: End
+
+3c9d: Music 55
+3c9e: End
+
+3aca: Message `韓醫仙：`
+3acb: Message `呵∼不必客氣`
+3acc: Message `此乃我行醫者本份`
+3acd: End
+
+3ace: Message `韓夢慈：`
+3acf: Message `如果你們還需要別的藥材`
+3ad0: Message `可以找我弟弟阿寶`
+3ad1: End
+-----------------
+
+@011f: 情书       0000 0000 9b37 0000 0000 0011 
+-----Script1-----
+9b37: GotoIfNotFacingObject (08c1,刘家侍女) 1 9b3b
+9b38: SetObjectTriggerScript (08c1,刘家侍女) 5ede
+9b39: RemoveInventory 情書 0 0000
+9b3a: End
+
+0000: End
+
+9b3b: GotoIfNotFacingObject (08c3,尚书夫人) 1 9b3e
+9b3c: SetObjectTriggerScript (08c3,尚书夫人) 9b45
+9b3d: End
+
+9b45: SetObjectTriggerMethod Current 0002
+9b46: DialogTop 0043 0
+9b47: Message `尚書夫人：`
+9b48: Message `這是什麼？　給我的嗎？`
+9b49: NextReplace 54e8 0000
+
+54e8: DialogTop 0043 0
+54e9: Message `劉夫人：`
+54ea: Message `最近我們的後花園種了許多名`
+54eb: Message `貴的牡丹，花朵盛開的時候非`
+54ec: Message `常美呢，你們不妨去觀賞`
+54ed: Next
+54ee: DialogTop 0043 0
+54ef: Message `劉夫人：`
+54f0: Message `我已經叫廚房準備飯菜`
+54f1: Message `你們一定要留下來用餐喔`
+54f2: End
+
+5ede: SetObjectTriggerMethod Current 0002
+5edf: Clear 0
+5ee0: DialogTop 004c 0
+5ee1: Message `阿香低聲道：`
+5ee2: Message `這是．．阿輝寫給我的！？`
+5ee3: MessageClear
+5ee4: Message `謝謝你們．．我．．`
+5ee5: Message `我這裡有塊玉珮，可否請`
+5ee6: Message `你們替我還給阿輝？`
+5ee7: GotoIfChooseNo 5f04
+5ee8: Clear 0
+5ee9: DialogTop 004c 0
+5eea: Message `阿香低聲道：`
+5eeb: Message `這是昨天，他趁夫人沒注`
+5eec: Message `意時，偷偷放到我提的籃`
+5eed: Message `子內的。`
+5eee: Clear 0
+5eef: DialogBottom 0001 0
+5ef0: Message `李逍遙：`
+5ef1: Message `哦？　妳怎麼知道是他偷放的`
+5ef2: Clear 0
+5ef3: DialogTop 004c 0
+5ef4: Message `阿香低聲道：`
+5ef5: Message `除了他還會有誰？`
+5ef6: Message `請你們對他說：他的心意`
+5ef7: Message `我能瞭解，但是這東西太`
+5ef8: Message `貴重了，我不能收。`
+5ef9: CreateInventory 玉珮 0
+5efa: Next
+5efb: DialogTop 004c 0
+5efc: Message `阿香低聲道：`
+5efd: Message `那個笨蛋∼差一點害死我`
+5efe: Message `夫人發現籃子裡多了這塊`
+5eff: Message `玉珮時，我差點沒有嚇死`
+5f00: MessageClear
+5f01: Message `幸好我編了謊，說是剛才`
+5f02: Message `在路上撿到的，才瞞過夫人`
+5f03: End
+
+9b3e: Clear 0
+9b3f: Message `書信上寫著：`
+9b40: Message `"美麗溫柔大方可愛善良賢淑"`
+9b41: Message `"的阿香小姐，我已仰幕您很久"`
+9b42: Message `"很久很久了．．．．．．`
+9b43: Message `"．．．．．．．．．．阿輝。"`
+9b44: End
+
+5f04: Clear 0
+5f05: DialogTop 004c 0
+5f06: Message `婢女阿香：`
+5f07: Message `那就算了．．不過`
+5f08: Message `我還是要謝謝你們`
+5f09: End
+-----------------
+
+@0120: 玉佩       0000 0000 9b4b 0000 0000 0011 
+-----Script1-----
+9b4b: GotoIfNotFacingObject (0765,原地府兵) 1 9b4e
+9b4c: SetObjectTriggerScript (0765,原地府兵) 5f0a
+9b4d: End
+
+9b4e: GotoIfNotFacingObject (0762,原地府兵) 1 9789
+9b4f: SetObjectTriggerScript (0762,原地府兵) 5f1d
+9b50: RemoveInventory 玉珮 0 0000
+9b51: End
+
+0000: End
+
+5f1d: SetObjectTriggerMethod Current 0002
+5f1e: Clear 0
+5f1f: Message `守衛阿德：`
+5f20: Message `那．．那塊玉珮．．`
+5f21: Message `是我偷．．偷偷送給阿香的`
+5f22: Message `請你們把它．．還給我．．`
+5f23: Clear 0
+5f24: DialogBottom 0006 0
+5f25: Message `李逍遙：`
+5f26: Message `堂堂一個大男人，喜歡哪`
+5f27: Message `個姑娘就直接跟她說嘛！`
+5f28: Message `何必如此偷偷摸摸的？`
+5f29: Clear 0
+5f2a: DialogTop 0000 0
+5f2b: Message `守衛阿德：`
+5f2c: Message `可是∼　我．．　`
+5f2d: Message `我每次．．遇到她．．就`
+5f2e: Message `就．．說不出．．話`
+5f2f: SetObjectTriggerScript (08c1,刘家侍女) 5f35
+5f30: Next
+5f31: Message `守衛阿德：`
+5f32: Message `拜託．．這件事`
+5f33: Message `請你千萬不要向別人提起`
+5f34: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+
+5f35: DialogTop 004c 0
+5f36: Message `婢女阿香：`
+5f37: Message `玉珮是阿德送我的！？`
+5f38: Message `．．他也在暗戀我！？`
+5f39: MessageClear
+5f3a: Message `可是．．我喜歡的是少爺`
+5f3b: Message `有朝一日∼我要成為劉家`
+5f3c: Message `的二少奶奶。請你跟他們`
+5f3d: Message `說．．別再癡心妄想了！`
+5f3e: Next
+5f3f: DialogTop 004c 0
+5f40: Message `婢女阿香：`
+5f41: Message `唉．．為什麼彩依就可以`
+5f42: Message `嫁給少爺，我就不行？`
+5f43: Message `憑我的姿色，並不輸給她呀！`
+5f44: End
+
+5f0a: SetObjectTriggerMethod Current 0002
+5f0b: Clear 0
+5f0c: SetObjectState (0761,原地府兵) 0
+5f0d: SetObjectState (0762,原地府兵) 2
+5f0e: Message `守衛阿輝：`
+5f0f: Message `這玉珮不是我的呀！`
+5f10: DialogBottom 0001 0
+5f11: Message `李逍遙：`
+5f12: Message `不是你送給阿香的！`
+5f13: Message `那會是誰送的？`
+5f14: Clear 0
+5f15: DialogTop 0000 0
+5f16: Message `守衛阿輝：`
+5f17: Message `我也不知道！`
+5f18: Goto a58d
+
+a58d: SetObjectState (14da,空) 1
+a58e: NextReplace 5f19 0000
+
+5f19: Message `守衛阿輝：`
+5f1a: Message `難道．．難道有別的人`
+5f1b: Message `也在暗戀阿香！`
+5f1c: End
+-----------------
+
+@0121: 石钥匙     0000 0000 9b52 0000 0000 0011 
+-----Script1-----
+9b52: GotoIfNotFacingObject (0300,石门) 1 9789
+9b53: SetObjectTriggerScript (0300,石门) 36f5
+9b54: RemoveInventory 石鑰匙 0 0000
+9b55: End
+
+36f5: SetObjectTriggerMethod Current 0000
+36f6: SetObjectState Current 1
+36f7: Sound 155
+36f8: CurrentObjectSetFrame 1
+36f9: ClearAndWait 2
+36fa: CurrentObjectSetFrame 2
+36fb: ClearAndWait 2
+36fc: CurrentObjectSetFrame 3
+36fd: End
+
+0000: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+-----------------
+
+@0122: 天书       0000 0000 9b56 0000 0000 0011 
+-----Script1-----
+9b56: Clear 0
+9b57: DialogBottom 0045 0
+9b58: Message `我在看書，沒事別吵我！`
+9b59: End
+-----------------
+
+@0123: 香蕉       0000 0000 9b5a 0000 0000 0011 
+-----Script1-----
+9b5a: GotoIfNotFacingObject (0d9a,乞香蕉猴子) 1 9b5e
+9b5b: SetObjectTriggerScript (0d9a,乞香蕉猴子) 76d6
+9b5c: RemoveInventory 香蕉 0 0000
+9b5d: End
+
+0000: End
+
+76d6: SetObjectTriggerMethod Current 0000
+76d7: Clear 0
+76d8: DialogBottom 0006 0
+76d9: Message `李逍遙：`
+76da: Message `來∼來∼給你香蕉！`
+76db: CurrentObjectSetFrame 9
+76dc: Clear 0
+76dd: DialogCenter 0000 0
+76de: Message `　　嘰咕∼嘰咕．．~35`
+76df: SetObjectAutoScript Current 0000
+76e0: CurrentObjectSetFrame 0
+76e1: ClearAndWait 4
+76e2: CurrentObjectSetFrame 9
+76e3: MoveObject Current -16 8
+76e4: Clear 0
+76e5: CurrentObjectSetFrame 10
+76e6: MoveObject Current -16 8
+76e7: SetCharacterSpriteFrame South 0 0
+76e8: Clear 0
+76e9: CurrentObjectSetFrame 9
+76ea: MoveObject Current -16 8
+76eb: Clear 0
+76ec: CurrentObjectSetFrame 0
+76ed: MoveObject Current -16 8
+76ee: Clear 0
+76ef: CurrentObjectSetFrame 9
+76f0: MoveObject Current -16 8
+76f1: SetCharacterSpriteFrame West 0 0
+76f2: Clear 0
+76f3: CurrentObjectSetFrame 10
+76f4: MoveObject Current -16 8
+76f5: Clear 0
+76f6: CurrentObjectSetFrame 9
+76f7: MoveObject Current -16 8
+76f8: Clear 0
+76f9: CurrentObjectSetFrame 0
+76fa: MoveObject Current -16 8
+76fb: Clear 0
+76fc: SetObjectState Current 0
+76fd: End
+
+9b5e: GotoIfNotFacingObject (0d9b,乞香蕉猴子) 1 9789
+9b5f: SetObjectTriggerScript (0d9b,乞香蕉猴子) 7703
+9b60: RemoveInventory 香蕉 0 0000
+9b61: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+
+7703: SetObjectTriggerMethod Current 0000
+7704: SetObjectState Current 1
+7705: SetObjectAutoScript Current 0000
+7706: Clear 0
+7707: DialogBottom 0006 0
+7708: Message `李逍遙：`
+7709: Message `你也要香蕉，對吧？`
+770a: Clear 0
+770b: CurrentObjectSetFrame 4
+770c: ClearAndWait 2
+770d: CurrentObjectSetFrame 3
+770e: ClearAndWait 2
+770f: CurrentObjectSetFrame 4
+7710: ClearAndWait 2
+7711: CurrentObjectSetFrame 3
+7712: ClearAndWait 2
+7713: CurrentObjectSetFrame 4
+7714: ClearAndWait 2
+7715: CurrentObjectSetFrame 3
+7716: ClearAndWait 2
+7717: DialogBottom 0006 0
+7718: Message `李逍遙：`
+7719: Message `這隻猴子居然會不好意思`
+771a: MessageClear
+771b: Message `來吧！　沒關係，送你的！`
+771c: CurrentObjectSetFrame 9
+771d: SetObjectState (0d9c,乞香蕉猴子) 1
+771e: Clear 0
+771f: DialogCenter 0000 0
+7720: Message `吱∼！`
+7721: CurrentObjectSetFrame 10
+7722: SetObjectAutoScript (0d9c,乞香蕉猴子) 7734
+7723: ClearAndWait 0
+7724: CurrentObjectSetFrame 11
+7725: ClearAndWait 0
+7726: CurrentObjectSetFrame 12
+7727: ClearAndWait 0
+7728: CurrentObjectSetFrame 13
+7729: SetObjectState (0d9d,乞香蕉猴子) 1
+772a: ClearAndWait 0
+772b: CurrentObjectSetFrame 14
+772c: ClearAndWait 0
+772d: SetCharacterSpriteFrame South 0 0
+772e: CurrentObjectSetFrame 15
+772f: ClearAndWait 0
+7730: SetObjectState (0d9e,乞香蕉猴子) 1
+7731: ClearAndWait 4
+7732: SetCharacterSpriteFrame West 0 0
+7733: End
+
+7734: MoveObject Current -8 4
+7735: MoveObject Current -8 4
+7736: MoveObject Current -8 4
+7737: MoveObject Current -8 4
+7738: Next
+7739: MoveObject Current -16 8
+773a: MoveObject Current -16 8
+773b: MoveObject Current -16 8
+773c: MoveObject Current -16 8
+773d: MoveObject Current -16 8
+773e: MoveObject Current -16 8
+773f: MoveObject Current -16 8
+7740: MoveObject Current -16 8
+7741: SetObjectState Current 0
+7742: End
+-----------------
+
+@0124: 凤纹手绢   0000 0000 9ba4 0000 0000 0011 
+-----Script1-----
+9ba4: GotoIfNotFacingObject (1220,商人) 2 9789
+9ba5: SetObjectTriggerScript (1220,商人) 92a3
+9ba6: RemoveInventory 鳳紋手絹 0 0000
+9ba7: End
+
+0000: End
+
+92a3: Message `船商：`
+92a4: Message `你怎麼會有這條手絹？`
+92a5: Clear 0
+92a6: DialogBottom 0000 0
+92a7: Message `李逍遙：`
+92a8: Message `是一位苗族打扮的老婦人`
+92a9: Message `交給我的，她說：她帶小青的`
+92aa: Message `女兒來找靈月宮主`
+92ab: Clear 0
+92ac: SetObjectAutoScript Current 929e
+92ad: ClearAndWait 4
+92ae: SetObjectState Current 0
+92af: SetObjectState (1221,水月宫主) 2
+92b0: Sound 263
+92b1: Transition 0002 0
+92b2: DialogTop 0048 0
+92b3: Message `靈月宮主：`
+92b4: Message `貧道正是靈月，請問公子`
+92b5: Message `公主在什麼地方？`
+92b6: Clear 0
+92b7: DialogBottom 0001 0
+92b8: Message `李逍遙：`
+92b9: Message `在山神廟，我來帶路吧！`
+92ba: SetObjectState (11f0,小李逍遥) 0
+92bb: SetObjectTriggerScript (11ed,伤姥姥) 92c1
+92bc: SetObjectTriggerMethod (11ed,伤姥姥) 0006
+92bd: SetObjectState (1221,水月宫主) 0
+92be: CallScene 回魂仙梦·余杭·山神庙·内（姥姥伤） 92c1
+92bf: GotoScene 回魂仙梦·余杭·山神庙·内（姥姥伤）
+92c0: End
+
+92c1: SetObjectState (11ed,伤姥姥) 0
+92c2: SetObjectState (11ee,青年姥姥) 1
+92c3: SetObjectState (11f2,水月宫主) 1
+92c4: SetLocation 23 23 True
+92c5: SetCharacterSpriteFrame East 0 0
+92c6: ShiftView 26 19 1
+92c7: DialogBottom 0048 0
+92c8: Message `靈月宮主：`
+92c9: Message `好了，妳的腳應該沒事了`
+92ca: SetObjectAnimationFrames (11ef,小灵儿) 0 0
+92cb: ClearAndWait 5
+92cc: SetObjectAnimationFrames (11ef,小灵儿) 3 0
+92cd: ClearAndWait 5
+92ce: SetObjectAnimationFrames (11ef,小灵儿) 0 0
+92cf: Clear 0
+92d0: DialogTop 004a 0
+92d1: Message `小女孩：`
+92d2: Message `阿姨！妳的法術好棒喔`
+92d3: Clear 0
+92d4: DialogBottom 0048 0
+92d5: Message `靈月宮主：`
+92d6: Message `小公主∼妳想學嗎？`
+92d7: Clear 0
+92d8: DialogTop 004a 0
+92d9: Message `小女孩：`
+92da: Message `嗯∼我想學！`
+92db: MessageClear
+92dc: Message `阿姨，是不是我學會這法術`
+92dd: Message `壞人就不敢欺侮我阿娘了`
+92de: Clear 0
+92df: DialogBottom 0048 0
+92e0: Message `靈月宮主：`
+92e1: Message `水月宮的法術是用來`
+92e2: Message `救人，而非與人爭鬥的`
+92e3: Message `妳可要記住這句話`
+92e4: SetObjectAnimationFrames (11ee,青年姥姥) 1 0
+92e5: Clear 0
+92e6: DialogBottom 004b 0
+92e7: Message `老婦人：`
+92e8: Message `殿下，以後這位阿姨`
+92e9: Message `就當妳的師父好不好？`
+92ea: DialogTop 004a 0
+92eb: Message `小女孩：`
+92ec: Message `好啊！`
+92ed: SetObjectState (11ee,青年姥姥) 0
+92ee: SetObjectState (11ef,小灵儿) 0
+92ef: SetObjectState (11f2,水月宫主) 0
+92f0: CallScene 回魂仙梦·余杭·集市 930a
+92f1: GotoScene 回魂仙梦·余杭·集市
+92f2: FadeScreen
+92f3: Next
+92f4: End
+
+929e: CurrentObjectTurn North
+929f: CurrentObjectTurn East
+92a0: CurrentObjectTurn South
+92a1: CurrentObjectTurn West
+92a2: End
+
+9789: DialogFrame
+978a: Message `無任何效果`
+978b: End
+
+930a: SetLocation 29 86 True
+930b: SetCharacterSpriteFrame South 0 0
+930c: SetObjectState (1222,水月宫主) 1
+930d: SetObjectState (1223,青年姥姥) 1
+930e: SetObjectState (1224,小灵儿) 1
+930f: ShiftView 0 0 0
+9310: ClearAndWait 5
+9311: DialogBottom 0048 0
+9312: Message `靈月宮主：`
+9313: Message `李公子，我們就此告別`
+9314: SetObjectAnimationFrames (1222,水月宫主) 0 0
+9315: ClearAndWait 2
+9316: SetObjectAnimationFrames (1222,水月宫主) 3 0
+9317: ClearAndWait 2
+9318: Message `靈月宮主：`
+9319: Message `　上船吧．．`
+931a: SetObjectAutoScript (1224,小灵儿) 92fd
+931b: ClearAndWait 2
+931c: SetObjectAutoScript (1223,青年姥姥) 9302
+931d: ClearAndWait 5
+931e: SetObjectAutoScript (1222,水月宫主) 9307
+931f: ClearAndWait 40
+9320: SetObjectAnimationFrames (1222,水月宫主) 2 0
+9321: 007a 0020 0059 0000
+9322: DialogTop 0001 0
+9323: Message `李逍遙：`
+9324: Message `道長∼！`
+9325: SetObjectAnimationFrames (1222,水月宫主) 1 0
+9326: Clear 0
+9327: DialogBottom 0048 0
+9328: Message `靈月宮主：`
+9329: Message `您還有什麼事嗎？`
+932a: Clear 0
+932b: DialogTop 0006 0
+932c: Message `李逍遙：`
+932d: Message `您相信時光倒流嗎？`
+932e: Clear 0
+932f: DialogBottom 0048 0
+9330: Message `靈月宮主：`
+9331: Message `相信．．`
+9332: Message `有一種法術叫迴魂仙夢`
+9333: Message `可以使人在夢中看到過去`
+9334: Clear 0
+9335: DialogTop 0001 0
+9336: Message `李逍遙：`
+9337: Message `如果這是場夢，那麼∼`
+9338: Message `該如何結束這場夢呢？`
+9339: Clear 0
+933a: DialogBottom 0048 0
+933b: Message `靈月宮主：`
+933c: Message `如果這是場夢，當做夢的人`
+933d: Message `在夢中滿足他心底的願望時`
+933e: Message `自然而然就會回到現實中了`
+933f: SetObjectAnimationFrames (1224,小灵儿) 0 0
+9340: Clear 0
+9341: DialogBottom 004a 0
+9342: Message `小女孩：`
+9343: Message `姥姥∼　阿娘呢？`
+9344: Message `阿娘怎麼還沒有來？`
+9345: SetObjectAnimationFrames 0000 2 0
+9346: Clear 0
+9347: DialogTop 004b 0
+9348: Message `老婦人：`
+9349: Message `你母后有事情不能來`
+934a: Message `我們先去師父的家好不好？`
+934b: SetObjectAnimationFrames (1222,水月宫主) 2 0
+934c: Clear 0
+934d: DialogBottom 004a 0
+934e: Message `小女孩：`
+934f: Message `不要！我要等阿娘來`
+9350: Message `再一起走嘛．．`
+9351: Clear 0
+9352: DialogTop 0048 0
+9353: Message `靈月宮主：`
+9354: Message `不行喔∼師父告訴妳阿娘`
+9355: Message `靈兒很乖、靈兒在仙靈島等她`
+9356: Message `如果我們不回去仙靈島，等妳`
+9357: Message `阿娘來了，會找不到我們的`
+9358: Clear 0
+9359: DialogBottom 004a 0
+935a: Message `趙靈兒：`
+935b: Message `喔．．．．`
+935c: Clear 0
+935d: DialogTop 0048 0
+935e: Message `靈月宮主：`
+935f: Message `好了．．我們走吧`
+9360: SetObjectAutoScript (121f,行舟) 9392
+9361: SetObjectAutoScript (1222,水月宫主) 9392
+9362: SetObjectAutoScript (1223,青年姥姥) 9392
+9363: SetObjectAutoScript (1224,小灵儿) 9392
+9364: SetObjectState (11e1,小丁秀兰) 2
+9365: SetObjectState (1225,李大娘) 2
+9366: ClearAndWait 27
+9367: SetCharacterSpriteFrame East 0 0
+9368: ClearAndWait 20
+9369: 0070 001f 0058 0000
+936a: ClearAndWait 4
+936b: DialogBottom 0037 0
+936c: Message `李大娘：`
+936d: Message `請問你有沒有看到`
+936e: Message `我家的小李子啊？`
+936f: SetObjectAnimationFrames (1225,李大娘) 0 0
+9370: Clear 0
+9371: DialogBottom 0000 0
+9372: Message `李大娘：`
+9373: Message `這孩子不知又死到哪去了`
+9374: SetObjectAutoScript (1225,李大娘) 9381
+9375: Next
+9376: End
+
+9392: MoveObject Current 2 -1
+9393: Goto 9392
+
+9302: CurrentObjectWalkToBlockUnchecked 34 90 0
+9303: CurrentObjectWalkToBlockUnchecked 34 89 1
+9304: Next
+9305: CurrentObjectTurn North
+9306: End
+
+9381: CurrentObjectWalkToBlock 13 102 0
+9382: CurrentObjectWalkToBlock 18 107 1
+9383: ClearAndWait 4
+9384: CurrentObjectTurn East
+9385: ClearAndWait 16
+9386: CurrentObjectTurn South
+9387: ClearAndWait 6
+9388: CurrentObjectWalkToBlock 23 112 0
+9389: CurrentObjectTurn East
+938a: ClearAndWait 10
+938b: CurrentObjectWalkToBlock 11 100 0
+938c: ClearAndWait 4
+938d: CurrentObjectTurn East
+938e: ClearAndWait 10
+938f: CurrentObjectWalkToBlock 5 106 0
+9390: SetObjectState Current 0
+9391: End
+
+9307: CurrentObjectWalkToBlockUnchecked 33 90 1
+9308: CurrentObjectTurn East
+9309: End
+
+92fd: CurrentObjectWalkToBlock 34 90 0
+92fe: CurrentObjectWalkToBlock 35 89 0
+92ff: ClearAndWait 5
+9300: CurrentObjectTurn South
+9301: End
+-----------------
+
+@0125: 手卷       0000 0000 9ba8 0000 0000 0019 
+-----Script1-----
+9ba8: Clear 0
+9ba9: DialogBottom 0000 0
+9baa: Message `手卷上記載著：`
+9bab: Message `"飛龍探雲手"以及"冰心訣"`
+9bac: Message `的口訣及圖解還有一封信`
+9bad: Clear 0
+9bae: Message `信上寫著：`
+9baf: Message `逍遙．．`
+9bb0: Message `探雲手乃你爹娘生前成名於江`
+9bb1: Message `湖的絕技，現在是傳給你的時`
+9bb2: Message `候了，你要將此絕技用於正途`
+9bb3: Message `切莫辱沒你爹南盜俠的美名`
+9bb4: LearnMagic 飛龍探雲手 李逍遥
+9bb5: LearnMagic 冰心訣 李逍遥
+9bb6: Clear 0
+9bb7: DialogCenter 0000 0
+9bb8: Message `李逍遙學得"飛龍探雲手"`
+9bb9: Message `及"冰心訣"二種絕技`
+9bba: End
+-----------------
+
+@0126: 芦苇漂     0000 0000 9bbd 0000 0000 0019 
+-----Script1-----
+9bbd: 0084 0efd 0002 9af5
+9bbe: End
+-----------------
+
+@0127: 梦蛇       002f 0000 a43c 0000 0000 0012 
+-----Script1-----
+a43c: 0031 0005 0000 0000
+a43d: IncreaseAttributeByPercent 武术 100
+a43e: IncreaseAttributeByPercent 身法 100
+a43f: End
+-----------------
+
+@0128: 气疗术     0021 0000 a430 0000 0000 0002 
+-----Script1-----
+a430: RecoverHP False 75
+a431: End
+-----------------
+
+@0129: 观音咒     0023 0000 a436 0000 0000 0002 
+-----Script1-----
+a436: RecoverHP False 150
+a437: End
+-----------------
+
+@012a: 凝神归元   0022 0000 a432 0000 0000 0002 
+-----Script1-----
+a432: RecoverHP False 220
+a433: End
+-----------------
+
+@012b: 元灵归心术 0033 0000 a434 0000 0000 0002 
+-----Script1-----
+a434: RecoverHP False 500
+a435: End
+-----------------
+
+@012c: 五气朝元   002e 0000 9a8f 0000 0000 0012 
+-----Script1-----
+9a8f: RecoverHP True 300
+9a90: End
+-----------------
+
+@012d: 还魂咒     0024 0000 a438 0000 0000 0002 
+-----Script1-----
+a438: Revive False 1
+a439: End
+-----------------
+
+@012e: 赎魂       0025 0000 a43a 0000 0000 0002 
+-----Script1-----
+a43a: Revive False 3
+a43b: End
+-----------------
+
+@012f: 八方归元   0020 0000 056d 0000 0000 0012 
+-----Script1-----
+056d: Revive True 5
+056e: End
+-----------------
+
+@0130: 借尸还魂   0050 0000 0570 0000 0000 0002 
+-----Script1-----
+0570: Revive False 10
+0571: End
+-----------------
+
+@0131: 回梦       0042 0000 a475 0000 0000 000a 
+-----Script1-----
+a475: GotoIfTargetingHero a479
+a476: ChanceContinue 60 978c
+a477: ConditionEnemy 昏睡 4 978c
+a478: End
+
+a479: ChanceContinue 70 a468
+a47a: Goto 99ec
+
+a468: DialogFrame
+a469: Message `失敗　沒有效果`
+a46a: End
+
+99ec: ConditionHero 昏睡 3 0000
+99ed: RecoverHP False -1
+99ee: End
+
+0000: End
+
+978c: DialogFrame
+978d: Message `攻擊無效`
+978e: End
+-----------------
+
+@0132: 夺魂       0043 0000 a496 0000 0000 000a 
+-----Script1-----
+a496: GotoIfTargetingHero a49b
+a497: ConditionEnemy 疯魔 0 a468
+a498: ChanceContinue 33 a468
+a499: KillEnemy
+a49a: End
+
+a468: DialogFrame
+a469: Message `失敗　沒有效果`
+a46a: End
+
+a49b: ChanceContinue 30 a468
+a49c: KillHero
+a49d: End
+-----------------
+
+@0133: 鬼降       0044 0000 a47c 0000 0000 000a 
+-----Script1-----
+a47c: GotoIfTargetingHero a480
+a47d: ChanceContinue 44 978c
+a47e: ConditionEnemy 疯魔 4 978c
+a47f: End
+
+a480: ChanceContinue 50 a468
+a481: Goto 99f3
+
+a468: DialogFrame
+a469: Message `失敗　沒有效果`
+a46a: End
+
+99f3: ConditionHero 疯魔 3 0000
+99f4: RecoverHP False -1
+99f5: End
+
+0000: End
+
+978c: DialogFrame
+978d: Message `攻擊無效`
+978e: End
+-----------------
+
+@0134: 净衣咒     0026 0000 99be 0000 0000 0002 
+-----Script1-----
+99be: CurePoisonForHero False 赤毒
+99bf: CurePoisonForHero False 瘴毒
+99c0: CurePoisonForHero False 屍毒
+99c1: End
+-----------------
+
+@0135: 冰心诀     001f 0000 99c2 0000 0000 0002 
+-----Script1-----
+99c2: RemoveConditionForHero 疯魔
+99c3: RemoveConditionForHero 定身
+99c4: RemoveConditionForHero 昏睡
+99c5: RemoveConditionForHero 咒封
+99c6: End
+-----------------
+
+@0136: 灵血咒     0034 0000 a472 0000 0000 0002 
+-----Script1-----
+a472: CureMultiplePoisonHero False 2
+a473: Goto 99c2
+
+99c2: RemoveConditionForHero 疯魔
+99c3: RemoveConditionForHero 定身
+99c4: RemoveConditionForHero 昏睡
+99c5: RemoveConditionForHero 咒封
+99c6: End
+-----------------
+
+@0137: 凝神定心   0068 0000 0000 0000 0000 001a 
+@0138: 金刚咒     0027 0000 9a91 0000 0000 0002 
+-----Script1-----
+9a91: ConditionHero 防御加强 7 0000
+9a92: End
+
+0000: End
+-----------------
+
+@0139: 真元护体   0028 0000 a440 0000 0000 0002 
+-----Script1-----
+a440: IncreaseAttributeByPercent 防御 100
+a441: End
+-----------------
+
+@013a: 天罡战气   0029 0000 a442 0000 0000 0002 
+-----Script1-----
+a442: ConditionHero 普通攻击加强 7 0000
+a443: End
+
+0000: End
+-----------------
+
+@013b: 风咒       0000 0000 0000 0000 0000 000a 
+@013c: 旋风咒     0005 0000 0000 0000 0000 001a 
+@013d: 狂风术     0032 0000 0000 0000 0000 001a 
+@013e: 风卷残云   0048 0000 0000 a487 0000 001a 
+-----Script2-----
+a487: GotoIfTargetingHero 0000
+a488: 006b fffd 0000 0000
+a489: End
+
+0000: End
+-----------------
+
+@013f: 风神       0049 0000 0000 a487 0000 001a 
+-----Script2-----
+a487: GotoIfTargetingHero 0000
+a488: 006b fffd 0000 0000
+a489: End
+
+0000: End
+-----------------
+
+@0140: 雷咒       0001 0000 0000 0000 0000 000a 
+@0141: 五雷咒     0006 0000 0000 0000 0000 001a 
+@0142: 天雷破     0040 0000 0000 0000 0000 000a 
+@0143: 狂雷       004d 0000 0000 0000 0000 001a 
+@0144: 雷动九天   0038 0000 0000 0000 0000 001a 
+@0145: 雷神       004c 0000 0000 0000 0000 001a 
+@0146: 冰咒       0002 0000 0000 0000 0000 000a 
+@0147: 玄冰咒     0007 0000 0000 0000 0000 001a 
+@0148: 风雪冰天   005c 0000 0000 0000 0000 001a 
+@0149: 雪拥蓝关   0017 0000 0000 0000 0000 001a 
+@014a: 雪妖       0016 0000 0000 0000 0000 001a 
+@014b: 火术       0003 0000 0000 0000 0000 000a 
+@014c: 炎咒       0008 0000 0000 0000 0000 000a 
+@014d: 三昧真火   002a 0000 0000 0000 0000 001a 
+@014e: 炎杀咒     000e 0000 0000 0000 0000 000a 
+@014f: 炼狱真火   0011 0000 0000 a48d 0000 001a 
+-----Script2-----
+a48d: ShakeScreen 20
+a48e: End
+-----------------
+
+@0150: 魔焰焚     004a 0000 0000 a48f 0000 001a 
+-----Script2-----
+a48f: ShakeScreen 14
+a490: End
+-----------------
+
+@0151: 火神       005e 0000 0000 0000 0000 001a 
+@0152: 土咒       0004 0000 0000 0000 0000 000a 
+@0153: 飞岩术     0009 0000 0000 0000 0000 001a 
+@0154: 地裂天崩   001d 0000 0000 a48d 0000 001a 
+-----Script2-----
+a48d: ShakeScreen 20
+a48e: End
+-----------------
+
+@0155: 泰山压顶   001a 0000 0000 0000 0000 001a 
+@0156: 山神       0019 0000 0000 0000 0000 001a 
+@0157: 剑气       000b 0000 0000 0000 0000 000a 
+@0158: 气剑指     002b 0000 0000 0000 0000 001a 
+@0159: 弦月斩     000f 0000 0000 0000 0000 001a 
+@015a: 剑气斩     005d 0000 0000 0000 0000 000a 
+@015b: 弦月斩1    0058 0000 0000 0000 0000 000a 
+@015c: 一阳指     000c 0000 0000 0000 0000 000a 
+@015d: 七诀剑气   000d 0000 0000 0000 0000 001a 
+@015e: 灭绝一击   004e 0000 0000 0000 0000 000a 
+@015f: 横扫千军   0010 0000 0000 a48f 0000 001a 
+-----Script2-----
+a48f: ShakeScreen 14
+a490: End
+-----------------
+
+@0160: 斩龙诀     0039 0000 0000 a48f 0000 001a 
+-----Script2-----
+a48f: ShakeScreen 14
+a490: End
+-----------------
+
+@0161: 万里狂沙   003a 0000 0000 a5cc 0000 001a 
+-----Script2-----
+a5cc: GotoIfTargetingHero 0000
+a5cd: HeroUseMagic 凝神定心 False
+a5ce: End
+
+0000: End
+-----------------
+
+@0162: 暗器       0031 0000 0000 0000 0000 000a 
+@0163: 铜钱镖     0035 0000 0000 a45e 0000 000a 
+-----Script2-----
+a45e: AdjustMoney -500 a460
+a45f: End
+
+a460: DialogFrame
+a461: Message `錢不夠，只好作罷`
+a462: 0041 0000 0000 0000
+a463: End
+-----------------
+
+@0164: 钱镖点穴   003b 0000 0000 29a5 0000 000a 
+-----Script2-----
+29a5: AdjustMoney -200 a460
+29a6: ChanceContinue 80 978c
+29a7: ConditionEnemy 定身 4 978c
+29a8: End
+
+a460: DialogFrame
+a461: Message `錢不夠，只好作罷`
+a462: 0041 0000 0000 0000
+a463: End
+
+978c: DialogFrame
+978d: Message `攻擊無效`
+978e: End
+-----------------
+
+@0165: 御剑术     000a 0000 0000 0000 0000 000a 
+@0166: 万剑诀     001e 0000 0000 0000 0000 001a 
+@0167: 御剑伏魔   0037 0000 0000 0000 0000 001a 
+@0168: 御剑伏魔1  0059 0000 0000 a59e 0000 001a 
+-----Script2-----
+a59e: GotoIfTargetingHero a5a0
+a59f: End
+
+a5a0: HalveHP
+a5a1: End
+-----------------
+
+@0169: 心剑合一   0014 0000 0000 0000 0000 001a 
+@016a: 天剑       0015 0000 0000 0000 0000 001a 
+@016b: 剑神       005a 0000 0000 0000 0000 001a 
+@016c: 逍遥神剑   003c 0000 05e1 05df 0000 000a 
+-----Script1-----
+05e1: DamageEnemy True 800
+05e2: End
+-----Script2-----
+05df: HeroUseMagic 心劍合一 False
+05e0: End
+-----------------
+
+@016d: 天师符法   0036 0000 0000 05f1 0000 000a 
+-----Script2-----
+05f1: GotoIfTargetingHero 05f3
+05f2: End
+
+05f3: ChanceContinue 30 05f5
+05f4: ConditionHero 咒封 3 0000
+05f5: End
+
+0000: End
+
+05f5: End
+-----------------
+
+@016e: 斩魔刀     0012 0000 0000 0000 0000 001a 
+@016f: 武神       0013 0000 0000 0000 0000 001a 
+@0170: 瘴气       003e 0000 0000 0000 0000 000a 
+@0171: 三尸咒     0030 0000 a454 a457 0000 000a 
+-----Script1-----
+a454: GotoIfTargetingHero 9a08
+a455: PoisonEnemy False 三屍蠱毒
+a456: End
+
+9a08: GotoIfHeroNotPoisonedWith 孔雀膽毒 9a0b
+9a09: CurePoisonForHero False 孔雀膽毒
+9a0a: End
+
+9a0b: GotoIfHeroNotPoisonedWith 血海棠毒 9a0e
+9a0c: KillHero
+9a0d: End
+
+9a0e: PoisonHero False 三屍蠱毒
+9a0f: End
+-----Script2-----
+a457: GotoIfTargetingHero 0000
+a458: RemoveInventory 蠱 1 a45a
+a459: End
+
+0000: End
+
+a45a: DialogFrame
+a45b: Message `道具不足無法使用`
+a45c: 0041 0000 0000 0000
+a45d: End
+-----------------
+
+@0172: 天女散花   001b 0000 0000 0000 0000 001a 
+@0173: 御蜂术     0018 0000 0e6b 0000 0000 001a 
+-----Script1-----
+0e6b: GotoIfTargetingHero 0e6e
+0e6c: PoisonEnemy True 赤毒
+0e6d: End
+
+0e6e: PoisonHero True 赤毒
+0e6f: End
+-----------------
+
+@0174: 炼狱爪     002c 0000 0e70 a48b 0000 001a 
+-----Script1-----
+0e70: GotoIfTargetingHero 0e73
+0e71: PoisonEnemy True 屍毒
+0e72: End
+
+0e73: PoisonHero True 屍毒
+0e74: End
+-----Script2-----
+a48b: ShakeScreen 24
+a48c: End
+-----------------
+
+@0175: 大咒蛇     0065 0000 0e75 0000 0000 001a 
+-----Script1-----
+0e75: GotoIfTargetingHero 0e78
+0e76: PoisonEnemy True 瘴毒
+0e77: End
+
+0e78: PoisonHero True 瘴毒
+0e79: End
+-----------------
+
+@0176: 花杀阵     0066 0000 0e7a 0000 0000 001a 
+-----Script1-----
+0e7a: GotoIfTargetingHero 0e7d
+0e7b: PoisonEnemy True 毒絲
+0e7c: End
+
+0e7d: PoisonHero True 毒絲
+0e7e: End
+-----------------
+
+@0177: 万蚁蚀象   0047 0000 0000 0000 0000 000a 
+@0178: 万蛊蚀天   003f 0000 3bd4 a451 0000 001a 
+-----Script1-----
+3bd4: GotoIfTargetingHero 3be6
+3bd5: ChanceContinue 16 3bd8
+3bd6: PoisonEnemy True 三屍蠱毒
+3bd7: End
+
+3be6: ChanceContinue 16 3be9
+3be7: PoisonHero True 三屍蠱毒
+3be8: End
+
+3be9: ChanceContinue 20 3bec
+3bea: PoisonHero True 鶴頂紅毒
+3beb: End
+
+3bec: ChanceContinue 25 3bef
+3bed: PoisonHero True 孔雀膽毒
+3bee: End
+
+3bd8: ChanceContinue 20 3bdb
+3bd9: PoisonEnemy True 鶴頂紅毒
+3bda: End
+
+3bef: ChanceContinue 33 3bf2
+3bf0: PoisonHero True 血海棠毒
+3bf1: End
+
+3bdb: ChanceContinue 25 3bde
+3bdc: PoisonEnemy True 孔雀膽毒
+3bdd: End
+
+3bde: ChanceContinue 33 3be1
+3bdf: PoisonEnemy True 血海棠毒
+3be0: End
+
+3be1: ChanceContinue 50 3be4
+3be2: PoisonEnemy True 斷腸草毒
+3be3: End
+
+3be4: PoisonEnemy True 金蠶蠱毒
+3be5: End
+
+3bf2: ChanceContinue 50 3bf5
+3bf3: PoisonHero True 斷腸草毒
+3bf4: End
+
+3bf5: PoisonHero True 金蠶蠱毒
+3bf6: End
+-----Script2-----
+a451: GotoIfTargetingHero 0000
+a452: RemoveInventory 蠱 1 a45a
+a453: End
+
+0000: End
+
+a45a: DialogFrame
+a45b: Message `道具不足無法使用`
+a45c: 0041 0000 0000 0000
+a45d: End
+-----------------
+
+@0179: 毒吞天下   005b 0000 3bf7 a449 0000 001a 
+-----Script1-----
+3bf7: GotoIfTargetingHero 3bfd
+3bf8: PoisonEnemy True 赤毒
+3bf9: PoisonEnemy True 屍毒
+3bfa: PoisonEnemy True 瘴毒
+3bfb: PoisonEnemy True 毒絲
+3bfc: Goto 3bd5
+
+3bfd: PoisonHero True 赤毒
+3bfe: PoisonHero True 屍毒
+3bff: PoisonHero True 瘴毒
+3c00: PoisonHero True 毒絲
+3c01: Goto 3be6
+
+3be6: ChanceContinue 16 3be9
+3be7: PoisonHero True 三屍蠱毒
+3be8: End
+
+3be9: ChanceContinue 20 3bec
+3bea: PoisonHero True 鶴頂紅毒
+3beb: End
+
+3bd5: ChanceContinue 16 3bd8
+3bd6: PoisonEnemy True 三屍蠱毒
+3bd7: End
+
+3bec: ChanceContinue 25 3bef
+3bed: PoisonHero True 孔雀膽毒
+3bee: End
+
+3bd8: ChanceContinue 20 3bdb
+3bd9: PoisonEnemy True 鶴頂紅毒
+3bda: End
+
+3bdb: ChanceContinue 25 3bde
+3bdc: PoisonEnemy True 孔雀膽毒
+3bdd: End
+
+3bde: ChanceContinue 33 3be1
+3bdf: PoisonEnemy True 血海棠毒
+3be0: End
+
+3be1: ChanceContinue 50 3be4
+3be2: PoisonEnemy True 斷腸草毒
+3be3: End
+
+3bef: ChanceContinue 33 3bf2
+3bf0: PoisonHero True 血海棠毒
+3bf1: End
+
+3be4: PoisonEnemy True 金蠶蠱毒
+3be5: End
+
+3bf2: ChanceContinue 50 3bf5
+3bf3: PoisonHero True 斷腸草毒
+3bf4: End
+
+3bf5: PoisonHero True 金蠶蠱毒
+3bf6: End
+-----Script2-----
+a449: GotoIfTargetingHero 0000
+a44a: RemoveInventory 蠱 1 a45a
+a44b: End
+
+0000: End
+
+a45a: DialogFrame
+a45b: Message `道具不足無法使用`
+a45c: 0041 0000 0000 0000
+a45d: End
+-----------------
+
+@017a: 气吞天下   003d 0000 0000 0000 0000 001a 
+@017b: 酒神       004b 0000 2a78 a46b 0000 001a 
+-----Script1-----
+2a78: Next
+2a79: Next
+2a7a: SetObjectState (14d5,空) 3
+2a7b: Next
+2a7c: Next
+2a7d: Next
+2a7e: SetObjectState (14d5,空) 2
+2a7f: Next
+2a80: Next
+2a81: Next
+2a82: RemoveMagic 酒神 李逍遥
+2a83: DialogCenter 0000 0
+2a84: Message `"酒神咒"使用次數已用盡`
+2a85: SetObjectState (14d5,空) 1
+2a86: End
+-----Script2-----
+a46b: RemoveInventory 酒 1 a46e
+a46c: 0057 017b 0000 0000
+a46d: End
+
+a46e: DialogCenter 0000 0
+a46f: Message `酒不足，無法召喚酒神`
+a470: 0041 0000 0000 0000
+a471: End
+-----------------
+
+@017c: 飞龙探云手 0062 0000 a4b0 0000 0000 000a 
+-----Script1-----
+a4b0: Sound 174
+a4b1: StealFromEnemy 0
+a4b2: End
+-----------------
+
+@017d: 灵葫咒     0054 0000 a491 0000 0000 000a 
+-----Script1-----
+a491: GotoIfEnemyHPLessThanPercent 25 a468 0000
+a492: ChanceContinue 100 a468
+a493: 0033 a468 0000 0000
+a494: KillEnemy
+a495: End
+
+0000: End
+
+a468: DialogFrame
+a469: Message `失敗　沒有效果`
+a46a: End
+-----------------
+
+@017e: 醉仙望月步 005f 0000 a4aa 0000 0000 0002 
+-----Script1-----
+a4aa: ConditionHero 两次攻击 5 0000
+a4ab: End
+
+0000: End
+-----------------
+
+@017f: 仙风云体术 0061 0000 a4ac 0000 0000 0002 
+-----Script1-----
+a4ac: ConditionHero 身法加强 9 0000
+a4ad: End
+
+0000: End
+-----------------
+
+@0180: 金蝉脱壳   0063 0000 0000 a4ae 0000 0012 
+-----Script2-----
+a4ae: 003a a468 0000 0000
+a4af: End
+-----------------
+
+@0181: 乾坤一掷   0064 0000 0000 a464 0000 001a 
+-----Script2-----
+a464: AdjustMoney -1 a460
+a465: AdjustMoney 1 0000
+a466: 0088 0181 0000 0000
+a467: End
+
+0000: End
+
+a460: DialogFrame
+a461: Message `錢不夠，只好作罷`
+a462: 0041 0000 0000 0000
+a463: End
+-----------------
+
+@0182: 鞭击       001c 0000 0000 0000 0000 000a 
+@0183: 合体气功   0056 0000 0000 0000 0000 000a 
+@0184: 气功       0057 0000 0000 0000 0000 000a 
+@0185: 血魔神功   002d 0000 05f4 0000 0000 000a 
+-----Script1-----
+05f4: ConditionHero 咒封 3 0000
+05f5: End
+
+0000: End
+-----------------
+
+@0186: 爆炸蛊     0041 0000 0000 0000 0000 000a 
+@0187: 咒蛇       0046 0000 a483 0000 0000 000a 
+-----Script1-----
+a483: PoisonHero False 瘴毒
+a484: End
+-----------------
+
+@0188: 火龙掌     0055 0000 0000 a48f 0000 000a 
+-----Script2-----
+a48f: ShakeScreen 14
+a490: End
+-----------------
+
+@0189: 爆炸       004f 0000 0000 0000 0000 000a 
+@018a: 魔掌天下   0052 0000 05e3 0000 0000 000a 
+-----Script1-----
+05e3: ConditionHero 疯魔 5 0000
+05e4: End
+
+0000: End
+-----------------
+
+@018b: 佛法无边   0053 0000 0000 0000 0000 000a 
+@018c: 镇天鼎     0045 0000 0000 0000 0000 001a 
+@018d: 群魔乱舞   0067 0000 05e3 0000 0000 001a 
+-----Script1-----
+05e3: ConditionHero 疯魔 5 0000
+05e4: End
+
+0000: End
+-----------------
+
+@018e: 史莱姆     0001 0000 0000 0000 0000 0000 
+@018f: 灯笼       0002 000a 0000 0000 0000 0000 
+@0190: 黑毛球     0003 0000 0000 9c61 0000 0000 
+-----Script2-----
+9c61: ChanceContinue 22 0000
+9c62: CreateInventory 十里香 0
+9c63: DialogFrame
+9c64: Message `獲得十里香`
+9c65: End
+
+0000: End
+-----------------
+
+@0191: 烂香菇     0004 0000 0000 9c5c 0000 0000 
+-----Script2-----
+9c5c: ChanceContinue 40 0000
+9c5d: CreateInventory 靈山仙芝 0
+9c5e: DialogFrame
+9c5f: Message `獲得靈山仙芝`
+9c60: End
+
+0000: End
+-----------------
+
+@0192: 凤梨小妖   0005 0000 0000 9c58 a28f 0000 
+-----Script2-----
+9c58: CreateInventory 鼠兒果 0
+9c59: DialogFrame
+9c5a: Message `撿到一顆鼠兒果`
+9c5b: End
+-----Script3-----
+a28f: Next
+a290: ChanceContinue 60 0000
+a291: EnemyPolymorph 牡丹精
+a292: EnemyUseMagic ffff False
+a293: Next
+a294: EnemyUseMagic 狂風術 False
+a295: Next
+a296: EnemyUseMagicNull False
+a297: Next
+a298: EnemyUseMagic 狂風術 True
+a299: Next
+a29a: End
+
+0000: End
+-----------------
+
+@0193: 蜜蜂       0006 0000 0000 9c6b 0000 0000 
+-----Script2-----
+9c6b: ChanceContinue 12 0000
+9c6c: CreateInventory 蜂巢 0
+9c6d: DialogFrame
+9c6e: Message `獲得一個蜂巢`
+9c6f: End
+
+0000: End
+-----------------
+
+@0194: 蛹         0007 0000 0000 9c66 0000 0000 
+-----Script2-----
+9c66: ChanceContinue 16 0000
+9c67: CreateInventory 蜂王蜜 0
+9c68: DialogFrame
+9c69: Message `得到蜂王蜜`
+9c6a: End
+
+0000: End
+-----------------
+
+@0195: 小鱼       0008 0000 0000 0000 0000 0000 
+@0196: 血口虫     0009 0000 0000 0000 0000 0000 
+@0197: 开膛鬼     000a 0000 0000 0000 0000 0000 
+@0198: 半截僵尸   000b 0000 0000 0000 0000 0000 
+@0199: 菜刀婆婆   000c 0000 9c3c 9c70 9c45 0000 
+-----Script1-----
+9c3c: 0091 0000 0000 0000
+9c3d: Sound 205
+9c3e: Message `嘿．．嘿．．嘿．．`
+9c3f: Message `又有香甜的人肉送上門來了`
+9c40: Next
+9c41: Message `喔．．喔．．`
+9c42: Message `好像不太容易吃到喔．．`
+9c43: Next
+9c44: End
+-----Script2-----
+9c70: CreateInventory 孟婆湯 0
+9c71: DialogFrame
+9c72: Message `得到孟婆湯`
+9c73: End
+-----Script3-----
+9c45: Next
+9c46: ChanceContinue 60 0000
+9c47: EnemySummon 飛頭 0
+9c48: EnemyUseMagic ffff False
+9c49: Next
+9c4a: EnemyUseMagicNull False
+9c4b: Next
+9c4c: EnemySummon 飛頭 0
+9c4d: EnemyUseMagic ffff False
+9c4e: Next
+9c4f: EnemySummon 開膛鬼 2
+9c50: EnemyUseMagic ffff False
+9c51: Next
+9c52: EnemyUseMagicNull False
+9c53: Next
+9c54: Next
+9c55: Next
+9c56: NextReplace 9c45 0000
+
+0000: End
+-----------------
+
+@019a: 小土鬼     000d 0000 0000 0000 a2a4 0000 
+-----Script3-----
+a2a4: Next
+a2a5: ChanceContinue 60 0000
+a2a6: EnemyPolymorph 肥肥
+a2a7: EnemyUseMagic ffff False
+a2a8: Next
+a2a9: EnemyUseMagicNull False
+a2aa: Next
+a2ab: ChanceContinue 60 0000
+a2ac: EnemyPolymorph 小土鬼
+a2ad: EnemyUseMagic ffff False
+a2ae: Next
+a2af: EnemyUseMagic 火術 True
+a2b0: NextReplace a2a4 0000
+
+0000: End
+-----------------
+
+@019b: 跳蚤       000e 0000 0000 0000 0000 0000 
+@019c: 小蜘蛛     000f 0000 0000 0000 0000 0000 
+@019d: 石鬼头     0010 000a 0000 0000 0000 0000 
+@019e: 镰刀鼬     0011 0000 0000 0000 0000 0000 
+@019f: 酒瓮       0012 000a 0000 0000 0000 0000 
+@01a0: 芒刺鬼     0013 0000 0000 0000 0000 0000 
+@01a1: 猪头人     0014 0000 0000 0000 0000 0000 
+@01a2: 小雷公     0015 0000 0000 0000 0000 0000 
+@01a3: 僵尸       0016 0000 0000 0000 0000 0000 
+@01a4: 跳跳蛙     0017 0000 a380 0000 a3b2 0000 
+-----Script1-----
+a380: 0091 0000 0000 0000
+a381: Sound 258
+a382: ChanceContinue 45 0000
+a383: NextReplace a380 0000
+
+0000: End
+-----Script3-----
+a3b2: Next
+a3b3: ChanceContinue 66 0000
+a3b4: EnemySummonNull 0
+a3b5: EnemyUseMagic ffff False
+a3b6: Next
+a3b7: EnemyUseMagicNull False
+a3b8: End
+
+0000: End
+-----------------
+
+@01a5: 大手       0018 0000 0000 0000 a2dd 0000 
+-----Script3-----
+a2dd: ChanceContinue 60 a2eb
+a2de: ChanceContinue 60 0000
+a2df: EnemySummon 掃把 2
+a2e0: EnemyUseMagic ffff False
+a2e1: Next
+a2e2: EnemyUseMagicNull False
+a2e3: Next
+a2e4: EnemySummon 掃把 2
+a2e5: EnemyUseMagic ffff False
+a2e6: Next
+a2e7: EnemyUseMagicNull False
+a2e8: Next
+a2e9: Next
+a2ea: NextReplace a2dd 0000
+
+0000: End
+
+a2eb: ChanceContinue 50 0000
+a2ec: EnemySummonNull 0
+a2ed: EnemyUseMagic ffff False
+a2ee: Next
+a2ef: EnemyUseMagicNull False
+a2f0: Next
+a2f1: Next
+a2f2: NextReplace a2dd 0000
+-----------------
+
+@01a6: 怪老子     0019 0000 a380 0000 a2b2 0000 
+-----Script1-----
+a380: 0091 0000 0000 0000
+a381: Sound 258
+a382: ChanceContinue 45 0000
+a383: NextReplace a380 0000
+
+0000: End
+-----Script3-----
+a2b2: ChanceContinue -23883 0000
+a2b3: EnemyUseMagic 鬼降 False
+a2b4: Next
+a2b5: EnemyUseMagic ffff False
+a2b6: Next
+a2b7: EnemyUseMagic 鬼降 False
+a2b8: NextReplace a2b5 0000
+
+0000: End
+
+a2b5: EnemyUseMagic ffff False
+a2b6: Next
+a2b7: EnemyUseMagic 鬼降 False
+a2b8: NextReplace a2b5 0000
+-----------------
+
+@01a7: 树根       001a 0000 0000 0000 0000 0000 
+@01a8: 小独角     001b 0000 0000 0000 0000 0000 
+@01a9: 青鬼       001c 0000 0000 0000 0000 0000 
+@01aa: 蜥蜴       001d 0000 0000 0000 0000 0000 
+@01ab: 红鬼       001e 0000 0000 0000 0000 0000 
+@01ac: 公背婆     001f 0000 0000 0000 0000 0000 
+@01ad: 傻仔龟     0020 0000 0000 0000 a29b 0000 
+-----Script3-----
+a29b: Next
+a29c: Next
+a29d: ChanceContinue 35 0000
+a29e: EnemyPolymorph 蛟龍
+a29f: EnemyUseMagic ffff False
+a2a0: Next
+a2a1: EnemyUseMagic 五雷咒 True
+a2a2: Next
+a2a3: End
+
+0000: End
+-----------------
+
+@01ae: 短腿章鱼   0021 0000 0000 0000 0000 0000 
+@01af: 大蝌蚪     0022 0000 0000 0000 0000 0000 
+@01b0: 蚌壳       0023 0000 0000 0000 0000 0000 
+@01b1: 飞头       0024 0000 0000 0000 0000 0000 
+@01b2: 肥肥       0025 0000 0000 0000 0000 0000 
+@01b3: 六脚蜘蛛   0026 000a 9e65 0000 0000 0000 
+-----Script1-----
+9e65: Sound 245
+9e66: Message `蜘蛛精：`
+9e67: Message `不自量力的傢伙！`
+9e68: Next
+9e69: Next
+9e6a: Message `蜘蛛精：`
+9e6b: Message `可惡！　你們點厲害瞧瞧！`
+9e6c: EnemyUseMagic 五雷咒 False
+9e6d: Next
+9e6e: Next
+9e6f: Message `蜘蛛精：`
+9e70: Message `哇∼哈∼哈∼受不住了吧！`
+9e71: Message `我還有更厲害的招術`
+9e72: EnemyUseMagic 天雷破 False
+9e73: Next
+9e74: Next
+9e75: Message `蜘蛛精：`
+9e76: Message `死吧！`
+9e77: EnemyUseMagic 雷動九天 False
+9e78: Next
+9e79: 0089 0000 0000 0000
+9e7a: End
+-----------------
+
+@01b4: 伏地罗汉   0027 0000 a37c 0000 0000 0000 
+-----Script1-----
+a37c: 0091 0000 0000 0000
+a37d: Sound 245
+a37e: Next
+a37f: End
+-----------------
+
+@01b5: 海螺女     0028 0000 0000 0000 0000 0000 
+@01b6: 魔兽武士   0029 0000 0000 0000 0000 0000 
+@01b7: 连体妖     002a 0000 0000 0000 0000 0000 
+@01b8: 刑天       002b 0000 0000 0000 0000 0000 
+@01b9: 扫把       002c 000a 0000 0000 0000 0000 
+@01ba: 黄衣刀僧   002d 0000 0000 0000 0000 0000 
+@01bb: 罗汉腿     002e 0000 0000 0000 0000 0000 
+@01bc: 醉罗汉     002f 0000 0000 0000 0000 0000 
+@01bd: 血云雾     0030 0000 a2f4 0000 0000 0000 
+-----Script1-----
+a2f4: Next
+a2f5: ChanceContinue 50 0000
+a2f6: EnemyDuplicate
+a2f7: NextReplace a2f4 0000
+
+0000: End
+-----------------
+
+@01be: 哈将       0031 0000 0000 0000 0000 0000 
+@01bf: 金锤武士   0032 0000 a3af 0000 0000 0000 
+-----Script1-----
+a3af: Sound 267
+a3b0: Next
+a3b1: End
+-----------------
+
+@01c0: 巨斧武士   0033 0000 0000 0000 0000 0000 
+@01c1: 角力士     0034 0000 a3af 0000 0000 0000 
+-----Script1-----
+a3af: Sound 267
+a3b0: Next
+a3b1: End
+-----------------
+
+@01c2: 枪卒       0035 0000 0000 0000 0000 0000 
+@01c3: 红衣喇嘛   0036 0000 0000 0000 0000 0000 
+@01c4: 白无常     0037 000a 0000 a542 0000 0000 
+-----Script2-----
+a542: ChanceContinue 16 0000
+a543: CreateInventory 贖魂燈 1
+a544: DialogFrame
+a545: Message `獲得贖魂燈`
+a546: End
+
+0000: End
+-----------------
+
+@01c5: 灰衣喇嘛   0038 0000 0000 0000 0000 0000 
+@01c6: 刀手       0039 0000 9d5b 0000 0000 0000 
+-----Script1-----
+9d5b: 0091 0000 0000 0000
+9d5c: DialogBottom 0009 0
+9d5d: Message `靈兒！　咱們動手吧．．`
+9d5e: Message `給這些流氓一些教訓`
+9d5f: DialogTop 000b 0
+9d60: Message `可是∼大娘交待過`
+9d61: Message `叫我們別惹事生非．．`
+9d62: Clear 0
+9d63: DialogBottom 0001 0
+9d64: Message `這叫行俠仗義，不是惹事`
+9d65: DialogTop 0011 0
+9d66: Message `那．．可是∼`
+9d67: 0090 01c6 0000 0000
+9d68: Next
+9d69: End
+-----------------
+
+@01c7: 铁叉牛头   003a 0000 0000 0000 0000 0000 
+@01c8: 猩猩       003b 0000 0000 0000 0000 0000 
+@01c9: 双节棍苗   003c 0000 0000 0000 0000 0000 
+@01ca: 小苗女     003d 0000 0000 0000 0000 0000 
+@01cb: 小巫师     003e 0000 0000 0000 0699 0000 
+-----Script3-----
+0699: ChanceContinue 80 069e
+069a: ChanceContinue 50 06a0
+069b: ChanceContinue 50 06a2
+069c: EnemyUseMagic 三屍咒 False
+069d: End
+
+069e: EnemyUseMagicNull False
+069f: End
+
+06a0: EnemyUseMagic 咒蛇 False
+06a1: End
+
+06a2: EnemyUseMagic 煉獄爪 False
+06a3: End
+-----------------
+
+@01cc: 长鞭苗女   003f 0000 0000 0000 0000 0000 
+@01cd: 蛟龙       0040 0000 0000 0000 0000 0000 
+@01ce: 树妖       0041 000a 0000 0000 0000 0000 
+@01cf: 麒麟       0042 000a 0000 0000 a3da 0000 
+-----Script3-----
+a3da: ChanceContinue 60 a3df
+a3db: ChanceContinue 40 a3e1
+a3dc: ChanceContinue 20 a3e3
+a3dd: EnemyUseMagic ffff False
+a3de: NextReplace a3da 0000
+
+0000: End
+
+a3e3: EnemyUseMagic 煉獄真火 False
+a3e4: NextReplace a3da 0000
+
+a3df: EnemyUseMagic 火龍掌 False
+a3e0: NextReplace a3da 0000
+
+a3e1: EnemyUseMagic 三昧真火 False
+a3e2: NextReplace a3da 0000
+-----------------
+
+@01d0: 凤凰       0043 0004 a5cf 0000 0000 0000 
+-----Script1-----
+a5cf: DamageEnemy False 4000
+a5d0: Next
+a5d1: End
+-----------------
+
+@01d1: 金蟾       0044 0004 0000 a547 0000 0000 
+-----Script2-----
+a547: ChanceContinue 50 0000
+a548: CreateInventory 金蠶蠱 1
+a549: DialogFrame
+a54a: Message `獲得金蠶蠱`
+a54b: Goto a374
+
+0000: End
+
+a374: CreateInventory 傀儡蟲 0
+a375: DialogFrame
+a376: Message `獲得一隻傀儡蟲`
+a377: End
+-----------------
+
+@01d2: 牛鬼       0045 000a 0000 0000 06ab 0000 
+-----Script3-----
+06ab: 00a2 0004 0000 0000
+06ac: Goto 06b0
+
+06b0: EnemyUseMagicNull False
+06b1: Next
+06b2: EnemyUseMagic 地裂天崩 False
+06b3: NextReplace 06ab 0000
+
+0000: End
+-----------------
+
+@01d3: 瘟神       0046 0004 0000 0000 0000 0000 
+@01d4: 蝶精彩依   0047 000a 9c74 0000 0000 0000 
+-----Script1-----
+9c74: DialogTop 0030 0
+9c75: Message `求求你們．．相信奴家`
+9c76: Message `劉公子．．劉公子就快死了`
+9c77: DialogBottom 0017 0
+9c78: Message `分明就是妳這隻妖怪想害死他`
+9c79: Message `還妄想裝做好人！`
+9c7a: EnemyUseMagic ffff False
+9c7b: Next
+9c7c: DialogTop 0030 0
+9c7d: Message `你們誤會了，相公中了纏魂絲`
+9c7e: Message `奴家這麼作是為了要救他`
+9c7f: DialogBottom 0017 0
+9c80: Message `妳要想害人，先過我這一關`
+9c81: Next
+9c82: DialogTop 0030 0
+9c83: Message `對不起．．既然各位不相信奴家`
+9c84: Message `奴家只好得罪了`
+9c85: EnemyUseMagic 天女散花 False
+9c86: Next
+9c87: Next
+9c88: Next
+9c89: Next
+9c8a: EnemyEscape False
+9c8b: End
+-----------------
+
+@01d5: 狐狸精     0048 0004 0000 0000 a1e4 0000 
+-----Script3-----
+a1e4: ChanceContinue 40 0000
+a1e5: Next
+a1e6: EnemyUseMagic 迴夢 False
+a1e7: Next
+a1e8: EnemySummon 蜜蜂 4
+a1e9: EnemyUseMagic ffff False
+a1ea: Next
+a1eb: EnemyUseMagic 雷咒 False
+a1ec: Next
+a1ed: Next
+a1ee: EnemyUseMagicNull False
+a1ef: Next
+a1f0: EnemyUseMagic 五雷咒 False
+a1f1: ChanceContinue 40 0000
+a1f2: EnemyUseMagicNull False
+a1f3: Next
+a1f4: EnemyUseMagic 迴夢 False
+a1f5: Next
+a1f6: EnemyUseMagicNull False
+a1f7: ChanceContinue 50 0000
+a1f8: Next
+a1f9: EnemySummon 蜜蜂 4
+a1fa: EnemyUseMagic ffff False
+a1fb: Next
+a1fc: EnemyUseMagic 五雷咒 False
+a1fd: Next
+a1fe: EnemyUseMagicNull False
+a1ff: NextReplace a1e4 0000
+
+0000: End
+-----------------
+
+@01d6: 牡丹精     0049 0000 0000 a575 0000 0000 
+-----Script2-----
+a575: ChanceContinue 30 0000
+a576: CreateInventory 牡丹花露 0
+a577: DialogFrame
+a578: Message `得到牡丹花露`
+a579: End
+
+0000: End
+-----------------
+
+@01d7: 玩蛇女     004a 0004 0000 0000 0000 0000 
+@01d8: 僵尸王     004b 000a a214 0000 a5cf 0000 
+-----Script1-----
+a214: EnemyUseMagic ffff False
+a215: Next
+a216: EnemyUseMagicNull False
+a217: Next
+a218: EnemyUseMagic 鬼降 False
+a219: Next
+a21a: EnemyUseMagic 瘴氣 False
+a21b: Next
+a21c: ChanceContinue 60 a21a
+a21d: EnemyUseMagic 煉獄爪 False
+a21e: Next
+a21f: ChanceContinue 40 0000
+a220: Next
+a221: 00a2 0004 0000 0000
+a222: Goto a21d
+
+0000: End
+
+a21a: EnemyUseMagic 瘴氣 False
+a21b: Next
+a21c: ChanceContinue 60 a21a
+a21d: EnemyUseMagic 煉獄爪 False
+a21e: Next
+a21f: ChanceContinue 40 0000
+a220: Next
+a221: 00a2 0004 0000 0000
+a222: Goto a21d
+
+a21d: EnemyUseMagic 煉獄爪 False
+a21e: Next
+a21f: ChanceContinue 40 0000
+a220: Next
+a221: 00a2 0004 0000 0000
+a222: Goto a21d
+-----Script3-----
+a5cf: DamageEnemy False 4000
+a5d0: Next
+a5d1: End
+-----------------
+
+@01d9: 赤鬼王     004c 0005 a5cf 0000 a235 0000 
+-----Script1-----
+a5cf: DamageEnemy False 4000
+a5d0: Next
+a5d1: End
+-----Script3-----
+a235: EnemyUseMagicNull False
+a236: Next
+a237: Next
+a238: EnemySummon 殭屍 2
+a239: EnemyUseMagic ffff False
+a23a: Next
+a23b: Sound 267
+a23c: EnemyUseMagic 血魔神功 False
+a23d: Next
+a23e: EnemyUseMagicNull False
+a23f: Next
+a240: EnemyUseMagic 血魔神功 False
+a241: Next
+a242: ChanceContinue 60 0000
+a243: Next
+a244: EnemySummon 飛頭 2
+a245: EnemyUseMagic ffff False
+a246: Next
+a247: EnemyUseMagic 飛岩術 False
+a248: Next
+a249: ChanceContinue 50 a24c
+a24a: EnemyUseMagic 五雷咒 False
+a24b: NextReplace 0000 a24e
+
+a24c: EnemyUseMagic 三昧真火 False
+a24d: Next
+a24e: 00a2 0003 0000 0000
+a24f: Goto a252
+
+0000: End
+
+a24e: 00a2 0003 0000 0000
+a24f: Goto a252
+
+a252: Sound 267
+a253: EnemyUseMagic 血魔神功 False
+a254: Next
+a255: EnemyUseMagicNull False
+a256: Next
+a257: EnemyUseMagic 血魔神功 False
+a258: NextReplace a24e 0000
+-----------------
+
+@01da: 木灵道士   004d 0005 a2f9 0000 a304 0000 
+-----Script1-----
+a2f9: DialogBottom 001b 0
+a2fa: Message `阿奴：`
+a2fb: Message `快放了村長伯伯`
+a2fc: Message `還有∼交出水靈珠`
+a2fd: Message `不然有你受的！`
+a2fe: Clear 0
+a2ff: Message `木道人：`
+a300: Message `哪來的小鬼！？找死嗎？`
+a301: Message `膽敢插手本山人的事！`
+a302: Next
+a303: End
+-----Script3-----
+a304: EnemyUseMagic 天師符法 False
+a305: Next
+a306: Next
+a307: EnemySummon 黑衣道眾 0
+a308: EnemyUseMagic ffff False
+a309: Next
+a30a: EnemySummon 黑衣道眾 0
+a30b: EnemyUseMagic ffff False
+a30c: Next
+a30d: Next
+a30e: Message `木道人：`
+a30f: Message `哼．．看不出你們這些小鬼`
+a310: Message `還頗有兩下子的．．`
+a311: Message `看來∼非拿出絕招不可了！~50`
+a312: EnemyUseMagic 鎮天鼎 False
+a313: Next
+a314: EnemyUseMagic ffff False
+a315: Next
+a316: EnemyUseMagic 鎮天鼎 False
+a317: Next
+a318: EnemyUseMagic 天雷破 False
+a319: Next
+a31a: EnemyUseMagic 迴夢 False
+a31b: Next
+a31c: EnemySummon 黑衣道眾 0
+a31d: EnemyUseMagic ffff False
+a31e: Next
+a31f: EnemySummon 黑衣道眾 0
+a320: EnemyUseMagic ffff False
+a321: Next
+a322: EnemyUseMagic 天雷破 False
+a323: Next
+a324: EnemyUseMagic 風雪冰天 False
+a325: Next
+a326: EnemyUseMagic ffff False
+a327: Next
+a328: EnemyUseMagicNull False
+a329: Next
+a32a: EnemyUseMagic 鎮天鼎 False
+a32b: Next
+a32c: EnemyUseMagic 鎮天鼎 False
+a32d: Next
+a32e: EnemyUseMagic 鎮天鼎 False
+a32f: Next
+a330: EnemyUseMagic ffff False
+a331: Next
+a332: EnemyUseMagic 天師符法 False
+a333: Next
+a334: Next
+a335: EnemyUseMagic 風雪冰天 False
+a336: Next
+a337: EnemyUseMagicNull False
+a338: Next
+a339: EnemySummon 黑衣道眾 0
+a33a: EnemyUseMagic ffff False
+a33b: Next
+a33c: EnemyUseMagic 鎮天鼎 False
+a33d: Next
+a33e: EnemySummon 黑衣道眾 0
+a33f: EnemyUseMagic ffff False
+a340: Next
+a341: EnemyUseMagic 鎮天鼎 False
+a342: Next
+a343: Next
+a344: EnemyUseMagic ffff False
+a345: Next
+a346: EnemyUseMagicNull False
+a347: Next
+a348: EnemyUseMagic 迴夢 False
+a349: Next
+a34a: EnemyUseMagic 天雷破 False
+a34b: Next
+a34c: EnemyUseMagic ffff False
+a34d: Next
+a34e: EnemyUseMagic 旋風咒 False
+a34f: Next
+a350: EnemyUseMagic 鎮天鼎 True
+a351: Next
+a352: End
+-----------------
+
+@01db: 剑护院     004e 0000 0000 0000 0000 0000 
+@01dc: 锤护院     004f 0000 0000 0000 0000 0000 
+@01dd: 小双钩     0050 0000 0000 0000 0000 0000 
+@01de: 女飞贼     0051 0000 9ded 0000 0000 0000 
+-----Script1-----
+9ded: 0079 0026 9df5 0000
+9dee: Next
+9def: Sound 193
+9df0: DialogTop 0029 0
+9df1: Message `嘿！　小帥哥．．身手不賴嘛`
+9df2: Message `可惜奴家沒空陪您玩了`
+9df3: EnemyEscape False
+9df4: End
+-----------------
+
+@01df: 女飞贼1    0051 0000 0000 0000 0000 0000 
+@01e0: 林月如一   0052 0000 9dc0 0000 0000 0000 
+-----Script1-----
+9dc0: DialogTop 0017 0
+9dc1: Message `讓開！！`
+9dc2: DialogBottom 0005 0
+9dc3: Message `太過份了！雖然是妳的奴僕`
+9dc4: Message `妳也不能草菅人命！`
+9dc5: Clear 0
+9dc6: DialogTop 0016 0
+9dc7: Message `我愛怎麼做就怎麼做`
+9dc8: Message `你管不著！`
+9dc9: Clear 0
+9dca: DialogBottom 0009 0
+9dcb: Message `很不巧！我李逍遙生平最恨的`
+9dcc: Message `就是欺侮弱小的人，既然被我`
+9dcd: Message `遇上了，就不容妳仗勢欺人！`
+9dce: DialogTop 0016 0
+9dcf: Message `好！我打的你說不出話來！`
+9dd0: Next
+9dd1: End
+-----------------
+
+@01e1: 暗器手     0053 0000 0000 0000 0000 0000 
+@01e2: 智杖和尚   0054 0000 0000 0000 0000 0000 
+@01e3: 林月如二   0055 0000 9dd2 0000 0000 0000 
+-----Script1-----
+9dd2: DialogTop 0016 0
+9dd3: Message `喂．．小賊！`
+9dd4: MessageClear
+9dd5: Message `本姑娘不想欺負受傷的人`
+9dd6: Message `只要你向本姑娘磕三個響頭`
+9dd7: Message `本姑娘也可以饒了你！`
+9dd8: Clear 0
+9dd9: DialogBottom 0001 0
+9dda: Message `這妳不用擔心。　這點小傷`
+9ddb: Message `本公子才不放在眼裡，妳儘管`
+9ddc: Message `放馬過來`
+9ddd: Clear 0
+9dde: DialogTop 0015 0
+9ddf: Message `好∼　是你找的！`
+9de0: Message `輸了∼可別怪我欺你有傷在身`
+9de1: DialogBottom 0009 0
+9de2: Message `彼此∼彼此∼　妳輸了．．`
+9de3: Message `也別說本公子欺負女孩子！`
+9de4: MusicOff True
+9de5: Clear 0
+9de6: DialogTop 0015 0
+9de7: Message `哼∼　放馬過來吧！~10`
+9de8: Sound 213
+9de9: 0085 0014 0000 0000
+9dea: Music 38
+9deb: Next
+9dec: End
+-----------------
+
+@01e4: 食人兽     0056 0000 0000 0000 0000 0000 
+@01e5: 胖苗       0057 0003 9d6a 0000 0000 0000 
+-----Script1-----
+9d6a: 0079 0025 9d6c 0000
+9d6b: End
+-----------------
+
+@01e6: 半人蛇     0058 0004 0000 0000 a201 0000 
+-----Script3-----
+a201: ChanceContinue 30 0000
+a202: Next
+a203: Next
+a204: Next
+a205: Next
+a206: Next
+a207: Next
+a208: Message `蛇妖：`
+a209: Message `可惡的人類∼死吧！~45`
+a20a: EnemyUseMagic 弦月斬 True
+a20b: Next
+a20c: Next
+a20d: ChanceContinue 40 0000
+a20e: ChanceContinue 40 a211
+a20f: EnemyUseMagic 弦月斬1 False
+a210: Next
+a211: EnemyUseMagicEmpty False
+a212: NextReplace a201 0000
+
+0000: End
+
+a211: EnemyUseMagicEmpty False
+a212: NextReplace a201 0000
+-----------------
+
+@01e7: 赤色小蛇   0059 0000 0000 0000 0000 0000 
+@01e8: 绿色小蛇   005a 0000 0000 0000 0000 0000 
+@01e9: 老虎       005b 0000 0000 0000 0000 0000 
+@01ea: 五毒巨蝎   005c 0002 0000 a54d 0000 0000 
+-----Script2-----
+a54d: ChanceContinue 50 0000
+a54e: CreateInventory 鶴頂紅 1
+a54f: DialogFrame
+a550: Message `獲得鶴頂紅`
+a551: Goto a374
+
+0000: End
+
+a374: CreateInventory 傀儡蟲 0
+a375: DialogFrame
+a376: Message `獲得一隻傀儡蟲`
+a377: End
+-----------------
+
+@01eb: 五毒巨蛇   005d 0002 0000 0000 0000 0000 
+@01ec: 五毒蜈蚣   005e 0002 0000 a553 0000 0000 
+-----Script2-----
+a553: ChanceContinue 50 0000
+a554: CreateInventory 斷腸草 1
+a555: DialogFrame
+a556: Message `獲得斷腸草`
+a557: Goto a374
+
+0000: End
+
+a374: CreateInventory 傀儡蟲 0
+a375: DialogFrame
+a376: Message `獲得一隻傀儡蟲`
+a377: End
+-----------------
+
+@01ed: 青兽人     005f 0000 0000 0000 0000 0000 
+@01ee: 剑老头     0060 000a a26b a1dc 0000 0000 
+-----Script1-----
+a26b: EnemyUseMagic 天師符法 False
+a26c: Next
+a26d: Next
+a26e: EnemyUseMagic 御劍伏魔 False
+a26f: Next
+a270: EnemyUseMagic ffff False
+a271: Next
+a272: EnemyUseMagic 天師符法 False
+a273: Next
+a274: EnemyUseMagic 氣劍指 False
+a275: Next
+a276: EnemyUseMagic 御劍伏魔 False
+a277: Next
+a278: EnemyUseMagic 天師符法 False
+a279: Next
+a27a: EnemyUseMagic 氣劍指 False
+a27b: Next
+a27c: EnemyUseMagic 御劍伏魔 False
+a27d: Next
+a27e: EnemyUseMagic 劍氣斬 False
+a27f: Next
+a280: EnemyUseMagic 天師符法 False
+a281: Next
+a282: EnemyUseMagic 御劍伏魔 False
+a283: Next
+a284: NextReplace a26b 0000
+
+0000: End
+-----Script2-----
+a1dc: CreateInventory 天師道袍 0
+a1dd: DialogFrame
+a1de: Message `得到天師道袍`
+a1df: End
+-----------------
+
+@01ef: 苗人拳     0061 0000 0000 0000 0000 0000 
+@01f0: 石长老     0077 000a 9e00 0000 0000 0000 
+-----Script1-----
+9e00: 0079 0029 9e29 0000
+9e01: DialogBottom 0012 0
+9e02: Message `趙靈兒：`
+9e03: Message `快把夢慈姐姐放了！`
+9e04: Clear 0
+9e05: DialogTop 003c 0
+9e06: Message `石長老：`
+9e07: Message `公主殿下請放心，我們的`
+9e08: Message `目的不是韓姑娘。只要殿`
+9e09: Message `下跟我們走，我們絕不為`
+9e0a: Message `難其他任何人`
+9e0b: Clear 0
+9e0c: DialogBottom 000b 0
+9e0d: Message `趙靈兒：`
+9e0e: Message `你們把夢慈姐姐抓來`
+9e0f: Message `就是為了把我們引來？`
+9e10: Clear 0
+9e11: DialogTop 003c 0
+9e12: Message `石長老：`
+9e13: Message `為了大事，用了一點手段`
+9e14: Message `還請殿下見諒．．`
+9e15: Clear 0
+9e16: DialogBottom 0007 0
+9e17: Message `李逍遙：`
+9e18: Message `死了這條心吧！`
+9e19: Message `靈兒不會跟你們走的`
+9e1a: Clear 0
+9e1b: DialogTop 003c 0
+9e1c: Message `石長老：`
+9e1d: Message `哦？　如果軟的不行`
+9e1e: Message `要我們來硬的也可以！`
+9e1f: Clear 0
+9e20: DialogBottom 0009 0
+9e21: Message `李逍遙：`
+9e22: Message `來呀！　怕你不成？`
+9e23: Clear 0
+9e24: DialogTop 003c 0
+9e25: Message `石長老：`
+9e26: Message `哼！　不知死活的小子`
+9e27: Next
+9e28: End
+-----------------
+
+@01f1: 石长老1    0094 000a 0000 0000 0000 0000 
+@01f2: 黑蜘蛛精   0063 0002 0000 a55f 0000 0000 
+-----Script2-----
+a55f: ChanceContinue 50 0000
+a560: CreateInventory 孔雀膽 1
+a561: DialogFrame
+a562: Message `獲得孔雀膽`
+a563: Goto a374
+
+0000: End
+
+a374: CreateInventory 傀儡蟲 0
+a375: DialogFrame
+a376: Message `獲得一隻傀儡蟲`
+a377: End
+-----------------
+
+@01f3: 绿叶小妖   0064 0000 9c2b 0000 0000 0000 
+-----Script1-----
+9c2b: 0079 0025 9c2d 0000
+9c2c: End
+-----------------
+
+@01f4: 金蟾鬼母   0065 0004 0000 0000 a2ba 0000 
+-----Script3-----
+a2ba: EnemyUseMagic ffff False
+a2bb: Next
+a2bc: EnemyUseMagic 咒蛇 False
+a2bd: Next
+a2be: EnemyUseMagic 咒蛇 False
+a2bf: Next
+a2c0: EnemyUseMagic 鬼降 False
+a2c1: Next
+a2c2: Next
+a2c3: EnemyUseMagic ffff False
+a2c4: Next
+a2c5: EnemyUseMagic 三屍咒 False
+a2c6: Next
+a2c7: EnemyUseMagic 咒蛇 False
+a2c8: Next
+a2c9: EnemyUseMagicNull False
+a2ca: Next
+a2cb: 00a2 0004 0000 0000
+a2cc: Goto a2d0
+
+a2d0: EnemyUseMagicNull False
+a2d1: NextReplace a2cb 0000
+
+0000: End
+
+a2cb: 00a2 0004 0000 0000
+a2cc: Goto a2d0
+-----------------
+
+@01f5: 盖罗娇1    0066 000a a385 0000 0000 0000 
+-----Script1-----
+a385: DialogBottom 0001 0
+a386: Message `李逍遙：`
+a387: Message `喂∼　等等！`
+a388: Message `怎麼見到人就打呀？`
+a389: Clear 0
+a38a: DialogTop 002c 0
+a38b: Message `蓋羅嬌：`
+a38c: Message `你鬼鬼祟祟的跑到這做什麼？`
+a38d: Clear 0
+a38e: DialogBottom 0001 0
+a38f: Message `李逍遙：`
+a390: Message `我？　這裡不能來嗎？`
+a391: Clear 0
+a392: DialogTop 002c 0
+a393: Message `蓋羅嬌：`
+a394: Message `來人可以，走人不行！`
+a395: Next
+a396: End
+-----------------
+
+@01f6: 蛇女灵儿   0067 000a 9c8c 0000 0000 0000 
+-----Script1-----
+9c8c: EnemyUseMagic ffff False
+9c8d: DialogBottom 0005 0
+9c8e: Message `何方妖孽，竟敢在此撒野`
+9c8f: Message `見了本大俠，還不束手就擒！`
+9c90: DialogTop 0018 0
+9c91: Message `李大哥等一下．．．`
+9c92: Clear 0
+9c93: DialogTop 005a 0
+9c94: Message `．．．．．．．　．　．`
+9c95: EnemyEscape False
+9c96: DialogFrame
+9c97: Message `半人蛇妖撞破牆壁，逃走了`
+9c98: End
+-----------------
+
+@01f7: 鸟人       0068 0000 0000 0000 0000 0000 
+@01f8: 僵尸兵A    0069 0000 0000 0000 0000 0000 
+@01f9: 僵尸兵B    006a 0000 0000 0000 0000 0000 
+@01fa: 僵尸兵C    006b 0000 0000 0000 0000 0000 
+@01fb: 半人树妖   006c 0000 0000 0000 0000 0000 
+@01fc: 小树妖     006d 000a 0000 0000 0000 0000 
+@01fd: 尖头树妖   006e 000a 0000 0000 0000 0000 
+@01fe: 尖嘴魔兵   006f 0000 0000 0000 0000 0000 
+@01ff: 铁棍魔兵   0070 0000 0000 0000 0000 0000 
+@0200: 黑衣道众   0071 0000 0000 0000 0000 0000 
+@0201: 狒狒       0072 0000 a378 0000 0000 0000 
+-----Script1-----
+a378: 0091 0000 0000 0000
+a379: Sound 206
+a37a: Next
+a37b: End
+-----------------
+
+@0202: 五彩蜘蛛   0073 0000 0000 0000 0000 0000 
+@0203: 紫凤鸟     0074 0000 0000 0000 0000 0000 
+@0204: 小毒蝎     0075 0000 0000 0000 0000 0000 
+@0205: 赤蜈蚣     0076 0000 0000 0000 0000 0000 
+@0206: 食火蟾     0078 0000 0000 0000 a3b9 0000 
+-----Script3-----
+a3b9: Next
+a3ba: EnemyUseMagic 火術 False
+a3bb: Next
+a3bc: EnemyUseMagic 炎咒 False
+a3bd: Next
+a3be: EnemyUseMagic 三昧真火 False
+a3bf: Next
+a3c0: End
+-----------------
+
+@0207: 明王       0079 000a a125 a1e0 a1b8 0000 
+-----Script1-----
+a125: DialogBottom 0005 0
+a126: Message `李逍遙：`
+a127: Message `靈兒犯了什麼罪？`
+a128: Message `你們要如此迫害於她！`
+a129: Clear 0
+a12a: DialogTop 0000 0
+a12b: Message `鎮獄明王：`
+a12c: Message `此蛇女具有極可怕的妖力潛能`
+a12d: Message `如不將之鏟除，一旦任其覺醒`
+a12e: Message `必將危禍人世！`
+a12f: Clear 0
+a130: DialogBottom 0005 0
+a131: Message `李逍遙：`
+a132: Message `是妖怪又怎麼樣`
+a133: Message `她又不曾害過任何人！`
+a134: Clear 0
+a135: DialogTop 0000 0
+a136: Message `鎮獄明王：`
+a137: Message `哼！幼虎雖溫馴，誰敢保證將`
+a138: Message `來不會成為一頭吃人的猛虎？`
+a139: MessageClear
+a13a: Message `我既受命鎮守此塔，斬除魔`
+a13b: Message `族禍根乃我職責天命所在，`
+a13c: Message `絕不容情！`
+a13d: Clear 0
+a13e: DialogBottom 0005 0
+a13f: Message `李逍遙：`
+a140: Message `放屁！　神又怎麼樣`
+a141: Message `生了六隻手、三隻眼睛`
+a142: Message `一付嘴臉比妖怪更像妖怪`
+a143: MessageClear
+a144: Message `靈兒天生靈力高強，是她的`
+a145: Message `的福氣，你們嫉妒什麼！？`
+a146: Message `你呢∼　你不也是法力無邊`
+a147: Message `怎麼不先殺掉你自己？`
+a148: Clear 0
+a149: DialogTop 0000 0
+a14a: Message `鎮獄明王：`
+a14b: Message `無知愚民！我乃仙界之神明`
+a14c: Message `不同於這般下等山精水怪`
+a14d: Clear 0
+a14e: Message `汝等回頭是岸，莫與妖魔為伍`
+a14f: Message `而逆天行事！　否則一併打入`
+a150: Message `煉獄之中，受永世劫火之苦！`
+a151: Clear 0
+a152: DialogBottom 005b 0
+a153: Message `趙靈兒：`
+a154: Message `我娘乃是女媧氏嫡系族裔`
+a155: Message `我身雖為妖，心卻非魔`
+a156: Message `你怎可憑此而加罪於我！`
+a157: Clear 0
+a158: DialogTop 0000 0
+a159: Message `鎮獄明王：`
+a15a: Message `女媧？　西天如來座下、天界`
+a15b: Message `神佛之中，並無此號人物在列`
+a15c: MessageClear
+a15d: Message `汝之先祖∼只不過是南夷苗`
+a15e: Message `民女巫所崇拜的聖靈罷了`
+a15f: Message `當今人世業已深受我佛教化`
+a160: Message `旁門左道再無須容身之理！`
+a161: Message `覺悟吧！！`
+a162: Next
+a163: DialogBottom 005b 0
+a164: Message `趙靈兒：`
+a165: Message `$06上天既賜予我不同於凡人之力`
+a166: Message `就有我必須去做的事，我若死`
+a167: Message `於此，不但有愧天地，更對不`
+a168: Message `起千千萬萬崇拜我的苗民黔首~60`
+a169: MessageClear
+a16a: Message `$04道歸道、魔歸魔、而我是我`
+a16b: Message `$02神佛也不能決定我的命運！~70`
+a16c: Music 18
+a16d: IncreaseAttribute 体力最大值 170 赵灵儿
+a16e: IncreaseAttribute 真气最大值 190 赵灵儿
+a16f: IncreaseAttribute 等级 11 赵灵儿
+a170: IncreaseAttribute 武术 100 赵灵儿
+a171: IncreaseAttribute 灵力 155 赵灵儿
+a172: IncreaseAttribute 防御 55 赵灵儿
+a173: IncreaseAttribute 身法 80 赵灵儿
+a174: IncreaseAttribute 吉运 30 赵灵儿
+a175: Revive True 10
+a176: RecoverHPMP True 9999 9999
+a177: 0092 0002 0000 0000
+a178: Clear 0
+a179: DialogCenter 0000 0
+a17a: Message `"趙靈兒力量覺醒"~45`
+a17b: Clear 0
+a17c: DialogBottom 0009 0
+a17d: Message `李逍遙：`
+a17e: Message `跟他拼了！~45`
+a17f: Clear 0
+a180: DialogBottom 0015 0
+a181: Message `林月如：`
+a182: Message `好　∼！~45`
+a183: EnemyUseMagic 魔掌天下 False
+a184: Next
+a185: EnemyUseMagicNull False
+a186: Next
+a187: EnemyUseMagic 煉獄真火 False
+a188: Next
+a189: EnemyUseMagic 狂雷 False
+a18a: Next
+a18b: Next
+a18c: EnemyUseMagic ffff False
+a18d: Next
+a18e: EnemyUseMagic 煉獄真火 False
+a18f: Next
+a190: EnemyUseMagic 雷動九天 False
+a191: Next
+a192: EnemyUseMagic 天雷破 False
+a193: Next
+a194: EnemyUseMagic 風雪冰天 False
+a195: Next
+a196: EnemyUseMagic ffff False
+a197: Next
+a198: EnemyUseMagic 煉獄真火 False
+a199: Next
+a19a: EnemyUseMagic 天雷破 False
+a19b: Next
+a19c: EnemyUseMagic 狂雷 False
+a19d: Next
+a19e: EnemySummon 巨斧武士 0
+a19f: EnemySummon 金錘武士 0
+a1a0: EnemyUseMagic ffff False
+a1a1: Next
+a1a2: EnemyUseMagic 魔掌天下 False
+a1a3: Next
+a1a4: EnemyUseMagicNull False
+a1a5: Next
+a1a6: EnemyUseMagic 魔掌天下 False
+a1a7: Next
+a1a8: Next
+a1a9: EnemyUseMagic 煉獄真火 False
+a1aa: Next
+a1ab: EnemyUseMagic 雷動九天 False
+a1ac: Next
+a1ad: EnemyUseMagicNull False
+a1ae: Next
+a1af: EnemyUseMagic 天雷破 False
+a1b0: Next
+a1b1: Next
+a1b2: EnemySummon 角力士 2
+a1b3: EnemyUseMagic ffff False
+a1b4: Next
+a1b5: EnemyUseMagic 狂雷 False
+a1b6: NextReplace a185 0000
+
+a185: EnemyUseMagicNull False
+a186: Next
+a187: EnemyUseMagic 煉獄真火 False
+a188: Next
+a189: EnemyUseMagic 狂雷 False
+a18a: Next
+a18b: Next
+a18c: EnemyUseMagic ffff False
+a18d: Next
+a18e: EnemyUseMagic 煉獄真火 False
+a18f: Next
+a190: EnemyUseMagic 雷動九天 False
+a191: Next
+a192: EnemyUseMagic 天雷破 False
+a193: Next
+a194: EnemyUseMagic 風雪冰天 False
+a195: Next
+a196: EnemyUseMagic ffff False
+a197: Next
+a198: EnemyUseMagic 煉獄真火 False
+a199: Next
+a19a: EnemyUseMagic 天雷破 False
+a19b: Next
+a19c: EnemyUseMagic 狂雷 False
+a19d: Next
+a19e: EnemySummon 巨斧武士 0
+a19f: EnemySummon 金錘武士 0
+a1a0: EnemyUseMagic ffff False
+a1a1: Next
+a1a2: EnemyUseMagic 魔掌天下 False
+a1a3: Next
+a1a4: EnemyUseMagicNull False
+a1a5: Next
+a1a6: EnemyUseMagic 魔掌天下 False
+a1a7: Next
+a1a8: Next
+a1a9: EnemyUseMagic 煉獄真火 False
+a1aa: Next
+a1ab: EnemyUseMagic 雷動九天 False
+a1ac: Next
+a1ad: EnemyUseMagicNull False
+a1ae: Next
+a1af: EnemyUseMagic 天雷破 False
+a1b0: Next
+a1b1: Next
+a1b2: EnemySummon 角力士 2
+a1b3: EnemyUseMagic ffff False
+a1b4: Next
+a1b5: EnemyUseMagic 狂雷 False
+a1b6: NextReplace a185 0000
+
+0000: End
+-----Script2-----
+a1e0: CreateInventory 菩提袈裟 0
+a1e1: DialogFrame
+a1e2: Message `得到菩提袈裟`
+a1e3: End
+-----Script3-----
+a1b8: DialogBottom 0000 0
+a1b9: Message `鎮獄明王：`
+a1ba: Message `哼　一群邪魔外道`
+a1bb: Message `讓妳們永世不得超生！~50`
+a1bc: Next
+a1bd: DialogBottom 0000 0
+a1be: Message `鎮獄明王：`
+a1bf: Message `愚蠢的人類！下地獄吧！~50`
+a1c0: Next
+a1c1: End
+-----------------
+
+@0208: 九头蛇     007a 0000 0000 0000 0000 0000 
+@0209: 雷龙       007b 0000 0000 0000 0000 0000 
+@020a: 黑巫师     007c 0002 0000 0000 a397 0000 
+-----Script3-----
+a397: EnemyUseMagic 迴夢 False
+a398: Next
+a399: EnemyUseMagic 鬼降 False
+a39a: Next
+a39b: ChanceContinue 30 0000
+a39c: EnemySummon 五毒巨蠍 0
+a39d: EnemySummon 五毒巨蠍 0
+a39e: EnemyUseMagic ffff False
+a39f: Next
+a3a0: EnemyUseMagic 奪魂 True
+a3a1: Next
+a3a2: End
+
+0000: End
+-----------------
+
+@020b: 黑苗祭司   007d 0002 a3af 0000 a3a3 0000 
+-----Script1-----
+a3af: Sound 267
+a3b0: Next
+a3b1: End
+-----Script3-----
+a3a3: EnemyUseMagic 滅絕一擊 False
+a3a4: Next
+a3a5: EnemyUseMagic 天雷破 False
+a3a6: Next
+a3a7: ChanceContinue 40 0000
+a3a8: EnemySummon 五毒蜈蚣 0
+a3a9: EnemySummon 五毒蜈蚣 0
+a3aa: EnemyUseMagic ffff False
+a3ab: Next
+a3ac: EnemyUseMagic 狂雷 True
+a3ad: Next
+a3ae: End
+
+0000: End
+-----------------
+
+@020c: 智修大师   007e 000a 0000 a1d8 a353 0000 
+-----Script2-----
+a1d8: CreateInventory 羅漢袍 0
+a1d9: DialogFrame
+a1da: Message `得到羅漢袍`
+a1db: End
+-----Script3-----
+a353: EnemySummon 黃衣刀僧 2
+a354: EnemyUseMagic ffff False
+a355: Next
+a356: EnemyUseMagic 佛法無邊 False
+a357: Next
+a358: EnemyUseMagic ffff False
+a359: Next
+a35a: EnemyUseMagic 佛法無邊 False
+a35b: Next
+a35c: Next
+a35d: EnemyUseMagic ffff False
+a35e: Next
+a35f: EnemyUseMagic 佛法無邊 False
+a360: Next
+a361: Next
+a362: EnemySummon 灰衣喇嘛 0
+a363: EnemySummon 灰衣喇嘛 0
+a364: EnemyUseMagic ffff False
+a365: Next
+a366: EnemyUseMagic 佛法無邊 False
+a367: Next
+a368: Next
+a369: Next
+a36a: EnemyUseMagic ffff False
+a36b: Next
+a36c: EnemyUseMagic 佛法無邊 False
+a36d: Next
+a36e: EnemyUseMagic ffff False
+a36f: Next
+a370: EnemyUseMagic 佛法無邊 False
+a371: Next
+a372: NextReplace a353 0000
+
+0000: End
+-----------------
+
+@020d: 林天南     007f 000a 9e40 0000 9e51 0000 
+-----Script1-----
+9e40: DialogTop 0000 0
+9e41: Message `林天南：`
+9e42: Message `拿出你的真本領吧！`
+9e43: Message `不然．．死在我的劍下`
+9e44: Message `就別怨我`
+9e45: Next
+9e46: Next
+9e47: Next
+9e48: Next
+9e49: DialogTop 0000 0
+9e4a: Message `林天南：`
+9e4b: Message `　注意囉！`
+9e4c: Next
+9e4d: Next
+9e4e: Next
+9e4f: 0089 0000 0000 0000
+9e50: End
+-----Script3-----
+9e51: EnemyUseMagicNull False
+9e52: Next
+9e53: DialogTop 0000 0
+9e54: Message `林天南：`
+9e55: Message `好∼　第二劍！`
+9e56: EnemyUseMagic 氣劍指 False
+9e57: Next
+9e58: EnemyUseMagic 弦月斬1 False
+9e59: Next
+9e5a: EnemyUseMagic 劍氣斬 False
+9e5b: Next
+9e5c: EnemyUseMagic 橫掃千軍 False
+9e5d: Next
+9e5e: EnemyUseMagic 滅絕一擊 False
+9e5f: Next
+9e60: Message `林天南：`
+9e61: Message `最後一招∼看清楚了！`
+9e62: EnemyUseMagic 斬龍訣 False
+9e63: Next
+9e64: End
+-----------------
+
+@020e: 黑衣女贼   0080 0000 0000 0000 0000 0000 
+@020f: 苗枪卒     0081 0000 0000 0000 0000 0000 
+@0210: 巫王侍卫   0082 0002 0000 0000 0000 0000 
+@0211: 天鬼皇     0083 000a a108 0000 0000 0000 
+-----Script1-----
+a108: DialogBottom 0017 0
+a109: Message `你這臭妖怪，恩將仇報！`
+a10a: Clear 0
+a10b: DialogTop 002b 0
+a10c: Message `我們鬼族報答人類的方式`
+a10d: Message `就是吃了對方的身體，讓`
+a10e: Message `他們成為我們的伙伴！`
+a10f: EnemyUseMagicNull False
+a110: Next
+a111: EnemyUseMagic 地裂天崩 False
+a112: Next
+a113: EnemyUseMagicNull False
+a114: Next
+a115: EnemyUseMagic 天雷破 False
+a116: Next
+a117: Next
+a118: EnemyUseMagicNull False
+a119: Next
+a11a: EnemyUseMagic 魔掌天下 False
+a11b: Next
+a11c: EnemyUseMagic 地裂天崩 False
+a11d: Next
+a11e: EnemyUseMagic 煉獄真火 False
+a11f: Next
+a120: DialogBottom 000a 0
+a121: Message `李逍遙：`
+a122: Message `等等∼！`
+a123: 0089 0000 0000 0000
+a124: End
+-----------------
+
+@0212: 绿叶妖精   0084 0000 a286 0000 0000 0000 
+-----Script1-----
+a286: EnemyUseMagic 風咒 False
+a287: Next
+a288: EnemyUseMagicNull False
+a289: Next
+a28a: End
+-----------------
+
+@0213: 火蛟龙     0085 0000 0000 0000 0000 0000 
+@0214: 土蛟龙     0086 0000 0000 0000 0000 0000 
+@0215: 黑凤凰     0087 0000 0000 0000 0000 0000 
+@0216: 红史莱姆   0088 0000 a28b 0000 0000 0000 
+-----Script1-----
+a28b: Next
+a28c: EnemyDuplicate
+a28d: NextReplace a28b 0000
+
+0000: End
+-----------------
+
+@0217: 紫兽人     0089 0000 0000 0000 0000 0000 
+@0218: 土蜘蛛     008a 0000 0000 a559 0000 0000 
+-----Script2-----
+a559: ChanceContinue 50 0000
+a55a: CreateInventory 三屍蠱 1
+a55b: DialogFrame
+a55c: Message `獲得三屍蠱`
+a55d: Goto a374
+
+0000: End
+
+a374: CreateInventory 傀儡蟲 0
+a375: DialogFrame
+a376: Message `獲得一隻傀儡蟲`
+a377: End
+-----------------
+
+@0219: 绿食火蟾   008b 0000 0000 0000 0000 0000 
+@021a: 蓝食火蟾   008c 0000 0000 0000 a3c1 0000 
+-----Script3-----
+a3c1: Next
+a3c2: EnemyUseMagic 冰咒 False
+a3c3: Next
+a3c4: Next
+a3c5: EnemyUseMagic 玄冰咒 False
+a3c6: Next
+a3c7: End
+-----------------
+
+@021b: 毒神龙     008d 000a a1c2 0000 0000 0000 
+-----Script1-----
+a1c2: ChanceContinue 70 a1ce
+a1c3: 00a2 0003 0000 0000
+a1c4: Goto a1c7
+
+a1c7: EnemyUseMagic 萬蠱蝕天 False
+a1c8: NextReplace a1c2 0000
+
+0000: End
+
+a1ce: EnemyUseMagicNull False
+a1cf: NextReplace a1c2 0000
+-----------------
+
+@021c: 金神龙     008e 000a 0000 0000 1fee 0000 
+-----Script3-----
+1fee: ChanceContinue 80 1ff4
+1fef: ChanceContinue 60 1ff6
+1ff0: ChanceContinue 40 1ff8
+1ff1: ChanceContinue 50 1ffa
+1ff2: EnemyUseMagic ffff False
+1ff3: End
+
+1ff8: EnemyUseMagic 橫掃千軍 False
+1ff9: End
+
+1ffa: EnemyUseMagic 斬龍訣 False
+1ffb: End
+
+1ff4: EnemyUseMagicNull False
+1ff5: End
+
+1ff6: EnemyUseMagic 滅絕一擊 False
+1ff7: End
+-----------------
+
+@021d: 土神龙     008f 000a 0000 0000 1ffc 0000 
+-----Script3-----
+1ffc: ChanceContinue 70 2001
+1ffd: ChanceContinue 50 2003
+1ffe: ChanceContinue 40 2005
+1fff: EnemyUseMagic ffff False
+2000: End
+
+2003: EnemyUseMagic 地裂天崩 False
+2004: End
+
+2005: EnemyUseMagic 泰山壓頂 False
+2006: End
+
+2001: EnemyUseMagicNull False
+2002: End
+-----------------
+
+@021e: 火神龙     0090 000a 0000 0000 2007 0000 
+-----Script3-----
+2007: ChanceContinue 80 200d
+2008: ChanceContinue 60 200f
+2009: ChanceContinue 60 2011
+200a: ChanceContinue 33 2013
+200b: EnemyUseMagic ffff False
+200c: End
+
+200f: EnemyUseMagic 煉獄真火 False
+2010: End
+
+2011: EnemyUseMagic 火龍掌 False
+2012: End
+
+2013: EnemyUseMagic 魔燄焚 False
+2014: End
+
+200d: EnemyUseMagicNull False
+200e: End
+-----------------
+
+@021f: 冰神龙     0091 000a 0000 0000 2015 0000 
+-----Script3-----
+2015: ChanceContinue 70 201a
+2016: ChanceContinue 50 201c
+2017: ChanceContinue 40 201e
+2018: EnemyUseMagic ffff False
+2019: End
+
+201a: EnemyUseMagicNull False
+201b: End
+
+201c: EnemyUseMagic 風雪冰天 False
+201d: End
+
+201e: EnemyUseMagic 雪擁藍關 False
+201f: End
+-----------------
+
+@0220: 风神龙     0092 000a 0000 0000 2020 0000 
+-----Script3-----
+2020: ChanceContinue 70 2025
+2021: ChanceContinue 50 2027
+2022: ChanceContinue 40 2029
+2023: EnemyUseMagic ffff False
+2024: End
+
+2025: EnemyUseMagicNull False
+2026: End
+
+2027: EnemyUseMagic 狂風術 False
+2028: End
+
+2029: EnemyUseMagic 風捲殘雲 False
+202a: End
+-----------------
+
+@0221: 雷神龙     0093 000a 0000 0000 202b 0000 
+-----Script3-----
+202b: ChanceContinue 80 2031
+202c: ChanceContinue 60 2033
+202d: ChanceContinue 60 2035
+202e: ChanceContinue 33 2037
+202f: EnemyUseMagic ffff False
+2030: End
+
+2031: EnemyUseMagicNull False
+2032: End
+
+2033: EnemyUseMagic 狂雷 False
+2034: End
+
+2035: EnemyUseMagic 天雷破 False
+2036: End
+
+2037: EnemyUseMagic 雷動九天 False
+2038: End
+-----------------
+
+@0222: 拜月教主   0095 000a a56b 0000 a3eb 0000 
+-----Script1-----
+a56b: Message `拜月教主：`
+a56c: Message `想打倒我？　哼！`
+a56d: Message `再回去修練一百年吧`
+a56e: Next
+a56f: GotoIfEnemyHPLessThanPercent 50 a573 0000
+a570: DamageEnemy False -10000
+a571: Next
+a572: End
+
+0000: End
+
+a573: NextReplace a56f 0000
+
+a56f: GotoIfEnemyHPLessThanPercent 50 a573 0000
+a570: DamageEnemy False -10000
+a571: Next
+a572: End
+-----Script3-----
+a3eb: EnemyUseMagic 花殺陣 False
+a3ec: Next
+a3ed: EnemyUseMagic 群魔亂舞 False
+a3ee: Next
+a3ef: EnemyUseMagicNull False
+a3f0: Next
+a3f1: 00a2 000e 0000 0000
+a3f2: Goto a400
+
+a400: EnemyUseMagic 群魔亂舞 False
+a401: Next
+a402: EnemyUseMagicNull False
+a403: Next
+a404: EnemyUseMagic 花殺陣 False
+a405: NextReplace a3f1 0000
+
+0000: End
+
+a3f1: 00a2 000e 0000 0000
+a3f2: Goto a400
+-----------------
+
+@0223: 八头蛇     0096 000a 0000 0000 a3c8 0000 
+-----Script3-----
+a3c8: 00a2 0004 0000 0000
+a3c9: Goto a3cd
+
+a3cd: EnemyUseMagicNull False
+a3ce: Next
+a3cf: EnemyUseMagic 風雪冰天 False
+a3d0: NextReplace a3c8 0000
+
+0000: End
+-----------------
+
+@0224: 苗人拳1    0097 0000 0000 0000 0000 0000 
+@0225: 苗枪卒1    0098 0000 0000 0000 0000 0000 
+@0226: 紫九头蛇   0099 0000 0000 a565 0000 0000 
+-----Script2-----
+a565: ChanceContinue 50 0000
+a566: CreateInventory 血海棠 1
+a567: DialogFrame
+a568: Message `獲得血海棠`
+a569: Goto a374
+
+0000: End
+
+a374: CreateInventory 傀儡蟲 0
+a375: DialogFrame
+a376: Message `獲得一隻傀儡蟲`
+a377: End
+-----------------
+
+@0227: 赤毒       0000 0010 9bc6 0000 9bc8 0000 
+-----Script1-----
+9bc6: RecoverHP False -7
+9bc7: End
+-----Script3-----
+9bc8: DamageEnemy False 14
+9bc9: End
+-----------------
+
+@0228: 尸毒       0001 0040 9bca 0000 9bcc 0000 
+-----Script1-----
+9bca: RecoverHP False -12
+9bcb: End
+-----Script3-----
+9bcc: DamageEnemy False 24
+9bcd: End
+-----------------
+
+@0229: 瘴毒       0001 0021 9bce 0000 9bd0 0000 
+-----Script1-----
+9bce: RecoverHP False -20
+9bcf: End
+-----Script3-----
+9bd0: DamageEnemy False 40
+9bd1: End
+-----------------
+
+@022a: 毒丝       0002 00e0 9bd2 0000 9bd4 0000 
+-----Script1-----
+9bd2: RecoverHP False -32
+9bd3: End
+-----Script3-----
+9bd4: DamageEnemy False 64
+9bd5: End
+-----------------
+
+@022b: 三尸蛊毒   0003 0080 9bd6 0000 9be1 0000 
+-----Script1-----
+9bd6: IncreaseAttributeByPercent 防御 -25
+9bd7: Next
+9bd8: Next
+9bd9: RecoverHP False -1
+9bda: Next
+9bdb: RecoverHP False -2
+9bdc: Next
+9bdd: RecoverHP False -3
+9bde: Next
+9bdf: RecoverHP False -200
+9be0: End
+-----Script3-----
+9be1: Next
+9be2: DamageEnemy False 31
+9be3: Next
+9be4: DamageEnemy False 63
+9be5: Next
+9be6: DamageEnemy False 127
+9be7: Next
+9be8: DamageEnemy False 255
+9be9: Next
+9bea: DamageEnemy False 511
+9beb: CurePoisonForEnemy False 三屍蠱毒
+9bec: End
+-----------------
+
+@022c: 鹤顶红毒   0003 00a0 1e3b 0000 1e3f 0000 
+-----Script1-----
+1e3b: IncreaseAttributeByPercent 武术 -25
+1e3c: ChanceContinue 50 1e3e
+1e3d: RecoverHP False -150
+1e3e: End
+
+1e3e: End
+-----Script3-----
+1e3f: ChanceContinue 50 0000
+1e40: DamageEnemy False 300
+1e41: End
+
+0000: End
+-----------------
+
+@022d: 孔雀胆毒   0003 0050 1e42 0000 1e45 0000 
+-----Script1-----
+1e42: IncreaseAttributeByPercent 灵力 -25
+1e43: RecoverHPMP False -50 0
+1e44: End
+-----Script3-----
+1e45: 0039 0064 0000 0000
+1e46: End
+-----------------
+
+@022e: 血海棠毒   0003 0060 1e47 0000 1e4a 0000 
+-----Script1-----
+1e47: IncreaseAttributeByPercent 吉运 -25
+1e48: RecoverHP True -50
+1e49: End
+-----Script3-----
+1e4a: DamageEnemy True 100
+1e4b: End
+-----------------
+
+@022f: 断肠草毒   0003 00c0 1e4c 0000 1e50 0000 
+-----Script1-----
+1e4c: IncreaseAttributeByPercent 身法 -25
+1e4d: ChanceContinue 10 1e4f
+1e4e: KillHero
+1e4f: End
+
+1e4f: End
+-----Script3-----
+1e50: ChanceContinue 30 0000
+1e51: HalveEnemyHPIfUnder 500
+1e52: End
+
+0000: End
+-----------------
+
+@0230: 金蚕蛊毒   0003 00b0 0605 0000 0607 0000 
+-----Script1-----
+0605: RecoverHP False -100
+0606: End
+-----Script3-----
+0607: DamageEnemy False 200
+0608: End
+-----------------
+
+@0231: 食妖虫附   0004 0000 0000 0000 9bfd 0000 
+-----Script3-----
+9bfd: Next
+9bfe: DamageEnemy False 1
+9bff: Next
+9c00: DamageEnemy False 2
+9c01: Next
+9c02: DamageEnemy False 3
+9c03: Next
+9c04: DamageEnemy False 4
+9c05: Next
+9c06: DamageEnemy False 5
+9c07: Next
+9c08: DamageEnemy False 6
+9c09: Next
+9c0a: DamageEnemy False 7
+9c0b: Next
+9c0c: DamageEnemy False 8
+9c0d: Next
+9c0e: DialogFrame
+9c0f: Message `由食妖蟲煉成一隻靈蠱`
+9c10: CreateInventory 靈蠱 0
+9c11: CurePoisonForEnemy False 食妖蟲附
+9c12: Next
+9c13: End
+-----------------
+
+@0232: 碧血蚕附   0004 0000 0000 0000 9c14 0000 
+-----Script3-----
+9c14: Next
+9c15: DamageEnemy False 1
+9c16: Next
+9c17: DamageEnemy False 2
+9c18: Next
+9c19: DamageEnemy False 3
+9c1a: Next
+9c1b: DamageEnemy False 4
+9c1c: Next
+9c1d: DamageEnemy False 5
+9c1e: Next
+9c1f: DamageEnemy False 6
+9c20: Next
+9c21: DamageEnemy False 7
+9c22: Next
+9c23: DamageEnemy False 8
+9c24: Next
+9c25: DialogFrame
+9c26: Message `由碧血蠶煉成一隻赤血蠶`
+9c27: CreateInventory 赤血蠶 0
+9c28: CurePoisonForEnemy False 碧血蠶附
+9c29: Next
+9c2a: End
+-----------------
+
+@0233: 寿葫芦     0063 0000 9bc2 0000 0000 0000 
+-----Script1-----
+9bc2: RecoverHPMP False 100 0
+9bc3: End
+-----------------
+
+@0234: 白玉龙骨鞭 002b 7530 0000 37b5 0565 012e 
+-----Script2-----
+37b5: PutOn 武器 白玉龍骨鞭
+37b6: SetArmorAttribute 武器 武术 209
+37b7: SetArmorAttribute 武器 身法 150
+37b8: SetArmorAttribute 武器 灵力 50
+37b9: SetArmorAttribute 武器 防御 20
+37ba: SetArmorAttribute 武器 吉运 100
+37bb: SetAttribute 可否攻击全体 1 0000
+37bc: SetAttribute 战斗模型 6 0000
+37bd: End
+-----Script3-----
+0565: 0066 0182 02bc 0000
+0566: End
+-----------------
+
+@0235: 梦华天蛇冠 00db 7c38 0000 37be 0000 00aa 
+-----Script2-----
+37be: PutOn 头部 夢華天蛇冠
+37bf: SetArmorAttribute 头部 防御 72
+37c0: SetArmorAttribute 头部 灵力 125
+37c1: SetArmorAttribute 头部 身法 35
+37c2: SetArmorAttribute 头部 吉运 35
+37c3: End
+-----------------
+
+@0236: 剑灭       0069 0000 2a87 2a99 0000 000a 
+-----Script1-----
+2a87: HeroUseMagic 煉獄真火 False
+2a88: HalveEnemyHPIfUnder 32767
+2a89: DamageEnemy True 5000
+2a8a: SetAttribute 体力 1 李逍遥
+2a8b: RecoverMP False 0
+2a8c: SetAttribute 真气最大值 990 李逍遥
+2a8d: IncreaseAttributeByPercent 武术 -90
+2a8e: IncreaseAttributeByPercent 灵力 -90
+2a8f: IncreaseAttributeByPercent 防御 -90
+2a90: IncreaseAttributeByPercent 身法 -90
+2a91: IncreaseAttributeByPercent 吉运 -90
+2a92: GotoOnObjectState (14d5,空) 0 2a95
+2a93: GotoOnObjectState (14d5,空) 5 2aa4
+2a94: End
+
+2a95: RemoveMagic 劍滅 李逍遥
+2a96: DialogCenter 0000 0
+2a97: Message `身體達到極限，"劍滅"不堪再用`
+2a98: End
+
+2aa4: RemoveMagic 劍滅 李逍遥
+2aa5: DialogCenter 0000 0
+2aa6: Message `無劍勝有劍，劍人一體`
+2aa7: Message `          是為"劍滅"`
+2aa8: Clear 0
+2aa9: DialogCenter 0000 0
+2aaa: Message `李逍遙身體極限突破`
+2aab: Message `          學會"忘劍五訣"`
+2aac: LearnMagic 忘劍五訣 李逍遥
+2aad: End
+-----Script2-----
+2a99: GotoOnObjectState (14d5,空) 2 2aa2
+2a9a: Next
+2a9b: GotoOnObjectState (14d5,空) 3 2aa2
+2a9c: Goto a5fb
+
+2aa2: SetObjectState (14d5,空) 0
+2aa3: End
+
+a5fb: Next
+a5fc: GotoOnObjectState (14f9,空) 1 2a9d
+a5fd: Goto 2aa2
+
+2a9d: DialogBottom 0005 0
+2a9e: Message `李逍遙：`
+2a9f: Message `男兒九死亦何憾！拼了`
+2aa0: SetObjectState (14d5,空) 5
+2aa1: End
+-----------------
+
+@0237: 忘剑五诀   006a 0000 2b6d 2b81 0000 0012 
+-----Script1-----
+2b6d: ConditionHero 定身 5 0000
+2b6e: Next
+2b6f: ConditionHero 疯魔 5 0000
+2b70: Next
+2b71: ConditionHero 昏睡 5 0000
+2b72: Next
+2b73: ConditionHero 咒封 5 0000
+2b74: Next
+2b75: KillHero
+2b76: DialogCenter 0000 0
+2b77: Message `得劍而忘劍，心劍合一`
+2b78: Message `          是為"劍生"`
+2b79: Clear 0
+2b7a: DialogCenter 0000 0
+2b7b: Message `李逍遙精神極限突破`
+2b7c: Message `      劍道達到極致`
+2b7d: Message `          學會"劍心通明"`
+2b7e: RemoveMagic 忘劍五訣 李逍遥
+2b7f: LearnMagic 劍心通明 李逍遥
+2b80: End
+
+0000: End
+-----Script2-----
+2b81: DialogCenter 0000 0
+2b82: Message `忘劍五訣第一："戒貪"`
+2b83: Next
+2b84: DialogCenter 0000 0
+2b85: Message `忘劍五訣第二："滅嗔"`
+2b86: Next
+2b87: DialogCenter 0000 0
+2b88: Message `忘劍五訣第三："破癡"`
+2b89: Next
+2b8a: DialogCenter 0000 0
+2b8b: Message `忘劍五訣第四："無為"`
+2b8c: Next
+2b8d: DialogCenter 0000 0
+2b8e: Message `忘劍五訣第五："忘我"`
+2b8f: Clear 0
+2b90: End
+-----------------
+
+@0238: 剑心通明   006b 0000 2b91 0000 0000 0012 
+-----Script1-----
+2b91: SetAttribute 体力最大值 5000 李逍遥
+2b92: SetAttribute 真气最大值 5000 李逍遥
+2b93: IncreaseAttributeByPercent 武术 400
+2b94: IncreaseAttributeByPercent 灵力 400
+2b95: IncreaseAttributeByPercent 防御 400
+2b96: IncreaseAttributeByPercent 身法 400
+2b97: IncreaseAttributeByPercent 吉运 400
+2b98: End
+-----------------
+
+@0239: 圣灵祝福   006c 0000 6580 0000 0000 0012 
+-----Script1-----
+6580: PoisonHero True 聖靈祝福
+6581: End
+-----------------
+
+@023a: 满天花雨   006d 0000 65a0 a57a 0000 001a 
+-----Script1-----
+65a0: RemoveInventory 梅花鏢 10 65b1
+65a1: DamageEnemy True 600
+65a2: RemoveInventory 袖裡劍 8 65b1
+65a3: DamageEnemy True 630
+65a4: RemoveInventory 透骨釘 5 65b1
+65a5: DamageEnemy True 760
+65a6: RemoveInventory 無影神針 3 65b1
+65a7: DamageEnemy True 800
+65a8: RemoveInventory 血玲瓏 1 65b1
+65a9: DamageEnemy True 500
+65aa: BattleHeroInvisible 1
+65ab: PoisonHero False 風靈祝福
+65ac: End
+
+65b1: End
+-----Script2-----
+a57a: GotoIfHeroNotPoisonedWith 風靈祝福 659e
+a57b: DialogCenter 0000 0
+a57c: Message `暗器收集中．．`
+a57d: 0041 0000 0000 0000
+a57e: End
+
+659e: HeroUseMagic 乾坤一擲 False
+659f: End
+-----------------
+
+@023b: 无心咒     006e 0000 65b6 65b4 0000 001a 
+-----Script1-----
+65b6: PoisonHero False 聖靈祈
+65b7: PoisonEnemy True 赤毒
+65b8: PoisonEnemy True 屍毒
+65b9: PoisonEnemy True 瘴毒
+65ba: PoisonEnemy True 毒絲
+65bb: PoisonEnemy True 三屍蠱毒
+65bc: PoisonEnemy True 鶴頂紅毒
+65bd: PoisonEnemy True 孔雀膽毒
+65be: PoisonEnemy True 血海棠毒
+65bf: PoisonEnemy True 斷腸草毒
+65c0: PoisonEnemy True 金蠶蠱毒
+65c1: End
+-----Script2-----
+65b4: RemoveInventory 七心海棠 1 a45a
+65b5: End
+
+a45a: DialogFrame
+a45b: Message `道具不足無法使用`
+a45c: 0041 0000 0000 0000
+a45d: End
+-----------------
+
+@023c: 林天南幻影 009c 000a a49e 0000 6078 0000 
+-----Script1-----
+a49e: DamageEnemy False -10000
+a49f: Clear 0
+a4a0: DialogBottom 0015 0
+a4a1: Message `爹，我們不是．．`
+a4a2: Clear 0
+a4a3: DialogTop 0000 0
+a4a4: Message `大膽妖孽，竟敢變化成我女兒`
+a4a5: Message `的模樣！我女兒早就死在鎖妖`
+a4a6: Message `塔中，你當我林天南是好欺騙`
+a4a7: Message `的嗎！看招∼`
+a4a8: NextReplace 3c46 0000
+
+0000: End
+
+3c46: GotoOnObjectState (14e0,空) 1 3c52
+3c47: GotoIfEnemyHPLessThanPercent 100 3c5d 0000
+3c48: DialogTop 0000 0
+3c49: Message `啊，你們惹怒我了，看看我的`
+3c4a: Message `真正實力`
+3c4b: Clear 0
+3c4c: EnemyPolymorph 血角青龍
+3c4d: GotoOnObjectState (14e0,空) 1 3c50
+3c4e: DialogBottom 0017 0
+3c4f: Message `可惡，你這妖怪，竟敢騙我！`
+3c50: SetObjectState (14e1,空) 2
+3c51: NextReplace 3c5d 0000
+
+3c5d: End
+
+3c50: SetObjectState (14e1,空) 2
+3c51: NextReplace 3c5d 0000
+
+3c52: DialogBottom 0015 0
+3c53: Message `你也這個大膽妖孽，竟敢變化`
+3c54: Message `成我爹的模樣！我爹從不使鞭`
+3c55: Message `，你當我林月如是好欺騙的嗎`
+3c56: Goto 2c88
+
+2c88: Message `嘗嘗我新學的一招"滿天花雨"`
+2c89: LearnMagic 滿天花雨 林月如
+2c8a: Goto 3c57
+
+3c57: HeroUseMagic 滿天花雨 False
+3c58: EnemyPolymorph 血角青龍
+3c59: DialogTop 0000 0
+3c5a: Message `竟然被你識破`
+3c5b: Message `哼，我還能進行別的變化`
+3c5c: NextReplace 3c47 0000
+
+3c47: GotoIfEnemyHPLessThanPercent 100 3c5d 0000
+3c48: DialogTop 0000 0
+3c49: Message `啊，你們惹怒我了，看看我的`
+3c4a: Message `真正實力`
+3c4b: Clear 0
+3c4c: EnemyPolymorph 血角青龍
+3c4d: GotoOnObjectState (14e0,空) 1 3c50
+3c4e: DialogBottom 0017 0
+3c4f: Message `可惡，你這妖怪，竟敢騙我！`
+3c50: SetObjectState (14e1,空) 2
+3c51: NextReplace 3c5d 0000
+-----Script3-----
+6078: EnemyUseMagic 橫掃千軍 False
+6079: Next
+607a: Next
+607b: Next
+607c: GotoOnObjectState (14e1,空) 2 06d5
+607d: ChanceContinue 20 607b
+607e: DialogTop 0000 0
+607f: Message `哼，這種程度而已`
+6080: Message `好，看看這樣你們還能否承受`
+6081: EnemyUseMagic 斬龍訣 False
+6082: Next
+6083: GotoOnObjectState (14e1,空) 2 06d5
+6084: Next
+6085: GotoOnObjectState (14e1,空) 2 06d5
+6086: ChanceContinue 40 6084
+6087: Next
+6088: GotoOnObjectState (14e1,空) 2 06d5
+6089: ChanceContinue 30 6087
+608a: DialogTop 0000 0
+608b: Message `看來不拿點真功夫不行了！`
+608c: Message `看我林家絕藝∼"萬里狂沙"！`
+608d: EnemyUseMagic 萬里狂沙 False
+608e: SetObjectState (14e0,空) 1
+608f: Next
+6090: GotoOnObjectState (14e1,空) 2 06d5
+6091: 00a2 0005 0000 0000
+6092: Goto 6097
+
+06d5: ChanceContinue 75 06da
+06d6: ChanceContinue 67 06dc
+06d7: ChanceContinue 50 06de
+06d8: EnemyUseMagicNull False
+06d9: End
+
+06dc: EnemyUseMagic 狂雷 False
+06dd: End
+
+6097: EnemyPolymorph 殭屍王
+6098: EnemyUseMagic 煉獄爪 False
+6099: NextReplace 6090 0000
+
+0000: End
+
+6090: GotoOnObjectState (14e1,空) 2 06d5
+6091: 00a2 0005 0000 0000
+6092: Goto 6097
+
+06da: EnemyUseMagic 風捲殘雲 False
+06db: End
+
+06de: EnemyUseMagic 奪魂 False
+06df: End
+
+607b: Next
+607c: GotoOnObjectState (14e1,空) 2 06d5
+607d: ChanceContinue 20 607b
+607e: DialogTop 0000 0
+607f: Message `哼，這種程度而已`
+6080: Message `好，看看這樣你們還能否承受`
+6081: EnemyUseMagic 斬龍訣 False
+6082: Next
+6083: GotoOnObjectState (14e1,空) 2 06d5
+6084: Next
+6085: GotoOnObjectState (14e1,空) 2 06d5
+6086: ChanceContinue 40 6084
+6087: Next
+6088: GotoOnObjectState (14e1,空) 2 06d5
+6089: ChanceContinue 30 6087
+608a: DialogTop 0000 0
+608b: Message `看來不拿點真功夫不行了！`
+608c: Message `看我林家絕藝∼"萬里狂沙"！`
+608d: EnemyUseMagic 萬里狂沙 False
+608e: SetObjectState (14e0,空) 1
+608f: Next
+6090: GotoOnObjectState (14e1,空) 2 06d5
+6091: 00a2 0005 0000 0000
+6092: Goto 6097
+
+6084: Next
+6085: GotoOnObjectState (14e1,空) 2 06d5
+6086: ChanceContinue 40 6084
+6087: Next
+6088: GotoOnObjectState (14e1,空) 2 06d5
+6089: ChanceContinue 30 6087
+608a: DialogTop 0000 0
+608b: Message `看來不拿點真功夫不行了！`
+608c: Message `看我林家絕藝∼"萬里狂沙"！`
+608d: EnemyUseMagic 萬里狂沙 False
+608e: SetObjectState (14e0,空) 1
+608f: Next
+6090: GotoOnObjectState (14e1,空) 2 06d5
+6091: 00a2 0005 0000 0000
+6092: Goto 6097
+
+6087: Next
+6088: GotoOnObjectState (14e1,空) 2 06d5
+6089: ChanceContinue 30 6087
+608a: DialogTop 0000 0
+608b: Message `看來不拿點真功夫不行了！`
+608c: Message `看我林家絕藝∼"萬里狂沙"！`
+608d: EnemyUseMagic 萬里狂沙 False
+608e: SetObjectState (14e0,空) 1
+608f: Next
+6090: GotoOnObjectState (14e1,空) 2 06d5
+6091: 00a2 0005 0000 0000
+6092: Goto 6097
+-----------------
+
+@023d: 血角青龙   009b 000a 0000 0000 0000 0000 
+@023e: 复活水魔兽 009d 000a a56f 0000 a3c8 0000 
+-----Script1-----
+a56f: GotoIfEnemyHPLessThanPercent 50 a573 0000
+a570: DamageEnemy False -10000
+a571: Next
+a572: End
+
+0000: End
+
+a573: NextReplace a56f 0000
+-----Script3-----
+a3c8: 00a2 0004 0000 0000
+a3c9: Goto a3cd
+
+a3cd: EnemyUseMagicNull False
+a3ce: Next
+a3cf: EnemyUseMagic 風雪冰天 False
+a3d0: NextReplace a3c8 0000
+
+0000: End
+-----------------
+
+@023f: 狂怒拜月   009e 000a a56f 0000 a3eb 0000 
+-----Script1-----
+a56f: GotoIfEnemyHPLessThanPercent 50 a573 0000
+a570: DamageEnemy False -10000
+a571: Next
+a572: End
+
+0000: End
+
+a573: NextReplace a56f 0000
+-----Script3-----
+a3eb: EnemyUseMagic 花殺陣 False
+a3ec: Next
+a3ed: EnemyUseMagic 群魔亂舞 False
+a3ee: Next
+a3ef: EnemyUseMagicNull False
+a3f0: Next
+a3f1: 00a2 000e 0000 0000
+a3f2: Goto a400
+
+a400: EnemyUseMagic 群魔亂舞 False
+a401: Next
+a402: EnemyUseMagicNull False
+a403: Next
+a404: EnemyUseMagic 花殺陣 False
+a405: NextReplace a3f1 0000
+
+0000: End
+
+a3f1: 00a2 000e 0000 0000
+a3f2: Goto a400
+-----------------
+
+@0240: 合体水魔兽 009f 000a a5eb 0000 4c9f 0000 
+-----Script1-----
+a5eb: GotoIfEnemyHPLessThanPercent 25 a5ee 0000
+a5ec: DamageEnemy False -20000
+a5ed: Next
+a5ee: End
+
+0000: End
+
+a5ee: End
+-----Script3-----
+4c9f: ChanceContinue 75 4ca7
+4ca0: ChanceContinue 66 4cab
+4ca1: ChanceContinue 66 4caf
+4ca2: ChanceContinue 50 4cb3
+4ca3: EnemyUseMagic 毒吞天下 False
+4ca4: Next
+4ca5: EnemyUseMagic 迴夢 False
+4ca6: NextReplace 4c9f 0000
+
+4cb3: EnemyUseMagic 寂滅 False
+4cb4: Next
+4cb5: EnemyUseMagic 奪魂 False
+4cb6: NextReplace 4c9f 0000
+
+4cab: Call 096e
+4cac: Next
+4cad: Call 0963
+4cae: NextReplace 4c9f 0000
+
+0000: End
+
+096e: ChanceContinue 75 0973
+096f: ChanceContinue 66 0975
+0970: ChanceContinue 50 0977
+0971: EnemyUseMagic 大咒蛇 False
+0972: End
+
+4ca7: Call 0963
+4ca8: Next
+4ca9: Call 0963
+4caa: NextReplace 4c9f 0000
+
+0973: EnemyUseMagic 橫掃千軍 False
+0974: End
+
+0975: EnemyUseMagic 風雪冰天 False
+0976: End
+
+0977: EnemyUseMagic 地裂天崩 False
+0978: End
+
+4caf: EnemyUseMagic 萬蟻蠱附 False
+4cb0: Next
+4cb1: EnemyUseMagic 鬼降 False
+4cb2: NextReplace 4c9f 0000
+
+0963: ChanceContinue 75 0968
+0964: ChanceContinue 66 096a
+0965: ChanceContinue 50 096c
+0966: EnemyUseMagic 雪擁藍關 False
+0967: End
+
+0968: EnemyUseMagic 萬蠱蝕天 False
+0969: End
+
+096c: EnemyUseMagic 群魔亂舞 False
+096d: End
+
+096a: EnemyUseMagic 花殺陣 False
+096b: End
+-----------------
+
+@0241: 风灵祝福   0063 0000 a57f 0000 0000 0000 
+-----Script1-----
+a57f: Next
+a580: Next
+a581: Next
+a582: CurePoisonForHero False 風靈祝福
+a583: End
+-----------------
+
+@0242: 雷灵祝福   009a 000a 0873 0000 0000 0000 
+-----Script1-----
+0873: DialogTop 0000 0
+0874: Message `仙人：`
+0875: Message `我先看看你對五靈的掌控情況`
+0876: MessageClear
+0877: Message `首先是風靈`
+0878: EnemyUseMagic 狂風術 False
+0879: Next
+087a: EnemyUseMagic 狂風術 False
+087b: Next
+087c: EnemyUseMagic 風捲殘雲 False
+087d: Next
+087e: Message `仙人：`
+087f: Message `其次是土靈`
+0880: EnemyUseMagic 地裂天崩 False
+0881: Next
+0882: EnemyUseMagic 地裂天崩 False
+0883: Next
+0884: EnemyUseMagic 泰山壓頂 False
+0885: Next
+0886: Message `仙人：`
+0887: Message `然後是雷靈`
+0888: EnemyUseMagic 天雷破 False
+0889: Next
+088a: EnemyUseMagic 狂雷 False
+088b: Next
+088c: EnemyUseMagic 雷動九天 False
+088d: Next
+088e: Message `仙人：`
+088f: Message `然後是火靈`
+0890: EnemyUseMagic 火龍掌 False
+0891: Next
+0892: EnemyUseMagic 煉獄真火 False
+0893: Next
+0894: EnemyUseMagic 魔燄焚 False
+0895: Next
+0896: Message `仙人：`
+0897: Message `好，最後是水靈`
+0898: EnemyUseMagic 風雪冰天 False
+0899: Next
+089a: EnemyUseMagic 風雪冰天 False
+089b: Next
+089c: EnemyUseMagic 雪擁藍關 False
+089d: Next
+089e: Message `仙人：`
+089f: Message `不錯，再看看你對真氣的把握`
+08a0: EnemyUseMagic 氣功 False
+08a1: Next
+08a2: EnemyUseMagic 橫掃千軍 False
+08a3: Next
+08a4: EnemyUseMagic 斬龍訣 False
+08a5: Next
+08a6: Message `仙人：`
+08a7: Message `嗯，最後看看你的劍法`
+08a8: EnemyUseMagic 御劍伏魔 False
+08a9: Next
+08aa: EnemyUseMagic 御劍伏魔 False
+08ab: Next
+08ac: Message `仙人：`
+08ad: Message `你能撐到現在很不容易`
+08ae: Message `下一招就是劍法之極`
+08af: Message `好好看著！`
+08b0: Clear 0
+08b1: EnemyUseMagic 御劍伏魔1 False
+08b2: Next
+08b3: Message `仙人：`
+08b4: Message `很好，你通過了`
+08b5: 0089 0000 0000 0000
+08b6: End
+-----------------
+
+@0243: 息壤       0000 0000 0000 0000 0000 0000 
+@0244: 队伍调整   0071 0000 0597 0000 0000 0011 
+-----Script1-----
+0597: FadeScreen
+0598: 0079 0025 059a 0000
+0599: End
+-----------------
+
+@0245: 土灵祝福   0063 0000 0000 0000 0000 0000 
+@0246: 圣灵祝福   0063 0000 6582 0000 0000 0000 
+-----Script1-----
+6582: Next
+6583: Next
+6584: RecoverHP False 2
+6585: Next
+6586: RecoverHP False 3
+6587: Next
+6588: RecoverHP False 4
+6589: Next
+658a: 0092 0000 0000 0000
+658b: SetArmorAttribute 0011 风抗 50
+658c: SetArmorAttribute 0011 雷抗 50
+658d: SetArmorAttribute 0011 水抗 50
+658e: SetArmorAttribute 0011 火抗 50
+658f: SetArmorAttribute 0011 土抗 50
+6590: IncreaseAttributeByPercent 武术 100
+6591: IncreaseAttributeByPercent 灵力 100
+6592: IncreaseAttributeByPercent 防御 100
+6593: IncreaseAttributeByPercent 身法 100
+6594: IncreaseAttributeByPercent 吉运 100
+6595: ConditionHero 普通攻击加强 9 0000
+6596: ConditionHero 防御加强 9 0000
+6597: ConditionHero 身法加强 9 0000
+6598: ConditionHero 两次攻击 9 0000
+6599: CureMultiplePoisonHero False 3
+659a: Call 99c2
+659b: RecoverHPMP False 1000 0
+659c: CurePoisonForHero False 聖靈祝福
+659d: End
+
+0000: End
+
+99c2: RemoveConditionForHero 疯魔
+99c3: RemoveConditionForHero 定身
+99c4: RemoveConditionForHero 昏睡
+99c5: RemoveConditionForHero 咒封
+99c6: End
+-----------------
+
+@0247: 圣灵祈     0063 0000 65c2 0000 0000 0000 
+-----Script1-----
+65c2: DamageEnemy True 1000
+65c3: End
+-----------------
+
+@0248: 万蚁蛊附   006f 0000 0531 0000 0000 001a 
+-----Script1-----
+0531: PoisonHero True 萬蟻蠱
+0532: End
+-----------------
+
+@0249: 寂灭       0070 0000 0533 0000 0000 000a 
+-----Script1-----
+0533: PoisonHero False 寂滅天下
+0534: End
+-----------------
+
+@024a: 万蚁蛊     0004 00d0 0535 0000 0000 0000 
+-----Script1-----
+0535: RemoveConditionForHero 普通攻击加强
+0536: RemoveConditionForHero 防御加强
+0537: RemoveConditionForHero 身法加强
+0538: RemoveConditionForHero 两次攻击
+0539: End
+-----------------
+
+@024b: 寂灭天下   0063 0070 053a 0000 0000 0000 
+-----Script1-----
+053a: HalveHP
+053b: RecoverMP False -999
+053c: End
+-----------------
+
+@024c: 无心       0064 0000 a57a 0000 0000 001a 
+-----Script1-----
+a57a: GotoIfHeroNotPoisonedWith 風靈祝福 659e
+a57b: DialogCenter 0000 0
+a57c: Message `暗器收集中．．`
+a57d: 0041 0000 0000 0000
+a57e: End
+
+659e: HeroUseMagic 乾坤一擲 False
+659f: End
+-----------------
+
