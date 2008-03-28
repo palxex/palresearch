@@ -74,14 +74,14 @@ static Segments(void) {
 	SegRename(0X276C0,"seg005");
 	SegClass (0X276C0,"CODE");
 	SetSegmentType(0X276C0,2);
-	SegCreate(0X28112,0X28143,0X2811,0,1,2);
+	SegCreate(0X28112,0X28144,0X2811,0,1,2);
 	SegRename(0X28112,"seg006");
 	SegClass (0X28112,"CODE");
 	SetSegmentType(0X28112,2);
-	SegCreate(0X28143,0X281D1,0X2814,0,1,2);
-	SegRename(0X28143,"seg007");
-	SegClass (0X28143,"CODE");
-	SetSegmentType(0X28143,2);
+	SegCreate(0X28144,0X281D1,0X2814,0,1,2);
+	SegRename(0X28144,"seg007");
+	SegClass (0X28144,"CODE");
+	SetSegmentType(0X28144,2);
 	SegCreate(0X281D1,0X28200,0X281D,0,1,2);
 	SegRename(0X281D1,"seg008");
 	SegClass (0X281D1,"CODE");
@@ -241,7 +241,7 @@ static Structures_0(id) {
 	id = AddStrucEx(-1,"event_object",0);
 	
 	id = GetStrucIdByName("Trans_Table");
-	AddStrucMember(id,"Length",	0X0,	0x20085500,	-1,	4);
+	AddStrucMember(id,"Length_tt",	0X0,	0x20085500,	-1,	4);
 	AddStrucMember(id,"Src_Handle",	0X4,	0x10085500,	-1,	2);
 	AddStrucMember(id,"Src_Offset",	0X6,	0x20085500,	-1,	4);
 	AddStrucMember(id,"Dst_Handle",	0XA,	0x10085500,	-1,	2);
@@ -288,7 +288,7 @@ static Structures_0(id) {
 	AddStrucMember(id,"size",	0X6,	0x10005500,	-1,	2);
 	
 	id = GetStrucIdByName("device_request_header");
-	AddStrucMember(id,"length",	0X0,	0x085500,	-1,	1);
+	AddStrucMember(id,"len_drh",	0X0,	0x085500,	-1,	1);
 	AddStrucMember(id,"subUnit",	0X1,	0x085500,	-1,	1);
 	AddStrucMember(id,"funcNr",	0X2,	0x085500,	-1,	1);
 	AddStrucMember(id,"status",	0X3,	0x10085500,	-1,	2);
@@ -330,8 +330,7 @@ static Structures_0(id) {
 	
 	id = GetStrucIdByName("scanline");
 	AddStrucMember(id,"pixels",	0X0,	0x10000400,	-1,	2);
-	AddStrucMember(id,"offset",	0X2,	0x10000400,	-1,	2);
-	AddStrucMember(id,"segment",	0X4,	0x10000400,	-1,	2);
+	AddStrucMember(id,"ptr",	0X2,	0x20000400,	-1,	4);
 	AddStrucMember(id,"next",	0X6,	0x10000400,	-1,	2);
 	
 	id = GetStrucIdByName("AudioStatus_t");
@@ -348,7 +347,7 @@ static Structures_0(id) {
 	AddStrucMember(id,"layer",	0X6,	0x10000400,	-1,	2);
 	AddStrucMember(id,"trigger_script",	0X8,	0x10000400,	-1,	2);
 	AddStrucMember(id,"auto_script",	0XA,	0x10000400,	-1,	2);
-	AddStrucMember(id,"status",	0XC,	0x10000400,	-1,	2);
+	AddStrucMember(id,"obj_status",	0XC,	0x10000400,	-1,	2);
 	AddStrucMember(id,"trigger_method",	0XE,	0x10000400,	-1,	2);
 	AddStrucMember(id,"image",	0X10,	0x10000400,	-1,	2);
 	AddStrucMember(id,"frames",	0X12,	0x10000400,	-1,	2);
@@ -1138,6 +1137,7 @@ static Bytes_0(void) {
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
 	OpDecimal	(x,	1);
+	MakeName	(0X4C6,	"CDROM_Found");
 	MakeCode	(x=0X4CC);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -2177,7 +2177,7 @@ static Bytes_0(void) {
 	MakeCode	(x=0XC5B);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
-	OpHex		(x,	1);
+	OpBinary	(x,	1);
 	MakeCode	(x=0XC61);
 	OpHex		(x,	1);
 	MakeCode	(0XC69);
@@ -2207,7 +2207,7 @@ static Bytes_0(void) {
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0XC9A);
-	OpHex		(x,	1);
+	OpBinary	(x,	1);
 	MakeCode	(x=0XC9D);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -2350,9 +2350,11 @@ static Bytes_0(void) {
 	MakeCode	(x=0XD98);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0XD9E);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0XDA9);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -2946,6 +2948,7 @@ static Bytes_0(void) {
 	OpOff		(x,	128,	0X2F380);
 	MakeCode	(x=0X1182);
 	OpStkvar	(x,	0);
+	MakeRptCmt	(0X1185,	"法术效果脚本");
 	MakeCode	(x=0X118A);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -3240,7 +3243,7 @@ static Bytes_0(void) {
 	MakeCode	(x=0X1385);
 	OpHex		(x,	1);
 	MakeCode	(x=0X1387);
-	OpHex		(x,	1);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X138C);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -3593,17 +3596,11 @@ static Bytes_0(void) {
 	OpOff		(x,	128,	0X2F380);
 	MakeCode	(x=0X15E5);
 	OpStkvar	(x,	0);
-	MakeCode	(x=0X15E8);
-	OpStkvar	(x,	0);
 	MakeCode	(x=0X15F0);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X15F3);
 	OpStkvar	(x,	1);
-	MakeCode	(x=0X15F6);
-	OpHex		(x,	1);
-	MakeCode	(x=0X15F9);
-	OpHex		(x,	1);
 	MakeCode	(x=0X15FF);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1602);
@@ -3611,17 +3608,12 @@ static Bytes_0(void) {
 	MakeCode	(x=0X1606);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0X1609);
-	OpHex		(x,	1);
-	MakeCode	(x=0X160C);
-	OpHex		(x,	1);
 	MakeCode	(x=0X160F);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X1615);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
-	OpHex		(x,	1);
 	MakeCode	(x=0X161A);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -3911,6 +3903,7 @@ static Bytes_0(void) {
 	OpOff		(x,	128,	0X2F380);
 	MakeCode	(x=0X17F0);
 	OpStkvar	(x,	0);
+	MakeRptCmt	(0X17F3,	"物品装备脚本");
 	MakeCode	(x=0X17F8);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -4103,6 +4096,7 @@ static Bytes_0(void) {
 	OpOff		(x,	128,	0X2F380);
 	MakeCode	(x=0X1948);
 	OpStkvar	(x,	0);
+	MakeRptCmt	(0X194B,	"物品使用脚本");
 	MakeCode	(x=0X1950);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -4423,7 +4417,7 @@ static Bytes_0(void) {
 	MakeCode	(x=0X1B65);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
-	MakeName	(0X1B65,	"process_Research");
+	MakeName	(0X1B65,	"process_Explore");
 	MakeCode	(x=0X1B68);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -4457,13 +4451,13 @@ static Bytes_0(void) {
 	MakeCode	(x=0X1B95);
 	OpHex		(x,	1);
 	MakeCode	(x=0X1B98);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1BA0);
 	OpHex		(x,	1);
 	MakeCode	(x=0X1BA3);
 	OpHex		(x,	1);
 	MakeCode	(x=0X1BA6);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1BAC);
 	OpHex		(x,	1);
 	MakeCode	(x=0X1BAE);
@@ -4474,7 +4468,7 @@ static Bytes_0(void) {
 	MakeCode	(x=0X1BBC);
 	OpHex		(x,	1);
 	MakeCode	(x=0X1BBF);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1BC2);
 	OpHex		(x,	0);
 	OpHex		(x,	1);
@@ -4565,6 +4559,7 @@ static Bytes_0(void) {
 	OpOff		(x,	128,	0X2F380);
 	MakeCode	(x=0X1C50);
 	OpStkvar	(x,	0);
+	MakeRptCmt	(0X1C53,	"按键触发脚本");
 	MakeCode	(x=0X1C58);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -4582,21 +4577,13 @@ static Bytes_0(void) {
 	MakeByte	(x=0X1C6E);
 	MakeArray	(x,	0X3);
 	OpHex		(x,	0);
-	MakeCode	(x=0X1C71);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1C74);
-	OpHex		(x,	1);
+	MakeCode	(0X1C71);
+	MakeName	(0X1C71,	"enemy_magical_attack");
 	MakeCode	(x=0X1C7C);
 	OpStkvar	(x,	1);
-	MakeCode	(x=0X1C81);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1C88);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0X1C8B);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1C8E);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1C94);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1C97);
@@ -4604,132 +4591,39 @@ static Bytes_0(void) {
 	MakeCode	(x=0X1CA0);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1CA6);
 	OpStkvar	(x,	1);
-	MakeCode	(x=0X1CAB);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1CB2);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0X1CB5);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1CB8);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1CBB);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1CC1);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1CC6);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1CC9);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1CCC);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1CD4);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1CD7);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1CDA);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1CE0);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1CE5);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1CE8);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1CEB);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1CF1);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1CF6);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1CFB);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1CFF);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1D08);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D0D);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeCode	(x=0X1D14);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0X1D17);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D1A);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D1D);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D23);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D28);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D2B);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D2E);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D36);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D39);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D3C);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D42);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D47);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D4A);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D4D);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1D53);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1D58);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1D5D);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1D61);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1D6A);
 	OpStkvar	(x,	1);
-	MakeCode	(x=0X1D6F);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1D76);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0X1D79);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D7C);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D84);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D87);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D8A);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1D91);
 	OpStkvar	(x,	0);
-	MakeCode	(x=0X1D96);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1D99);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1DA1);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1DA4);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1DA7);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1DAF);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1DB2);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1DB5);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1DBC);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1DBF);
@@ -4739,24 +4633,14 @@ static Bytes_0(void) {
 	MakeCode	(x=0X1DD0);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1DDA);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X1DDF);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1DEB);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0X1DF0);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1DF3);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1DF6);
-	OpHex		(x,	1);
-	MakeCode	(x=0X1DF9);
-	OpHex		(x,	0);
-	OpHex		(x,	1);
 	MakeCode	(x=0X1E02);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1E05);
@@ -4888,6 +4772,7 @@ static Bytes_0(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X1EFF);
 	OpHex		(x,	1);
+	MakeRptCmt	(0X1F08,	"一方");
 	MakeCode	(x=0X1F08);
 	OpStkvar	(x,	0);
 	OpHex		(x,	1);
@@ -4956,6 +4841,7 @@ static Bytes_0(void) {
 	MakeCode	(x=0X1F7D);
 	OpStkvar	(x,	0);
 	OpHex		(x,	1);
+	MakeRptCmt	(0X1F86,	"三叠");
 	MakeCode	(x=0X1F86);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -5214,6 +5100,7 @@ static Bytes_0(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2150);
 	OpStkvar	(x,	0);
+	MakeRptCmt	(0X2153,	"仙术前序脚本");
 	MakeCode	(x=0X2158);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -5796,7 +5683,7 @@ static Bytes_0(void) {
 	MakeCode	(x=0X25AB);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X25AE);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeComm	(0X25B1,	"(emulator call)");
 	MakeComm	(0X25BB,	"(emulator call)");
 	MakeComm	(0X25BE,	"(emulator call)");
@@ -6078,21 +5965,11 @@ static Bytes_0(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X27E9);
 	OpStkvar	(x,	1);
-	MakeCode	(x=0X27ED);
-	OpHex		(x,	1);
-	MakeCode	(x=0X27F1);
-	OpStkvar	(x,	0);
 	MakeCode	(x=0X27F9);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X27FC);
 	OpStkvar	(x,	1);
-	MakeCode	(x=0X27FF);
-	OpHex		(x,	1);
-	MakeCode	(x=0X2802);
-	OpHex		(x,	1);
-	MakeCode	(x=0X2805);
-	OpHex		(x,	1);
 	MakeCode	(x=0X2808);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X280E);
@@ -6327,6 +6204,10 @@ static Bytes_0(void) {
 	MakeCode	(x=0X2A03);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X2A06);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X2A09);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X2A12);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2A17);
@@ -6345,10 +6226,26 @@ static Bytes_0(void) {
 	MakeCode	(x=0X2A44);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X2A47);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X2A4A);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X2A52);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X2A55);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X2A5F);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X2A64);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X2A67);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X2A76);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X2A7B);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X2A7E);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(0X2A87);
 	MakeCode	(x=0X2A88);
 	OpStkvar	(x,	1);
@@ -6522,7 +6419,7 @@ static Bytes_0(void) {
 	MakeCode	(x=0X2BF4);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2BFA);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeCode	(x=0X2BFD);
 	OpHex		(x,	0);
 	OpHex		(x,	1);
@@ -6671,15 +6568,6 @@ static Bytes_0(void) {
 	MakeCode	(x=0X2D28);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_1(void) {
-        auto x;
-#define id x
-
 	MakeCode	(x=0X2D2B);
 	OpStkvar	(x,	0);
 	MakeCode	(0X2D33);
@@ -6709,6 +6597,15 @@ static Bytes_1(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2D5F);
 	OpStkvar	(x,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_1(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X2D62);
 	OpStkvar	(x,	1);
 	MakeByte	(x=0X2D6D);
@@ -6743,14 +6640,10 @@ static Bytes_1(void) {
 	MakeByte	(x=0X2DAC);
 	MakeArray	(x,	0X3);
 	OpHex		(x,	0);
-	MakeCode	(x=0X2DAF);
-	OpHex		(x,	1);
+	MakeCode	(0X2DAF);
 	MakeName	(0X2DAF,	"enemy_phisical_attack_role");
-	MakeCode	(x=0X2DB2);
-	OpHex		(x,	1);
 	MakeCode	(x=0X2DBA);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
 	MakeCode	(x=0X2DBF);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -6762,20 +6655,17 @@ static Bytes_1(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2DD8);
 	OpStkvar	(x,	1);
-	MakeCode	(x=0X2DDD);
-	OpHex		(x,	1);
 	MakeCode	(x=0X2DE4);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X2DE7);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X2DEA);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X2DF0);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2DF3);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
 	MakeCode	(x=0X2DF8);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2DFC);
@@ -6788,23 +6678,16 @@ static Bytes_1(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2E0E);
 	OpStkvar	(x,	1);
-	MakeCode	(x=0X2E13);
-	OpHex		(x,	1);
 	MakeCode	(x=0X2E1A);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X2E1D);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X2E20);
-	OpHex		(x,	1);
-	MakeCode	(x=0X2E23);
-	OpHex		(x,	1);
-	MakeCode	(x=0X2E26);
-	OpHex		(x,	0);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X2E2C);
 	OpStkvar	(x,	1);
-	MakeRptCmt	(0X2E2F,	"防御则加倍——可是这儿是怎么回事？判断期应该动作不会改变。");
+	MakeRptCmt	(0X2E2F,	"若已防御,抗力加倍");
 	MakeCode	(x=0X2E2F);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2E32);
@@ -6818,9 +6701,6 @@ static Bytes_1(void) {
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X2E3F);
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
-	MakeCode	(x=0X2E42);
-	OpHex		(x,	0);
-	OpHex		(x,	1);
 	MakeComm	(0X2E4E,	"(emulator call)");
 	MakeComm	(0X2E51,	"(emulator call)");
 	MakeComm	(0X2E54,	"(emulator call)");
@@ -6837,16 +6717,12 @@ static Bytes_1(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2E6A);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
 	MakeCode	(x=0X2E73);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
 	MakeCode	(x=0X2E7C);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
 	MakeCode	(x=0X2E81);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
 	MakeCode	(x=0X2E86);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -6862,6 +6738,7 @@ static Bytes_1(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X2E9F);
 	OpHex		(x,	1);
+	MakeRptCmt	(0X2EA7,	"神异之200004");
 	MakeCode	(x=0X2EA7);
 	OpHex		(x,	1);
 	MakeCode	(x=0X2EAC);
@@ -6897,7 +6774,7 @@ static Bytes_1(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2EEC);
 	OpStkvar	(x,	0);
-	OpEnumEx		(x,	1,	GetEnum("status"),0);
+	OpHex		(x,	1);
 	MakeCode	(x=0X2EF2);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2EF5);
@@ -6906,20 +6783,19 @@ static Bytes_1(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2F00);
 	OpStkvar	(x,	0);
-	OpEnumEx		(x,	1,	GetEnum("status"),0);
 	MakeCode	(x=0X2F05);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2F0A);
 	OpHex		(x,	1);
 	MakeCode	(x=0X2F0C);
-	OpHex		(x,	1);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X2F11);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X2F14);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X2F17);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X2F1A);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2F20);
@@ -6928,9 +6804,9 @@ static Bytes_1(void) {
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X2F2F);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X2F32);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X2F35);
 	OpHex		(x,	1);
 	MakeCode	(x=0X2F3B);
@@ -6984,7 +6860,7 @@ static Bytes_1(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X2F9F);
 	MakeCode	(x=0X2FA0);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeCode	(x=0X2FA5);
 	OpHex		(x,	1);
 	MakeCode	(x=0X2FAE);
@@ -7201,11 +7077,11 @@ static Bytes_1(void) {
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X316D);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X3170);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X3173);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X3179);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -7216,11 +7092,11 @@ static Bytes_1(void) {
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X3187);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X318A);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X318D);
-	OpHex		(x,	1);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X3190);
 	OpHex		(x,	0);
 	OpHex		(x,	1);
@@ -7254,6 +7130,7 @@ static Bytes_1(void) {
 	OpOff		(x,	128,	0X2F380);
 	MakeCode	(x=0X31C7);
 	OpStkvar	(x,	0);
+	OpSign		(x,	1);
 	OpHex		(x,	1);
 	MakeCode	(x=0X31D0);
 	OpStkvar	(x,	1);
@@ -7304,7 +7181,7 @@ static Bytes_1(void) {
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
 	MakeCode	(x=0X322C);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeCode	(x=0X3231);
 	OpHex		(x,	1);
 	MakeCode	(x=0X323A);
@@ -7546,7 +7423,7 @@ static Bytes_1(void) {
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X3440);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeCode	(x=0X3445);
 	OpHex		(x,	1);
 	MakeCode	(x=0X3449);
@@ -7677,6 +7554,7 @@ static Bytes_1(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X353E);
 	OpStkvar	(x,	0);
+	OpSign		(x,	1);
 	OpHex		(x,	1);
 	MakeCode	(x=0X3544);
 	OpStkvar	(x,	1);
@@ -7846,7 +7724,7 @@ static Bytes_1(void) {
 	MakeCode	(x=0X3692);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X3698);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeCode	(x=0X369D);
 	OpHex		(x,	1);
 	MakeCode	(x=0X36A4);
@@ -7972,7 +7850,7 @@ static Bytes_1(void) {
 	OpOff		(x,	128,	0X2F380);
 	OpHex		(x,	1);
 	MakeCode	(x=0X37AA);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeCode	(x=0X37AF);
 	OpHex		(x,	1);
 	MakeCode	(x=0X37B6);
@@ -8016,7 +7894,7 @@ static Bytes_1(void) {
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X380D);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeCode	(x=0X3812);
 	OpHex		(x,	1);
 	MakeCode	(x=0X3819);
@@ -8071,6 +7949,7 @@ static Bytes_1(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X3891);
 	OpStkvar	(x,	1);
+	MakeRptCmt	(0X3895,	"攻击等效物品脚本");
 	MakeCode	(x=0X389A);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -8465,7 +8344,7 @@ static Bytes_1(void) {
 	MakeCode	(x=0X3BB8);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X3BBE);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeCode	(x=0X3BC1);
 	OpHex		(x,	0);
 	OpHex		(x,	1);
@@ -9415,6 +9294,7 @@ static Bytes_1(void) {
 	MakeArray	(0X44FD,	0X3);
 	MakeCode	(x=0X4500);
 	OpHex		(x,	1);
+	MakeName	(0X4500,	"select_targeting_role");
 	MakeCode	(x=0X4503);
 	OpHex		(x,	1);
 	MakeCode	(x=0X450B);
@@ -9764,7 +9644,7 @@ static Bytes_1(void) {
 	MakeArray	(x,	0X3);
 	OpHex		(x,	0);
 	MakeCode	(0X484C);
-	MakeName	(0X484C,	"menu_Magic_internal");
+	MakeName	(0X484C,	"menu_Magic_selecting");
 	MakeCode	(x=0X4857);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X485C);
@@ -9864,6 +9744,7 @@ static Bytes_1(void) {
 	MakeArray	(x,	0X3);
 	OpHex		(x,	0);
 	MakeCode	(0X494C);
+	MakeName	(0X494C,	"point_role");
 	MakeCode	(x=0X495C);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -10501,32 +10382,39 @@ static Bytes_1(void) {
 	MakeCode	(x=0X50C1);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeRptCmt	(0X50ED,	"enter");
 	MakeCode	(x=0X50ED);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X50F3);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X50F6);
 	OpStkvar	(x,	0);
+	MakeComm	(0X50F9,	"up");
 	MakeCode	(x=0X50F9);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X50FF);
 	OpStkvar	(x,	0);
+	MakeComm	(0X5102,	"down");
 	MakeCode	(x=0X5102);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X5108);
 	OpStkvar	(x,	0);
+	MakeComm	(0X510B,	"left");
 	MakeCode	(x=0X510B);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X5111);
 	OpStkvar	(x,	0);
+	MakeComm	(0X5114,	"right");
 	MakeCode	(x=0X5114);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X511A);
 	OpStkvar	(x,	0);
+	MakeComm	(0X511D,	"PgUp");
 	MakeCode	(x=0X511D);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X5123);
 	OpStkvar	(x,	0);
+	MakeComm	(0X5127,	"PgDn");
 	MakeCode	(x=0X5127);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X512D);
@@ -10549,6 +10437,7 @@ static Bytes_1(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X515D);
 	OpStkvar	(x,	1);
+	MakeRptCmt	(0X5160,	"扫灭");
 	MakeCode	(0X5163);
 	MakeCode	(x=0X516B);
 	OpOff		(x,	1,	0X2F380);
@@ -12257,6 +12146,8 @@ static Bytes_1(void) {
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X64F9);
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X64FC);
+	OpDecimal	(x,	1);
 	MakeCode	(0X6508);
 	MakeCode	(x=0X650D);
 	OpStkvar	(x,	0);
@@ -12302,6 +12193,11 @@ static Bytes_1(void) {
 	MakeCode	(x=0X6566);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X6569);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X656C);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeRptCmt	(0X6573,	"可战");
 	MakeCode	(x=0X6575);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -12317,6 +12213,11 @@ static Bytes_1(void) {
 	MakeCode	(x=0X6583);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X6586);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X6589);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeRptCmt	(0X6590,	"或傀儡");
 	MakeCode	(x=0X6595);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -12341,6 +12242,10 @@ static Bytes_1(void) {
 	MakeCode	(x=0X65BD);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X65C0);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X65C3);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X65CF);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -12351,11 +12256,19 @@ static Bytes_1(void) {
 	MakeCode	(x=0X65E2);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X65E5);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X65E8);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X65EB);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X65F2);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
+	MakeCode	(x=0X65FB);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X65FE);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X6609);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -12394,6 +12307,10 @@ static Bytes_1(void) {
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X666D);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X6671);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X6674);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X667D);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -12402,6 +12319,10 @@ static Bytes_1(void) {
 	MakeCode	(x=0X6683);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X6686);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X6689);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X6695);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -12448,6 +12369,8 @@ static Bytes_1(void) {
 	MakeCode	(x=0X6721);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X672A);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X6730);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X6733);
@@ -12520,6 +12443,8 @@ static Bytes_1(void) {
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X67BD);
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X67C0);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X67C6);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X67C9);
@@ -12580,6 +12505,15 @@ static Bytes_1(void) {
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X6891);
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_2(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X689F);
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X68A2);
@@ -12635,15 +12569,6 @@ static Bytes_1(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X6932);
 	OpStkvar	(x,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_2(void) {
-        auto x;
-#define id x
-
 	MakeCode	(x=0X693A);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -12683,6 +12608,8 @@ static Bytes_2(void) {
 	MakeCode	(x=0X69B7);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X69C0);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X69C6);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X69C9);
@@ -12693,6 +12620,8 @@ static Bytes_2(void) {
 	MakeCode	(x=0X69DB);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X69E4);
+	OpDecimal	(x,	1);
 	MakeCode	(0X69F0);
 	MakeCode	(0X69F5);
 	MakeCode	(x=0X69F6);
@@ -12753,6 +12682,8 @@ static Bytes_2(void) {
 	MakeCode	(x=0X6A8B);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X6A94);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X6A9A);
 	OpStkvar	(x,	0);
 	MakeCode	(0X6AA5);
@@ -12791,6 +12722,8 @@ static Bytes_2(void) {
 	MakeCode	(x=0X6B1F);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X6B28);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X6B31);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -13071,6 +13004,8 @@ static Bytes_2(void) {
 	MakeCode	(x=0X6E7B);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X6E84);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X6E8A);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X6E8D);
@@ -13245,7 +13180,7 @@ static Bytes_2(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X70AC);
 	OpStkvar	(x,	0);
-	MakeRptCmt	(0X70B0,	"他死脚本");
+	MakeRptCmt	(0X70B0,	"法术后序脚本");
 	MakeCode	(x=0X70B5);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -13941,16 +13876,22 @@ static Bytes_2(void) {
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X79B9);
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X79BC);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X79C2);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X79C8);
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X79CB);
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X79CE);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X79D6);
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X79D9);
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X79DC);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X79E7);
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X79EA);
@@ -15091,6 +15032,8 @@ static Bytes_2(void) {
 	MakeCode	(x=0X89E7);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X89F0);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X89F9);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X89FD);
@@ -15593,6 +15536,7 @@ static Bytes_2(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(0X8FFD);
 	MakeCode	(0X9000);
+	MakeName	(0X9000,	"summon_lasting?");
 	MakeCode	(x=0X900B);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X9010);
@@ -15747,6 +15691,10 @@ static Bytes_2(void) {
 	MakeCode	(x=0X9275);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X927A);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X927D);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X9286);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X9289);
@@ -15754,14 +15702,26 @@ static Bytes_2(void) {
 	MakeCode	(x=0X9292);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X9297);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X929A);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X92A0);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X92A6);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X92AB);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X92AE);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X92B7);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
+	MakeCode	(x=0X92BC);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X92BF);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X92C8);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X92D0);
@@ -15799,6 +15759,10 @@ static Bytes_2(void) {
 	MakeCode	(x=0X9335);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X933A);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X933D);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X9346);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X9349);
@@ -15808,6 +15772,10 @@ static Bytes_2(void) {
 	MakeCode	(x=0X9356);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X935B);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X935E);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X9364);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X936A);
@@ -15830,6 +15798,10 @@ static Bytes_2(void) {
 	MakeCode	(x=0X938E);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X9393);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X9396);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X939F);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X93A8);
@@ -15876,6 +15848,10 @@ static Bytes_2(void) {
 	MakeCode	(x=0X940C);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X9411);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X9414);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X9424);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X9429);
@@ -17009,6 +16985,7 @@ static Bytes_2(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(0XA4F9);
 	MakeCode	(0XA4FC);
+	MakeName	(0XA4FC,	"summon_imgs?");
 	MakeCode	(x=0XA507);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -18204,7 +18181,7 @@ static Bytes_2(void) {
 	MakeCode	(0XB519);
 	MakeCode	(0XB521);
 	MakeCode	(0XB524);
-	MakeName	(0XB524,	"draw_battle_sprites");
+	MakeName	(0XB524,	"draw_battle_scene");
 	MakeComm	(0XB52F,	"(emulator call)");
 	MakeCode	(x=0XB52F);
 	OpOff		(x,	1,	0X2F380);
@@ -18325,21 +18302,54 @@ static Bytes_2(void) {
 	MakeCode	(x=0XB6A3);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0XB6A6);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0XB6A9);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0XB6B4);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0XB6B7);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0XB6C0);
 	OpHex		(x,	1);
 	MakeCode	(x=0XB6C4);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0XB6C7);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0XB6CA);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0XB6D2);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_3(void) {
+        auto x;
+#define id x
+
+	MakeCode	(x=0XB6D5);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0XB6D8);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0XB6E1);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0XB6E6);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0XB6E9);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0XB6F2);
 	OpHex		(x,	1);
 	MakeCode	(x=0XB6F6);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0XB6F9);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0XB6FC);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0XB6FF);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0XB705);
@@ -18358,11 +18368,19 @@ static Bytes_2(void) {
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0XB720);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0XB723);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0XB726);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0XB72F);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XB734);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0XB737);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0XB73A);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0XB745);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -18449,7 +18467,7 @@ static Bytes_2(void) {
 	OpStkvar	(x,	0);
 	OpHex		(x,	1);
 	MakeCode	(x=0XB857);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeCode	(x=0XB85C);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0XB85F);
@@ -18522,15 +18540,6 @@ static Bytes_2(void) {
 	MakeCode	(x=0XB8EF);
 	OpStkvar	(x,	0);
 	OpHex		(x,	1);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_3(void) {
-        auto x;
-#define id x
-
 	MakeCode	(x=0XB8F5);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -18585,6 +18594,7 @@ static Bytes_3(void) {
 	MakeCode	(0XB966);
 	MakeCode	(x=0XB969);
 	OpHex		(x,	1);
+	MakeName	(0XB969,	"morph?");
 	MakeCode	(x=0XB96C);
 	OpHex		(x,	1);
 	MakeCode	(x=0XB974);
@@ -18797,7 +18807,7 @@ static Bytes_3(void) {
 	MakeCode	(0XBB4A);
 	MakeCode	(x=0XBB4D);
 	OpHex		(x,	1);
-	MakeName	(0XBB4D,	"deyj1_fbp_subfile_to_glb_SCRN");
+	MakeName	(0XBB4D,	"deyj1_fbp_subfile_to_screen_buf");
 	MakeCode	(x=0XBB50);
 	OpHex		(x,	1);
 	MakeCode	(x=0XBB58);
@@ -18987,7 +18997,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0XBCE4);
 	OpHex		(x,	1);
 	MakeCode	(x=0XBCE7);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0XBCED);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XBCF2);
@@ -19125,7 +19135,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0XBDD5);
 	OpHex		(x,	1);
 	MakeCode	(x=0XBDD8);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0XBDDE);
 	OpStkvar	(x,	0);
 	OpHex		(x,	1);
@@ -19149,7 +19159,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0XBDF7);
 	OpHex		(x,	1);
 	MakeCode	(x=0XBDFA);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0XBE00);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XBE03);
@@ -19187,7 +19197,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0XBE31);
 	OpHex		(x,	1);
 	MakeCode	(x=0XBE34);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0XBE37);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XBE43);
@@ -19195,7 +19205,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0XBE46);
 	OpHex		(x,	1);
 	MakeCode	(x=0XBE49);
-	OpHex		(x,	1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0XBE4C);
 	OpHex		(x,	0);
 	OpHex		(x,	1);
@@ -19429,7 +19439,7 @@ static Bytes_3(void) {
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
 	MakeCode	(x=0XC037);
-	OpHex		(x,	0);
+	OpStkvar	(x,	0);
 	MakeCode	(x=0XC03F);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0XC042);
@@ -19748,16 +19758,13 @@ static Bytes_3(void) {
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
 	MakeCode	(0XC298);
-	MakeCode	(x=0XC29B);
-	OpHex		(x,	1);
+	MakeCode	(0XC29B);
 	MakeName	(0XC29B,	"read_subfile");
-	MakeCode	(x=0XC29E);
-	OpHex		(x,	1);
 	MakeCode	(x=0XC2A6);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0XC2AD);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeCode	(x=0XC2B2);
 	OpHex		(x,	1);
 	MakeCode	(x=0XC2B4);
@@ -19765,41 +19772,23 @@ static Bytes_3(void) {
 	MakeCode	(x=0XC2B6);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0XC2B9);
-	OpHex		(x,	1);
-	MakeCode	(x=0XC2BC);
-	OpHex		(x,	1);
 	MakeCode	(x=0XC2C6);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeCode	(x=0XC2CB);
 	OpHex		(x,	1);
 	MakeCode	(x=0XC2CD);
 	OpHex		(x,	1);
-	MakeCode	(x=0XC2D1);
-	OpHex		(x,	1);
 	MakeCode	(x=0XC2D8);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0XC2DB);
-	OpHex		(x,	1);
-	MakeCode	(x=0XC2DE);
-	OpHex		(x,	1);
 	MakeCode	(x=0XC2E8);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0XC2EB);
 	OpStkvar	(x,	0);
-	MakeCode	(x=0XC2F0);
-	OpHex		(x,	1);
-	MakeCode	(x=0XC2F3);
-	OpHex		(x,	1);
-	MakeCode	(x=0XC2F9);
-	OpHex		(x,	1);
 	MakeCode	(x=0XC2FD);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XC300);
 	OpStkvar	(x,	1);
-	MakeCode	(x=0XC305);
-	OpHex		(x,	1);
 	MakeCode	(x=0XC30A);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -19820,16 +19809,11 @@ static Bytes_3(void) {
 	OpOff		(x,	129,	0X2F380);
 	MakeComm	(0XC320,	"(emulator call)");
 	MakeCode	(x=0XC322);
-	OpHex		(x,	1);
-	MakeCode	(x=0XC325);
-	OpHex		(x,	0);
-	OpHex		(x,	1);
+	OpStkvar	(x,	1);
 	MakeCode	(x=0XC32D);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
 	MakeCode	(x=0XC332);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
 	MakeCode	(x=0XC337);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0XC33A);
@@ -19917,10 +19901,6 @@ static Bytes_3(void) {
 	MakeCode	(x=0XC3EE);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0XC3F3);
-	OpHex		(x,	1);
-	MakeCode	(x=0XC3F6);
-	OpHex		(x,	1);
 	MakeCode	(x=0XC3FB);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -20641,7 +20621,7 @@ static Bytes_3(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0XCB18);
 	OpStkvar	(x,	0);
-	OpHex		(x,	1);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0XCB1D);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XCB29);
@@ -20650,6 +20630,8 @@ static Bytes_3(void) {
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
 	OpHex		(x,	1);
+	MakeCode	(x=0XCB37);
+	OpDecimal	(x,	0);
 	MakeCode	(x=0XCB3C);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -20911,10 +20893,12 @@ static Bytes_3(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XCD3D);
 	OpStkvar	(x,	1);
+	MakeRptCmt	(0XCD41,	"调用脚本");
 	MakeCode	(x=0XCD49);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0XCD4C);
 	OpStkvar	(x,	1);
+	MakeRptCmt	(0XCD50,	"调用脚本");
 	MakeCode	(x=0XCD58);
 	OpStkvar	(x,	0);
 	OpHex		(x,	1);
@@ -21578,7 +21562,7 @@ static Bytes_3(void) {
 	MakeCode	(0XD3A6);
 	MakeCode	(0XD3AE);
 	MakeCode	(0XD3B1);
-	MakeName	(0XD3B1,	"process_scrn_drawing");
+	MakeName	(0XD3B1,	"scanline_draw_normal_scene");
 	MakeCode	(x=0XD3BC);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -21692,8 +21676,16 @@ static Bytes_3(void) {
 	MakeCode	(x=0XD531);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0XD534);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0XD537);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0XD540);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0XD545);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0XD548);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0XD54E);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XD551);
@@ -22162,6 +22154,7 @@ static Bytes_3(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(0XDB99);
 	MakeCode	(0XDB9C);
+	MakeName	(0XDB9C,	"GUI_show_status");
 	MakeCode	(x=0XDBA7);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XDBAF);
@@ -22550,6 +22543,7 @@ static Bytes_3(void) {
 	MakeCode	(0XDFDF);
 	MakeCode	(x=0XDFE2);
 	OpHex		(x,	1);
+	MakeName	(0XDFE2,	"effect_numbers_processing");
 	MakeCode	(x=0XDFE5);
 	OpHex		(x,	1);
 	MakeCode	(x=0XDFF2);
@@ -22987,6 +22981,7 @@ static Bytes_3(void) {
 	MakeCode	(0XE369);
 	MakeCode	(0XE371);
 	MakeCode	(0XE374);
+	MakeName	(0XE374,	"show_pointer");
 	MakeCode	(x=0XE37F);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0XE384);
@@ -23452,6 +23447,7 @@ static Bytes_3(void) {
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(0XE833);
 	MakeCode	(0XE836);
+	MakeName	(0XE836,	"number_addto_drawinglist");
 	MakeCode	(x=0XE841);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XE84C);
@@ -23472,6 +23468,7 @@ static Bytes_3(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0XE87B);
 	OpStkvar	(x,	0);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0XE880);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XE885);
@@ -23791,6 +23788,7 @@ static Bytes_3(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XEBFD);
 	OpStkvar	(x,	0);
+	MakeRptCmt	(0XEC00,	"场景进入脚本");
 	MakeCode	(x=0XEC05);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -23971,7 +23969,7 @@ static Bytes_3(void) {
 	MakeCode	(0XEDD7);
 	MakeCode	(x=0XEDDA);
 	OpHex		(x,	1);
-	MakeName	(0XEDDA,	"redraw_everything?");
+	MakeName	(0XEDDA,	"redraw_everything");
 	MakeCode	(x=0XEDDD);
 	OpHex		(x,	1);
 	MakeCode	(x=0XEDE5);
@@ -24041,7 +24039,7 @@ static Bytes_3(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(0XEEB1);
 	MakeCode	(0XEEB4);
-	MakeName	(0XEEB4,	"select_a_live_role");
+	MakeName	(0XEEB4,	"select_a_live_role_randomly");
 	MakeComm	(0XEEC6,	"(emulator call)");
 	MakeComm	(0XEEC9,	"(emulator call)");
 	MakeCode	(x=0XEEC9);
@@ -24364,7 +24362,7 @@ static Bytes_3(void) {
 	MakeCode	(0XF1AA);
 	MakeCode	(0XF1B2);
 	MakeCode	(0XF1B5);
-	MakeName	(0XF1B5,	"show_stauts&numbers");
+	MakeName	(0XF1B5,	"show_status&numbers");
 	MakeCode	(x=0XF1C0);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XF1C5);
@@ -24582,6 +24580,15 @@ static Bytes_3(void) {
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0XF42F);
 	OpStkvar	(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_4(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0XF434);
 	OpHex		(x,	1);
 	MakeCode	(x=0XF438);
@@ -24610,6 +24617,7 @@ static Bytes_3(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(0XF480);
 	MakeCode	(0XF483);
+	MakeName	(0XF483,	"redraw_tile");
 	MakeCode	(x=0XF48E);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0XF495);
@@ -24799,7 +24807,7 @@ static Bytes_3(void) {
 	MakeCode	(0XF65A);
 	MakeCode	(x=0XF65D);
 	OpHex		(x,	1);
-	MakeName	(0XF65D,	"adjust_viewport");
+	MakeName	(0XF65D,	"move_usable_screen");
 	MakeCode	(x=0XF660);
 	OpHex		(x,	1);
 	MakeCode	(x=0XF668);
@@ -24847,15 +24855,6 @@ static Bytes_3(void) {
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
 	OpHex		(x,	1);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_4(void) {
-        auto x;
-#define id x
-
 	MakeCode	(x=0XF6AD);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -26058,7 +26057,7 @@ static Bytes_4(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1050C);
 	OpStkvar	(x,	0);
-	MakeRptCmt	(0X1050F,	"己伤脚本");
+	MakeRptCmt	(0X1050F,	"己伤脚本?");
 	MakeCode	(x=0X10514);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -26175,6 +26174,10 @@ static Bytes_4(void) {
 	MakeCode	(x=0X10680);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X10683);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X10686);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(0X10692);
 	MakeCode	(x=0X10695);
 	OpOff		(x,	1,	0X2F380);
@@ -26356,7 +26359,6 @@ static Bytes_4(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1092B);
 	OpStkvar	(x,	0);
-	MakeName	(0X1092B,	"begin_role");
 	MakeCode	(x=0X1092E);
 	OpStkvar	(x,	1);
 	MakeCode	(0X10936);
@@ -26515,11 +26517,19 @@ static Bytes_4(void) {
 	MakeCode	(x=0X10BBC);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X10BC1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X10BC4);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X10BCA);
 	OpHex		(x,	1);
 	MakeCode	(x=0X10BCE);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X10BD1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X10BD4);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X10BDA);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X10BDF);
@@ -26688,6 +26698,7 @@ static Bytes_4(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(0X10D79);
 	MakeCode	(0X10D7C);
+	MakeName	(0X10D7C,	"display_damage_number");
 	MakeCode	(x=0X10D87);
 	OpStkvar	(x,	1);
 	MakeCode	(0X10D92);
@@ -27606,6 +27617,7 @@ static Bytes_4(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(0X118F1);
 	MakeCode	(0X118F4);
+	MakeName	(0X118F4,	"inventory_use_GUI");
 	MakeCode	(x=0X118FF);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X11904);
@@ -27966,6 +27978,7 @@ static Bytes_4(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X11D6D);
 	OpStkvar	(x,	0);
+	MakeRptCmt	(0X11D70,	"物品使用脚本");
 	MakeCode	(x=0X11D75);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -28846,6 +28859,8 @@ static Bytes_4(void) {
 	MakeCode	(x=0X12323);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1232C);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X12334);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X12339);
@@ -28940,6 +28955,8 @@ static Bytes_4(void) {
 	MakeCode	(x=0X123F3);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X123FC);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X123FF);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X12407);
@@ -28959,6 +28976,8 @@ static Bytes_4(void) {
 	MakeCode	(x=0X1241E);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X12427);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1242A);
 	OpStkvar	(x,	1);
 	MakeRptCmt	(0X12433,	"脚本；本对象速度3走到块位置");
@@ -29031,6 +29050,8 @@ static Bytes_4(void) {
 	MakeCode	(x=0X124C3);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X124CC);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X124D1);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X124D8);
@@ -29110,6 +29131,8 @@ static Bytes_4(void) {
 	MakeCode	(x=0X12576);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1257F);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X12588);
 	OpStkvar	(x,	1);
 	MakeName	(0X12588,	"script11_curr_evtobj_walk_to_mutex");
@@ -29249,6 +29272,9 @@ static Bytes_4(void) {
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X126F9);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X12700);
+	OpOff		(x,	1,	0X2F380);
+	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X12707);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X12714);
@@ -29269,6 +29295,10 @@ static Bytes_4(void) {
 	MakeCode	(x=0X12728);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X12733);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
+	MakeCode	(x=0X12741);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1274A);
 	OpStkvar	(x,	1);
 	MakeName	(0X1274A,	"script15_role_set_direction_frame");
@@ -29331,8 +29361,12 @@ static Bytes_4(void) {
 	MakeCode	(x=0X127D9);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X127E4);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X127EA);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X127F7);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X12800);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X12805);
@@ -30365,6 +30399,7 @@ static Bytes_4(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X13490);
 	OpStkvar	(x,	0);
+	MakeRptCmt	(0X13493,	"敌毒发脚本");
 	MakeCode	(x=0X13498);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -30439,6 +30474,15 @@ static Bytes_4(void) {
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeComm	(0X13557,	"(emulator call)");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_5(void) {
+        auto x;
+#define id x
+
 	MakeCode	(0X13563);
 	MakeCode	(x=0X13568);
 	OpOff		(x,	1,	0X2F380);
@@ -30500,6 +30544,7 @@ static Bytes_4(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X13623);
 	OpStkvar	(x,	0);
+	MakeRptCmt	(0X13627,	"我毒发脚本");
 	MakeCode	(x=0X1362C);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -30761,15 +30806,6 @@ static Bytes_4(void) {
 	MakeCode	(x=0X1392B);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_5(void) {
-        auto x;
-#define id x
-
 	MakeComm	(0X13930,	"(emulator call)");
 	MakeCode	(x=0X13937);
 	OpStkvar	(x,	1);
@@ -31092,6 +31128,7 @@ static Bytes_5(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X13CFA);
 	OpStkvar	(x,	0);
+	MakeRptCmt	(0X13CFE,	"场景脱离脚本");
 	MakeCode	(x=0X13D03);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -31581,10 +31618,20 @@ static Bytes_5(void) {
 	MakeCode	(x=0X14259);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X14262);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X14265);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X14274);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
+	MakeCode	(x=0X14282);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
+	MakeCode	(x=0X14290);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X14296);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X142A1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X142AC);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X142B2);
@@ -31784,6 +31831,9 @@ static Bytes_5(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X144D3);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X144DB);
+	OpOff		(x,	1,	0X2F380);
+	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X144E2);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X144F0);
@@ -31837,8 +31887,12 @@ static Bytes_5(void) {
 	MakeCode	(x=0X1455E);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X14569);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1456F);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X1457A);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X14580);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X14583);
@@ -31904,6 +31958,8 @@ static Bytes_5(void) {
 	MakeCode	(x=0X14621);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1462A);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X14630);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X14634);
@@ -31983,6 +32039,8 @@ static Bytes_5(void) {
 	MakeCode	(x=0X146E0);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X146E9);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X146EC);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X146F3);
@@ -32014,6 +32072,8 @@ static Bytes_5(void) {
 	MakeCode	(x=0X1472B);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X14734);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X14737);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1473E);
@@ -32035,8 +32095,12 @@ static Bytes_5(void) {
 	MakeCode	(x=0X14758);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X14763);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X14766);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X14775);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X14778);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1477F);
@@ -32067,6 +32131,8 @@ static Bytes_5(void) {
 	MakeCode	(x=0X147B3);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X147BE);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X147C4);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X147C9);
@@ -32077,6 +32143,8 @@ static Bytes_5(void) {
 	MakeCode	(x=0X147D9);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X147E2);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X147E8);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X147EB);
@@ -32105,8 +32173,12 @@ static Bytes_5(void) {
 	MakeCode	(x=0X14827);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X14832);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X14835);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X14844);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X14847);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1484E);
@@ -32129,11 +32201,15 @@ static Bytes_5(void) {
 	MakeCode	(x=0X14871);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1487C);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X14882);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X14886);
 	OpHex		(x,	1);
+	MakeCode	(x=0X14891);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X14897);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1489A);
@@ -32233,8 +32309,12 @@ static Bytes_5(void) {
 	MakeCode	(x=0X149B8);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X149C3);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X149C6);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X149D4);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X149D7);
 	OpStkvar	(x,	1);
 	MakeRptCmt	(0X149DE,	"脚本;等待键盘动作");
@@ -32625,12 +32705,22 @@ static Bytes_5(void) {
 	MakeCode	(x=0X14E80);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X14E83);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X14E86);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X14E8F);
 	OpStkvar	(x,	1);
 	MakeName	(0X14E8F,	"script60_EnemyDead");
 	MakeCode	(x=0X14E9B);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X14E9E);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X14EA1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X14EA4);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X14EAD);
 	OpStkvar	(x,	0);
 	MakeName	(0X14EAD,	"script61_GotoIfHeroNotPoisoned");
@@ -33812,6 +33902,8 @@ static Bytes_5(void) {
 	MakeCode	(x=0X15DA1);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X15DA4);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X15DC0);
 	OpStkvar	(x,	0);
 	MakeName	(0X15DC0,	"script76_ShowPicture");
@@ -33982,8 +34074,16 @@ static Bytes_5(void) {
 	MakeCode	(x=0X15FAC);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X15FB7);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
+	MakeCode	(x=0X15FC5);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X15FCB);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X15FD8);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
+	MakeCode	(x=0X15FE6);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(0X15FEF);
 	MakeCode	(x=0X15FF3);
 	OpStkvar	(x,	1);
@@ -34073,6 +34173,8 @@ static Bytes_5(void) {
 	MakeCode	(x=0X16112);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1611B);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(0X16124);
 	MakeCode	(x=0X16128);
 	OpStkvar	(x,	1);
@@ -34108,6 +34210,9 @@ static Bytes_5(void) {
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X161A7);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X161AF);
+	OpOff		(x,	1,	0X2F380);
+	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X161B6);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X161C4);
@@ -34432,6 +34537,8 @@ static Bytes_5(void) {
 	MakeCode	(x=0X164F2);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X164FB);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(0X16507);
 	MakeCode	(x=0X16515);
 	OpOff		(x,	1,	0X2F380);
@@ -34531,6 +34638,8 @@ static Bytes_5(void) {
 	MakeCode	(x=0X16608);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X16611);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1661A);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1661F);
@@ -34543,10 +34652,18 @@ static Bytes_5(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X16627);
 	OpHex		(x,	1);
+	MakeCode	(x=0X16631);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X16637);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X16643);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X16649);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X1665C);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
+	MakeCode	(x=0X1666A);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X16679);
 	OpHex		(x,	1);
 	MakeCode	(x=0X1667D);
@@ -34635,12 +34752,18 @@ static Bytes_5(void) {
 	MakeCode	(x=0X1674D);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X16758);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1675B);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X16769);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1676C);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X16772);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X1677F);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X16785);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -34886,7 +35009,7 @@ static Bytes_5(void) {
 	MakeComm	(0X16A5C,	"(emulator call)");
 	MakeCode	(x=0X16A5F);
 	OpStkvar	(x,	1);
-	MakeName	(0X16A5F,	"script90_SetEnemyScripts");
+	MakeName	(0X16A5F,	"script90_SetRPGElementScripts");
 	MakeCode	(x=0X16A6A);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X16A72);
@@ -35245,6 +35368,9 @@ static Bytes_5(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X16EA3);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X16EAB);
+	OpOff		(x,	1,	0X2F380);
+	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X16EB2);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X16EBF);
@@ -35939,6 +36065,15 @@ static Bytes_5(void) {
 	MakeCode	(x=0X17910);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_6(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X17913);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -36359,6 +36494,7 @@ static Bytes_5(void) {
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X17FF5);
 	OpStkvar	(x,	1);
+	MakeRptCmt	(0X17FFC,	"0阻碍");
 	MakeCode	(x=0X18001);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1800B);
@@ -36439,15 +36575,6 @@ static Bytes_5(void) {
 	MakeCode	(x=0X18113);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_6(void) {
-        auto x;
-#define id x
-
 	MakeCode	(x=0X18126);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1812B);
@@ -36465,6 +36592,8 @@ static Bytes_6(void) {
 	MakeCode	(x=0X1813E);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X18147);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1814D);
 	OpHex		(x,	1);
 	MakeCode	(x=0X18151);
@@ -36756,6 +36885,7 @@ static Bytes_6(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1850A);
 	OpStkvar	(x,	0);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X1850F);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -37396,6 +37526,9 @@ static Bytes_6(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X18F6D);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X18F75);
+	OpOff		(x,	1,	0X2F380);
+	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X18F7B);
 	OpHex		(x,	1);
 	MakeCode	(x=0X18F7F);
@@ -38551,7 +38684,11 @@ static Bytes_6(void) {
 	MakeCode	(x=0X19F39);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X19F42);
+	OpDecimal	(x,	1);
 	MakeCode	(0X19F4E);
+	MakeCode	(x=0X19F56);
+	OpDecimal	(x,	1);
 	MakeCode	(0X19F62);
 	MakeCode	(x=0X19F6D);
 	OpStkvar	(x,	0);
@@ -38565,6 +38702,8 @@ static Bytes_6(void) {
 	MakeCode	(x=0X19F89);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X19F92);
+	OpDecimal	(x,	1);
 	MakeCode	(0X19F9E);
 	MakeCode	(x=0X19FA9);
 	OpStkvar	(x,	1);
@@ -38641,6 +38780,8 @@ static Bytes_6(void) {
 	MakeCode	(x=0X1A073);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1A07C);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X1A08A);
 	OpDecimal	(x,	1);
 	MakeCode	(x=0X1A08D);
@@ -38656,12 +38797,20 @@ static Bytes_6(void) {
 	MakeCode	(x=0X1A0A4);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1A0AD);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X1A0B8);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1A0BB);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X1A0C6);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X1A0CC);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X1A0D5);
+	OpDecimal	(x,	1);
+	MakeCode	(x=0X1A0E3);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X1A0E9);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1A0ED);
@@ -38720,7 +38869,7 @@ static Bytes_6(void) {
 	MakeByte	(0X1A17F);
 	MakeArray	(0X1A17F,	0X3);
 	MakeCode	(0X1A182);
-	MakeName	(0X1A182,	"show_item_created");
+	MakeName	(0X1A182,	"load_ball_2glb1");
 	MakeCode	(x=0X1A18D);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -38868,7 +39017,7 @@ static Bytes_6(void) {
 	MakeByte	(0X1A376);
 	MakeArray	(0X1A376,	0X3);
 	MakeCode	(0X1A379);
-	MakeName	(0X1A379,	"load_theurgy_data_");
+	MakeName	(0X1A379,	"load_theurgy_image");
 	MakeCode	(x=0X1A384);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1A389);
@@ -40111,6 +40260,12 @@ static Bytes_6(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X1B13A);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X1B13F);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1B142);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1B145);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1B14B);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -40131,6 +40286,8 @@ static Bytes_6(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1B18D);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X1B196);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(0X1B1A2);
 	MakeCode	(x=0X1B1A7);
 	OpStkvar	(x,	1);
@@ -40148,6 +40305,8 @@ static Bytes_6(void) {
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeRptCmt	(0X1B1BD,	"特殊图像参数?");
+	MakeCode	(x=0X1B1BD);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1B1C5);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1B1C8);
@@ -40163,6 +40322,8 @@ static Bytes_6(void) {
 	MakeCode	(x=0X1B1D2);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1B1DB);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1B1E0);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1B1E7);
@@ -40200,6 +40361,7 @@ static Bytes_6(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1B236);
 	OpStkvar	(x,	0);
+	MakeRptCmt	(0X1B239,	"自动触发脚本");
 	MakeCode	(x=0X1B23E);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -40222,19 +40384,37 @@ static Bytes_6(void) {
 	MakeCode	(x=0X1B263);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1B268);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1B26B);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(0X1B277);
+	MakeCode	(x=0X1B279);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1B27C);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1B27F);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1B285);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X1B289);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X1B28E);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1B291);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1B294);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1B29A);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X1B29E);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1B2A5);
-	OpHex		(x,	1);
+	OpDecimal	(x,	1);
+	MakeCode	(x=0X1B2AE);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X1B2B4);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1B2B7);
@@ -40250,6 +40430,24 @@ static Bytes_6(void) {
 	MakeCode	(x=0X1B2C1);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1B2C6);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1B2C9);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1B2CC);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
+	MakeCode	(x=0X1B2DB);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1B2DE);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1B2E1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
+	MakeCode	(x=0X1B2E9);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1B2EC);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1B2EF);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1B2F7);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -40346,6 +40544,8 @@ static Bytes_6(void) {
 	MakeCode	(x=0X1B421);
 	OpStkvar	(x,	1);
 	MakeCode	(0X1B42C);
+	MakeCode	(x=0X1B432);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1B438);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1B43B);
@@ -40954,7 +41154,7 @@ static Bytes_6(void) {
 	MakeByte	(0X1BB93);
 	MakeArray	(0X1BB93,	0X3);
 	MakeCode	(0X1BB96);
-	MakeName	(0X1BB96,	"play_music");
+	MakeName	(0X1BB96,	"play_rix_music");
 	MakeCode	(x=0X1BBA1);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -41064,7 +41264,7 @@ static Bytes_6(void) {
 	MakeByte	(0X1BD4E);
 	MakeArray	(0X1BD4E,	0X3);
 	MakeCode	(0X1BD51);
-	MakeName	(0X1BD51,	"walk_one_step");
+	MakeName	(0X1BD51,	"team_walk_one_step");
 	MakeCode	(x=0X1BD5C);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -41100,16 +41300,16 @@ static Bytes_6(void) {
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X1BD98);
-	OpHex		(x,	1);
+	OpBinary	(x,	1);
 	MakeCode	(x=0X1BD9B);
-	OpHex		(x,	1);
+	OpBinary	(x,	1);
 	MakeCode	(x=0X1BD9E);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
 	MakeByte	(0X1BDAE);
 	MakeArray	(0X1BDAE,	0X3);
 	MakeCode	(0X1BDB1);
-	MakeName	(0X1BDB1,	"store_team_frame_data");
+	MakeName	(0X1BDB1,	"calc_followers_screen_pos");
 	MakeCode	(x=0X1BDBC);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -41186,6 +41386,10 @@ static Bytes_6(void) {
 	MakeCode	(x=0X1BE95);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1BE98);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1BE9B);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X1BEA1);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1BEA4);
@@ -41195,11 +41399,19 @@ static Bytes_6(void) {
 	MakeCode	(x=0X1BEB1);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1BEB4);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1BEB7);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X1BEBD);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X1BEC1);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X1BEC6);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1BEC9);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X1BED2);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -41433,7 +41645,7 @@ static Bytes_6(void) {
 	MakeByte	(0X1C19A);
 	MakeArray	(0X1C19A,	0X3);
 	MakeCode	(0X1C19D);
-	MakeName	(0X1C19D,	"calc_trace_frames");
+	MakeName	(0X1C19D,	"calc&trace_frames");
 	MakeCode	(x=0X1C1A8);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -41493,6 +41705,15 @@ static Bytes_6(void) {
 	MakeCode	(x=0X1C25B);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_7(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X1C26D);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1C272);
@@ -42001,11 +42222,19 @@ static Bytes_6(void) {
 	MakeCode	(x=0X1C928);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1C92B);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1C92E);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X1C939);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1C940);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1C943);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1C946);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X1C94F);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1C952);
@@ -42140,15 +42369,6 @@ static Bytes_6(void) {
 	MakeCode	(x=0X1CB4B);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_7(void) {
-        auto x;
-#define id x
-
 	MakeCode	(x=0X1CB5A);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -42358,7 +42578,7 @@ static Bytes_7(void) {
 	MakeByte	(0X1CDE4);
 	MakeArray	(0X1CDE4,	0X3);
 	MakeCode	(0X1CDE7);
-	MakeName	(0X1CDE7,	"draw_thisline_m_text");
+	MakeName	(0X1CDE7,	"draw_oneline_m_text");
 	MakeCode	(x=0X1CDF2);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1CDF7);
@@ -42975,12 +43195,28 @@ static Bytes_7(void) {
 	MakeCode	(x=0X1D377);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1D37C);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D37F);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X1D385);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X1D38B);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D38E);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X1D394);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X1D39A);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D39D);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X1D3A3);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X1D3A9);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D3AC);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X1D3B2);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1D3BD);
@@ -43054,6 +43290,24 @@ static Bytes_7(void) {
 	MakeCode	(x=0X1D47C);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1D481);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D484);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D487);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
+	MakeCode	(x=0X1D490);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D493);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D496);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
+	MakeCode	(x=0X1D49E);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D4A1);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D4A4);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1D4AA);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1D4AF);
@@ -43075,6 +43329,12 @@ static Bytes_7(void) {
 	MakeCode	(x=0X1D4C9);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1D4CC);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D4CF);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D4D2);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1D4DD);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1D4E6);
@@ -43102,10 +43362,12 @@ static Bytes_7(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1D524);
 	OpStkvar	(x,	1);
+	MakeRptCmt	(0X1D528,	"调用脚本");
 	MakeCode	(x=0X1D530);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1D533);
 	OpStkvar	(x,	1);
+	MakeRptCmt	(0X1D537,	"调用脚本");
 	MakeCode	(x=0X1D53F);
 	OpStkvar	(x,	0);
 	MakeCode	(0X1D548);
@@ -43291,17 +43553,25 @@ static Bytes_7(void) {
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeRptCmt	(0X1D729,	"触发状态");
+	MakeCode	(x=0X1D729);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(0X1D735);
+	MakeCode	(x=0X1D73D);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1D743);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X1D747);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X1D752);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1D758);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X1D75C);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X1D767);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1D76D);
 	OpHex		(x,	1);
 	MakeCode	(x=0X1D76F);
@@ -43315,8 +43585,20 @@ static Bytes_7(void) {
 	MakeCode	(0X1D78E);
 	MakeComm	(0X1D797,	"-40h<x_diff<180h,0<y_diff<148h");
 	MakeCode	(0X1D797);
+	MakeCode	(x=0X1D799);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D79C);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D79F);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1D7A5);
 	OpStkvar	(x,	0);
+	MakeCode	(x=0X1D7AA);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D7AD);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1D7B0);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(0X1D7BC);
 	MakeCode	(x=0X1D7C1);
 	OpStkvar	(x,	0);
@@ -43339,6 +43621,8 @@ static Bytes_7(void) {
 	MakeCode	(x=0X1D7DE);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1D7E7);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeRptCmt	(0X1D7EA,	"direction?");
 	MakeCode	(x=0X1D7F2);
 	OpStkvar	(x,	0);
@@ -43357,6 +43641,10 @@ static Bytes_7(void) {
 	MakeCode	(x=0X1D805);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1D810);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
+	MakeCode	(x=0X1D81E);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1D824);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1D827);
@@ -43374,6 +43662,8 @@ static Bytes_7(void) {
 	MakeCode	(x=0X1D834);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1D83D);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X1D849);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1D84C);
@@ -44522,8 +44812,10 @@ static Bytes_7(void) {
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X1E559);
 	OpStkvar	(x,	0);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X1E55E);
 	OpStkvar	(x,	0);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X1E563);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
@@ -44550,6 +44842,7 @@ static Bytes_7(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1E594);
 	OpStkvar	(x,	0);
+	OpSign		(x,	1);
 	OpDecimal	(x,	1);
 	MakeCode	(x=0X1E59E);
 	OpOff		(x,	1,	0X2F380);
@@ -44566,6 +44859,7 @@ static Bytes_7(void) {
 	OpOff		(x,	128,	0X2F380);
 	MakeCode	(x=0X1E5BE);
 	OpStkvar	(x,	0);
+	OpSign		(x,	1);
 	OpDecimal	(x,	1);
 	MakeCode	(x=0X1E5C3);
 	OpStkvar	(x,	0);
@@ -44578,6 +44872,8 @@ static Bytes_7(void) {
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X1E5D6);
 	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1E5DD);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X1E5E0);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1E5E5);
@@ -44809,6 +45105,8 @@ static Bytes_7(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X1E7F7);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X1E803);
+	OpDecimal	(x,	1);
 	MakeCode	(x=0X1E806);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1E80C);
@@ -45287,6 +45585,14 @@ static Bytes_7(void) {
 	MakeCode	(x=0X1EDC2);
 	OpOff		(x,	1,	0X2F380);
 	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X1EDC5);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1EDC8);
+	OpStroffEx	(x,	1,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1EDCB);
+	OpStroffEx	(x,	0,	GetStrucIdByName("DDIM"),	0);
+	MakeCode	(x=0X1EDCF);
+	OpStroffEx	(x,	0,	GetStrucIdByName("DDIM"),	0);
 	MakeCode	(x=0X1EDD2);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -46199,13 +46505,14 @@ static Bytes_7(void) {
 	MakeCode	(0X1FE95);
 	MakeName	(0X1FE95,	"B$SSEG");
 	MakeCode	(0X1FEA6);
+	MakeName	(0X1FEA6,	"STRCPY");
 	MakeCode	(0X1FEC7);
 	MakeRptCmt	(0X1FECA,	"Convert string to integer");
 	MakeCode	(0X1FECA);
 	MakeName	(0X1FECA,	"B$FCVI");
 	MakeByte	(0X1FECC);
 	MakeCode	(0X1FECD);
-	MakeName	(0X1FECD,	"get_script_id");
+	MakeName	(0X1FECD,	"B$FCVI_0");
 	MakeCode	(x=0X1FED5);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X1FED8);
@@ -46216,6 +46523,9 @@ static Bytes_7(void) {
 	MakeByte	(0X1FEED);
 	MakeCode	(0X1FEEE);
 	MakeName	(0X1FEEE,	"B$FCVC");
+	MakeCode	(x=0X1FEF6);
+	OpOff		(x,	1,	0X2F380);
+	OpOff		(x,	129,	0X2F380);
 	MakeCode	(x=0X1FEF9);
 	OpStkvar	(x,	1);
 	MakeCode	(0X1FF06);
@@ -46662,7 +46972,9 @@ static Bytes_7(void) {
 	MakeName	(0X206CA,	"B$FRI2");
 	MakeCode	(x=0X206CD);
 	OpStkvar	(x,	1);
-	MakeCode	(0X20706);
+	MakeCode	(x=0X20706);
+	OpOff		(x,	1,	0X2F380);
+	OpOff		(x,	129,	0X2F380);
 	MakeByte	(0X20716);
 	MakeCode	(0X20717);
 	MakeCode	(x=0X2072F);
@@ -46775,6 +47087,15 @@ static Bytes_7(void) {
 	MakeRptCmt	(0X20973,	"输入参数bx=0,则跳走(调用B$OGSA时，之后那个数字*2+IP+1)");
 	MakeCode	(x=0X20976);
 	OpHex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_8(void) {
+        auto x;
+#define id x
+
 	MakeRptCmt	(0X2097C,	"IP+1+(bx-1)*2>=[ip]*2则跳走(位置同上)");
 	MakeRptCmt	(0X20985,	"AH=0的话，直接跳向[ip]");
 	MakeCode	(x=0X20992);
@@ -47125,7 +47446,7 @@ static Bytes_7(void) {
 	MakeCode	(x=0X20EA4);
 	OpStkvar	(x,	1);
 	MakeCode	(0X20EAE);
-	MakeName	(0X20EAE,	"b$IsamRtmUsed");
+	MakeName	(0X20EAE,	"B$FCVD");
 	MakeCode	(x=0X20EEA);
 	OpOff		(x,	0,	0X2F380);
 	OpOff		(x,	128,	0X2F380);
@@ -47449,15 +47770,6 @@ static Bytes_7(void) {
 	OpOff		(x,	0,	0X1F330);
 	OpOff		(x,	128,	0X1F330);
 	MakeName	(0X2173C,	"B$Screen_Dispatch");
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_8(void) {
-        auto x;
-#define id x
-
 	MakeWord	(x=0X2173E);
 	OpOff		(x,	0,	0X1F330);
 	OpOff		(x,	128,	0X1F330);
@@ -48668,6 +48980,15 @@ static Bytes_8(void) {
 	MakeCode	(0X22CA9);
 	MakeCode	(0X22CB3);
 	MakeCode	(0X22CB6);
+	MakeCode	(x=0X22CB9);
+	OpOff		(x,	1,	0X2F380);
+	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X22CC3);
+	OpOff		(x,	1,	0X2F380);
+	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X22CCE);
+	OpOff		(x,	1,	0X2F380);
+	OpOff		(x,	129,	0X2F380);
 	MakeCode	(0X22CD7);
 	MakeCode	(x=0X22CD9);
 	OpOff		(x,	1,	0X2F380);
@@ -48687,6 +49008,12 @@ static Bytes_8(void) {
 	MakeCode	(0X22D45);
 	MakeCode	(0X22D8B);
 	MakeCode	(0X22D99);
+	MakeCode	(x=0X22D9C);
+	OpOff		(x,	1,	0X2F380);
+	OpOff		(x,	129,	0X2F380);
+	MakeCode	(x=0X22DA0);
+	OpOff		(x,	1,	0X2F380);
+	OpOff		(x,	129,	0X2F380);
 	MakeCode	(0X22DA5);
 	MakeCode	(0X22DA8);
 	MakeCode	(0X22DC6);
@@ -51172,6 +51499,7 @@ static Bytes_8(void) {
 	MakeCode	(x=0X25227);
 	OpOff		(x,	0,	0X2F210);
 	OpOff		(x,	128,	0X2F210);
+	MakeName	(0X25233,	"glb_25233");
 	MakeCode	(x=0X25234);
 	OpOff		(x,	0,	0X2F210);
 	OpOff		(x,	128,	0X2F210);
@@ -51229,6 +51557,15 @@ static Bytes_8(void) {
 	MakeCode	(x=0X25289);
 	OpOff		(x,	1,	0X25140);
 	OpOff		(x,	129,	0X25140);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_9(void) {
+        auto x;
+#define id x
+
 	MakeComm	(0X25295,	"DOS - SET INTERRUPT VECTOR\nAL = interrupt number\nDS:DX = new vector to be used for specified interrupt");
 	MakeCode	(x=0X25295);
 	OpHex		(x,	0);
@@ -51523,7 +51860,7 @@ static Bytes_8(void) {
 	MakeCode	(x=0X25766);
 	OpHex		(x,	1);
 	MakeCode	(x=0X2576D);
-	OpHex		(x,	1);
+	OpBinary	(x,	1);
 	MakeName	(0X2576D,	"seg4d_6_round_int");
 	MakeCode	(x=0X25770);
 	OpOff		(x,	0,	0X2F210);
@@ -51535,7 +51872,7 @@ static Bytes_8(void) {
 	OpOff		(x,	1,	0X2F210);
 	OpOff		(x,	129,	0X2F210);
 	MakeCode	(x=0X25781);
-	OpHex		(x,	1);
+	OpBinary	(x,	1);
 	MakeCode	(x=0X25786);
 	OpOff		(x,	0,	0X2F210);
 	OpOff		(x,	128,	0X2F210);
@@ -52076,15 +52413,6 @@ static Bytes_8(void) {
 	MakeWord	(x=0X25A18);
 	OpOff		(x,	0,	0X25140);
 	OpOff		(x,	128,	0X25140);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_9(void) {
-        auto x;
-#define id x
-
 	MakeWord	(x=0X25A1A);
 	OpOff		(x,	0,	0X25140);
 	OpOff		(x,	128,	0X25140);
@@ -52935,6 +53263,7 @@ static Bytes_9(void) {
 	MakeCode	(x=0X26D19);
 	OpOff		(x,	1,	0X2F210);
 	OpOff		(x,	129,	0X2F210);
+	MakeName	(0X26D19,	"soft_FPU?");
 	MakeCode	(0X26D46);
 	MakeCode	(0X26D5C);
 	MakeCode	(x=0X26D5E);
@@ -53659,10 +53988,12 @@ static Bytes_9(void) {
 	MakeComm	(0X28126,	"DOS - 2+ - GET INTERRUPT VECTOR\nAL = interrupt number\nReturn: ES:BX = value of interrupt vector");
 	MakeCode	(x=0X28126);
 	OpHex		(x,	0);
+	MakeCode	(x=0X28130);
+	OpOff		(x,	1,	0X28110);
+	OpOff		(x,	129,	0X28110);
 	MakeName	(0X28130,	"int23_replaced");
 	MakeCode	(x=0X28139);
 	OpHex		(x,	1);
-	MakeName	(0X28139,	"use_orig_int23_handle");
 	MakeComm	(0X2813C,	"DOS - SET INTERRUPT VECTOR\nAL = interrupt number\nDS:DX = new vector to be used for specified interrupt");
 	MakeCode	(x=0X2813C);
 	OpHex		(x,	0);
@@ -53695,6 +54026,7 @@ static Bytes_9(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X28194);
 	OpStkvar	(x,	1);
+	MakeName	(0X28194,	"column_loop");
 	MakeName	(0X28197,	"row_loop");
 	MakeCode	(x=0X28198);
 	OpHex		(x,	1);
@@ -53739,6 +54071,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X28217);
 	OpStkvar	(x,	1);
+	MakeName	(0X28224,	"fade_loop");
 	MakeCode	(0X2826E);
 	MakeName	(0X2826E,	"crossFade_desalt");
 	MakeCode	(x=0X28276);
@@ -53752,6 +54085,7 @@ static Bytes_9(void) {
 	MakeCode	(x=0X28285);
 	OpStkvar	(x,	1);
 	MakeRptCmt	(0X2828C,	"若s>d则d++,s<d则d--;s=d则d.");
+	MakeName	(0X2828F,	"glb_2828F");
 	MakeCode	(0X282F9);
 	MakeName	(0X282F9,	"crossFade_FullScreen");
 	MakeCode	(x=0X28306);
@@ -53762,7 +54096,7 @@ static Bytes_9(void) {
 	OpDecimal	(x,	1);
 	MakeName	(0X28316,	"fading_loop");
 	MakeCode	(0X283F1);
-	MakeName	(0X283F1,	"crossFade_F?");
+	MakeName	(0X283F1,	"writescreen_gap");
 	MakeCode	(x=0X283FB);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X28400);
@@ -53772,6 +54106,7 @@ static Bytes_9(void) {
 	MakeCode	(x=0X2840D);
 	OpHex		(x,	1);
 	MakeCode	(0X284A4);
+	MakeName	(0X284A4,	"mid");
 	MakeCode	(0X284A7);
 	MakeCode	(0X284AC);
 	MakeName	(0X284AC,	"draw_onescreen_map");
@@ -53788,12 +54123,14 @@ static Bytes_9(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X284DE);
 	OpStkvar	(x,	1);
+	MakeName	(0X284DE,	"glb_284DE");
 	MakeCode	(x=0X284E2);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X284E8);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X284EE);
 	OpStkvar	(x,	0);
+	MakeName	(0X284F4,	"h_loop");
 	MakeCode	(x=0X284F5);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X284F8);
@@ -53806,6 +54143,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X28509);
 	OpDecimal	(x,	1);
+	MakeName	(0X2850C,	"x_loop");
 	MakeCode	(x=0X2850D);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X28510);
@@ -53881,13 +54219,13 @@ static Bytes_9(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(0X285E8);
 	MakeCode	(0X285FD);
-	MakeName	(0X285FD,	"directly_writescreen_without_aligning");
+	MakeName	(0X285FD,	"read_from_screen");
 	MakeCode	(x=0X2860C);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2860F);
 	OpDecimal	(x,	1);
 	MakeCode	(0X2861D);
-	MakeName	(0X2861D,	"directly_writescreen");
+	MakeName	(0X2861D,	"write_to_screen");
 	MakeCode	(x=0X2862C);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X28633);
@@ -53921,7 +54259,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	1);
 	MakeRptCmt	(0X286BD,	"03D4  rW  CRT (6845) register index   (CGA/MCGA/color EGA/color VGA)\n        selects which register (0-11h) is to be accessed through 03D5\n        this port is r/w on some VGA, e.g. ET4000\n            bit 7-6 =0: (VGA) reserved\n            bit 5   =0: (VGA) reserved for testage\n            bit 4-0   : selects which register is to be accessed through 03D5");
 	MakeCode	(x=0X286C0);
-	OpHex		(x,	1);
+	OpBinary	(x,	1);
 	MakeComm	(0X286C4,	"Video: CRT cntrlr addr\nhorizontal total");
 	MakeComm	(0X286C9,	"Video: CRT cntrlr addr\nhorizontal total");
 	MakeCode	(0X286D0);
@@ -53969,6 +54307,7 @@ static Bytes_9(void) {
 	MakeCode	(x=0X28753);
 	OpDecimal	(x,	1);
 	MakeComm	(0X2875C,	"形而下者谓之弃?……");
+	MakeName	(0X2875C,	"skip");
 	MakeRptCmt	(0X28770,	"影");
 	MakeCode	(x=0X28772);
 	OpDecimal	(x,	1);
@@ -54384,6 +54723,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X28E98);
 	OpStkvar	(x,	1);
+	MakeName	(0X28E98,	"valid_y");
 	MakeCode	(x=0X28E9B);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X28E9E);
@@ -54418,6 +54758,7 @@ static Bytes_9(void) {
 	MakeName	(0X28EF3,	"valid_x_");
 	MakeCode	(x=0X28EFC);
 	OpStkvar	(x,	1);
+	MakeName	(0X28EFC,	"skip_rle_pixels");
 	MakeCode	(x=0X28F00);
 	OpHex		(x,	1);
 	MakeCode	(x=0X28F04);
@@ -54430,6 +54771,7 @@ static Bytes_9(void) {
 	MakeCode	(x=0X28F23);
 	OpStkvar	(x,	1);
 	MakeCode	(0X28F31);
+	MakeName	(0X28F31,	"right_skip");
 	MakeCode	(x=0X28F34);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X28F37);
@@ -54641,6 +54983,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X292C7);
 	OpStkvar	(x,	1);
+	MakeName	(0X292C7,	"y_min_valid");
 	MakeCode	(x=0X292CA);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X292D9);
@@ -54658,6 +55001,7 @@ static Bytes_9(void) {
 	MakeCode	(x=0X29305);
 	OpStkvar	(x,	0);
 	MakeCode	(0X2930D);
+	MakeName	(0X2930D,	"glb_2930D");
 	MakeCode	(x=0X29312);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2931F);
@@ -54666,6 +55010,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2932A);
 	OpStkvar	(x,	1);
+	MakeName	(0X2932A,	"valid___");
 	MakeCode	(x=0X29333);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X29337);
@@ -54861,8 +55206,6 @@ static Bytes_9(void) {
 	MakeCode	(x=0X2965F);
 	OpStkvar	(x,	1);
 	MakeName	(0X2966B,	"valid_x_min");
-	MakeName	(0X29671,	"valid_x_max");
-	MakeName	(0X29678,	"valid_y_min");
 	MakeCode	(x=0X2967E);
 	OpStkvar	(x,	1);
 	MakeName	(0X2967E,	"valid_y_max");
@@ -54891,7 +55234,7 @@ static Bytes_9(void) {
 	MakeWord	(0X296A1);
 	MakeName	(0X296A1,	"next_scrn_x");
 	MakeWord	(0X296A3);
-	MakeName	(0X296A3,	"next_scrn_y?");
+	MakeName	(0X296A3,	"next_scrn_y");
 	MakeByte	(0X296A5);
 	MakeArray	(0X296A5,	0X13F2);
 	MakeCode	(0X2AA97);
@@ -54954,6 +55297,8 @@ static Bytes_9(void) {
 	OpOff		(x,	129,	0X29640);
 	MakeCode	(x=0X2AB53);
 	OpStkvar	(x,	1);
+	MakeRptCmt	(0X2AB64,	"y-l");
+	MakeRptCmt	(0X2AB6E,	"y-l-height");
 	MakeCode	(x=0X2AB77);
 	OpOff		(x,	0,	0X29640);
 	OpOff		(x,	128,	0X29640);
@@ -55032,6 +55377,7 @@ static Bytes_9(void) {
 	OpOff		(x,	0,	0X29640);
 	OpOff		(x,	128,	0X29640);
 	MakeCode	(0X2AC50);
+	MakeName	(0X2AC50,	"get_gop_id");
 	MakeCode	(x=0X2AC54);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2AC5C);
@@ -55085,6 +55431,7 @@ static Bytes_9(void) {
 	MakeCode	(x=0X2AD09);
 	OpStkvar	(x,	1);
 	MakeRptCmt	(0X2AD0C,	"(arg2+arg3)*320");
+	MakeName	(0X2AD0E,	"transfer_loop");
 	MakeCode	(x=0X2AD1C);
 	OpHex		(x,	1);
 	MakeCode	(x=0X2AD25);
@@ -55189,6 +55536,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2AF83);
 	OpHex		(x,	1);
+	MakeRptCmt	(0X2AF87,	"S");
 	MakeCode	(x=0X2AF87);
 	OpOff		(x,	0,	0X2ACD0);
 	OpOff		(x,	128,	0X2ACD0);
@@ -55201,23 +55549,29 @@ static Bytes_9(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2AFAF);
 	OpDecimal	(x,	1);
+	MakeCode	(x=0X2AFB5);
+	OpStroffEx	(x,	0,	GetStrucIdByName("scanline"),	0);
 	MakeCode	(x=0X2AFB8);
 	OpOff		(x,	1,	0X2ACD0);
 	OpOff		(x,	129,	0X2ACD0);
 	MakeCode	(x=0X2AFBD);
 	OpDecimal	(x,	1);
+	MakeCode	(x=0X2AFC0);
+	OpStroffEx	(x,	0,	GetStrucIdByName("scanline"),	0);
+	MakeCode	(x=0X2AFC3);
+	OpStroffEx	(x,	1,	GetStrucIdByName("scanline"),	0);
+	MakeCode	(x=0X2AFC5);
+	OpStroffEx	(x,	1,	GetStrucIdByName("scanline"),	0);
 	MakeCode	(x=0X2AFCF);
 	OpHex		(x,	1);
 	MakeCode	(x=0X2AFDC);
 	OpHex		(x,	1);
 	MakeWord	(0X2AFE8);
+	MakeArray	(0X2AFE8,	0X10);
 	MakeName	(0X2AFE8,	"wave_result");
-	MakeByte	(0X2AFEA);
-	MakeArray	(0X2AFEA,	0X1E);
 	MakeWord	(0X2B008);
+	MakeArray	(0X2B008,	0X10);
 	MakeName	(0X2B008,	"wave_result_opp");
-	MakeByte	(0X2B00A);
-	MakeArray	(0X2B00A,	0X1E);
 	MakeWord	(0X2B028);
 	MakeName	(0X2B028,	"wave_indexer");
 	MakeWord	(0X2B02A);
@@ -55381,6 +55735,9 @@ static Bytes_9(void) {
 	MakeName	(0X2B2CA,	"store_step");
 	MakeCode	(x=0X2B2D1);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X2B2D7);
+	OpDecimal	(x,	1);
+	MakeName	(0X2B2DA,	"back_loop");
 	MakeCode	(0X2B2FA);
 	MakeName	(0X2B2FA,	"calc_facing_to");
 	MakeCode	(x=0X2B302);
@@ -55770,7 +56127,6 @@ static Bytes_9(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2BD9C);
 	OpStkvar	(x,	0);
-	MakeName	(0X2BD9C,	"x_overflow");
 	MakeCode	(x=0X2BDA1);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2BDA4);
@@ -55808,6 +56164,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2BE0A);
 	OpHex		(x,	1);
+	MakeRptCmt	(0X2BE11,	"y*128+x*2+h");
 	MakeCode	(x=0X2BE13);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2BE1E);
@@ -55915,7 +56272,7 @@ static Bytes_9(void) {
 	MakeWord	(0X2BF8A);
 	MakeName	(0X2BF8A,	"max_column");
 	MakeWord	(0X2BF8C);
-	MakeName	(0X2BF8C,	"_32x_16h_m16_minusX");
+	MakeName	(0X2BF8C,	"viewport_x_minus16");
 	MakeWord	(0X2BF8E);
 	MakeName	(0X2BF8E,	"_16y_8h_7_alayer_minusY");
 	MakeWord	(0X2BF90);
@@ -55935,8 +56292,14 @@ static Bytes_9(void) {
 	MakeCode	(x=0X2BFAA);
 	OpStkvar	(x,	1);
 	MakeRptCmt	(0X2BFAF,	"触发状态");
+	MakeCode	(x=0X2BFAF);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
+	MakeCode	(x=0X2BFB7);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X2BFBA);
 	OpStkvar	(x,	1);
+	MakeCode	(x=0X2BFC3);
+	OpStroffEx	(x,	1,	GetStrucIdByName("event_object"),	0);
 	MakeCode	(x=0X2BFC6);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2BFDA);
@@ -55960,6 +56323,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2C01C);
 	OpStkvar	(x,	0);
+	MakeName	(0X2C01C,	"valid_width");
 	MakeCode	(x=0X2C01F);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2C022);
@@ -55968,6 +56332,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2C032);
 	OpStkvar	(x,	0);
+	MakeName	(0X2C032,	"valid_height");
 	MakeCode	(x=0X2C03A);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X2C03E);
@@ -55986,6 +56351,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2C06F);
 	OpStkvar	(x,	1);
+	MakeName	(0X2C06F,	"valid_height_3");
 	MakeCode	(x=0X2C072);
 	OpDecimal	(x,	1);
 	MakeCode	(x=0X2C077);
@@ -55997,6 +56363,7 @@ static Bytes_9(void) {
 	MakeCode	(0X2C0A2);
 	MakeCode	(x=0X2C0A7);
 	OpStkvar	(x,	1);
+	MakeName	(0X2C0A7,	"valid_width_2");
 	MakeCode	(x=0X2C0B4);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2C0B7);
@@ -56227,6 +56594,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2C47B);
 	OpStkvar	(x,	1);
+	MakeName	(0X2C47B,	"gota");
 	MakeCode	(x=0X2C486);
 	OpStkvar	(x,	0);
 	MakeName	(0X2C486,	"got_width");
@@ -56263,7 +56631,6 @@ static Bytes_9(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2C4F0);
 	OpStkvar	(x,	1);
-	MakeName	(0X2C4F3,	"line_loop");
 	MakeCode	(x=0X2C4F6);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2C4F9);
@@ -56381,6 +56748,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2C618);
 	OpStkvar	(x,	0);
+	MakeName	(0X2C618,	"row_complete_2");
 	MakeCode	(x=0X2C61B);
 	OpStkvar	(x,	0);
 	MakeCode	(0X2C623);
@@ -56581,6 +56949,7 @@ static Bytes_9(void) {
 	MakeCode	(x=0X2C807);
 	OpStkvar	(x,	0);
 	MakeCode	(0X2C80F);
+	MakeName	(0X2C80F,	"jmp_return_9");
 	MakeCode	(0X2C811);
 	MakeCode	(x=0X2C814);
 	OpStkvar	(x,	1);
@@ -56598,6 +56967,7 @@ static Bytes_9(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2C83B);
 	OpStkvar	(x,	0);
+	MakeName	(0X2C83B,	"row_complete_10");
 	MakeCode	(x=0X2C83E);
 	OpStkvar	(x,	0);
 	MakeCode	(0X2C846);
@@ -56607,6 +56977,7 @@ static Bytes_9(void) {
 	MakeCode	(x=0X2C857);
 	OpStkvar	(x,	0);
 	MakeCode	(0X2C85F);
+	MakeName	(0X2C85F,	"over_skipped");
 	MakeCode	(x=0X2C861);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X2C86D);
@@ -56623,6 +56994,7 @@ static Bytes_9(void) {
 	MakeCode	(0X2C88B);
 	MakeCode	(x=0X2C88D);
 	OpStkvar	(x,	1);
+	MakeName	(0X2C88D,	"glb_2C88D");
 	MakeByte	(0X2C89E);
 	MakeArray	(0X2C89E,	0X3FC);
 	MakeName	(0X2C89E,	"table");
@@ -56776,8 +57148,10 @@ static Bytes_9(void) {
 	MakeComm	(0X2D116,	"AT Keyboard controller 8042.");
 	MakeCode	(x=0X2D119);
 	OpHex		(x,	1);
+	MakeRptCmt	(0X2D11C,	"save the key pressed/released");
 	MakeCode	(x=0X2D124);
 	OpHex		(x,	1);
+	MakeRptCmt	(0X2D128,	"save the given key's status");
 	MakeCode	(x=0X2D128);
 	OpOff		(x,	0,	0X2D0A0);
 	OpOff		(x,	128,	0X2D0A0);
@@ -56785,6 +57159,15 @@ static Bytes_9(void) {
 	MakeCode	(x=0X2D131);
 	OpHex		(x,	1);
 	MakeComm	(0X2D133,	"PC/XT PPI port B bits:\n0: Tmr 2 gate 退蚛x10 OR 03H=spkr ON\n1: Tmr 2 data 图  AND 0fcH=spkr OFF\n3: 1=read high switches\n4: 0=enable RAM parity checking\n5: 0=enable I/O channel check\n6: 0=hold keyboard clock low\n7: 0=enable kbrd");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_10(void) {
+        auto x;
+#define id x
+
 	MakeComm	(0X2D136,	"PC/XT PPI port B bits:\n0: Tmr 2 gate 退蚛x10 OR 03H=spkr ON\n1: Tmr 2 data 图  AND 0fcH=spkr OFF\n3: 1=read high switches\n4: 0=enable RAM parity checking\n5: 0=enable I/O channel check\n6: 0=hold keyboard clock low\n7: 0=enable kbrd");
 	MakeRptCmt	(0X2D137,	"EOI");
 	MakeComm	(0X2D139,	"Interrupt controller, 8259A.");
@@ -56804,14 +57187,19 @@ static Bytes_9(void) {
 	MakeCode	(x=0X2D251);
 	OpOff		(x,	1,	0X2D0A0);
 	OpOff		(x,	129,	0X2D0A0);
-	MakeRptCmt	(0X2D254,	"把前一个按键存入");
-	MakeRptCmt	(0X2D26A,	"3是释放");
+	MakeRptCmt	(0X2D254,	"把当前按/释键存入");
+	MakeCode	(x=0X2D255);
+	OpDecimal	(x,	1);
+	MakeRptCmt	(0X2D259,	"最新扫描");
+	MakeRptCmt	(0X2D25A,	"上次扫描");
+	MakeRptCmt	(0X2D25D,	"最新扫描有按/释?");
+	MakeRptCmt	(0X2D261,	"最新按");
+	MakeRptCmt	(0X2D265,	"上次释");
 	MakeComm	(0X2D26F,	"2是压下");
 	MakeCode	(0X2D26F);
 	MakeName	(0X2D26F,	"is_press");
 	MakeCode	(0X2D274);
 	MakeCode	(0X2D27E);
-	MakeName	(0X2D280,	"save_ax");
 	MakeCode	(0X2D28C);
 	MakeName	(0X2D28C,	"Parse_key");
 	MakeCode	(x=0X2D291);
@@ -56904,6 +57292,8 @@ static Bytes_9(void) {
 	MakeComm	(0X2D347,	"DOS - 2+ - OPEN DISK FILE WITH HANDLE\nDS:DX -> ASCIZ filename\nAL = access mode\n2 - read & write");
 	MakeCode	(x=0X2D347);
 	OpHex		(x,	0);
+	MakeName	(0X2D34B,	"not_opened");
+	MakeName	(0X2D34E,	"glb_2D34E");
 	MakeCode	(x=0X2D34F);
 	OpStkvar	(x,	1);
 	MakeCode	(0X2D35B);
@@ -57010,8 +57400,10 @@ static Bytes_9(void) {
 	OpStkvar	(x,	1);
 	MakeName	(0X2D4A6,	"rix_exit");
 	MakeCode	(0X2D4AC);
+	MakeName	(0X2D4AC,	"glb_2D4AC");
 	MakeCode	(x=0X2D4B9);
 	OpHex		(x,	1);
+	MakeName	(0X2D4B9,	"next_call");
 	MakeCode	(x=0X2D4BB);
 	OpOff		(x,	0,	0X2D430);
 	OpOff		(x,	128,	0X2D430);
@@ -57160,30 +57552,7 @@ static Bytes_9(void) {
 	MakeCode	(x=0X2DC0A);
 	OpOff		(x,	0,	0X2D430);
 	OpOff		(x,	128,	0X2D430);
-	MakeCode	(x=0X2DC12);
-	OpOff		(x,	1,	0X2F380);
-	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0X2DC1A);
-	OpOff		(x,	1,	0X2F380);
-	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0X2DC31);
-	OpOff		(x,	1,	0X2F380);
-	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0X2DC3A);
-	OpOff		(x,	1,	0X2F380);
-	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0X2DC43);
-	OpOff		(x,	1,	0X2F380);
-	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0X2DC4C);
-	OpOff		(x,	1,	0X2F380);
-	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0X2DC55);
-	OpOff		(x,	1,	0X2F380);
-	OpOff		(x,	129,	0X2F380);
-	MakeCode	(x=0X2DC5E);
-	OpOff		(x,	1,	0X2F380);
-	OpOff		(x,	129,	0X2F380);
+	MakeCode	(0X2DC1A);
 	MakeCode	(0X2DC6B);
 	MakeCode	(x=0X2DC6D);
 	OpHex		(x,	1);
@@ -57191,6 +57560,7 @@ static Bytes_9(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X2DCDB);
 	MakeCode	(0X2DCEB);
+	MakeName	(0X2DCEB,	"rix_???");
 	MakeCode	(0X2DD0B);
 	MakeCode	(x=0X2DD12);
 	OpDecimal	(x,	1);
@@ -57413,6 +57783,7 @@ static Bytes_9(void) {
 	MakeByte	(0X2E7E8);
 	MakeWord	(0X2E7E9);
 	MakeByte	(0X2E7EB);
+	MakeName	(0X2E7EB,	"only_one?");
 	MakeWord	(0X2E7EC);
 	MakeWord	(0X2E7EE);
 	MakeName	(0X2E7EE,	"flag_adlib_inited");
@@ -57504,6 +57875,7 @@ static Bytes_9(void) {
 	MakeCode	(x=0X2E840);
 	OpStkvar	(x,	1);
 	MakeCode	(0X2E853);
+	MakeName	(0X2E853,	"clear_timer");
 	MakeCode	(0X2E85A);
 	MakeName	(0X2E85A,	"delay_centisecond");
 	MakeCode	(x=0X2E85F);
@@ -57541,20 +57913,12 @@ static Bytes_9(void) {
 	MakeComm	(0X2E8C8,	"Timer 8253-5 (AT: 8254.2).");
 	MakeCode	(x=0X2E8C8);
 	OpHex		(x,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_10(void) {
-        auto x;
-#define id x
-
 	MakeComm	(0X2E8CC,	"Timer 8253-5 (AT: 8254.2).");
 	MakeComm	(0X2E8CF,	"Timer 8253-5 (AT: 8254.2).");
 	MakeCode	(0X2E8D3);
 	MakeName	(0X2E8D3,	"timer_interrupt");
 	MakeCode	(0X2E8E2);
+	MakeName	(0X2E8E2,	"go_setpal");
 	MakeCode	(0X2E8ED);
 	MakeCode	(0X2E8FA);
 	MakeRptCmt	(0X2E911,	"第f0种颜色后移F");
@@ -57563,8 +57927,11 @@ static Bytes_10(void) {
 	MakeComm	(0X2E97C,	"Video status bits:\n0: retrace.  1=display is in vert or horiz retrace.\n1: 1=light pen is triggered; 0=armed\n2: 1=light pen switch is open; 0=closed\n3: 1=vertical sync pulse is occurring.\nBit(s)  Description     (Table P0818)\n 7-6    not used\n 7      (C&T Wingine) vertical sync in progress (if enabled by XR14)\n 5-4    color EGA, color ET4000, C&T: diagnose video display feedback, select\n          from color plane enable\n 3      in vertical retrace\n        (C&T Wingine) video active (retrace/video selected by XR14)\n 2      (CGA,color EGA) light pen switch is off\n        (MCGA,color ET4000) reserved (0)\n        (VGA) reserved (1)\n 1      (CGA,color EGA) positive edge from light pen has set trigger\n        (VGA,MCGA,color ET4000) reserved (0)\n 0      horizontal retrace in progress\n        =0  do not use memory\n        =1  memory access without interfering with display\n            (VGA,Genoa SuperEGA) horizontal or vertical retrace\n        (C&T Wingine) display enabled (retrace/DE selected by XR14)");
 	MakeCode	(x=0X2E97D);
 	OpHex		(x,	1);
+	MakeCode	(x=0X2E9AD);
+	OpDecimal	(x,	1);
 	MakeRptCmt	(0X2E9B1,	"每50毫秒/60毫秒(依次)调用一次原中断.");
 	MakeCode	(0X2E9B8);
+	MakeName	(0X2E9B8,	"int_end");
 	MakeComm	(0X2E9BA,	"Interrupt controller, 8259A.");
 	MakeCode	(x=0X2E9BA);
 	OpHex		(x,	0);
@@ -57588,7 +57955,6 @@ static Bytes_10(void) {
 	MakeCode	(x=0X2E9DB);
 	OpStkvar	(x,	1);
 	MakeComm	(0X2E9F4,	"Video status bits:\n0: retrace.  1=display is in vert or horiz retrace.\n1: 1=light pen is triggered; 0=armed\n2: 1=light pen switch is open; 0=closed\n3: 1=vertical sync pulse is occurring.");
-	MakeName	(0X2E9F4,	"wait_vertical_sync_purse");
 	MakeCode	(x=0X2E9F5);
 	OpHex		(x,	1);
 	MakeComm	(0X2E9F9,	"Video status bits:\n0: retrace.  1=display is in vert or horiz retrace.\n1: 1=light pen is triggered; 0=armed\n2: 1=light pen switch is open; 0=closed\n3: 1=vertical sync pulse is occurring.");
@@ -58097,7 +58463,7 @@ static Bytes_10(void) {
 	MakeStruct	(0X2F46E,	"FILE_Struct");
 	MakeName	(0X2F46E,	"ABC_MKF");
 	MakeWord	(0X2F476);
-	MakeName	(0X2F476,	"loop_counter");
+	MakeName	(0X2F476,	"team_loop_counter");
 	MakeWord	(0X2F478);
 	MakeName	(0X2F478,	"rng_movie_id");
 	MakeWord	(0X2F47A);
@@ -58123,7 +58489,7 @@ static Bytes_10(void) {
 	MakeWord	(0X2F48E);
 	MakeName	(0X2F48E,	"fbp_idx");
 	MakeWord	(0X2F490);
-	MakeName	(0X2F490,	"not_align?");
+	MakeName	(0X2F490,	"no_gap");
 	MakeWord	(0X2F492);
 	MakeName	(0X2F492,	"fade_time_gap_");
 	MakeWord	(0X2F494);
@@ -58171,11 +58537,11 @@ static Bytes_10(void) {
 	MakeWord	(0X2F4BE);
 	MakeName	(0X2F4BE,	"y_direction_offset");
 	MakeWord	(0X2F4C0);
-	MakeName	(0X2F4C0,	"abstract_x_local");
+	MakeName	(0X2F4C0,	"abstract_x_target");
 	MakeWord	(0X2F4C2);
-	MakeName	(0X2F4C2,	"abstract_y_local");
+	MakeName	(0X2F4C2,	"abstract_y_target");
 	MakeWord	(0X2F4C4);
-	MakeName	(0X2F4C4,	"min_evtobj");
+	MakeName	(0X2F4C4,	"nobody");
 	MakeWord	(0X2F4C6);
 	MakeName	(0X2F4C6,	"flag_can_go_through");
 	MakeWord	(0X2F4C8);
@@ -58252,29 +58618,38 @@ static Bytes_10(void) {
 	MakeWord	(0X2F516);
 	MakeWord	(0X2F518);
 	MakeWord	(0X2F51A);
-	MakeName	(0X2F51A,	"menu_inventory_?");
+	MakeName	(0X2F51A,	"menu_inventory_selected");
 	MakeWord	(0X2F51C);
 	MakeWord	(0X2F51E);
+	MakeName	(0X2F51E,	"equip_selected");
 	MakeWord	(0X2F520);
 	MakeName	(0X2F520,	"fbp_id_1");
 	MakeDword	(0X2F522);
 	MakeName	(0X2F522,	"len_to_backup");
 	MakeWord	(0X2F526);
+	MakeName	(0X2F526,	"equipable");
 	MakeWord	(0X2F528);
+	MakeName	(0X2F528,	"team_loop_max");
 	MakeDword	(0X2F52A);
 	MakeName	(0X2F52A,	"len");
 	MakeWord	(0X2F52E);
 	MakeWord	(0X2F530);
 	MakeWord	(0X2F532);
 	MakeWord	(0X2F534);
+	MakeName	(0X2F534,	"equip_T_x");
 	MakeWord	(0X2F536);
+	MakeName	(0X2F536,	"equip_T_y");
 	MakeWord	(0X2F538);
+	MakeName	(0X2F538,	"equip_T_color");
 	MakeWord	(0X2F53A);
 	MakeWord	(0X2F53C);
 	MakeWord	(0X2F53E);
+	MakeName	(0X2F53E,	"equip_index");
 	MakeWord	(0X2F540);
+	MakeName	(0X2F540,	"equip_amount");
 	MakeWord	(0X2F542);
 	MakeWord	(0X2F544);
+	MakeName	(0X2F544,	"role_?");
 	MakeWord	(0X2F546);
 	MakeName	(0X2F546,	"gop_y");
 	MakeWord	(0X2F548);
@@ -58284,7 +58659,9 @@ static Bytes_10(void) {
 	MakeWord	(0X2F550);
 	MakeWord	(0X2F552);
 	MakeWord	(0X2F554);
+	MakeName	(0X2F554,	"team_max");
 	MakeWord	(0X2F556);
+	MakeName	(0X2F556,	"_x");
 	MakeWord	(0X2F558);
 	MakeWord	(0X2F55A);
 	MakeWord	(0X2F55C);
@@ -58292,8 +58669,10 @@ static Bytes_10(void) {
 	MakeWord	(0X2F560);
 	MakeWord	(0X2F562);
 	MakeWord	(0X2F564);
+	MakeName	(0X2F564,	"key_selected");
 	MakeWord	(0X2F566);
 	MakeWord	(0X2F568);
+	MakeName	(0X2F568,	"equip_script");
 	MakeWord	(0X2F56A);
 	MakeWord	(0X2F56C);
 	MakeName	(0X2F56C,	"num_to_add");
@@ -58302,9 +58681,13 @@ static Bytes_10(void) {
 	MakeWord	(0X2F572);
 	MakeWord	(0X2F574);
 	MakeWord	(0X2F576);
+	MakeName	(0X2F576,	"gui_x");
 	MakeWord	(0X2F578);
+	MakeName	(0X2F578,	"gui_y");
 	MakeWord	(0X2F57A);
+	MakeName	(0X2F57A,	"gui_ret");
 	MakeWord	(0X2F57C);
+	MakeName	(0X2F57C,	"use_script");
 	MakeWord	(0X2F57E);
 	MakeWord	(0X2F580);
 	MakeWord	(0X2F582);
@@ -58372,6 +58755,7 @@ static Bytes_10(void) {
 	MakeWord	(0X2F5C6);
 	MakeName	(0X2F5C6,	"flag_repeat?");
 	MakeWord	(0X2F5C8);
+	MakeName	(0X2F5C8,	"magic_waving");
 	MakeWord	(0X2F5CA);
 	MakeName	(0X2F5CA,	"rnd6_add10");
 	MakeWord	(0X2F5CC);
@@ -58401,6 +58785,7 @@ static Bytes_10(void) {
 	MakeWord	(0X2F5EA);
 	MakeName	(0X2F5EA,	"coridinate_half_l");
 	MakeWord	(0X2F5EC);
+	MakeName	(0X2F5EC,	"brick_x");
 	MakeWord	(0X2F5EE);
 	MakeWord	(0X2F5F0);
 	MakeWord	(0X2F5F2);
@@ -58439,8 +58824,10 @@ static Bytes_10(void) {
 	MakeName	(0X2F6DA,	"DDIM_buf_common_short");
 	MakeStruct	(0X2F708,	"DDIM");
 	MakeName	(0X2F708,	"DDIM_fadegap_031524");
+	MakeRptCmt	(0X2F736,	"战时用于存储双方速度");
 	MakeStruct	(0X2F736,	"DDIM");
 	MakeName	(0X2F736,	"DDIM_buf_common");
+	MakeRptCmt	(0X2F764,	"双方出手顺序;敌+10");
 	MakeStruct	(0X2F764,	"DDIM");
 	MakeName	(0X2F764,	"DDIM_vs_id_table");
 	MakeRptCmt	(0X2F792,	"开场仙鹤X:rnd(260)+420");
@@ -58453,13 +58840,13 @@ static Bytes_10(void) {
 	MakeName	(0X2F7EE,	"DDIM_21043_enemy_sequence");
 	MakeRptCmt	(0X2F81C,	"每人10字节,0:号,2:posX,4:posY,6:方向桢,8:MGO_MemMKF_offset");
 	MakeStruct	(0X2F81C,	"DDIM");
-	MakeName	(0X2F81C,	"DDIM_team_positions");
+	MakeName	(0X2F81C,	"DDIM_RPG_team_positions");
 	MakeRptCmt	(0X2F84A,	"每个10字节,0:目标,2:动作,4:仙术/物品定义序号,6:仙术/物品位置序号,8:死活?\n                  动作:0:单攻,1,对我法术,2:对敌法术,3:使用;4,投掷;5,防御;6,围攻;\n                       7,合击;8,逃跑;9,疯击;10,全攻?\n                       ffff:啥都不干");
 	MakeStruct	(0X2F84A,	"DDIM");
 	MakeName	(0X2F84A,	"DDIM_role_attack_table");
 	MakeRptCmt	(0X2F878,	"每人6字节,0:X,2:Y,4:方向");
 	MakeStruct	(0X2F878,	"DDIM");
-	MakeName	(0X2F878,	"DDIM_team_trace");
+	MakeName	(0X2F878,	"DDIM_RPG_team_trace");
 	MakeStruct	(0X2F8A6,	"DDIM");
 	MakeName	(0X2F8A6,	"DDIM_x_off_fff0_fff0_10_10");
 	MakeStruct	(0X2F8D4,	"DDIM");
@@ -58468,7 +58855,7 @@ static Bytes_10(void) {
 	MakeName	(0X2F902,	"DDIM_x_block_off_ffff_ffff_1_1");
 	MakeStruct	(0X2F930,	"DDIM");
 	MakeName	(0X2F930,	"DDIM_y_block_off_1_ffff_ffff_1");
-	MakeRptCmt	(0X2F95E,	"每怪30字节,0:象,2:posX,4:posY,6:[2],8:[4],\n           10:0,12:0,14:偏移,16:长,\n           18:HP,20:号,22:战前,24:战后,26:战时");
+	MakeRptCmt	(0X2F95E,	"每怪30字节,0:象,2:posX,4:posY,6:[2],8:[4],\n           10:桢,12:[10],14:图组偏移,16:长,\n           18:HP,20:号,22:战前,24:战后,26:战时");
 	MakeStruct	(0X2F95E,	"DDIM");
 	MakeName	(0X2F95E,	"DDIM_battle_enemy_data_etc");
 	MakeRptCmt	(0X2F98C,	"每人24字节,0:战像,2:posX,4:posY,8:Xbak,10:Ybak\n           12:桢,14:桢bak,16:偏移,18:前桢?,20:脸色,22:合体");
@@ -58477,30 +58864,31 @@ static Bytes_10(void) {
 	MakeRptCmt	(0X2F9BA,	"每状态10字节,0:疯,1:定,2:眠,3:封,4:傀儡,\n5:高攻,6:高防,7:高速,8:双攻");
 	MakeStruct	(0X2F9BA,	"DDIM");
 	MakeName	(0X2F9BA,	"DDIM_role_status");
+	MakeRptCmt	(0X2F9E8,	"每状态10字节,0:疯,1:定,2:眠,3:封,4:傀儡,\n5:高攻,6:高防,7:高速,8:双攻");
 	MakeStruct	(0X2F9E8,	"DDIM");
 	MakeName	(0X2F9E8,	"DDIM_enemy_status");
 	MakeStruct	(0X2FA16,	"DDIM");
-	MakeName	(0X2FA16,	"DDIM_theurgy_pos_X?");
+	MakeName	(0X2FA16,	"DDIM_theurgy_pos_Xs");
 	MakeStruct	(0X2FA44,	"DDIM");
-	MakeName	(0X2FA44,	"DDIM_theurgy_pos_Y?");
+	MakeName	(0X2FA44,	"DDIM_theurgy_pos_Ys");
 	MakeStruct	(0X2FA72,	"DDIM");
 	MakeName	(0X2FA72,	"DDIM_summon_effect?");
 	MakeStruct	(0X2FAA0,	"DDIM");
-	MakeName	(0X2FAA0,	"DDIM_2FAA0");
+	MakeName	(0X2FAA0,	"DDIM_affected_enemies");
 	MakeStruct	(0X2FACE,	"DDIM");
-	MakeName	(0X2FACE,	"DDIM_2FACE");
+	MakeName	(0X2FACE,	"DDIM_affected_roles");
 	MakeStruct	(0X2FAFC,	"DDIM");
 	MakeName	(0X2FAFC,	"DDIM_instrum_icon_x_offs");
 	MakeStruct	(0X2FB2A,	"DDIM");
 	MakeName	(0X2FB2A,	"DDIM_instrum_icon_y_offs");
 	MakeStruct	(0X2FB58,	"DDIM");
-	MakeName	(0X2FB58,	"DDIM_sth_about_battle_row_10");
+	MakeName	(0X2FB58,	"DDIM_battletime_numbers");
 	MakeStruct	(0X2FB86,	"DDIM");
 	MakeName	(0X2FB86,	"DDIM_role_poison_stack");
 	MakeStruct	(0X2FBB4,	"DDIM");
 	MakeName	(0X2FBB4,	"DDIM_enemy_poison_stack");
 	MakeStruct	(0X2FBE2,	"DDIM");
-	MakeName	(0X2FBE2,	"DDIM_kinds_of_exps");
+	MakeName	(0X2FBE2,	"DDIM_RPG_kinds_of_exps");
 	MakeStruct	(0X2FC10,	"DDIM");
 	MakeName	(0X2FC10,	"DDIM_data@6_uplevel_theurgy");
 	MakeStruct	(0X2FC3E,	"DDIM");
@@ -58516,7 +58904,7 @@ static Bytes_10(void) {
 	MakeName	(0X2FCF6,	"DDIM_data@3_our_data");
 	MakeStruct	(0X2FD24,	"DDIM");
 	MakeName	(0X2FD24,	"DDIM_evt_obj_curr_scene");
-	MakeRptCmt	(0X2FD52,	"每怪46h字节,02468:;A:Yoff;C:sfx普?;E:;\n                      10:sfx法;12:sfx死;14:sfx攻;16:HP;18:exp;1A:钱;1Ch:级别;1E:术;\n                      20:施术频率;22:效果(物品);24:效果频率?;26:偷得;28:数量;2A:武;2C:灵;2E:防;\n                      30h:速;32:运;34:毒抗;36:风抗;38:雷抗;3A:水抗;3C:火抗;3E:土抗\n                      40:物抗;42h:2次;44:灵壶");
+	MakeRptCmt	(0X2FD52,	"每怪46h字节,0;2:法术帧数;468:;A:Yoff;C:sfx普?;E:;\n                      10:sfx法;12:sfx死;14:sfx攻;16:HP;18:exp;1A:钱;1Ch:级别;1E:术;\n                      20:施术频率;22:效果(物品);24:效果频率?;26:偷得;28:数量;2A:武;2C:灵;2E:防;\n                      30h:速;32:运;34:毒抗;36:风抗;38:雷抗;3A:水抗;3C:火抗;3E:土抗\n                      40:物抗;42h:2次;44:灵壶");
 	MakeStruct	(0X2FD52,	"DDIM");
 	MakeName	(0X2FD52,	"DDIM_thisbattle_enemy_data");
 	MakeStruct	(0X2FD80,	"DDIM");
@@ -58534,7 +58922,7 @@ static Bytes_10(void) {
 	MakeStruct	(0X2FE94,	"DDIM");
 	MakeName	(0X2FE94,	"DDIM_buf_glb_gop_or_FADEmap");
 	MakeStruct	(0X2FEC2,	"DDIM");
-	MakeName	(0X2FEC2,	"DDIM_buf_glb_screen");
+	MakeName	(0X2FEC2,	"DDIM_screen_buf");
 	MakeRptCmt	(0X2FEF0,	"MKF,随需构建");
 	MakeStruct	(0X2FEF0,	"DDIM");
 	MakeName	(0X2FEF0,	"DDIM_role_mgo_decoded_pack_or_battle_ico");
@@ -58634,6 +59022,7 @@ static Bytes_10(void) {
 	MakeName	(0X30110,	"frame_text_x");
 	MakeWord	(0X30112);
 	MakeName	(0X30112,	"frame_text_y");
+	MakeRptCmt	(0X30114,	"0:中,1:上,2:下,A:框");
 	MakeWord	(0X30114);
 	MakeName	(0X30114,	"frame_pos_flag");
 	MakeWord	(0X30116);
@@ -58686,13 +59075,13 @@ static Bytes_10(void) {
 	MakeWord	(0X30146);
 	MakeName	(0X30146,	"RPG_curr_scene");
 	MakeWord	(0X30148);
-	MakeName	(0X30148,	"RPG_scene_to_load");
+	MakeName	(0X30148,	"scene_to_load");
 	MakeWord	(0X3014A);
-	MakeName	(0X3014A,	"color_begin_fade");
+	MakeName	(0X3014A,	"RPG_color_begin_ptr");
 	MakeWord	(0X3014C);
-	MakeName	(0X3014C,	"RPG_first_member_direction");
+	MakeName	(0X3014C,	"RPG_team_direction");
 	MakeWord	(0X3014E);
-	MakeName	(0X3014E,	"step_frame_leader");
+	MakeName	(0X3014E,	"step_frame_role");
 	MakeWord	(0X30150);
 	MakeName	(0X30150,	"step_frame_follower");
 	MakeWord	(0X30152);
@@ -58710,13 +59099,13 @@ static Bytes_10(void) {
 	MakeWord	(0X3015E);
 	MakeName	(0X3015E,	"RPG_battle_scene_number");
 	MakeWord	(0X30160);
-	MakeName	(0X30160,	"key_leftright");
+	MakeName	(0X30160,	"x_off");
 	MakeWord	(0X30162);
-	MakeName	(0X30162,	"key_updown");
+	MakeName	(0X30162,	"y_off");
 	MakeWord	(0X30164);
-	MakeName	(0X30164,	"role_abstract_x");
+	MakeName	(0X30164,	"team_abstract_x");
 	MakeWord	(0X30166);
-	MakeName	(0X30166,	"role_abstract_y");
+	MakeName	(0X30166,	"team_abstract_y");
 	MakeWord	(0X30168);
 	MakeName	(0X30168,	"RPG_role_locate_layer");
 	MakeWord	(0X3016A);
@@ -58740,7 +59129,7 @@ static Bytes_10(void) {
 	MakeWord	(0X3017E);
 	MakeName	(0X3017E,	"Addr_videoscreen");
 	MakeWord	(0X30180);
-	MakeName	(0X30180,	"battle_save_200d");
+	MakeName	(0X30180,	"effective_HEIGHT");
 	MakeWord	(0X30182);
 	MakeName	(0X30182,	"battlefield_wave");
 	MakeDword	(0X30184);
@@ -58761,6 +59150,7 @@ static Bytes_10(void) {
 	MakeWord	(0X30196);
 	MakeName	(0X30196,	"role_counter");
 	MakeWord	(0X30198);
+	MakeName	(0X30198,	"targeting_role");
 	MakeWord	(0X3019A);
 	MakeName	(0X3019A,	"flag_selecting?");
 	MakeRptCmt	(0X3019C,	"0:地图,1:战斗,-1:动画");
@@ -58769,32 +59159,34 @@ static Bytes_10(void) {
 	MakeWord	(0X3019E);
 	MakeName	(0X3019E,	"flag_high_attack");
 	MakeWord	(0X301A0);
-	MakeName	(0X301A0,	"battle_save_0");
+	MakeName	(0X301A0,	"battle_scenes_drew?");
+	MakeRptCmt	(0X301A2,	"2:围攻;9:自动");
 	MakeWord	(0X301A2);
 	MakeName	(0X301A2,	"flag_autobattle_?");
 	MakeWord	(0X301A4);
-	MakeName	(0X301A4,	"endbattle_flag");
+	MakeName	(0X301A4,	"escape_flag");
 	MakeWord	(0X301A6);
-	MakeName	(0X301A6,	"battleflag_?");
+	MakeName	(0X301A6,	"battle_semaphor?");
 	MakeWord	(0X301A8);
 	MakeWord	(0X301AA);
-	MakeName	(0X301AA,	"team_number_add_1");
+	MakeName	(0X301AA,	"battle_team_number_ADD_1");
 	MakeWord	(0X301AC);
-	MakeName	(0X301AC,	"team_number");
+	MakeName	(0X301AC,	"battle_team_number");
 	MakeWord	(0X301AE);
-	MakeName	(0X301AE,	"enemy_count");
+	MakeName	(0X301AE,	"enemy_poses_count");
 	MakeWord	(0X301B0);
-	MakeName	(0X301B0,	"enemy_number");
+	MakeName	(0X301B0,	"enemy_poses_count_MINUS1");
 	MakeWord	(0X301B2);
 	MakeName	(0X301B2,	"vs_actions");
 	MakeWord	(0X301B4);
 	MakeName	(0X301B4,	"extracted_len");
+	MakeRptCmt	(0X301B6,	"也作死解");
 	MakeWord	(0X301B6);
 	MakeName	(0X301B6,	"flag_invisible");
 	MakeWord	(0X301B8);
-	MakeName	(0X301B8,	"battle_save_0__2");
+	MakeName	(0X301B8,	"flag_summon?");
 	MakeWord	(0X301BA);
-	MakeName	(0X301BA,	"mask_?_0");
+	MakeName	(0X301BA,	"flag_withdraw?");
 	MakeWord	(0X301BC);
 	MakeWord	(0X301BE);
 	MakeWord	(0X301C0);
@@ -58808,7 +59200,7 @@ static Bytes_10(void) {
 	MakeWord	(0X301CA);
 	MakeName	(0X301CA,	"prelimit_OK");
 	MakeWord	(0X301CC);
-	MakeName	(0X301CC,	"flag_battling?");
+	MakeName	(0X301CC,	"flag_battling");
 	MakeRptCmt	(0X301CE,	"20h:last_save,10h:sfx,8:scene,4:evt,2:music,1:team_mgo");
 	MakeWord	(0X301CE);
 	MakeName	(0X301CE,	"flag_to_load");
@@ -58838,10 +59230,11 @@ static Bytes_10(void) {
 	MakeWord	(0X301EC);
 	MakeName	(0X301EC,	"total_ch_chars");
 	MakeWord	(0X301EE);
-	MakeName	(0X301EE,	"blow_away_pixels?");
+	MakeName	(0X301EE,	"stage_blow_away");
 	MakeWord	(0X301F0);
-	MakeName	(0X301F0,	"max_blow_away_pixels?");
-	MakeWord	(0X301F2);
+	MakeName	(0X301F0,	"max_blow_away_pixels");
+	MakeWord	(x=0X301F2);
+	OpDecimal	(x,	0);
 	MakeName	(0X301F2,	"relative_viewport_x");
 	MakeWord	(0X301F4);
 	MakeName	(0X301F4,	"relative_viewport_y");
@@ -58850,9 +59243,9 @@ static Bytes_10(void) {
 	MakeWord	(0X301F8);
 	MakeName	(0X301F8,	"relative_viewport_y_prev");
 	MakeWord	(0X301FA);
-	MakeName	(0X301FA,	"viewport_x_prev");
+	MakeName	(0X301FA,	"viewport_x_bak");
 	MakeWord	(0X301FC);
-	MakeName	(0X301FC,	"viewport_y_prev");
+	MakeName	(0X301FC,	"viewport_y_bak");
 	MakeWord	(0X301FE);
 	MakeName	(0X301FE,	"decimal_200");
 	MakeWord	(0X30200);
@@ -58864,7 +59257,7 @@ static Bytes_10(void) {
 	MakeWord	(0X30206);
 	MakeName	(0X30206,	"key_pressed");
 	MakeWord	(0X30208);
-	MakeName	(0X30208,	"always_0?");
+	MakeName	(0X30208,	"could_go_through");
 	MakeWord	(0X3020A);
 	MakeName	(0X3020A,	"flag_battle?");
 	MakeWord	(0X3020C);
@@ -59042,9 +59435,9 @@ static Bytes_10(void) {
 	MakeStr		(0X304A6,	0X304B0);
 	MakeName	(0X304A6,	"aWor16_fon");
 	MakeStruct	(0X304B0,	"BSTR");
-	MakeName	(0X304B0,	"BSTR_big5check");
-	MakeStr		(0X304B8,	0X304BA);
-	MakeName	(0X304B8,	"aBg");
+	MakeName	(0X304B0,	"BSTR_colon");
+	MakeWord	(0X304B8);
+	MakeName	(0X304B8,	"aBig5_colon");
 	MakeDouble	(0X304BA);
 	MakeName	(0X304BA,	"fp64_10");
 	MakeArray	(0X304C2,	0XE);
@@ -59101,7 +59494,7 @@ static Bytes_10(void) {
 	MakeStr		(0X30570,	0X30578);
 	MakeName	(0X30570,	"aVoc_mkf");
 	MakeStruct	(0X30578,	"BSTR");
-	MakeName	(0X30578,	"BSTR_big5check_");
+	MakeName	(0X30578,	"BSTR_null_str");
 	MakeDouble	(0X30580);
 	MakeName	(0X30580,	"fp32_10");
 	MakeDouble	(0X30588);
@@ -59293,10 +59686,12 @@ static Bytes_10(void) {
 	MakeName	(0X306E3,	"segment_34");
 	MakeByte	(0X306E5);
 	MakeName	(0X306E5,	"flag_2");
+	MakeWord	(0X306E6);
 	MakeDword	(0X306EA);
 	MakeName	(0X306EA,	"B$AC");
 	MakeWord	(0X306F0);
 	MakeName	(0X306F0,	"ptr_DATA_SEG");
+	MakeWord	(0X306F4);
 	MakeWord	(0X306F6);
 	MakeName	(0X306F6,	"B$_seg");
 	MakeWord	(0X306FC);
@@ -59830,7 +60225,6 @@ static Functions_0(void) {
 	SetFunctionFlags(0X30,0x10);
 	MakeFrame(0X30, 0X14, 0, 0X0);
 	MakeNameEx(0X452, "ALL_DDIMed", SN_LOCAL);
-	MakeNameEx(0X4C6, "CDROM_Found", SN_LOCAL);
 	MakeNameEx(0X4E6, "ModifyEXE_eliminated_CheckTracks", SN_LOCAL);
 	MakeNameEx(0X4F3, "CDROM_Ready", SN_LOCAL);
 	MakeNameEx(0X549, "no_CD_music", SN_LOCAL);
@@ -59880,7 +60274,8 @@ static Functions_0(void) {
 	MakeFunction    (0XE54,0XFAB);
 	SetFunctionFlags(0XE54,0x0);
 	MakeFrame(0XE54, 0X0, 0, 0X0);
-	MakeNameEx(0XEF0, "cannot_go_through", SN_LOCAL);
+	MakeNameEx(0XE63, "leftright_0", SN_LOCAL);
+	MakeNameEx(0XEF0, "not_walking", SN_LOCAL);
 	MakeNameEx(0XF36, "through", SN_LOCAL);
 	MakeNameEx(0XF7A, "donot_need_sync_y", SN_LOCAL);
 	MakeNameEx(0XF89, "donot_need_sync_x", SN_LOCAL);
@@ -59902,6 +60297,11 @@ static Functions_0(void) {
 	MakeFunction    (0X129A,0X1889);
 	SetFunctionFlags(0X129A,0x10);
 	MakeFrame(0X129A, 0X16, 0, 0X0);
+	MakeNameEx(0X133E, "mask_loop", SN_LOCAL);
+	MakeNameEx(0X13BB, "mask_begin", SN_LOCAL);
+	MakeNameEx(0X13C7, "switch_equip_loop", SN_LOCAL);
+	MakeNameEx(0X1550, "role_select_loop", SN_LOCAL);
+	MakeNameEx(0X161E, "role_select_begin", SN_LOCAL);
 	MakeFunction    (0X1889,0X19BB);
 	SetFunctionFlags(0X1889,0x10);
 	MakeFrame(0X1889, 0X14, 0, 0X0);
@@ -59926,17 +60326,27 @@ static Functions_0(void) {
 	MakeFunction    (0X1B37,0X1B65);
 	SetFunctionFlags(0X1B37,0x0);
 	MakeFrame(0X1B37, 0X0, 0, 0X0);
-	MakeNameEx(0X1B5F, "yes", SN_LOCAL);
-	MakeNameEx(0X1B64, "no", SN_LOCAL);
+	MakeNameEx(0X1B5F, "exit_yes", SN_LOCAL);
+	MakeNameEx(0X1B64, "exit_no", SN_LOCAL);
 	MakeFunction    (0X1B65,0X1C6E);
 	SetFunctionFlags(0X1B65,0x10);
 	MakeFrame(0X1B65, 0X14, 0, 0X0);
 	MakeFunction    (0X1C71,0X29E9);
 	SetFunctionFlags(0X1C71,0x12);
 	MakeFrame(0X1C71, 0X7C, 0, 0X8);
+	MakeLocal(0X1C71, 0X29E9, "[bp-0X1E]", "magic_elem");
+	MakeLocal(0X1C71, 0X29E9, "[bp+0X6]", "argu_final_energy");
+	MakeLocal(0X1C71, 0X29E9, "[bp+0X8]", "argu_magic");
+	MakeLocal(0X1C71, 0X29E9, "[bp+0XA]", "argu_role");
+	MakeLocal(0X1C71, 0X29E9, "[bp+0XC]", "argu_enemy");
+	MakeNameEx(0X1F08, "yi_fang", SN_LOCAL);
+	MakeNameEx(0X1F86, "san_die", SN_LOCAL);
+	MakeNameEx(0X2129, "effect_done", SN_LOCAL);
 	MakeFunction    (0X29EC,0X2B1E);
 	SetFunctionFlags(0X29EC,0x12);
 	MakeFrame(0X29EC, 0X26, 0, 0X2);
+	MakeLocal(0X29EC, 0X2B1E, "[bp-0X1C]", "morph_counter");
+	MakeLocal(0X29EC, 0X2B1E, "[bp+0X6]", "argu_enemy");
 	MakeFunction    (0X2B21,0X2C2B);
 	SetFunctionFlags(0X2B21,0x12);
 	MakeFrame(0X2B21, 0X22, 0, 0X2);
@@ -59957,13 +60367,22 @@ static Functions_0(void) {
 	MakeFunction    (0X2DAF,0X38CE);
 	SetFunctionFlags(0X2DAF,0x12);
 	MakeFrame(0X2DAF, 0X82, 0, 0X6);
-	MakeLocal(0X2DAF, 0X38CE, "[bp-0X22]", "rnd_0.85");
-	MakeLocal(0X2DAF, 0X38CE, "[bp-0X1C]", "total_defence");
-	MakeLocal(0X2DAF, 0X38CE, "[bp-0X18]", "total_defence_");
+	MakeLocal(0X2DAF, 0X38CE, "[bp-0X7E]", "poison_defence");
+	MakeLocal(0X2DAF, 0X38CE, "[bp-0X7A]", "pos_role");
+	MakeLocal(0X2DAF, 0X38CE, "[bp-0X58]", "phisical_damage");
+	MakeLocal(0X2DAF, 0X38CE, "[bp-0X54]", "final_enemy_force");
+	MakeLocal(0X2DAF, 0X38CE, "[bp-0X26]", "team_counter");
+	MakeLocal(0X2DAF, 0X38CE, "[bp-0X24]", "who_care");
+	MakeLocal(0X2DAF, 0X38CE, "[bp-0X22]", "modulated_who_care");
+	MakeLocal(0X2DAF, 0X38CE, "[bp-0X1C]", "role_defence");
+	MakeLocal(0X2DAF, 0X38CE, "[bp-0X1A]", "role_id");
 	MakeLocal(0X2DAF, 0X38CE, "[bp+0X6]", "argu_enemy_force");
-	MakeLocal(0X2DAF, 0X38CE, "[bp+0X8]", "argu_role");
-	MakeLocal(0X2DAF, 0X38CE, "[bp+0XA]", "argu_enemy");
-	MakeNameEx(0X2E32, "not_defencing", SN_LOCAL);
+	MakeLocal(0X2DAF, 0X38CE, "[bp+0X8]", "argu_role_pos");
+	MakeLocal(0X2DAF, 0X38CE, "[bp+0XA]", "argu_enemy_pos");
+	MakeNameEx(0X3279, "defending_great", SN_LOCAL);
+	MakeNameEx(0X33CB, "no_defence", SN_LOCAL);
+	MakeNameEx(0X365B, "roledead_", SN_LOCAL);
+	MakeNameEx(0X38C6, "return", SN_LOCAL);
 	MakeFunction    (0X38D1,0X3ADC);
 	SetFunctionFlags(0X38D1,0x12);
 	MakeFrame(0X38D1, 0X26, 0, 0X6);
@@ -59980,6 +60399,11 @@ static Functions_0(void) {
 	MakeFunction    (0X3E1C,0X44FD);
 	SetFunctionFlags(0X3E1C,0x12);
 	MakeFrame(0X3E1C, 0X7E, 0, 0X6);
+	MakeLocal(0X3E1C, 0X44FD, "[bp-0X70]", "index");
+	MakeLocal(0X3E1C, 0X44FD, "[bp-0X6E]", "color");
+	MakeLocal(0X3E1C, 0X44FD, "[bp-0X6C]", "x");
+	MakeLocal(0X3E1C, 0X44FD, "[bp-0X66]", "y");
+	MakeLocal(0X3E1C, 0X44FD, "[bp+0XA]", "argu_role");
 	MakeNameEx(0X3E58, "loop", SN_LOCAL);
 	MakeNameEx(0X3E83, "is_theurgy", SN_LOCAL);
 	MakeNameEx(0X3EBB, "ok_useable", SN_LOCAL);
@@ -60034,6 +60458,30 @@ static Functions_0(void) {
 	MakeFunction    (0X4AA1,0X51A8);
 	SetFunctionFlags(0X4AA1,0x12);
 	MakeFrame(0X4AA1, 0X82, 0, 0X6);
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X56]", "font_color");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X52]", "text_x");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X4E]", "item_begin_show");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X4C]", "text_y");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X40]", "item_index_selected");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X3C]", "begin_y");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X3A]", "item_column");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X38]", "item_row");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X36]", "curr_row");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X34]", "equip_counter");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X32]", "equipment");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X30]", "max_ori");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X2E]", "roles_max");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X2C]", "role_counter");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X26]", "num_items");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X24]", "max_apage");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X22]", "max_arow");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X20]", "item_page?");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X1E]", "mid_apage");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X1C]", "apage_amount");
+	MakeLocal(0X4AA1, 0X51A8, "[bp-0X1A]", "arow_amount");
+	MakeLocal(0X4AA1, 0X51A8, "[bp+0X6]", "argu_filter");
+	MakeLocal(0X4AA1, 0X51A8, "[bp+0X8]", "argu_skip");
+	MakeLocal(0X4AA1, 0X51A8, "[bp+0XA]", "argu_select");
 	MakeNameEx(0X4B10, "filter_loop", SN_LOCAL);
 	MakeNameEx(0X4B53, "begin_filter", SN_LOCAL);
 	MakeNameEx(0X4B6D, "normal", SN_LOCAL);
@@ -60041,18 +60489,27 @@ static Functions_0(void) {
 	MakeNameEx(0X4B84, "loop?", SN_LOCAL);
 	MakeNameEx(0X4B8A, "innerloop_equip?", SN_LOCAL);
 	MakeNameEx(0X4BC0, "equiped", SN_LOCAL);
-	MakeNameEx(0X4C2A, "not_equiped?", SN_LOCAL);
+	MakeNameEx(0X4C2A, "not_equiped", SN_LOCAL);
 	MakeNameEx(0X4C2E, "start_inner", SN_LOCAL);
 	MakeNameEx(0X4C39, "go_out", SN_LOCAL);
 	MakeNameEx(0X4C3D, "begin_?", SN_LOCAL);
-	MakeNameEx(0X4C48, "not_normal_use?", SN_LOCAL);
+	MakeNameEx(0X4C48, "skip_equip_useable_check", SN_LOCAL);
+	MakeNameEx(0X5134, "gota", SN_LOCAL);
 	MakeFunction    (0X51AB,0X8F53);
 	SetFunctionFlags(0X51AB,0x12);
 	MakeFrame(0X51AB, 0X6778, 0, 0X0);
+	MakeLocal(0X51AB, 0X8F53, "[bp-0X252]", "curr_HP_afterbattle");
+	MakeLocal(0X51AB, 0X8F53, "[bp-0X24A]", "afterbattle_role_counter");
 	MakeLocal(0X51AB, 0X8F53, "[bp-0X230]", "lucky_cons");
 	MakeLocal(0X51AB, 0X8F53, "[bp-0X1A2]", "alchemy_used");
 	MakeLocal(0X51AB, 0X8F53, "[bp-0X198]", "pre_script");
 	MakeLocal(0X51AB, 0X8F53, "[bp-0X196]", "flag_not_summon?_can_escape?");
+	MakeLocal(0X51AB, 0X8F53, "[bp-0X18A]", "attack");
+	MakeLocal(0X51AB, 0X8F53, "[bp-0XCE]", "afterfight_enemy_still_alive");
+	MakeLocal(0X51AB, 0X8F53, "[bp-0XCC]", "beforefight_enemy_still_alive");
+	MakeLocal(0X51AB, 0X8F53, "[bp-0XC8]", "target_enemy");
+	MakeLocal(0X51AB, 0X8F53, "[bp-0XC2]", "auto_selected_enemy");
+	MakeLocal(0X51AB, 0X8F53, "[bp-0XC0]", "attacking_role_id");
 	MakeLocal(0X51AB, 0X8F53, "[bp-0XBE]", "role_targetting");
 	MakeLocal(0X51AB, 0X8F53, "[bp-0XBC]", "action_counter");
 	MakeLocal(0X51AB, 0X8F53, "[bp-0XBA]", "actions_max");
@@ -60070,6 +60527,7 @@ static Functions_0(void) {
 	MakeLocal(0X51AB, 0X8F53, "[bp-0X90]", "selected_magic");
 	MakeLocal(0X51AB, 0X8F53, "[bp-0X8A]", "item_usage_selected");
 	MakeLocal(0X51AB, 0X8F53, "[bp-0X88]", "command_selected");
+	MakeLocal(0X51AB, 0X8F53, "[bp-0X7C]", "theurgy_item_id");
 	MakeLocal(0X51AB, 0X8F53, "[bp-0X74]", "speed_final");
 	MakeLocal(0X51AB, 0X8F53, "[bp-0X72]", "key_selected");
 	MakeLocal(0X51AB, 0X8F53, "[bp-0X60]", "enemy_targetting");
@@ -60211,8 +60669,15 @@ static Functions_0(void) {
 	MakeNameEx(0X64E6, "same_enemy", SN_LOCAL);
 	MakeNameEx(0X64EA, "first_action", SN_LOCAL);
 	MakeNameEx(0X6508, "still_alive", SN_LOCAL);
-	MakeNameEx(0X651E, "invisible_cant_attack", SN_LOCAL);
+	MakeNameEx(0X651E, "invisible_or_selfdead_cant_attack", SN_LOCAL);
 	MakeNameEx(0X6521, "is_role", SN_LOCAL);
+	MakeNameEx(0X6595, "alive_or_dumming", SN_LOCAL);
+	MakeNameEx(0X65B3, "attack_not_sleeping", SN_LOCAL);
+	MakeNameEx(0X65CF, "&not_fixed", SN_LOCAL);
+	MakeNameEx(0X65D9, "autobattle_heihei", SN_LOCAL);
+	MakeNameEx(0X6609, "auto_fight", SN_LOCAL);
+	MakeNameEx(0X667D, "only_2_9", SN_LOCAL);
+	MakeNameEx(0X66AC, "attack_not_crazy", SN_LOCAL);
 	MakeNameEx(0X67AA, "chk_enemy_destroyed?", SN_LOCAL);
 	MakeNameEx(0X694C, "actions_begin", SN_LOCAL);
 	MakeNameEx(0X711C, "instru_attack", SN_LOCAL);
@@ -60239,7 +60704,7 @@ static Functions_0(void) {
 	MakeNameEx(0X7835, "role_changer", SN_LOCAL);
 	MakeNameEx(0X7865, "command_attack", SN_LOCAL);
 	MakeNameEx(0X7886, "c_attack_one", SN_LOCAL);
-	MakeNameEx(0X78AE, "movable?", SN_LOCAL);
+	MakeNameEx(0X78AE, "double_attack?", SN_LOCAL);
 	MakeNameEx(0X78B4, "cmd_next", SN_LOCAL);
 	MakeNameEx(0X78C8, "cmd_att_loop", SN_LOCAL);
 	MakeNameEx(0X797B, "cmd_att_begin", SN_LOCAL);
@@ -60263,6 +60728,11 @@ static Functions_0(void) {
 	MakeNameEx(0X8B06, "not_attack_twice", SN_LOCAL);
 	MakeNameEx(0X8B0C, "c_a_next", SN_LOCAL);
 	MakeNameEx(0X8BD4, "CHECK_endbattle?", SN_LOCAL);
+	MakeNameEx(0X8CCC, "afterbattle_calcing_begin", SN_LOCAL);
+	MakeNameEx(0X8D0A, "thislevel_should_learn", SN_LOCAL);
+	MakeNameEx(0X8D90, "learnmagic_continue", SN_LOCAL);
+	MakeNameEx(0X8D94, "uplevel_loop", SN_LOCAL);
+	MakeNameEx(0X8E60, "afterbattle_calcing_loop", SN_LOCAL);
 	MakeNameEx(0X8E6C, "endbattle", SN_LOCAL);
 	MakeFunction    (0X8F56,0X8FFD);
 	SetFunctionFlags(0X8F56,0x12);
@@ -60284,6 +60754,8 @@ static Functions_0(void) {
 	MakeFunction    (0X9712,0X993F);
 	SetFunctionFlags(0X9712,0x12);
 	MakeFrame(0X9712, 0X20, 0, 0X0);
+	MakeLocal(0X9712, 0X993F, "[bp-0X1A]", "rolepos");
+	MakeLocal(0X9712, 0X993F, "[bp-0X18]", "role");
 	MakeNameEx(0X972E, "team_loop", SN_LOCAL);
 	MakeNameEx(0X97EA, "valid_hp?", SN_LOCAL);
 	MakeNameEx(0X981E, "valid_flag??", SN_LOCAL);
@@ -60297,6 +60769,7 @@ static Functions_0(void) {
 	SetFunctionFlags(0X9942,0x12);
 	MakeFrame(0X9942, 0X50, 0, 0X8);
 	MakeLocal(0X9942, 0XA367, "[bp-0X38]", "damage");
+	MakeLocal(0X9942, 0XA367, "[bp+0XC]", "argu_is_summon?");
 	MakeNameEx(0X9A0A, "summon", SN_LOCAL);
 	MakeNameEx(0X9A41, "attack_theurgy", SN_LOCAL);
 	MakeNameEx(0X9A98, "first_stage_theurgy", SN_LOCAL);
@@ -60311,6 +60784,9 @@ static Functions_0(void) {
 	MakeFunction    (0XA4FC,0XA70D);
 	SetFunctionFlags(0XA4FC,0x12);
 	MakeFrame(0XA4FC, 0X3E, 0, 0X2);
+	MakeLocal(0XA4FC, 0XA70D, "[bp-0X1A]", "color_gray?");
+	MakeLocal(0XA4FC, 0XA70D, "[bp-0X14]", "ori_magic");
+	MakeLocal(0XA4FC, 0XA70D, "[bp+0X6]", "argu_summon_magic");
 	MakeFunction    (0XA710,0XA77E);
 	SetFunctionFlags(0XA710,0x12);
 	MakeFrame(0XA710, 0X1A, 0, 0X0);
@@ -60332,6 +60808,8 @@ static Functions_0(void) {
 	MakeFunction    (0XAB60,0XB12A);
 	SetFunctionFlags(0XAB60,0x12);
 	MakeFrame(0XAB60, 0X4C, 0, 0X8);
+	MakeLocal(0XAB60, 0XB12A, "[bp-0X14]", "role_attacker");
+	MakeLocal(0XAB60, 0XB12A, "[bp+0X6]", "argu_total_bouts");
 	MakeNameEx(0XABA9, "enemy_0_1_2", SN_LOCAL);
 	MakeNameEx(0XABB4, "twice_0", SN_LOCAL);
 	MakeNameEx(0XABE8, "twice_1", SN_LOCAL);
@@ -60344,6 +60822,12 @@ static Functions_0(void) {
 	MakeFunction    (0XB12D,0XB521);
 	SetFunctionFlags(0XB12D,0x12);
 	MakeFrame(0XB12D, 0X40, 0, 0X0);
+	MakeLocal(0XB12D, 0XB521, "[bp-0X20]", "role_y");
+	MakeLocal(0XB12D, 0XB521, "[bp-0X1E]", "role_x");
+	MakeLocal(0XB12D, 0XB521, "[bp-0X1C]", "secondary_index");
+	MakeLocal(0XB12D, 0XB521, "[bp-0X1A]", "pos_x");
+	MakeLocal(0XB12D, 0XB521, "[bp-0X16]", "secondary_id");
+	MakeLocal(0XB12D, 0XB521, "[bp-0X14]", "scrnbuf_seg");
 	MakeNameEx(0XB15A, "enemy?_loop", SN_LOCAL);
 	MakeNameEx(0XB176, "HP_big_0", SN_LOCAL);
 	MakeNameEx(0XB28C, "continue", SN_LOCAL);
@@ -60352,8 +60836,11 @@ static Functions_0(void) {
 	MakeFunction    (0XB524,0XB844);
 	SetFunctionFlags(0XB524,0x12);
 	MakeFrame(0XB524, 0X3E, 0, 0X4);
+	MakeLocal(0XB524, 0XB844, "[bp-0X3A]", "loop?_counter");
+	MakeLocal(0XB524, 0XB844, "[bp+0X6]", "argu_delay");
+	MakeLocal(0XB524, 0XB844, "[bp+0X8]", "argu_time");
 	MakeNameEx(0XB55E, "next", SN_LOCAL);
-	MakeNameEx(0XB56C, "loop_?", SN_LOCAL);
+	MakeNameEx(0XB56C, "draw_loop", SN_LOCAL);
 	MakeNameEx(0XB7F5, "begin", SN_LOCAL);
 	MakeNameEx(0XB800, "next2", SN_LOCAL);
 	MakeFunction    (0XB847,0XB966);
@@ -60382,6 +60869,9 @@ static Functions_0(void) {
 	MakeFunction    (0XBC7D,0XBE6E);
 	SetFunctionFlags(0XBC7D,0x12);
 	MakeFrame(0XBC7D, 0X24, 0, 0X0);
+	MakeLocal(0XBC7D, 0XBE6E, "[bp-0X24]", "frames_counting");
+	MakeLocal(0XBC7D, 0XBE6E, "[bp-0X1E]", "evtobj_counter");
+	MakeLocal(0XBC7D, 0XBE6E, "[bp-0X14]", "evtobjs");
 	MakeNameEx(0XBC9A, "evtobj_loop", SN_LOCAL);
 	MakeNameEx(0XBCBF, "next", SN_LOCAL);
 	MakeNameEx(0XBCD2, "inner_loop", SN_LOCAL);
@@ -60426,13 +60916,8 @@ static Functions_0(void) {
 	MakeFunction    (0XC29B,0XC40F);
 	SetFunctionFlags(0XC29B,0x12);
 	MakeFrame(0XC29B, 0X22, 0, 0X4);
-	MakeNameEx(0XC32D, "has_xms", SN_LOCAL);
-	MakeNameEx(0XC33E, "continue_read", SN_LOCAL);
-	MakeNameEx(0XC352, "big_than_0", SN_LOCAL);
-	MakeNameEx(0XC376, "length_less_equ_8000", SN_LOCAL);
-	MakeNameEx(0XC3E4, "jmp_return", SN_LOCAL);
-	MakeNameEx(0XC3E7, "no...", SN_LOCAL);
-	MakeNameEx(0XC407, "return", SN_LOCAL);
+	MakeLocal(0XC29B, 0XC40F, "[bp+0X6]", "argu_xmshandle");
+	MakeLocal(0XC29B, 0XC40F, "[bp+0X8]", "argu_subfile");
 	MakeFunction    (0XC412,0XC91E);
 	SetFunctionFlags(0XC412,0x12);
 	MakeFrame(0XC412, 0X7C, 0, 0X0);
@@ -60464,9 +60949,9 @@ static Functions_0(void) {
 	MakeNameEx(0XCA98, "continue_write", SN_LOCAL);
 	MakeNameEx(0XCAA2, "has_frame", SN_LOCAL);
 	MakeNameEx(0XCB29, "gogogo", SN_LOCAL);
-	MakeNameEx(0XCB3C, "big_0", SN_LOCAL);
+	MakeNameEx(0XCB3C, "has_image", SN_LOCAL);
 	MakeNameEx(0XCB46, "first_line", SN_LOCAL);
-	MakeNameEx(0XCB5E, "first_char_big5", SN_LOCAL);
+	MakeNameEx(0XCB5E, "dialog_name", SN_LOCAL);
 	MakeNameEx(0XCB81, "check_symbol", SN_LOCAL);
 	MakeNameEx(0XCBA6, "get_y_off", SN_LOCAL);
 	MakeNameEx(0XCBAC, "ffff_continue", SN_LOCAL);
@@ -60588,6 +61073,9 @@ static Functions_0(void) {
 	MakeFunction    (0XD4F0,0XD625);
 	SetFunctionFlags(0XD4F0,0x12);
 	MakeFrame(0XD4F0, 0X1E, 0, 0X2);
+	MakeLocal(0XD4F0, 0XD625, "[bp-0X18]", "counter");
+	MakeLocal(0XD4F0, 0XD625, "[bp-0X16]", "magics");
+	MakeLocal(0XD4F0, 0XD625, "[bp+0X6]", "argu_role");
 	MakeNameEx(0XD524, "copy_loop", SN_LOCAL);
 	MakeNameEx(0XD561, "changer", SN_LOCAL);
 	MakeNameEx(0XD565, "begin", SN_LOCAL);
@@ -60613,6 +61101,8 @@ static Functions_0(void) {
 	MakeFunction    (0XD819,0XD891);
 	SetFunctionFlags(0XD819,0x12);
 	MakeFrame(0XD819, 0X18, 0, 0X4);
+	MakeLocal(0XD819, 0XD891, "[bp+0X6]", "argu_attrib");
+	MakeLocal(0XD819, 0XD891, "[bp+0X8]", "argu_role");
 	MakeNameEx(0XD84C, "loop", SN_LOCAL);
 	MakeNameEx(0XD878, "begin", SN_LOCAL);
 	MakeFunction    (0XD894,0XD974);
@@ -60638,6 +61128,8 @@ static Functions_0(void) {
 	MakeFunction    (0XD9A4,0XDAB7);
 	SetFunctionFlags(0XD9A4,0x12);
 	MakeFrame(0XD9A4, 0X22, 0, 0X8);
+	MakeLocal(0XD9A4, 0XDAB7, "[bp-0X1E]", "num");
+	MakeLocal(0XD9A4, 0XDAB7, "[bp-0X18]", "ndigit");
 	MakeNameEx(0XD9F6, "valid_num", SN_LOCAL);
 	MakeNameEx(0XDAAF, "return", SN_LOCAL);
 	MakeFunction    (0XDABA,0XDB99);
@@ -60647,6 +61139,11 @@ static Functions_0(void) {
 	MakeFunction    (0XDB9C,0XDE11);
 	SetFunctionFlags(0XDB9C,0x12);
 	MakeFrame(0XDB9C, 0X3C, 0, 0X8);
+	MakeLocal(0XDB9C, 0XDE11, "[bp-0X1C]", "y");
+	MakeLocal(0XDB9C, 0XDE11, "[bp+0X6]", "argu_flag");
+	MakeLocal(0XDB9C, 0XDE11, "[bp+0X8]", "argu_role");
+	MakeLocal(0XDB9C, 0XDE11, "[bp+0XA]", "argu_y");
+	MakeLocal(0XDB9C, 0XDE11, "[bp+0XC]", "argu_x");
 	MakeFunction    (0XDE14,0XDF60);
 	SetFunctionFlags(0XDE14,0x12);
 	MakeFrame(0XDE14, 0X2C, 0, 0XA);
@@ -60663,12 +61160,26 @@ static Functions_0(void) {
 	MakeFunction    (0XDFE2,0XE113);
 	SetFunctionFlags(0XDFE2,0x12);
 	MakeFrame(0XDFE2, 0X1E, 0, 0X0);
+	MakeLocal(0XDFE2, 0XE113, "[bp-0X1A]", "color");
+	MakeLocal(0XDFE2, 0XE113, "[bp-0X18]", "num");
+	MakeLocal(0XDFE2, 0XE113, "[bp-0X16]", "y");
+	MakeLocal(0XDFE2, 0XE113, "[bp-0X14]", "x");
 	MakeFunction    (0XE116,0XE371);
 	SetFunctionFlags(0XE116,0x12);
 	MakeFrame(0XE116, 0X26, 0, 0X0);
+	MakeLocal(0XE116, 0XE371, "[bp-0X16]", "counter");
+	MakeLocal(0XE116, 0XE371, "[bp-0X14]", "unknown1");
+	MakeNameEx(0XE128, "begin", SN_LOCAL);
+	MakeNameEx(0XE215, "skip_?", SN_LOCAL);
+	MakeNameEx(0XE35B, "continue", SN_LOCAL);
+	MakeNameEx(0XE35F, "loop", SN_LOCAL);
+	MakeNameEx(0XE369, "end", SN_LOCAL);
 	MakeFunction    (0XE374,0XE438);
 	SetFunctionFlags(0XE374,0x12);
 	MakeFrame(0XE374, 0X1A, 0, 0X4);
+	MakeLocal(0XE374, 0XE438, "[bp-0X18]", "menu_x");
+	MakeLocal(0XE374, 0XE438, "[bp+0X6]", "argu_y");
+	MakeLocal(0XE374, 0XE438, "[bp+0X8]", "argu_x");
 	MakeFunction    (0XE43B,0XE57E);
 	SetFunctionFlags(0XE43B,0x12);
 	MakeFrame(0XE43B, 0X26, 0, 0X2);
@@ -60681,9 +61192,20 @@ static Functions_0(void) {
 	MakeFunction    (0XE836,0XE8F4);
 	SetFunctionFlags(0XE836,0x12);
 	MakeFrame(0XE836, 0X1E, 0, 0X8);
+	MakeLocal(0XE836, 0XE8F4, "[bp-0X1E]", "y");
+	MakeLocal(0XE836, 0XE8F4, "[bp-0X1A]", "num");
+	MakeLocal(0XE836, 0XE8F4, "[bp-0X18]", "layer");
+	MakeLocal(0XE836, 0XE8F4, "[bp-0X16]", "x");
+	MakeLocal(0XE836, 0XE8F4, "[bp+0X6]", "argu_color");
+	MakeLocal(0XE836, 0XE8F4, "[bp+0X8]", "argu_num");
+	MakeLocal(0XE836, 0XE8F4, "[bp+0XA]", "argu_y");
+	MakeLocal(0XE836, 0XE8F4, "[bp+0XC]", "argu_x");
+	MakeNameEx(0XE8EC, "exita", SN_LOCAL);
 	MakeFunction    (0XE8F7,0XEA9C);
 	SetFunctionFlags(0XE8F7,0x12);
 	MakeFrame(0XE8F7, 0X1E, 0, 0X4);
+	MakeLocal(0XE8F7, 0XEA9C, "[bp+0X6]", "argu_id");
+	MakeLocal(0XE8F7, 0XEA9C, "[bp+0X8]", "argu_pos");
 	MakeNameEx(0XE92D, "has_enemy", SN_LOCAL);
 	MakeNameEx(0XEA94, "return", SN_LOCAL);
 	MakeFunction    (0XEA9F,0XEAFA);
@@ -60714,6 +61236,7 @@ static Functions_0(void) {
 	MakeFunction    (0XEC5A,0XED34);
 	SetFunctionFlags(0XEC5A,0x12);
 	MakeFrame(0XEC5A, 0X1C, 0, 0X0);
+	MakeLocal(0XEC5A, 0XED34, "[bp-0X1C]", "scrn_buf_seg");
 	MakeFunction    (0XED37,0XEDD7);
 	SetFunctionFlags(0XED37,0x12);
 	MakeFrame(0XED37, 0X1A, 0, 0X0);
@@ -60722,6 +61245,9 @@ static Functions_0(void) {
 	MakeFunction    (0XEDDA,0XEE54);
 	SetFunctionFlags(0XEDDA,0x12);
 	MakeFrame(0XEDDA, 0X18, 0, 0X2);
+	MakeNameEx(0XEDFD, "battle_time", SN_LOCAL);
+	MakeNameEx(0XEE17, "normal_time", SN_LOCAL);
+	MakeNameEx(0XEE4C, "return", SN_LOCAL);
 	MakeFunction    (0XEE57,0XEEB1);
 	SetFunctionFlags(0XEE57,0x12);
 	MakeFrame(0XEE57, 0X16, 0, 0X0);
@@ -60742,6 +61268,8 @@ static Functions_0(void) {
 	MakeFunction    (0XEFF1,0XF0E2);
 	SetFunctionFlags(0XEFF1,0x12);
 	MakeFrame(0XEFF1, 0X26, 0, 0X4);
+	MakeLocal(0XEFF1, 0XF0E2, "[bp+0X6]", "argu_gap");
+	MakeLocal(0XEFF1, 0XF0E2, "[bp+0X8]", "argu_fbp");
 	MakeNameEx(0XF03B, "not_0", SN_LOCAL);
 	MakeNameEx(0XF046, "is_0", SN_LOCAL);
 	MakeNameEx(0XF064, "next", SN_LOCAL);
@@ -60767,6 +61295,7 @@ static Functions_0(void) {
 	MakeFunction    (0XF483,0XF65A);
 	SetFunctionFlags(0XF483,0x12);
 	MakeFrame(0XF483, 0X28, 0, 0XC);
+	MakeLocal(0XF483, 0XF65A, "[bp-0X22]", "gop_id");
 	MakeLocal(0XF483, 0XF65A, "[bp+0XA]", "argu_x_max");
 	MakeLocal(0XF483, 0XF65A, "[bp+0XC]", "argu_y_max");
 	MakeLocal(0XF483, 0XF65A, "[bp+0XE]", "argu_x_min");
@@ -60805,6 +61334,7 @@ static Functions_0(void) {
 	SetFunctionFlags(0XFF01,0x12);
 	MakeFrame(0XFF01, 0X5E, 0, 0X4);
 	MakeLocal(0XFF01, 0X10584, "[bp-0X40]", "enemy_targetting_hoho");
+	MakeLocal(0XFF01, 0X10584, "[bp-0X26]", "magic_id");
 	MakeLocal(0XFF01, 0X10584, "[bp-0X20]", "final_enemy_force");
 	MakeLocal(0XFF01, 0X10584, "[bp-0X1E]", "scaled_enemy_force");
 	MakeLocal(0XFF01, 0X10584, "[bp-0X1C]", "force_scaler");
@@ -60823,6 +61353,11 @@ static Functions_0(void) {
 	MakeFunction    (0X10587,0X1093E);
 	SetFunctionFlags(0X10587,0x12);
 	MakeFrame(0X10587, 0X4A, 0, 0X2);
+	MakeLocal(0X10587, 0X1093E, "[bp-0X34]", "counter_type");
+	MakeLocal(0X10587, 0X1093E, "[bp-0X32]", "total_hints");
+	MakeLocal(0X10587, 0X1093E, "[bp-0X30]", "role");
+	MakeLocal(0X10587, 0X1093E, "[bp-0X2E]", "max_roles");
+	MakeLocal(0X10587, 0X1093E, "[bp+0X6]", "argu_exp");
 	MakeNameEx(0X1065C, "loop_role", SN_LOCAL);
 	MakeNameEx(0X10692, "alive", SN_LOCAL);
 	MakeNameEx(0X106CE, "loop_exps_pre", SN_LOCAL);
@@ -60833,9 +61368,12 @@ static Functions_0(void) {
 	MakeNameEx(0X107AE, "calcing", SN_LOCAL);
 	MakeNameEx(0X1083A, "levelup", SN_LOCAL);
 	MakeNameEx(0X108CF, "exp_changer", SN_LOCAL);
+	MakeNameEx(0X108D8, "main_EXP", SN_LOCAL);
+	MakeNameEx(0X108ED, "other", SN_LOCAL);
 	MakeNameEx(0X10918, "not_levelup", SN_LOCAL);
 	MakeNameEx(0X1091C, "begin_exps", SN_LOCAL);
 	MakeNameEx(0X10927, "next_role", SN_LOCAL);
+	MakeNameEx(0X1092B, "begin_role", SN_LOCAL);
 	MakeNameEx(0X10936, "return", SN_LOCAL);
 	MakeFunction    (0X10941,0X10A91);
 	SetFunctionFlags(0X10941,0x12);
@@ -60854,6 +61392,12 @@ static Functions_0(void) {
 	MakeFunction    (0X10B76,0X10D79);
 	SetFunctionFlags(0X10B76,0x12);
 	MakeFrame(0X10B76, 0X1E, 0, 0X4);
+	MakeLocal(0X10B76, 0X10D79, "[bp-0X1E]", "status_counter");
+	MakeLocal(0X10B76, 0X10D79, "[bp-0X1C]", "press_status");
+	MakeLocal(0X10B76, 0X10D79, "[bp-0X1A]", "right_status");
+	MakeLocal(0X10B76, 0X10D79, "[bp-0X18]", "left_status");
+	MakeLocal(0X10B76, 0X10D79, "[bp-0X16]", "down_status");
+	MakeLocal(0X10B76, 0X10D79, "[bp-0X14]", "up_status");
 	MakeLocal(0X10B76, 0X10D79, "[bp+0X6]", "a_updown");
 	MakeLocal(0X10B76, 0X10D79, "[bp+0X8]", "a_leftright");
 	MakeNameEx(0X10BB4, "set_loop", SN_LOCAL);
@@ -60865,7 +61409,7 @@ static Functions_0(void) {
 	MakeNameEx(0X10C6F, "next", SN_LOCAL);
 	MakeNameEx(0X10C7C, "key_updown_not_pressed_or_released", SN_LOCAL);
 	MakeNameEx(0X10C90, "right_big_than_left", SN_LOCAL);
-	MakeNameEx(0X10C9E, "right_less_than_left", SN_LOCAL);
+	MakeNameEx(0X10C9E, "leftright_switch", SN_LOCAL);
 	MakeNameEx(0X10CAB, "key_leftright_not_pressed_or_released", SN_LOCAL);
 	MakeNameEx(0X10CBF, "up_less_than_down", SN_LOCAL);
 	MakeNameEx(0X10CCD, "set_end", SN_LOCAL);
@@ -60876,6 +61420,7 @@ static Functions_0(void) {
 	MakeFunction    (0X10D7C,0X10E48);
 	SetFunctionFlags(0X10D7C,0x12);
 	MakeFrame(0X10D7C, 0X14, 0, 0X8);
+	MakeLocal(0X10D7C, 0X10E48, "[bp+0X8]", "argu_num");
 	MakeNameEx(0X10E40, "return", SN_LOCAL);
 	MakeFunction    (0X10E4B,0X1140A);
 	SetFunctionFlags(0X10E4B,0x12);
@@ -60909,6 +61454,11 @@ static Functions_0(void) {
 	MakeFunction    (0X11656,0X118F1);
 	SetFunctionFlags(0X11656,0x12);
 	MakeFrame(0X11656, 0X50, 0, 0X0);
+	MakeLocal(0X11656, 0X118F1, "[bp-0X2C]", "width");
+	MakeLocal(0X11656, 0X118F1, "[bp-0X2A]", "dialog_x");
+	MakeLocal(0X11656, 0X118F1, "[bp-0X28]", "dialog_y");
+	MakeLocal(0X11656, 0X118F1, "[bp-0X22]", "shadow");
+	MakeLocal(0X11656, 0X118F1, "[bp-0X20]", "rpg_counter");
 	MakeNameEx(0X11668, "loop_open_rpgs", SN_LOCAL);
 	MakeNameEx(0X116A6, "next_", SN_LOCAL);
 	MakeNameEx(0X116FC, "not_max", SN_LOCAL);
@@ -60926,17 +61476,46 @@ static Functions_0(void) {
 	MakeFunction    (0X118F4,0X11DFF);
 	SetFunctionFlags(0X118F4,0x12);
 	MakeFrame(0X118F4, 0X70, 0, 0X8);
+	MakeLocal(0X118F4, 0X11DFF, "[bp-0X4C]", "amount");
+	MakeLocal(0X118F4, 0X11DFF, "[bp-0X44]", "index");
+	MakeLocal(0X118F4, 0X11DFF, "[bp-0X42]", "color");
+	MakeLocal(0X118F4, 0X11DFF, "[bp-0X40]", "y");
+	MakeLocal(0X118F4, 0X11DFF, "[bp-0X3E]", "x");
+	MakeLocal(0X118F4, 0X11DFF, "[bp-0X36]", "status_role");
+	MakeLocal(0X118F4, 0X11DFF, "[bp-0X34]", "status_y");
+	MakeLocal(0X118F4, 0X11DFF, "[bp-0X32]", "status_x");
+	MakeLocal(0X118F4, 0X11DFF, "[bp-0X18]", "item_id");
+	MakeLocal(0X118F4, 0X11DFF, "[bp+0X6]", "argu_item");
+	MakeLocal(0X118F4, 0X11DFF, "[bp+0X8]", "argu_y");
+	MakeLocal(0X118F4, 0X11DFF, "[bp+0XA]", "argu_x");
+	MakeLocal(0X118F4, 0X11DFF, "[bp+0XC]", "argu_return");
 	MakeFunction    (0X11E02,0X11FD3);
 	SetFunctionFlags(0X11E02,0x12);
 	MakeFrame(0X11E02, 0X40, 0, 0X2);
 	MakeFunction    (0X11FD6,0X1215F);
 	SetFunctionFlags(0X11FD6,0x12);
 	MakeFrame(0X11FD6, 0X3E, 0, 0X4);
+	MakeLocal(0X11FD6, 0X1215F, "[bp-0X20]", "w");
+	MakeLocal(0X11FD6, 0X1215F, "[bp-0X1E]", "x");
+	MakeLocal(0X11FD6, 0X1215F, "[bp-0X18]", "s");
+	MakeLocal(0X11FD6, 0X1215F, "[bp-0X16]", "y");
+	MakeLocal(0X11FD6, 0X1215F, "[bp-0X14]", "x_begin");
 	MakeFunction    (0X12162,0X17935);
 	SetFunctionFlags(0X12162,0x12);
 	MakeFrame(0X12162, 0X26A, 0, 0X0);
+	MakeLocal(0X12162, 0X17935, "[bp-0X20E]", "s9a_glb_end");
+	MakeLocal(0X12162, 0X17935, "[bp-0X20C]", "s9a_end");
+	MakeLocal(0X12162, 0X17935, "[bp-0X20A]", "s9a_begin");
 	MakeLocal(0X12162, 0X17935, "[bp-0X1F2]", "script91_enemy_number");
 	MakeLocal(0X12162, 0X17935, "[bp-0X1EE]", "script91_RLE_equs");
+	MakeLocal(0X12162, 0X17935, "[bp-0X1D2]", "fade_words");
+	MakeLocal(0X12162, 0X17935, "[bp-0XE2]", "y_go");
+	MakeLocal(0X12162, 0X17935, "[bp-0XE0]", "x_go");
+	MakeLocal(0X12162, 0X17935, "[bp-0XDE]", "y_prev");
+	MakeLocal(0X12162, 0X17935, "[bp-0XDC]", "x_prev");
+	MakeLocal(0X12162, 0X17935, "[bp-0X84]", "poison_defence");
+	MakeLocal(0X12162, 0X17935, "[bp-0X82]", "poison_defence_index");
+	MakeLocal(0X12162, 0X17935, "[bp-0X80]", "role_here");
 	MakeLocal(0X12162, 0X17935, "[bp+0X6]", "script_arg3");
 	MakeLocal(0X12162, 0X17935, "[bp+0X8]", "script_arg2");
 	MakeLocal(0X12162, 0X17935, "[bp+0XA]", "script_arg1");
@@ -60985,7 +61564,11 @@ static Functions_0(void) {
 	MakeNameEx(0X131BD, "script23_continue", SN_LOCAL);
 	MakeNameEx(0X131C1, "script23_begin", SN_LOCAL);
 	MakeNameEx(0X134BF, "poison_enemy_break", SN_LOCAL);
+	MakeNameEx(0X134FE, "poisoning_loop", SN_LOCAL);
+	MakeNameEx(0X13568, "same_poison?", SN_LOCAL);
+	MakeNameEx(0X13646, "add_poison_continue", SN_LOCAL);
 	MakeNameEx(0X13655, "poison_role_continue", SN_LOCAL);
+	MakeNameEx(0X13659, "poisoning_begin", SN_LOCAL);
 	MakeNameEx(0X13813, "scrip2d_4", SN_LOCAL);
 	MakeNameEx(0X13833, "scrip2d_yes_dead", SN_LOCAL);
 	MakeNameEx(0X138C6, "scrip2d_switch", SN_LOCAL);
@@ -60994,16 +61577,30 @@ static Functions_0(void) {
 	MakeNameEx(0X13C3E, "valid_shake", SN_LOCAL);
 	MakeNameEx(0X13C49, "valid_grade", SN_LOCAL);
 	MakeNameEx(0X14165, "MoveWithObject_internal", SN_LOCAL);
-	MakeNameEx(0X145C4, "not_chase", SN_LOCAL);
+	MakeNameEx(0X145C4, "chase", SN_LOCAL);
 	MakeNameEx(0X1477F, "chase_check", SN_LOCAL);
-	MakeNameEx(0X1485F, "start_chase", SN_LOCAL);
+	MakeNameEx(0X1485F, "not_chase", SN_LOCAL);
+	MakeNameEx(0X14862, "stay", SN_LOCAL);
 	MakeNameEx(0X14A0A, "filter_red", SN_LOCAL);
 	MakeNameEx(0X14A7E, "filter_other", SN_LOCAL);
 	MakeNameEx(0X1564F, "dialog_got_goods", SN_LOCAL);
 	MakeNameEx(0X15A73, "walkhero_Internal", SN_LOCAL);
+	MakeNameEx(0X15B72, "stopwalk_loop", SN_LOCAL);
+	MakeNameEx(0X15BAC, "begin_stoploop", SN_LOCAL);
 	MakeNameEx(0X15D5F, "script75_role1_found", SN_LOCAL);
 	MakeNameEx(0X15D90, "script75_no_role2", SN_LOCAL);
 	MakeNameEx(0X15DB0, "script75_no_role3", SN_LOCAL);
+	MakeNameEx(0X16205, "got_shift", SN_LOCAL);
+	MakeNameEx(0X16226, "s7f_loop", SN_LOCAL);
+	MakeNameEx(0X16256, "s7f_all0", SN_LOCAL);
+	MakeNameEx(0X16285, "s7f_notall0", SN_LOCAL);
+	MakeNameEx(0X16290, "a3_less0", SN_LOCAL);
+	MakeNameEx(0X162C0, "a3_ge0", SN_LOCAL);
+	MakeNameEx(0X162E6, "_?", SN_LOCAL);
+	MakeNameEx(0X163A9, "s7f_begin", SN_LOCAL);
+	MakeNameEx(0X163F6, "s80loop_fade", SN_LOCAL);
+	MakeNameEx(0X16434, "s80_redraw", SN_LOCAL);
+	MakeNameEx(0X16467, "s80_begin", SN_LOCAL);
 	MakeNameEx(0X165F3, "has_this_object", SN_LOCAL);
 	MakeNameEx(0X165FC, "has_this_object2", SN_LOCAL);
 	MakeNameEx(0X16688, "catch_faild", SN_LOCAL);
@@ -61013,6 +61610,12 @@ static Functions_0(void) {
 	MakeNameEx(0X16B4C, "script91_next", SN_LOCAL);
 	MakeNameEx(0X16B50, "script91_begin", SN_LOCAL);
 	MakeNameEx(0X16B6A, "script91_return", SN_LOCAL);
+	MakeNameEx(0X16DDD, "s9a_fail", SN_LOCAL);
+	MakeNameEx(0X16DDE, "s9a_start", SN_LOCAL);
+	MakeNameEx(0X16E20, "s9a_inscene", SN_LOCAL);
+	MakeNameEx(0X16E60, "s9a_o_no", SN_LOCAL);
+	MakeNameEx(0X16E72, "loop_glb", SN_LOCAL);
+	MakeNameEx(0X16EC3, "begin_glb", SN_LOCAL);
 	MakeNameEx(0X16EE8, "s9b_1_0", SN_LOCAL);
 	MakeNameEx(0X16F02, "s9b_1_n0", SN_LOCAL);
 	MakeNameEx(0X16F0D, "s9b_2_l0", SN_LOCAL);
@@ -61021,9 +61624,9 @@ static Functions_0(void) {
 	MakeNameEx(0X17011, "s9b_1_n1", SN_LOCAL);
 	MakeNameEx(0X1703B, "s9b_chk_3", SN_LOCAL);
 	MakeNameEx(0X17047, "s9b_3z_2", SN_LOCAL);
-	MakeNameEx(0X170AA, "loop_x", SN_LOCAL);
-	MakeNameEx(0X17170, "x_continue", SN_LOCAL);
-	MakeNameEx(0X17174, "begin_x", SN_LOCAL);
+	MakeNameEx(0X170AA, "split_loop", SN_LOCAL);
+	MakeNameEx(0X17170, "split_continue", SN_LOCAL);
+	MakeNameEx(0X17174, "split_begin", SN_LOCAL);
 	MakeNameEx(0X17337, "failed", SN_LOCAL);
 	MakeNameEx(0X176DB, "summon_failed", SN_LOCAL);
 	MakeFunction    (0X17938,0X179F4);
@@ -61053,6 +61656,12 @@ static Functions_0(void) {
 	MakeFunction    (0X17B86,0X17C68);
 	SetFunctionFlags(0X17B86,0x12);
 	MakeFrame(0X17B86, 0X22, 0, 0X2);
+	MakeLocal(0X17B86, 0X17C68, "[bp-0X1E]", "mul_t");
+	MakeLocal(0X17B86, 0X17C68, "[bp-0X1A]", "st_m");
+	MakeLocal(0X17B86, 0X17C68, "[bp-0X18]", "final_end");
+	MakeLocal(0X17B86, 0X17C68, "[bp-0X16]", "end_m");
+	MakeLocal(0X17B86, 0X17C68, "[bp-0X14]", "begin_m");
+	MakeLocal(0X17B86, 0X17C68, "[bp+0X6]", "argu_m");
 	MakeNameEx(0X17BD2, "tweak_loop", SN_LOCAL);
 	MakeNameEx(0X17C3B, "begin", SN_LOCAL);
 	MakeNameEx(0X17C4C, "next", SN_LOCAL);
@@ -61099,22 +61708,22 @@ static Functions_0(void) {
 	MakeFrame(0X1804C, 0X4C, 0, 0XC);
 	MakeLocal(0X1804C, 0X1847D, "[bp-0X38]", "y_block_counter");
 	MakeLocal(0X1804C, 0X1847D, "[bp-0X36]", "x_block_counter");
-	MakeLocal(0X1804C, 0X1847D, "[bp-0X34]", "x_block_end");
+	MakeLocal(0X1804C, 0X1847D, "[bp-0X34]", "xb_max");
 	MakeLocal(0X1804C, 0X1847D, "[bp-0X32]", "yb_max");
-	MakeLocal(0X1804C, 0X1847D, "[bp-0X30]", "viewpoint_H_block");
-	MakeLocal(0X1804C, 0X1847D, "[bp-0X2E]", "viewpoint_Y_block");
-	MakeLocal(0X1804C, 0X1847D, "[bp-0X2C]", "viewpoint_X_block");
-	MakeLocal(0X1804C, 0X1847D, "[bp-0X2A]", "width_blocks_div2");
-	MakeLocal(0X1804C, 0X1847D, "[bp-0X28]", "viewpoint_y_pixel");
-	MakeLocal(0X1804C, 0X1847D, "[bp-0X26]", "height_blocks");
+	MakeLocal(0X1804C, 0X1847D, "[bp-0X30]", "offset_H_block");
+	MakeLocal(0X1804C, 0X1847D, "[bp-0X2E]", "offset_Y_block");
+	MakeLocal(0X1804C, 0X1847D, "[bp-0X2C]", "offset_X_block");
+	MakeLocal(0X1804C, 0X1847D, "[bp-0X2A]", "rle_width_blocks");
+	MakeLocal(0X1804C, 0X1847D, "[bp-0X28]", "offset_y_pixel");
+	MakeLocal(0X1804C, 0X1847D, "[bp-0X26]", "rle_height_blocks");
 	MakeLocal(0X1804C, 0X1847D, "[bp-0X24]", "layer_npc");
 	MakeLocal(0X1804C, 0X1847D, "[bp-0X22]", "scrn_y_npc");
 	MakeLocal(0X1804C, 0X1847D, "[bp-0X20]", "scrn_x_npc");
 	MakeLocal(0X1804C, 0X1847D, "[bp-0X1E]", "layer");
 	MakeLocal(0X1804C, 0X1847D, "[bp-0X1C]", "scrn_y");
 	MakeLocal(0X1804C, 0X1847D, "[bp-0X1A]", "scrn_x");
-	MakeLocal(0X1804C, 0X1847D, "[bp-0X18]", "height");
-	MakeLocal(0X1804C, 0X1847D, "[bp-0X16]", "width");
+	MakeLocal(0X1804C, 0X1847D, "[bp-0X18]", "rle_height");
+	MakeLocal(0X1804C, 0X1847D, "[bp-0X16]", "rle_width");
 	MakeLocal(0X1804C, 0X1847D, "[bp-0X14]", "frame_offset");
 	MakeLocal(0X1804C, 0X1847D, "[bp+0X6]", "a_switch");
 	MakeLocal(0X1804C, 0X1847D, "[bp+0X8]", "a_frame");
@@ -61126,7 +61735,7 @@ static Functions_0(void) {
 	MakeNameEx(0X18126, "NPC", SN_LOCAL);
 	MakeNameEx(0X181E9, "next", SN_LOCAL);
 	MakeNameEx(0X181F3, "whole", SN_LOCAL);
-	MakeNameEx(0X181FE, "not_top_layer", SN_LOCAL);
+	MakeNameEx(0X181FE, "valid_layer", SN_LOCAL);
 	MakeNameEx(0X1825E, "line_loop", SN_LOCAL);
 	MakeNameEx(0X18270, "column_loop", SN_LOCAL);
 	MakeNameEx(0X18338, "whole_step", SN_LOCAL);
@@ -61153,6 +61762,10 @@ static Functions_0(void) {
 	MakeFunction    (0X185C2,0X1873E);
 	SetFunctionFlags(0X185C2,0x12);
 	MakeFrame(0X185C2, 0X26, 0, 0X6);
+	MakeLocal(0X185C2, 0X1873E, "[bp-0X1E]", "time_counter");
+	MakeLocal(0X185C2, 0X1873E, "[bp-0X1C]", "div6_remain");
+	MakeLocal(0X185C2, 0X1873E, "[bp-0X1A]", "max_times");
+	MakeLocal(0X185C2, 0X1873E, "[bp+0XA]", "argu_gap");
 	MakeNameEx(0X18620, "some_loop", SN_LOCAL);
 	MakeNameEx(0X18631, "desault", SN_LOCAL);
 	MakeNameEx(0X1866A, "becomesame?", SN_LOCAL);
@@ -61221,6 +61834,9 @@ static Functions_0(void) {
 	MakeFunction    (0X19956,0X19CB4);
 	SetFunctionFlags(0X19956,0x12);
 	MakeFrame(0X19956, 0X24, 0, 0X6);
+	MakeLocal(0X19956, 0X19CB4, "[bp+0X6]", "argu_fill");
+	MakeLocal(0X19956, 0X19CB4, "[bp+0X8]", "argu_level");
+	MakeLocal(0X19956, 0X19CB4, "[bp+0XA]", "argu_role");
 	MakeNameEx(0X19970, "level_loop", SN_LOCAL);
 	MakeNameEx(0X199DB, "level_limit_99", SN_LOCAL);
 	MakeNameEx(0X19A4C, "maxHP_limit_999", SN_LOCAL);
@@ -61237,6 +61853,9 @@ static Functions_0(void) {
 	MakeFunction    (0X19F16,0X1A105);
 	SetFunctionFlags(0X19F16,0x12);
 	MakeFrame(0X19F16, 0X28, 0, 0X0);
+	MakeLocal(0X19F16, 0X1A105, "[bp-0X1E]", "enemycounter");
+	MakeLocal(0X19F16, 0X1A105, "[bp-0X1A]", "image");
+	MakeLocal(0X19F16, 0X1A105, "[bp-0X14]", "enemymax");
 	MakeNameEx(0X19F32, "team_loop", SN_LOCAL);
 	MakeNameEx(0X19F4E, "valid_HP", SN_LOCAL);
 	MakeNameEx(0X19F62, "valid_id", SN_LOCAL);
@@ -61324,11 +61943,12 @@ static Functions_0(void) {
 	MakeFunction    (0X1AF03,0X1B05F);
 	SetFunctionFlags(0X1AF03,0x12);
 	MakeFrame(0X1AF03, 0X16, 0, 0X4);
-	MakeLocal(0X1AF03, 0X1B05F, "[bp+0X6]", "argu_step");
+	MakeLocal(0X1AF03, 0X1B05F, "[bp+0X6]", "argu_step_step");
+	MakeLocal(0X1AF03, 0X1B05F, "[bp+0X8]", "argu_script_object");
 	MakeNameEx(0X1AFC6, "not_0", SN_LOCAL);
 	MakeNameEx(0X1AFD0, "not_3", SN_LOCAL);
 	MakeNameEx(0X1B006, "is_0", SN_LOCAL);
-	MakeNameEx(0X1B057, "got_nextframe", SN_LOCAL);
+	MakeNameEx(0X1B057, "done", SN_LOCAL);
 	MakeFunction    (0X1B062,0X1B526);
 	SetFunctionFlags(0X1B062,0x12);
 	MakeFrame(0X1B062, 0X38, 0, 0X2);
@@ -61338,8 +61958,8 @@ static Functions_0(void) {
 	MakeLocal(0X1B062, 0X1B526, "[bp-0X30]", "index2");
 	MakeLocal(0X1B062, 0X1B526, "[bp-0X2E]", "autoscript");
 	MakeLocal(0X1B062, 0X1B526, "[bp-0X2C]", "evtobjs2");
-	MakeLocal(0X1B062, 0X1B526, "[bp-0X2A]", "nextstep_y");
-	MakeLocal(0X1B062, 0X1B526, "[bp-0X28]", "nextstep_x");
+	MakeLocal(0X1B062, 0X1B526, "[bp-0X2A]", "y_offset");
+	MakeLocal(0X1B062, 0X1B526, "[bp-0X28]", "x_offset");
 	MakeLocal(0X1B062, 0X1B526, "[bp-0X26]", "index");
 	MakeLocal(0X1B062, 0X1B526, "[bp-0X24]", "trigger_script");
 	MakeLocal(0X1B062, 0X1B526, "[bp-0X20]", "evtobj_counter");
@@ -61363,8 +61983,8 @@ static Functions_0(void) {
 	MakeNameEx(0X1B201, "frames_0", SN_LOCAL);
 	MakeNameEx(0X1B253, "jmp_not_active", SN_LOCAL);
 	MakeNameEx(0X1B256, "status_less_than_0", SN_LOCAL);
-	MakeNameEx(0X1B277, "_0000_0", SN_LOCAL);
-	MakeNameEx(0X1B2B4, "in_boundary_too", SN_LOCAL);
+	MakeNameEx(0X1B277, "vanishtime_0", SN_LOCAL);
+	MakeNameEx(0X1B2B4, "not_in_boundary", SN_LOCAL);
 	MakeNameEx(0X1B2F7, "go_continue?", SN_LOCAL);
 	MakeNameEx(0X1B303, "continue", SN_LOCAL);
 	MakeNameEx(0X1B307, "begin", SN_LOCAL);
@@ -61412,6 +62032,7 @@ static Functions_0(void) {
 	MakeFunction    (0X1BB96,0X1BC9D);
 	SetFunctionFlags(0X1BB96,0x12);
 	MakeFrame(0X1BB96, 0X22, 0, 0X4);
+	MakeLocal(0X1BB96, 0X1BC9D, "[bp+0X8]", "argu_music");
 	MakeFunction    (0X1BCA0,0X1BD0E);
 	SetFunctionFlags(0X1BCA0,0x12);
 	MakeFrame(0X1BCA0, 0X14, 0, 0X2);
@@ -61422,18 +62043,25 @@ static Functions_0(void) {
 	SetFunctionFlags(0X1BD51,0x12);
 	MakeFrame(0X1BD51, 0X0, 0, 0X0);
 	MakeNameEx(0X1BD81, "walked", SN_LOCAL);
-	MakeNameEx(0X1BD89, "not", SN_LOCAL);
+	MakeNameEx(0X1BD89, "programmed_walk", SN_LOCAL);
 	MakeNameEx(0X1BDA1, "next", SN_LOCAL);
 	MakeFunction    (0X1BDB1,0X1C13C);
 	SetFunctionFlags(0X1BDB1,0x12);
 	MakeFrame(0X1BDB1, 0X2E, 0, 0X0);
+	MakeLocal(0X1BDB1, 0X1C13C, "[bp-0X28]", "followers_max");
+	MakeLocal(0X1BDB1, 0X1C13C, "[bp-0X1E]", "role_counter");
+	MakeLocal(0X1BDB1, 0X1C13C, "[bp-0X1C]", "relate_y");
+	MakeLocal(0X1BDB1, 0X1C13C, "[bp-0X1A]", "relate_x");
+	MakeLocal(0X1BDB1, 0X1C13C, "[bp-0X18]", "refer_POS");
+	MakeLocal(0X1BDB1, 0X1C13C, "[bp-0X16]", "role_id");
+	MakeLocal(0X1BDB1, 0X1C13C, "[bp-0X14]", "roles_max");
 	MakeNameEx(0X1BE0E, "not_4frame_role", SN_LOCAL);
 	MakeNameEx(0X1BE2A, "next", SN_LOCAL);
 	MakeNameEx(0X1BE8E, "role_loop", SN_LOCAL);
-	MakeNameEx(0X1BEE2, "the_last_one", SN_LOCAL);
+	MakeNameEx(0X1BEE2, "third_role", SN_LOCAL);
 	MakeNameEx(0X1BF02, "not_ns_dir", SN_LOCAL);
 	MakeNameEx(0X1BF06, "go_next", SN_LOCAL);
-	MakeNameEx(0X1BF09, "not_the_last", SN_LOCAL);
+	MakeNameEx(0X1BF09, "other_role", SN_LOCAL);
 	MakeNameEx(0X1BF57, "got_diffs", SN_LOCAL);
 	MakeNameEx(0X1BFBD, "cannot_go_through", SN_LOCAL);
 	MakeNameEx(0X1C03A, "not_4frame", SN_LOCAL);
@@ -61457,7 +62085,7 @@ static Functions_0(void) {
 	MakeFunction    (0X1C19D,0X1C1F7);
 	SetFunctionFlags(0X1C19D,0x12);
 	MakeFrame(0X1C19D, 0X0, 0, 0X0);
-	MakeNameEx(0X1C1C8, "whole_steps", SN_LOCAL);
+	MakeNameEx(0X1C1C8, "complete_steps", SN_LOCAL);
 	MakeNameEx(0X1C1DD, "gogo", SN_LOCAL);
 	MakeFunction    (0X1C1FA,0X1C4FC);
 	SetFunctionFlags(0X1C1FA,0x12);
@@ -61483,6 +62111,10 @@ static Functions_0(void) {
 	MakeFunction    (0X1C7E2,0X1C9AD);
 	SetFunctionFlags(0X1C7E2,0x12);
 	MakeFrame(0X1C7E2, 0X20, 0, 0X0);
+	MakeLocal(0X1C7E2, 0X1C9AD, "[bp-0X1E]", "equipment_counter");
+	MakeLocal(0X1C7E2, 0X1C9AD, "[bp-0X1C]", "equip_script");
+	MakeLocal(0X1C7E2, 0X1C9AD, "[bp-0X1A]", "role_id");
+	MakeLocal(0X1C7E2, 0X1C9AD, "[bp-0X14]", "role_pos_counter");
 	MakeNameEx(0X1C7F2, "goods_loop", SN_LOCAL);
 	MakeNameEx(0X1C80E, "begin", SN_LOCAL);
 	MakeNameEx(0X1C850, "loop_", SN_LOCAL);
@@ -61502,6 +62134,10 @@ static Functions_0(void) {
 	MakeFunction    (0X1CDE7,0X1CFE4);
 	SetFunctionFlags(0X1CDE7,0x12);
 	MakeFrame(0X1CDE7, 0X22, 0, 0X6);
+	MakeLocal(0X1CDE7, 0X1CFE4, "[bp-0X14]", "local_str");
+	MakeLocal(0X1CDE7, 0X1CFE4, "[bp+0X6]", "argu_m_text");
+	MakeLocal(0X1CDE7, 0X1CFE4, "[bp+0X8]", "argu_y");
+	MakeLocal(0X1CDE7, 0X1CFE4, "[bp+0XA]", "argu_x");
 	MakeNameEx(0X1CE14, "parse_loop", SN_LOCAL);
 	MakeNameEx(0X1CE24, "switch", SN_LOCAL);
 	MakeNameEx(0X1CE4B, "case_single_quote", SN_LOCAL);
@@ -61544,6 +62180,12 @@ static Functions_0(void) {
 	MakeFunction    (0X1D2F4,0X1D61A);
 	SetFunctionFlags(0X1D2F4,0x12);
 	MakeFrame(0X1D2F4, 0X2A, 0, 0X4);
+	MakeLocal(0X1D2F4, 0X1D61A, "[bp-0X28]", "script_arg3");
+	MakeLocal(0X1D2F4, 0X1D61A, "[bp-0X26]", "script_arg2");
+	MakeLocal(0X1D2F4, 0X1D61A, "[bp-0X24]", "script_arg1");
+	MakeLocal(0X1D2F4, 0X1D61A, "[bp-0X22]", "script_func");
+	MakeLocal(0X1D2F4, 0X1D61A, "[bp+0X6]", "argu_script");
+	MakeLocal(0X1D2F4, 0X1D61A, "[bp+0X8]", "argu_evtobj");
 	MakeNameEx(0X1D2FF, "begin_parse_script", SN_LOCAL);
 	MakeNameEx(0X1D3BD, "scriptfunc", SN_LOCAL);
 	MakeNameEx(0X1D3C9, "next", SN_LOCAL);
@@ -61580,7 +62222,8 @@ static Functions_0(void) {
 	MakeFunction    (0X1D6FD,0X1D88B);
 	SetFunctionFlags(0X1D6FD,0x12);
 	MakeFrame(0X1D6FD, 0X24, 0, 0X0);
-	MakeLocal(0X1D6FD, 0X1D88B, "[bp-0X20]", "prev_frames");
+	MakeLocal(0X1D6FD, 0X1D88B, "[bp-0X20]", "direction_frames");
+	MakeLocal(0X1D6FD, 0X1D88B, "[bp-0X1E]", "evtobj_id");
 	MakeLocal(0X1D6FD, 0X1D88B, "[bp-0X1C]", "frame");
 	MakeLocal(0X1D6FD, 0X1D88B, "[bp-0X1A]", "layer");
 	MakeLocal(0X1D6FD, 0X1D88B, "[bp-0X18]", "y");
@@ -61604,9 +62247,24 @@ static Functions_0(void) {
 	MakeFunction    (0X1D88E,0X1DF9E);
 	SetFunctionFlags(0X1D88E,0x12);
 	MakeFrame(0X1D88E, 0XA8, 0, 0X2);
+	MakeLocal(0X1D88E, 0X1DF9E, "[bp-0X9C]", "poison_stack_count");
+	MakeLocal(0X1D88E, 0X1DF9E, "[bp-0X74]", "poison_count");
+	MakeLocal(0X1D88E, 0X1DF9E, "[bp-0X52]", "HMP_counter");
+	MakeLocal(0X1D88E, 0X1DF9E, "[bp-0X14]", "role_pos");
+	MakeLocal(0X1D88E, 0X1DF9E, "[bp+0X6]", "argu_role");
 	MakeFunction    (0X1DFA1,0X1E05E);
 	SetFunctionFlags(0X1DFA1,0x12);
 	MakeFrame(0X1DFA1, 0X22, 0, 0X6);
+	MakeLocal(0X1DFA1, 0X1E05E, "[bp-0X22]", "image_y");
+	MakeLocal(0X1DFA1, 0X1E05E, "[bp-0X20]", "centre_y");
+	MakeLocal(0X1DFA1, 0X1E05E, "[bp-0X1E]", "image_x");
+	MakeLocal(0X1DFA1, 0X1E05E, "[bp-0X1C]", "centre_x");
+	MakeLocal(0X1DFA1, 0X1E05E, "[bp-0X1A]", "vari_2");
+	MakeLocal(0X1DFA1, 0X1E05E, "[bp-0X18]", "subfiles");
+	MakeLocal(0X1DFA1, 0X1E05E, "[bp-0X16]", "rgm_path");
+	MakeLocal(0X1DFA1, 0X1E05E, "[bp+0X6]", "argu_id");
+	MakeLocal(0X1DFA1, 0X1E05E, "[bp+0X8]", "argu_y");
+	MakeLocal(0X1DFA1, 0X1E05E, "[bp+0XA]", "argu_x");
 	MakeFunction    (0X1E061,0X1E287);
 	SetFunctionFlags(0X1E061,0x12);
 	MakeFrame(0X1E061, 0X34, 0, 0X6);
@@ -61622,6 +62280,9 @@ static Functions_0(void) {
 	MakeFunction    (0X1E28A,0X1E3E1);
 	SetFunctionFlags(0X1E28A,0x12);
 	MakeFrame(0X1E28A, 0X1A, 0, 0X0);
+	MakeLocal(0X1E28A, 0X1E3E1, "[bp-0X18]", "role_id");
+	MakeLocal(0X1E28A, 0X1E3E1, "[bp-0X16]", "team_number");
+	MakeLocal(0X1E28A, 0X1E3E1, "[bp-0X14]", "frames_per_direction");
 	MakeNameEx(0X1E2D1, "defined", SN_LOCAL);
 	MakeNameEx(0X1E2F6, "direction_loop", SN_LOCAL);
 	MakeNameEx(0X1E337, "f_defined", SN_LOCAL);
@@ -61631,6 +62292,17 @@ static Functions_0(void) {
 	MakeFunction    (0X1E3E4,0X1EA1F);
 	SetFunctionFlags(0X1E3E4,0x12);
 	MakeFrame(0X1E3E4, 0X6C, 0, 0X0);
+	MakeLocal(0X1E3E4, 0X1EA1F, "[bp-0X52]", "screen_buf_addr");
+	MakeLocal(0X1E3E4, 0X1EA1F, "[bp-0X4A]", "palette_progress");
+	MakeLocal(0X1E3E4, 0X1EA1F, "[bp-0X36]", "ok_stop_draw");
+	MakeLocal(0X1E3E4, 0X1EA1F, "[bp-0X32]", "curr_crazyboys_height");
+	MakeLocal(0X1E3E4, 0X1EA1F, "[bp-0X30]", "deci_0");
+	MakeLocal(0X1E3E4, 0X1EA1F, "[bp-0X2E]", "pixels_scrolled");
+	MakeLocal(0X1E3E4, 0X1EA1F, "[bp-0X2C]", "deci_16");
+	MakeLocal(0X1E3E4, 0X1EA1F, "[bp-0X2A]", "deci_40");
+	MakeLocal(0X1E3E4, 0X1EA1F, "[bp-0X28]", "multi_");
+	MakeLocal(0X1E3E4, 0X1EA1F, "[bp-0X26]", "bytes");
+	MakeLocal(0X1E3E4, 0X1EA1F, "[bp-0X1C]", "counter");
 	MakeNameEx(0X1E46A, "gen_random_loop", SN_LOCAL);
 	MakeNameEx(0X1E4E6, "next", SN_LOCAL);
 	MakeNameEx(0X1E4F1, "gen_ok", SN_LOCAL);
@@ -61642,12 +62314,12 @@ static Functions_0(void) {
 	MakeNameEx(0X1E67F, "next__", SN_LOCAL);
 	MakeNameEx(0X1E6BC, "big_enough?", SN_LOCAL);
 	MakeNameEx(0X1E731, "continue", SN_LOCAL);
-	MakeNameEx(0X1E735, "go", SN_LOCAL);
+	MakeNameEx(0X1E735, "draw_goose_loop", SN_LOCAL);
 	MakeNameEx(0X1E82F, "tweak_palette", SN_LOCAL);
 	MakeNameEx(0X1E872, "gogo", SN_LOCAL);
-	MakeNameEx(0X1E878, "last_line", SN_LOCAL);
+	MakeNameEx(0X1E878, "last_line?", SN_LOCAL);
 	MakeNameEx(0X1E882, "end_draw", SN_LOCAL);
-	MakeNameEx(0X1E98D, "draw_loop", SN_LOCAL);
+	MakeNameEx(0X1E98D, "wait_and_exit", SN_LOCAL);
 	MakeFunction    (0X1EA22,0X1EE58);
 	SetFunctionFlags(0X1EA22,0x12);
 	MakeFrame(0X1EA22, 0X56, 0, 0X0);
@@ -61675,6 +62347,10 @@ static Functions_0(void) {
 	MakeNameEx(0X1EE0D, "start_read_voc", SN_LOCAL);
 	MakeNameEx(0X1EE18, "endLoop", SN_LOCAL);
 	MakeNameEx(0X1EE24, "xms_too_few_5_skip_soundeffect", SN_LOCAL);
+}
+
+static Functions_1(void) {
+
 	MakeFunction    (0X1EE5B,0X1F0E1);
 	SetFunctionFlags(0X1EE5B,0x12);
 	MakeFrame(0X1EE5B, 0X4A, 0, 0X6);
@@ -61742,7 +62418,7 @@ static Functions_0(void) {
 	SetFunctionFlags(0X1F5CE,0x44);
 	MakeFrame(0X1F5CE, 0X0, 2, 0X0);
 	MakeFunction    (0X1F5E4,0X1F61E);
-	SetFunctionFlags(0X1F5E4,0x16);
+	SetFunctionFlags(0X1F5E4,0x56);
 	MakeFrame(0X1F5E4, 0X0, 2, 0X0);
 	MakeFunction    (0X1F63B,0X1F64E);
 	SetFunctionFlags(0X1F63B,0x44);
@@ -61904,7 +62580,7 @@ static Functions_0(void) {
 	MakeFrame(0X1FEA6, 0X0, 6, 0X0);
 	MakeNameEx(0X1FEC7, "jmp_B$ERR_FC", SN_LOCAL);
 	MakeFunction    (0X1FECD,0X1FEEB);
-	SetFunctionFlags(0X1FECD,0x12);
+	SetFunctionFlags(0X1FECD,0x16);
 	MakeFrame(0X1FECD, 0X0, 0, 0X2);
 	MakeFunction    (0X1FEEE,0X1FF06);
 	SetFunctionFlags(0X1FEEE,0x56);
@@ -61950,7 +62626,7 @@ static Functions_0(void) {
 	MakeLocal(0X200BB, 0X20155, "[bp+0X6]", "psd2");
 	MakeLocal(0X200BB, 0X20155, "[bp+0X8]", "psd1_dst");
 	MakeFunction    (0X2015A,0X20208);
-	SetFunctionFlags(0X2015A,0x16);
+	SetFunctionFlags(0X2015A,0x56);
 	MakeFrame(0X2015A, 0X0, 2, 0X6);
 	MakeLocal(0X2015A, 0X20208, "[bp+0X6]", "psDst");
 	MakeLocal(0X2015A, 0X20208, "[bp+0X8]", "psd1");
@@ -61996,7 +62672,7 @@ static Functions_0(void) {
 	MakeFunction    (0X20357,0X2036B);
 	SetFunctionFlags(0X20357,0x4);
 	MakeFunction    (0X2036B,0X2037D);
-	SetFunctionFlags(0X2036B,0x56);
+	SetFunctionFlags(0X2036B,0x16);
 	MakeFrame(0X2036B, 0X0, 2, 0X8);
 	MakeLocal(0X2036B, 0X2037D, "[bp+0XA]", "SeedNum");
 	MakeFunction    (0X2037E,0X2039D);
@@ -62176,10 +62852,6 @@ static Functions_0(void) {
 	MakeFunction    (0X20D00,0X20D13);
 	SetFunctionFlags(0X20D00,0x44);
 	MakeFrame(0X20D00, 0X0, 8, 0X0);
-}
-
-static Functions_1(void) {
-
 	MakeFunction    (0X20D13,0X20D32);
 	SetFunctionFlags(0X20D13,0x56);
 	MakeFrame(0X20D13, 0X0, 2, 0X8);
@@ -62227,7 +62899,7 @@ static Functions_1(void) {
 	MakeFunction    (0X20F04,0X20F4B);
 	SetFunctionFlags(0X20F04,0x0);
 	MakeFunction    (0X20F4C,0X20F8F);
-	SetFunctionFlags(0X20F4C,0x56);
+	SetFunctionFlags(0X20F4C,0x16);
 	MakeFrame(0X20F4C, 0X0, 2, 0X0);
 	MakeFunction    (0X20F8F,0X20FB0);
 	SetFunctionFlags(0X20F8F,0x44);
@@ -63512,12 +64184,12 @@ static Functions_1(void) {
 	MakeFunction    (0X28116,0X28143);
 	SetFunctionFlags(0X28116,0x2);
 	MakeFrame(0X28116, 0X0, 10, 0X0);
+	MakeNameEx(0X28139, "use_orig_int23_handle", SN_LOCAL);
 	MakeFunction    (0X28143,0X28144);
 	SetFunctionFlags(0X28143,0x2);
 	MakeFunction    (0X28144,0X281D1);
 	SetFunctionFlags(0X28144,0x12);
 	MakeFrame(0X28144, 0X6, 2, 0X14);
-	MakeNameEx(0X28194, "column_loop", SN_LOCAL);
 	MakeFunction    (0X281D2,0X281FF);
 	SetFunctionFlags(0X281D2,0x12);
 	MakeFrame(0X281D2, 0X0, 2, 0X10);
@@ -63532,7 +64204,6 @@ static Functions_1(void) {
 	MakeLocal(0X28200, 0X2826E, "[bp+0XA]", "times");
 	MakeLocal(0X28200, 0X2826E, "[bp+0XE]", "dst");
 	MakeLocal(0X28200, 0X2826E, "[bp+0X12]", "src");
-	MakeNameEx(0X28224, "fade_loop", SN_LOCAL);
 	MakeFunction    (0X2826E,0X282F9);
 	SetFunctionFlags(0X2826E,0x12);
 	MakeFrame(0X2826E, 0X0, 2, 0X10);
@@ -63547,6 +64218,11 @@ static Functions_1(void) {
 	MakeFunction    (0X283F1,0X284AC);
 	SetFunctionFlags(0X283F1,0x12);
 	MakeFrame(0X283F1, 0X0, 2, 0XC);
+	MakeLocal(0X283F1, 0X284AC, "[bp+0X6]", "argu_time");
+	MakeLocal(0X283F1, 0X284AC, "[bp+0XA]", "argu_gap");
+	MakeLocal(0X283F1, 0X284AC, "[bp+0XE]", "argu_src");
+	MakeNameEx(0X28410, "loop", SN_LOCAL);
+	MakeNameEx(0X284A7, "ret", SN_LOCAL);
 	MakeFunction    (0X284AC,0X2859B);
 	SetFunctionFlags(0X284AC,0x12);
 	MakeFrame(0X284AC, 0XC, 2, 0X18);
@@ -63560,8 +64236,6 @@ static Functions_1(void) {
 	MakeNameEx(0X284D1, "whole", SN_LOCAL);
 	MakeNameEx(0X284DE, "next", SN_LOCAL);
 	MakeNameEx(0X284EB, "y_loop", SN_LOCAL);
-	MakeNameEx(0X284F4, "h_loop", SN_LOCAL);
-	MakeNameEx(0X2850C, "x_loop", SN_LOCAL);
 	MakeNameEx(0X28569, "x_continue", SN_LOCAL);
 	MakeNameEx(0X28575, "h_continue", SN_LOCAL);
 	MakeNameEx(0X28583, "go_h_loop", SN_LOCAL);
@@ -63577,7 +64251,7 @@ static Functions_1(void) {
 	MakeFunction    (0X285CC,0X285E7);
 	SetFunctionFlags(0X285CC,0x12);
 	MakeFrame(0X285CC, 0X0, 2, 0XC);
-	MakeLocal(0X285CC, 0X285E7, "[bp+0X6]", "mask");
+	MakeLocal(0X285CC, 0X285E7, "[bp+0X6]", "shifts");
 	MakeLocal(0X285CC, 0X285E7, "[bp+0XA]", "src");
 	MakeLocal(0X285CC, 0X285E7, "[bp+0XE]", "dst");
 	MakeFunction    (0X285E8,0X285FD);
@@ -63602,7 +64276,6 @@ static Functions_1(void) {
 	SetFunctionFlags(0X286D0,0x12);
 	MakeFrame(0X286D0, 0X8, 2, 0X1C);
 	MakeNameEx(0X2875B, "skip&fill&shadow_loop", SN_LOCAL);
-	MakeNameEx(0X2875C, "skip", SN_LOCAL);
 	MakeNameEx(0X288AA, "line_loop", SN_LOCAL);
 	MakeNameEx(0X288B5, "row_loop", SN_LOCAL);
 	MakeNameEx(0X288BE, "not_1", SN_LOCAL);
@@ -63610,6 +64283,12 @@ static Functions_1(void) {
 	MakeFunction    (0X28A20,0X28E40);
 	SetFunctionFlags(0X28A20,0x12);
 	MakeFrame(0X28A20, 0X12, 2, 0X14);
+	MakeLocal(0X28A20, 0X28E40, "[bp-0X12]", "width");
+	MakeLocal(0X28A20, 0X28E40, "[bp-0XA]", "brightness3");
+	MakeLocal(0X28A20, 0X28E40, "[bp-0X8]", "brightness1");
+	MakeLocal(0X28A20, 0X28E40, "[bp-0X6]", "brightness2");
+	MakeLocal(0X28A20, 0X28E40, "[bp-0X4]", "width1");
+	MakeLocal(0X28A20, 0X28E40, "[bp-0X2]", "brightness");
 	MakeLocal(0X28A20, 0X28E40, "[bp+0X6]", "argu_brighter");
 	MakeLocal(0X28A20, 0X28E40, "[bp+0XA]", "argu_addr");
 	MakeLocal(0X28A20, 0X28E40, "[bp+0XE]", "argu_rle");
@@ -63623,16 +64302,13 @@ static Functions_1(void) {
 	MakeLocal(0X28E40, 0X29276, "[bp+0XE]", "argu_rle");
 	MakeLocal(0X28E40, 0X29276, "[bp+0X12]", "argu_y");
 	MakeLocal(0X28E40, 0X29276, "[bp+0X16]", "argu_x");
-	MakeNameEx(0X28E98, "valid_y", SN_LOCAL);
 	MakeNameEx(0X28EAE, "valid_y_", SN_LOCAL);
 	MakeNameEx(0X28ED9, "validing_next", SN_LOCAL);
 	MakeNameEx(0X28EDC, "valid_x", SN_LOCAL);
-	MakeNameEx(0X28EFC, "skip_rle_pixels", SN_LOCAL);
 	MakeNameEx(0X28EFF, "continue_count", SN_LOCAL);
 	MakeNameEx(0X28F0E, "is_pixel", SN_LOCAL);
 	MakeNameEx(0X28F16, "valid", SN_LOCAL);
 	MakeNameEx(0X28F23, "eliminate_skipping", SN_LOCAL);
-	MakeNameEx(0X28F31, "right_skip", SN_LOCAL);
 	MakeNameEx(0X28F34, "no_left_skip", SN_LOCAL);
 	MakeNameEx(0X28FD3, "gogogo", SN_LOCAL);
 	MakeNameEx(0X29027, "left_skip", SN_LOCAL);
@@ -63645,11 +64321,9 @@ static Functions_1(void) {
 	MakeLocal(0X29276, 0X2960E, "[bp+0XA]", "a_rle");
 	MakeLocal(0X29276, 0X2960E, "[bp+0XE]", "a_y");
 	MakeLocal(0X29276, 0X2960E, "[bp+0X12]", "a_x");
-	MakeNameEx(0X292C7, "y_min_valid", SN_LOCAL);
 	MakeNameEx(0X292E1, "y_max_valid", SN_LOCAL);
 	MakeNameEx(0X2930D, "next", SN_LOCAL);
 	MakeNameEx(0X29312, "valid__", SN_LOCAL);
-	MakeNameEx(0X2932A, "valid___", SN_LOCAL);
 	MakeNameEx(0X2935A, "patched", SN_LOCAL);
 	MakeNameEx(0X293ED, "start_rle", SN_LOCAL);
 	MakeNameEx(0X293F5, "row_loop", SN_LOCAL);
@@ -63662,6 +64336,8 @@ static Functions_1(void) {
 	MakeFunction    (0X2964A,0X2968F);
 	SetFunctionFlags(0X2964A,0x12);
 	MakeFrame(0X2964A, 0X0, 2, 0X10);
+	MakeNameEx(0X29671, "valid_x_max", SN_LOCAL);
+	MakeNameEx(0X29678, "valid_y_min", SN_LOCAL);
 	MakeFunction    (0X2AA97,0X2AA9E);
 	SetFunctionFlags(0X2AA97,0x2);
 	MakeFunction    (0X2AA9E,0X2AAB3);
@@ -63690,6 +64366,8 @@ static Functions_1(void) {
 	SetFunctionFlags(0X2ABA7,0x0);
 	MakeFrame(0X2ABA7, 0X0, 0, 0X0);
 	MakeNameEx(0X2ABAF, "more_than_1", SN_LOCAL);
+	MakeNameEx(0X2ABC9, "xchg2_loop", SN_LOCAL);
+	MakeNameEx(0X2ABDF, "more_than_two", SN_LOCAL);
 	MakeNameEx(0X2ABE4, "outer_loop", SN_LOCAL);
 	MakeNameEx(0X2ABEC, "xchg_loop", SN_LOCAL);
 	MakeNameEx(0X2AC43, "lesser", SN_LOCAL);
@@ -63709,7 +64387,6 @@ static Functions_1(void) {
 	MakeLocal(0X2ACE6, 0X2AD71, "[bp+0X6]", "REDRAW");
 	MakeLocal(0X2ACE6, 0X2AD71, "[bp+0XA]", "end_scanline");
 	MakeLocal(0X2ACE6, 0X2AD71, "[bp+0XE]", "begin_scanline");
-	MakeNameEx(0X2AD0E, "transfer_loop", SN_LOCAL);
 	MakeNameEx(0X2AD6C, "return", SN_LOCAL);
 	MakeFunction    (0X2AD89,0X2AF5C);
 	SetFunctionFlags(0X2AD89,0x12);
@@ -63731,6 +64408,8 @@ static Functions_1(void) {
 	MakeLocal(0X2AF5C, 0X2AFE8, "[bp+0XA]", "grade");
 	MakeLocal(0X2AF5C, 0X2AFE8, "[bp+0XE]", "height");
 	MakeNameEx(0X2AF76, "calc_loop", SN_LOCAL);
+	MakeNameEx(0X2AFAE, "wave_loop", SN_LOCAL);
+	MakeNameEx(0X2AFB2, "waveline_loop", SN_LOCAL);
 	MakeFunction    (0X2B02C,0X2B09D);
 	SetFunctionFlags(0X2B02C,0x12);
 	MakeFrame(0X2B02C, 0X0, 2, 0XC);
@@ -63921,12 +64600,17 @@ static Functions_1(void) {
 	MakeFunction    (0X2BD29,0X2BDE4);
 	SetFunctionFlags(0X2BD29,0x12);
 	MakeFrame(0X2BD29, 0XE, 2, 0XC);
+	MakeLocal(0X2BD29, 0X2BDE4, "[bp-0XE]", "x_block");
+	MakeLocal(0X2BD29, 0X2BDE4, "[bp-0XC]", "y_block");
+	MakeLocal(0X2BD29, 0X2BDE4, "[bp-0X4]", "x_rest");
+	MakeLocal(0X2BD29, 0X2BDE4, "[bp-0X2]", "y_rest");
 	MakeLocal(0X2BD29, 0X2BDE4, "[bp+0X6]", "a_Y");
 	MakeLocal(0X2BD29, 0X2BDE4, "[bp+0XA]", "a_X");
 	MakeLocal(0X2BD29, 0X2BDE4, "[bp+0XE]", "a_H");
-	MakeNameEx(0X2BD8F, "still_overflow", SN_LOCAL);
+	MakeNameEx(0X2BD8F, "onedirect_overflow", SN_LOCAL);
+	MakeNameEx(0X2BD9C, "x_overflow", SN_LOCAL);
 	MakeNameEx(0X2BD9F, "end_calc_", SN_LOCAL);
-	MakeNameEx(0X2BDA1, "x_and_y_overflow", SN_LOCAL);
+	MakeNameEx(0X2BDA1, "more_overflow", SN_LOCAL);
 	MakeNameEx(0X2BDA9, "x_or_y_0", SN_LOCAL);
 	MakeNameEx(0X2BDB4, "end_calc", SN_LOCAL);
 	MakeFunction    (0X2BDE4,0X2BE85);
@@ -63943,6 +64627,7 @@ static Functions_1(void) {
 	MakeFunction    (0X2BE85,0X2BF8A);
 	SetFunctionFlags(0X2BE85,0x12);
 	MakeFrame(0X2BE85, 0X6, 2, 0X14);
+	MakeLocal(0X2BE85, 0X2BF8A, "[bp-0X2]", "viewport_y_add7");
 	MakeNameEx(0X2BEA4, "tile_redraw_test_loop", SN_LOCAL);
 	MakeNameEx(0X2BEAF, "goon_test", SN_LOCAL);
 	MakeNameEx(0X2BF2D, "h_redraw", SN_LOCAL);
@@ -63952,6 +64637,7 @@ static Functions_1(void) {
 	SetFunctionFlags(0X2BF98,0x12);
 	MakeFrame(0X2BF98, 0X0, 2, 0X10);
 	MakeNameEx(0X2BFA9, "evt_loop", SN_LOCAL);
+	MakeNameEx(0X2BFE1, "continue", SN_LOCAL);
 	MakeFunction    (0X2BFEC,0X2C3D4);
 	SetFunctionFlags(0X2BFEC,0x12);
 	MakeFrame(0X2BFEC, 0X10, 2, 0X10);
@@ -63967,12 +64653,8 @@ static Functions_1(void) {
 	MakeLocal(0X2BFEC, 0X2C3D4, "[bp+0XA]", "argu_rle");
 	MakeLocal(0X2BFEC, 0X2C3D4, "[bp+0XE]", "argu_y");
 	MakeLocal(0X2BFEC, 0X2C3D4, "[bp+0X12]", "argu_x");
-	MakeNameEx(0X2C01C, "valid_width", SN_LOCAL);
-	MakeNameEx(0X2C032, "valid_height", SN_LOCAL);
 	MakeNameEx(0X2C055, "valid_height_2", SN_LOCAL);
-	MakeNameEx(0X2C06F, "valid_height_3", SN_LOCAL);
 	MakeNameEx(0X2C0A2, "valid_width_3", SN_LOCAL);
-	MakeNameEx(0X2C0A7, "valid_width_2", SN_LOCAL);
 	MakeNameEx(0X2C0BF, "valid_width_4", SN_LOCAL);
 	MakeNameEx(0X2C0C8, "skipping", SN_LOCAL);
 	MakeNameEx(0X2C0CB, "pixel_skip", SN_LOCAL);
@@ -64021,7 +64703,6 @@ static Functions_1(void) {
 	MakeLocal(0X2C442, 0X2C89D, "[bp+0X16]", "argu_splice_len");
 	MakeLocal(0X2C442, 0X2C89D, "[bp+0X1A]", "argu_scrn_y");
 	MakeLocal(0X2C442, 0X2C89D, "[bp+0X1E]", "argu_scrn_x");
-	MakeNameEx(0X2C47B, "gota", SN_LOCAL);
 	MakeNameEx(0X2C491, "got_height", SN_LOCAL);
 	MakeNameEx(0X2C4A9, "skip_previous_lines", SN_LOCAL);
 	MakeNameEx(0X2C4B0, "skip_lines_loop", SN_LOCAL);
@@ -64030,6 +64711,7 @@ static Functions_1(void) {
 	MakeNameEx(0X2C4C2, "Y_OK", SN_LOCAL);
 	MakeNameEx(0X2C4D8, "valid_y", SN_LOCAL);
 	MakeNameEx(0X2C4F0, "valid_x", SN_LOCAL);
+	MakeNameEx(0X2C4F3, "line_loop", SN_LOCAL);
 	MakeNameEx(0X2C519, "row_loop", SN_LOCAL);
 	MakeNameEx(0X2C51B, "draw_transparent_loop", SN_LOCAL);
 	MakeNameEx(0X2C535, "draw_color_pixels", SN_LOCAL);
@@ -64039,7 +64721,6 @@ static Functions_1(void) {
 	MakeNameEx(0X2C5C5, "row_complete", SN_LOCAL);
 	MakeNameEx(0X2C5D0, "jmp_return", SN_LOCAL);
 	MakeNameEx(0X2C5D4, "add_one_extra_block", SN_LOCAL);
-	MakeNameEx(0X2C618, "row_complete_2", SN_LOCAL);
 	MakeNameEx(0X2C623, "jmp_return_2", SN_LOCAL);
 	MakeNameEx(0X2C668, "row_complete_3", SN_LOCAL);
 	MakeNameEx(0X2C673, "jmp_return_3", SN_LOCAL);
@@ -64053,12 +64734,9 @@ static Functions_1(void) {
 	MakeNameEx(0X2C781, "jmp_return_7", SN_LOCAL);
 	MakeNameEx(0X2C7CD, "row_complete_8", SN_LOCAL);
 	MakeNameEx(0X2C7D8, "jmp_return_8", SN_LOCAL);
-	MakeNameEx(0X2C80F, "jmp_return_9", SN_LOCAL);
-	MakeNameEx(0X2C83B, "row_complete_10", SN_LOCAL);
 	MakeNameEx(0X2C846, "jmp_return_10", SN_LOCAL);
 	MakeNameEx(0X2C848, "x_skip", SN_LOCAL);
 	MakeNameEx(0X2C84A, "not_skipped", SN_LOCAL);
-	MakeNameEx(0X2C85F, "over_skipped", SN_LOCAL);
 	MakeNameEx(0X2C880, "row_complete_11", SN_LOCAL);
 	MakeNameEx(0X2C88B, "jmp_return_11", SN_LOCAL);
 	MakeNameEx(0X2C88D, "return", SN_LOCAL);
@@ -64086,12 +64764,16 @@ static Functions_1(void) {
 	MakeFunction    (0X2D244,0X2D28C);
 	SetFunctionFlags(0X2D244,0x12);
 	MakeFrame(0X2D244, 0X0, 2, 0X4);
+	MakeLocal(0X2D244, 0X2D28C, "[bp+0X6]", "argu_DDIM");
 	MakeNameEx(0X2D259, "key_loop", SN_LOCAL);
 	MakeNameEx(0X2D274, "key_release", SN_LOCAL);
 	MakeNameEx(0X2D27E, "nothing_to_record", SN_LOCAL);
+	MakeNameEx(0X2D280, "save_ax", SN_LOCAL);
 	MakeFunction    (0X2D28C,0X2D2C5);
 	SetFunctionFlags(0X2D28C,0x12);
 	MakeFrame(0X2D28C, 0X0, 2, 0X8);
+	MakeLocal(0X2D28C, 0X2D2C5, "[bp+0X6]", "argu_keybuf");
+	MakeLocal(0X2D28C, 0X2D2C5, "[bp+0XA]", "argu_keypressed");
 	MakeNameEx(0X2D2A5, "test_key_loop", SN_LOCAL);
 	MakeNameEx(0X2D2B7, "not_press", SN_LOCAL);
 	MakeNameEx(0X2D2BC, "got", SN_LOCAL);
@@ -64105,7 +64787,6 @@ static Functions_1(void) {
 	MakeFrame(0X2D339, 0X0, 2, 0X8);
 	MakeLocal(0X2D339, 0X2D35B, "[bp+0X6]", "file_handle");
 	MakeLocal(0X2D339, 0X2D35B, "[bp+0XA]", "filename");
-	MakeNameEx(0X2D34B, "not_opened", SN_LOCAL);
 	MakeNameEx(0X2D34E, "next", SN_LOCAL);
 	MakeFunction    (0X2D35B,0X2D373);
 	SetFunctionFlags(0X2D35B,0x12);
@@ -64146,11 +64827,12 @@ static Functions_1(void) {
 	MakeFunction    (0X2D44E,0X2D47E);
 	SetFunctionFlags(0X2D44E,0x12);
 	MakeFrame(0X2D44E, 0X0, 2, 0XC);
+	MakeLocal(0X2D44E, 0X2D47E, "[bp+0XA]", "argu_?");
 	MakeFunction    (0X2D47E,0X2D7F2);
 	SetFunctionFlags(0X2D47E,0x12);
 	MakeFrame(0X2D47E, 0X0, 2, 0X0);
+	MakeLocal(0X2D47E, 0X2D7F2, "[bp+0X8]", "argu_?");
 	MakeNameEx(0X2D4AC, "next", SN_LOCAL);
-	MakeNameEx(0X2D4B9, "next_call", SN_LOCAL);
 	MakeFunction    (0X2D7F2,0X2D822);
 	SetFunctionFlags(0X2D7F2,0x0);
 	MakeFunction    (0X2D822,0X2DA9B);
@@ -64212,6 +64894,8 @@ static Functions_1(void) {
 	SetFunctionFlags(0X2E836,0x12);
 	MakeFrame(0X2E836, 0X0, 2, 0X2);
 	MakeLocal(0X2E836, 0X2E853, "[bp+0X6]", "time_in_centisecond");
+	MakeFunction    (0X2E853,0X2E85A);
+	SetFunctionFlags(0X2E853,0x2);
 	MakeFunction    (0X2E85A,0X2E87B);
 	SetFunctionFlags(0X2E85A,0x12);
 	MakeFrame(0X2E85A, 0X0, 2, 0X4);
@@ -64227,14 +64911,12 @@ static Functions_1(void) {
 	MakeFunction    (0X2E8D3,0X2E9C5);
 	SetFunctionFlags(0X2E8D3,0x2);
 	MakeFrame(0X2E8D3, 0X0, 4, 0X0);
-	MakeNameEx(0X2E8E2, "go_setpal", SN_LOCAL);
 	MakeNameEx(0X2E8ED, "they_dont_set", SN_LOCAL);
 	MakeNameEx(0X2E8FA, "next", SN_LOCAL);
-	MakeNameEx(0X2E97C, "wait_for_sync", SN_LOCAL);
+	MakeNameEx(0X2E97C, "wait_for_vsync", SN_LOCAL);
 	MakeNameEx(0X2E98B, "chg_pat_loop", SN_LOCAL);
 	MakeNameEx(0X2E991, "wait_for_next", SN_LOCAL);
 	MakeNameEx(0X2E995, "inc_flags", SN_LOCAL);
-	MakeNameEx(0X2E9B8, "int_end", SN_LOCAL);
 	MakeNameEx(0X2E9BC, "direct_return", SN_LOCAL);
 	MakeFunction    (0X2E9D5,0X2EA15);
 	SetFunctionFlags(0X2E9D5,0x12);
@@ -64441,7 +65123,7 @@ static Structures_0(id) {
 	id = AddStrucEx(-1,"event_object",0);
 	
 	id = GetStrucIdByName("Trans_Table");
-	AddStrucMember(id,"Length",	0X0,	0x20085500,	-1,	4);
+	AddStrucMember(id,"Length_tt",	0X0,	0x20085500,	-1,	4);
 	AddStrucMember(id,"Src_Handle",	0X4,	0x10085500,	-1,	2);
 	AddStrucMember(id,"Src_Offset",	0X6,	0x20085500,	-1,	4);
 	AddStrucMember(id,"Dst_Handle",	0XA,	0x10085500,	-1,	2);
@@ -64488,7 +65170,7 @@ static Structures_0(id) {
 	AddStrucMember(id,"size",	0X6,	0x10005500,	-1,	2);
 	
 	id = GetStrucIdByName("device_request_header");
-	AddStrucMember(id,"length",	0X0,	0x085500,	-1,	1);
+	AddStrucMember(id,"len_drh",	0X0,	0x085500,	-1,	1);
 	AddStrucMember(id,"subUnit",	0X1,	0x085500,	-1,	1);
 	AddStrucMember(id,"funcNr",	0X2,	0x085500,	-1,	1);
 	AddStrucMember(id,"status",	0X3,	0x10085500,	-1,	2);
@@ -64530,8 +65212,7 @@ static Structures_0(id) {
 	
 	id = GetStrucIdByName("scanline");
 	AddStrucMember(id,"pixels",	0X0,	0x10000400,	-1,	2);
-	AddStrucMember(id,"offset",	0X2,	0x10000400,	-1,	2);
-	AddStrucMember(id,"segment",	0X4,	0x10000400,	-1,	2);
+	AddStrucMember(id,"ptr",	0X2,	0x20000400,	-1,	4);
 	AddStrucMember(id,"next",	0X6,	0x10000400,	-1,	2);
 	
 	id = GetStrucIdByName("AudioStatus_t");
@@ -64548,7 +65229,7 @@ static Structures_0(id) {
 	AddStrucMember(id,"layer",	0X6,	0x10000400,	-1,	2);
 	AddStrucMember(id,"trigger_script",	0X8,	0x10000400,	-1,	2);
 	AddStrucMember(id,"auto_script",	0XA,	0x10000400,	-1,	2);
-	AddStrucMember(id,"status",	0XC,	0x10000400,	-1,	2);
+	AddStrucMember(id,"obj_status",	0XC,	0x10000400,	-1,	2);
 	AddStrucMember(id,"trigger_method",	0XE,	0x10000400,	-1,	2);
 	AddStrucMember(id,"image",	0X10,	0x10000400,	-1,	2);
 	AddStrucMember(id,"frames",	0X12,	0x10000400,	-1,	2);

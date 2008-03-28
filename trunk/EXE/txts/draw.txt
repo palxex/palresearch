@@ -1,6 +1,6 @@
 以下x,y均为相对数(从屏幕左上角起算,而不是逻辑原点)
 人物:
-x:X-WIDTH/2	X/Y: in save
+x:X-WIDTH/2	X/Y: in save X:32X+16H-VX
 y:Y+LAYER+A	WIDTH/HEIGHT: in MGO
 l:LAYER+6	LAYER: in save
 
@@ -10,8 +10,8 @@ y:Y+LAYER+9
 l:LAYER+2	LAYER: in sss0 * 8
 
 TILE:
-x:32X+16H-16-VX VX/VY:视口左上角x/y
-y:16Y+8H+7+l-VY
+x:32X+16H-16-VX VX/VY:视口左上角x/y X-16
+y:16Y+8H+7+l-VY Y+l+7
 l:底层LAYER*8   LAYER: in map
   高层LAYER*8+1 WIDTH/HEIGHT: in mgo
 
@@ -31,3 +31,47 @@ y':y-l-HEIGHT
 数组链表
 有主角时，以主角为中心，每扫描线分两段
 NPC增入时直接把数据增入段，以链表形式链入
+砖块链表：
+
+战
+1、计算击退位置：+=max*rnd(0)
+2、loop:1~arg2
+	有效H(不包括底菜单)分割扫描线
+	若法昏+场昏>0，昏
+	call loop enemy_number~0
+		若未[enemy+6]>0 && <99 &battle_semaphore && 未眠 && 未定
+			
+
+
+c:一直都是脚底板正中央
+yb_max=
+yp=
+
+for(int vy=yb_max-rle_height_blocks;vy<=yb_max;vy++)
+	for(int vx=xb_max-rle_width_blocks_div2;vx<=xb_max+rle_width_blocks_div2;vx++)
+		calc_redraw(vx,vy,h,yp);
+		calc_redraw(vx-1,vy,h,yp);
+		calc_redraw(vx+1,vy,h,yp);
+		calc_redraw(h?vx+1:vx,h?vy+1:vy,!h,yp);
+		calc_redraw(h?vx:vx-1,h?vy+1:vy,!h,yp);
+
+calc_redraw:
+if((lowlayer+y)*16+h*8+8>=yp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

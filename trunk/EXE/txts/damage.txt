@@ -1,14 +1,14 @@
-恩，基本上能跟外塞兄的对起来了。外塞兄能在完全归纳的情况下弄得如此精确,不得不赞一声.
-把结果整理一下吧:
-[quote]字词解释：
-
 calc_base_damage(A,D)
-若A>D		damage=A-0.6D+A-D=2A-1.6D
-若D>A>0.6D	damage=A-0.6D
+{
+若A<0		damage=0
+若A>D		damage=A-0.8D
+若D>A>0.6D	damage=0.5A-0.3D
 若A<0.6D	damage=0
 返回damage
+}
 
-calc_final_damage(A,M)
+calc_final_damage(A,M)//数字，法术
+{
 A+=A*rnd(1)/10;
 D=敌防御+4*(敌级别+6);
 damage=calc_base_damage(A,D);
@@ -17,32 +17,29 @@ damage=damage/2+M基本攻击;
 	damage=damage*(10-敌该属性抗性)/5
 damage=damage*(10+战地对应属性)/10
 返回damage
+}
 
 属性复合:本身该属性+各部位的装备对应的该属性.下文凡未写出复合2字者则只用本身该属性.
 
 rnd(x):0-x的随机浮点数。
 
-int():向偶数四舍五入。[/quote]
+int():向偶数四舍五入。
 
-普攻:
-damage=calc_base_damage( 复合武力, 防御+(敌级别+6)*3 )
+我普攻:
+damage=calc_base_damage( 复合武力, 防御+(敌级别+6)*4 )*2
 damage/=敌物抗
-damage+=rnd(1)
+damage+=1+rnd(1)
 1/6概率:
 	damage*=3;
 damage*=(1+rnd(1/8));
 若是李逍遥,1/12概率:
 	damage*=2;
 
-法术:
+我法术:
 damage=calc_final_damage( 复合灵力, 法术 );
 
-武器投掷:
+我武器投掷:
 damage=calc_final_damage( 投掷基本伤害*5 + 武力*int( rnd(4) ), 鞭击/金钱镖 );
 
-合击：
+我合击：
 damage=calc_final_damage( (所有人武力+所有人灵力)/4, 合击法术 );
-
-最后记录个奇怪的:
-乾坤一掷:
-先用法前脚本将本法术的伤害值设定为5000(不到5000为剩余金钱数)*2/5?
