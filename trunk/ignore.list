@@ -1,0 +1,11 @@
+bak
+.svn
+*.user
+MapEditor\gop
+MapEditor\map
+MapEditor\*.mkf
+PalScript\*.*.txt
+PalScript\*.bin
+PalScript\sss.mkf
+PalScript\m.msg
+PalScript\word.dat
