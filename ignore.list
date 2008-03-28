@@ -1,11 +1,16 @@
 bak
 .svn
 *.user
+Debug
 MapEditor\gop
 MapEditor\map
 MapEditor\*.mkf
 PalScript\*.*.txt
+PalScript\*-1.txt
+PalScript\objects-scr.txt
+PalScript\*.htm
 PalScript\*.bin
+PalScript\*.exe
 PalScript\sss.mkf
 PalScript\m.msg
 PalScript\word.dat

@@ -1,25 +1,48 @@
 DDIM:((attrib_id*7+bodypart)*6+role)*2=x
 HP=HP.prev+10+rnd()*8
-MP=MP.prev+8+rnd()*6
-Îä=Îä.prev+4+rnd();
-Áé=Áé.prev+4+rnd();
-·À=·À.prev+2+rnd();
-ËÙ=ËÙ.prev+2+rnd();
+MP=MP.prev+8+rnd(6)
+Îä=Îä.prev+4+rnd(1);
+Áé=Áé.prev+4+rnd(1);
+·À=·À.prev+2+rnd(1);
+ËÙ=ËÙ.prev+2+rnd(1);
 ÔË=ÔË.prev+2;
 
-ÍµÇÔ½ðÇ®=µ±Ç°½ðÇ®/(2+rnd());
+ÍµÇÔ½ðÇ®=µ±Ç°½ðÇ®/(2+rnd(1));
+
+ÉËº¦¹«Ê½:
+calc_base_damage(A,D)
+{
+ÈôA<0		damage=0
+ÈôA>D		damage=A-0.8D
+ÈôD>A>0.6D	damage=0.5A-0.3D
+ÈôA<0.6D	damage=0
+·µ»Ødamage
+}
+
+calc_final_damage(A,M)//Êý×Ö£¬·¨Êõ
+{
+A*=(1+rnd(0.1));
+D=µÐ·ÀÓù+4*(µÐ¼¶±ð+6);
+damage=calc_base_damage(A,D);
+damage=damage/2+M»ù±¾¹¥»÷;
+ÈôMÓÐÊôÐÔ
+	damage=damage*(10-µÐ¸ÃÊôÐÔ¿¹ÐÔ)/5
+damage=damage*(10+Õ½µØ¶ÔÓ¦ÊôÐÔ)/10
+·µ»Ødamage
+}
 
 battle:
 1,loop:µ÷ÕûËùÓÐÕ½¶·ÈËÔ±ÌåÁ¦>0;ÎªÁãÔò¸Ä1
 2,call:Çå¿ÕÎïÆ·4,5×Ö½Ú;ÎÒ·½¸÷²¿Î»;È«¹¥;ÂÒ×´Ì¬.
        ÉèÖÃÕ½Ïó£¬ºÏÌå¡£×°±¸ËùÓÐÎïÆ·
-3,loop:¸Ã±äÁ¿×éÃ¿ÈË10×Ö½Ú£¬ÇåµÚ9£¬10×Ö½Ú
+3,loop:Îå¸öÊý×ÖÏÔÊ¾Êý×é£¬ÇåµÚ9£¬10×Ö½Ú¡£0£ºÑÕÉ«£¬2£ºÊý×Ö£¬4£ºY£¬6£ºX£¬8£º£¿
 4,loop:µ÷ÕûËùÓÐexp×éµÄ7,8×Ö½ÚÎª0£»°üÀ¨Ö÷¾­ÑéºÍËùÓÐÒþ²Ø¾­ÑéÖµ
 5,Çå¿ÕÒ»Ð©±äÁ¿
 6,loop,call:µÐÖ÷½á¹¹Ìî³ä,°üÀ¨ºÅ£¬Í¼£¬HP£¬½Å±¾£¬¾­ÑéÖµ£¬Ç®¡£
             Í³¼ÆµÐÎ»¡£
 7,call:µ÷ÈëµÐÍ¼£¬¸ù¾Ý¿ÕÎ»¼ÆËãÎ»ÖÃ¡£
-8,call,:µ÷ÈëÎÒÍ¼£¬¸ù¾Ý¿ÕÎ»¼ÆËãÎ»ÖÃ(×ø±ê£ºµ¥ÈË240-170;Ë«ÈË200-176,256-152;ÈýÈË180-180,234-170,270-146)
+8,call,:µ÷ÈëÎÒÍ¼£¬¸ù¾Ý¿ÕÎ»¼ÆËãÎ»ÖÃ(×ø±ê£ºµ¥ÈË240-170;Ë«ÈË200-176,256-152;ÈýÈË180-180,234-170,270-146)É÷ÑÔ¼ÆËãËÄÈËÓ¦Îª(160,184),(204,175),(246,160),(278,144)
+8.5.loop ÎÒ·½bakÌî³ä,bakÎ»¾ßÌå×÷ÓÃÎ´Öª
 9:call,¼ÆËãÎÒ·½×´Ì¬ HP1/5ÎªË¥Èõ£¬1£»HP<0ÎªËÀÍö£¬2£»·ñÔòÕý³££¬0£»ÃßÔò1£»¿þÀÜÔò0¡£
 10,»ñÈ¡Õ½³¡Ð§¹û->Õðµ´,¶ÁÈ¡Õ½³¡±³¾°,´æÈëxms_bak
 11,call:²úÉúÒ»ÆÁ?
@@ -55,10 +78,17 @@ F:´Óµ±Ç°µ½×îÓÐÒ»¸öÈË£¬Í¬AÑ¡ÔñÒ»¸öµÐÈË£¬ËùÓÐ²»³¬¹ýµ±Ç°MPÇÒÈ«ÌåÇÒÕÙ»½ÇÒ·ÇÖÕ¼«·¨Êõ»
 ESC:·µ»ØÑ¡Ôñ¡£
 looping...
 32,ÉèÖÃÒ»Ð©±äÁ¿
-33,loop-loop:¼ÆËãÃ¿µÐ¿É¹¥»÷´ÎÊý(sgn(`2´Î`*rnd()))£¬Ìî³ä×Ü¹¥»÷±íÖ®×ÔÉí(´ÎÐò+10)£¬×ÜËÙ¶È±í(commmon,scale(speed,3)*(0.9+rnd(0.2)))
+33,loop-loop:¼ÆËãÃ¿µÐ¿É¹¥»÷´ÎÊý(sgn(`2´Î`*rnd(1)))£¬Ìî³ä×Ü¹¥»÷±íÖ®×ÔÉí(´ÎÐò+10)£¬×ÜËÙ¶È±í(commmon,scale(speed,3)*(0.9+rnd(0.2)))
 34,loop:¼ÆËãÎÒËÙ¶È(cons(ËÙ¶È)*(0.9+rnd(0.2)),ºÏ»÷*10,·ÀÓù*5,¶ÔÎÒ·¨Êõ/ÎïÆ·*3,ÌÓÅÜ/2,´ËÍâ¸ßËÙ·Ç¶¨Éí*3,ÐéÈõ/2£¬ËÀµô=0),Ìî³ä×Ü¹¥»÷±íÖ®×ÔÉí(´ÎÐò),×ÜËÙ¶È±í¡£
 35,loop-loop:°´ËÙ¶ÈÄæÐòÅÅÁÐ×Ü¹¥»÷±íºÍ×ÜËÙ¶È±í
 loop
 36,Çå¿ÕÒ»Ð©±äÁ¿£¬ÅÐ¶ÏÊÇÎÒ·½»¹ÊÇµÐ·½
-37,ÈôÊÇµÐ·½£¬ÈôÎÒ·½Î´ÒþÐÎ£¬¼ÆËãÊÇ·ñÁ¬ÐøµÚ2ÕÐ£¬Ëæ»úÑ¡ÔñÎÒ·½(²»Í¬ÓÚÑ¡µÐ£¬ÕâÀïÍêÈ«Ëæ»ú)£¬¹¥»÷
-  call:¼ÆËã·¨Êõ¸ÅÂÊ£¬Êõ³ÉÇÒ·âÕßÓÐ1/2¸ÅÂÊ±äÎªÆÕ¹¥¡£
+37,ÈôÊÇµÐ·½£¬·Ç¶¨·ÇÃß·ÇËÀ£¬ÈôÎÒ·½Î´ÒþÐÎ£¬¼ÆËãÊÇ·ñÁ¬ÐøµÚ2ÕÐ£¬Ëæ»úÑ¡ÔñÎÒ·½(²»Í¬ÓÚÑ¡µÐ£¬ÕâÀïÍêÈ«Ëæ»ú)£¬¹¥»÷
+  call:ÂÒÔòÈÎÑ¡µÐ·½·Ç¼º¹¥¡£
+       Ö´ÐÐÕ½Ê±½Å±¾¡£¼ÆËã·¨Êõ¸ÅÂÊ£¬ÊõÎ´³ÉÆÕ¹¥£¬Êõ³ÉÇÒ·âÕßÓÐ1/2¸ÅÂÊÆÕ¹¥£¬1/2²»¹¥¡£
+       Îï¹¥£ºÎäÁ¦6±¶µÈ¼¶¼Ó³É£¬call:ÎÒ´¦ÓÚ·ÀÓù×´Ì¬Ôò¸´ºÏ·ÀÓù*2
+                                   ÈôÈõ£¬7/17¸ÅÂÊÇóÔ®»¤Õß,ÈôÔ®»¤Õß²»ÈõÔòÎÞÉË,·ñÔòdamage=calc_base_damage(µÐÎäÁ¦+rnd(1),ÎÒ·ÀÓù)*(1+rnd(1/8)),Èô¸ß·À/2,¿ØÖÆÔÚ×î¶àÉËÊ£ÓàÈ«²¿HP¡£Èô½¡,7/17¸ÅÂÊ¸ñµ²ÎÞÉË,·ñÔòÍ¬ÈõÎÞÔ®»¤¡£
+                                   ÈôÎÞ¸ñµ²ÎÞÔ®»¤ÇÒ¹¥»÷¸½´ø³ÉÁ¢ÇÒÎ´±»¶¾¿¹,´¦Àí¸½´ø½Å±¾¡£
+       Êõ·¨£ºÁéÁ¦6±¶µÈ¼¶¼Ó³É£¬call:
+ÈôÊÇÎÒ·½£¬Èô»î×Å»ò¿þÀÜ£¬ÂË¹ýÃß¡¢·â£¬Èô`×Ô¶¯`Îª2,ÉèÎªÈÎÑ¡µÐÈËÆÕ¹¥£¬Èô`×Ô¶¯`Îª9,ÉèÎªÈÎÑ¡µÐÈËÈÎÑ¡Ç°ËÄ·¨Êõ¹¥»÷¡£¿ñÔòÉèÎª·è»÷¡£
+ÔÙÅÐ¶ÏÒ»´ÎÖ¸ÏòÖ®µÐÊÇ·ñ´æ»î£¬·ñÔòË³´ÎºóÒÆ¡£
