@@ -112,7 +112,7 @@ EXE中arg3根本未实现，只能HMP同增。
 0048: 音效相关... ; LOST SCRIPT!!!问题是没弄明白干吗……
 @0049: 设置对象状态 ObjectID StatusID ; 2=hero cannot walk over 参见16
 @004a: 设置战场环境 PictureID ;BattleField
-@004b: 我方逃跑后等待重现 Int16 ; 默认……10毫秒
+@004b: 我方逃跑后僵直 Int16 ; 默认……10毫秒
 @004c: 本对象追向主角 Int16 Int16 Int16 ;警戒范围默认8 追及速度默认4 Boolean
 不进入警戒范围时，敌进行与我坐标不同的方向的随机运动。复杂，未看完
 @004d: 等待击键
@@ -151,7 +151,7 @@ EXE中arg3根本未实现，只能HMP同增。
 ffff为啥都不干，0为普攻。
 @0068: 目标若为我方则跳转 ScriptID
 0000bug出现过
-@0069: 敌人逃跑 Boolean ;ApplyToAll 好像是100%成功？未确证
+@0069: 敌人逃跑 Boolean ;ApplyToAll 100%成功
 @006a: 偷窃 Int16 ; 失败概率 若是钱(0),每次只能偷到当前值/(2+rnd(1));物品则只能偷到一个。
 @006b: 吹开敌人 Int16 ;Amount
 @006c: 对象一步走到 ObjectID Int16 Int16 ; Object XOffset YOffset, 使用NPC走动函数
