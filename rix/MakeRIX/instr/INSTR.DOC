@@ -1,0 +1,20 @@
+Mini Instrumentmaker v1.00 (c)1990 Dos International
+----------------------------------------------------
+
+Een kleine uitgave van de dure Adlib-instrumentmaker. Het heeft bijna alle
+functies die werkelijk nodig zijn om een instrument te maken of te veranderen.
+De menu-opties zijn:
+
+(I)nitialiseren : Zet standaard-waarden in de Instrumentmaker (indien
+                  geen .INS-file geladen hier mee beginnen).
+(L)aden         : Leest een .INS-file van diskette of HD.
+(S)aven         : Schrijf een instrument weg naar diskette of HD.
+(M)odificeren   : Indien een .INS-file is geladen, of als de waarden
+                  zijn geinitialiseerd met keuze (I), kunt u met keuze
+                  (M) een instrument maken of aanpassen.
+(Q)uit          : Einde.
+
+
+Het oorspronkelijke programma komt uit het blad 'DOS INTERNATIONAL' en is door
+mij vertaald en iets aangepast; aanvullingen zitten reeds in de pen..
+Aanmerkingen of suggesties berichten aan Martin van der Meer (Simple Board BBS).
