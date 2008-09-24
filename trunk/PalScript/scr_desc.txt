@@ -152,7 +152,7 @@ ffff为啥都不干，0为普攻。
 @0068: 目标若为我方则跳转 ScriptID
 0000bug出现过
 @0069: 敌人逃跑 Boolean ;ApplyToAll 100%成功
-@006a: 偷窃 Int16 ; 失败概率 若是钱(0),每次只能偷到当前值/(2+rnd(1));物品则只能偷到一个。
+@006a: 偷窃 Int16 ; 成功概率 若是钱(0),每次只能偷到当前值/(2+rnd(1));物品则只能偷到一个。
 @006b: 吹开敌人 Int16 ;Amount
 @006c: 对象一步走到 ObjectID Int16 Int16 ; Object XOffset YOffset, 使用NPC走动函数
 @006d: 设置场景脚本 SceneID ScriptID ScriptID ;SceneID EnterScript LeaveScript
