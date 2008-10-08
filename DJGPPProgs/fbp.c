@@ -55,7 +55,7 @@ int main(int argc,char* argv[])
 	byte *buf=(byte*)malloc(0xA000),
 	     *here;
 	
-	BITMAP* bmp=create_bitmap(320,200);
+	BITMAP* bmp;
 	PALETTE pal;
 	unsigned char* pix=(unsigned char*)malloc(1);
 	
@@ -69,13 +69,13 @@ int main(int argc,char* argv[])
 	}
 	maps=fget32(fp)/4-1,pats=fget32(fppat)/4-1;	
 	
-	*(strrchr(argv[1],'.'))='\0';
+	//*(strrchr(argv[1],'.'))='\0';
 	
 	allegro_init();
-	set_gfx_mode(GFX_VGA,320,200,0,0);
+	set_gfx_mode(GFX_AUTODETECT_WINDOWED,320,200,0,0);
 	install_keyboard();
-	atexit(allegro_exit);
 
+	bmp=create_bitmap(320,200);
 	
 	while(running)
 	{		
@@ -88,7 +88,7 @@ int main(int argc,char* argv[])
 			width=320,height=200;
 			for(j=0;j<height;j++)
 				for(i=0;i<width;i++)
-					putpixel(bmp,i,j,buf[j*width+i]);
+					_putpixel(bmp,i,j,buf[j*width+i]);
 			blit(bmp, screen, 0, 0, 0, 0, 320, 200);
 			mapchg=0;
 		}
@@ -134,9 +134,12 @@ int main(int argc,char* argv[])
 			save_bmp(filename,bmp,pal);
 			break;
 		}
+		rest(10);
 	}
 	//finalize
-	free(buf);
+	//free(buf);
 	fclose(fp);fclose(fppat);
 	return 0;
 }
+END_OF_MAIN()
+

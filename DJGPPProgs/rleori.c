@@ -61,7 +61,7 @@ int main(int argc,char* argv[])
 	     *here;
 	
 	static BITMAP *bmp[0x200];
-	BITMAP *tb=create_bitmap(320,200);
+	BITMAP *tb;;
 	PALETTE pal;
 	
 	FILE* fp=fopen(argv[1],"rb");
@@ -73,15 +73,18 @@ int main(int argc,char* argv[])
 		exit(-1);
 	}
 	
-	*(strrchr(argv[1],'.'))='\0';
+	//*(strrchr(argv[1],'.'))='\0';
 	
 	mapgroups=fget32(fp)/4-2,pats=fget32(fppat)/4-2;
-	clear(tb);
 	
 	allegro_init();
-	set_gfx_mode(GFX_VGA,320,200,0,0);
+	set_gfx_mode(GFX_AUTODETECT_WINDOWED,320,200,0,0);
 	install_keyboard();
 	atexit(allegro_exit);
+
+
+	tb=create_bitmap(320,200);
+	clear(tb);
 
 	while(running)
 	{		
