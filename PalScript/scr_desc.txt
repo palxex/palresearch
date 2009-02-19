@@ -141,8 +141,8 @@ EXE中arg3根本未实现，只能HMP同增。
 @0060: 敌方阵亡
 @0061: 若该队员未中毒则跳转 ScriptID
 0000bug候选，但无0000调用
-@0062: 敌人停止追逐 Int16 ;Time
-@0063: 敌人追逐加速 Int16 ;Time
+@0062: 敌人停止追逐感应 Int16 ;Time
+@0063: 敌人追逐感应倍增 Int16 ;Time
 @0064: 若该敌HP高于该比例则跳转 Int16 ScriptID ; Percent至少是1% Script
 0000bug候选，但无0000调用
 @0065: 设置队员形象 TeamMemberID SpriteID Boolean ;TeamMember Sprite Immediate 若不在战斗中，判断这个参数以决定是否立刻设置。
@@ -163,7 +163,7 @@ ffff为啥都不干，0为普攻。
 @0071: 画面晃动 Int16 Int16 ; 晃动层次 步进	小到0，大到256消失
 0072: 更换对象形象 ObjectID Int16 Boolean;(0则当前) mgo号 是否重建mgo映像 LOST SCRIPT!!!
 @0073: 泛金消散 Int16 Int16 ; 每次消散耗时 消散次数
-@0074: 我方受伤则跳转 ScriptID
+@0074: 我方有损耗则跳转 ScriptID ; 实现上混淆了队员与成员
 0000bug候选，但无0000调用
 @0075: 组队 CharacterID CharacterID CharacterID
 @0076: 显示图片 PictureID Int16 ;Picture 等待时间
