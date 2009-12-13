@@ -1,5 +1,7 @@
 backup
 bak
+.git
+.gitignore
 *.user
 Debug
 MapEditor\gop
