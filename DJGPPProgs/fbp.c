@@ -2,7 +2,16 @@
 #include <stdlib.h>
 #include <allegro.h>
 
-#include "deyj1.h"
+#include "reg.h"
+extern int DecodeYJ1(const void*, void**, dword32*);
+void deyj1( byte** ppbuf )
+{
+	void *pbuf = malloc( 0x10000 );
+	unsigned int length;
+	DecodeYJ1( *ppbuf, &pbuf, &length );
+	free( *ppbuf );
+	*ppbuf = pbuf;
+}
 
 inline unsigned char fget8(FILE* fp)
 {
@@ -108,7 +117,7 @@ int main(int argc,char* argv[])
 		}
 		
 		//Event handling
-		while(!keypressed())	rest(50000);
+		while(!keypressed())	rest(50);
 		switch(readkey()>>8) {
 		case KEY_DOWN:
 			map=(map+1>=maps)?map:map+1;

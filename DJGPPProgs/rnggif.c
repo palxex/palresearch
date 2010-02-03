@@ -1,8 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <algif.h>
+#include <allegro.h>
 
-#include "deyj1.h"
+#include "reg.h"
+extern int DecodeYJ1(const void*, void**, dword32*);
+void deyj1( byte** ppbuf )
+{
+	void *pbuf = malloc( 0x10000 );
+	unsigned int length;
+	DecodeYJ1( *ppbuf, &pbuf, &length );
+	free( *ppbuf );
+	*ppbuf = pbuf;
+}
 
 unsigned char fget8(FILE* fp)
 {   
@@ -227,7 +236,7 @@ int main(int argc,char* argv[])
 			 *toex=(byte*)malloc(0x100000),
 	     *here;
 	
-	GIF_ANIMATION *gif;
+	//GIF_ANIMATION *gif;
 	
 	PALETTE pal;
 		
@@ -244,9 +253,9 @@ int main(int argc,char* argv[])
 	fseek(fppat,fget32(fppat)-4,SEEK_SET);pats=(fget32(fppat)-0x28)/0x300-1;
 	
 	allegro_init();
-	algif_init();
+	//algif_init();
 	set_color_depth(8);
-	set_gfx_mode(GFX_AUTODETECT,320,200,0,0);
+	set_gfx_mode(GFX_AUTODETECT_WINDOWED,320,200,0,0);
 	install_keyboard();
 	atexit(allegro_exit);
 	while(running)
@@ -340,7 +349,7 @@ int main(int argc,char* argv[])
 			case KEY_ENTER:
 				clipcur=0;
 				break;
-			case KEY_S:
+			/*case KEY_S:
 				gif=algif_create_raw_animation(clips+1);
 				gif->width=320;
 				gif->height=200;
@@ -372,7 +381,7 @@ int main(int argc,char* argv[])
 				algif_save_raw_animation (filename,gif);
 				algif_destroy_raw_animation (gif);
 				sprintf(filename,"");
-				break;
+				break;*/
 			}
 			clear_keybuf();
 		}

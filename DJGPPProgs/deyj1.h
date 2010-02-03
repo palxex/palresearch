@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -173,4 +173,14 @@ word16 decodenumbytes()
 	return numbytes;
 }
 #undef DATA
-#undef UPDATA_IF_FLAG_LESS
+#undef UPDATA_IF_FLAG_LESS*/
+#include "reg.h"
+extern int DecodeYJ1(const void*, void**, dword32*);
+void deyj1( byte** ppbuf )
+{
+	void *pbuf = malloc( 0x10000 );
+	unsigned int length;
+	DecodeYJ1( *ppbuf, &pbuf, &length );
+	free( *ppbuf );
+	*ppbuf = pbuf;
+}
