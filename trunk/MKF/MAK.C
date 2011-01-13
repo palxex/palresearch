@@ -1,12 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef WIN32
 #include <malloc.h>
+#endif
 #include <string.h>
+#ifdef __APPLE__
+#include <utime.h>
+#define _utimbuf utimbuf
+#define _utime utime
+#else
 #include <sys/utime.h>
+#endif
 #define MAXSUB 500
 
-extern int _days[];
-time_t __cdecl __loctotime_t (int yr,int mo,int dy,int hr,int mn,int sc,int dstflag )
+int mondays[] = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+time_t loctotime (int yr,int mo,int dy,int hr,int mn,int sc,int dstflag )
 {
         int tmpdays;
         long tmptim;
@@ -15,7 +23,7 @@ time_t __cdecl __loctotime_t (int yr,int mo,int dy,int hr,int mn,int sc,int dstf
         if ( ((long)(yr -= 1900) < 70L) || ((long)yr > 138L) )
                 return (time_t)(-1);
 
-        tmpdays = dy + _days[mo - 1];
+        tmpdays = dy + mondays[mo - 1];
         if ( !(yr & 3) && (mo > 2) )
                 tmpdays++;
 		
@@ -58,9 +66,7 @@ main(int c,char* v[])
 	pre=v[1];
 	for(i=0;i<MAXSUB;i++)
 	{
-		strcpy(name,pre);
-		strcat(name,(const char*)itoa(i,a,10));
-		strcat(name,ext);
+		sprintf( name, "%s%d%s", pre, i, ext );
 		if((fpsrc=fopen(name,"rb"))==NULL)
 		{
 			//fclose(fpsrc);
@@ -74,9 +80,7 @@ main(int c,char* v[])
 	fpdst=fopen(mkf,"wb+");
 	for(i=0;i<im;i++)
 	{
-		strcpy(name,pre);
-		strcat(name,(const char*)itoa(i,a,10));
-		strcat(name,ext);
+		sprintf( name, "%s%d%s", pre, i, ext );
 		if((fpsrc=fopen(name,"rb"))==NULL) {printf("Open Error %s",name);exit(0);}
 		fseek(fpsrc,0,SEEK_END);
 		loct=ftell(fpsrc);
@@ -89,9 +93,7 @@ main(int c,char* v[])
 	loc=0;
 	for(i=0;i<im-1;i++)
 	{
-        strcpy(name,pre);
-		strcat(name,(const char*)itoa(i,a,10));
-		strcat(name,ext);
+		sprintf( name, "%s%d%s", pre, i, ext );
 		if((fpsrc=fopen(name,"rb"))==NULL) {printf("Open Error %s",name);exit(-1);}
 		fseek(fpsrc,0,SEEK_END);
 		loct=ftell(fpsrc);
@@ -107,6 +109,6 @@ main(int c,char* v[])
 	}
 	fclose(fpdst);
 
-	utb.actime=utb.modtime=__loctotime_t(1995,12,20,0,0,0,0);
+	utb.actime=utb.modtime=loctotime(1995,12,20,0,0,0,0);
 	_utime(mkf,&utb);
 }

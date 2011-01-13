@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#ifdef WIN32
 #include <malloc.h>
+#endif
 #define MAXEXT 3
 char* pre;
 char ext[MAXEXT+1];
@@ -13,11 +15,7 @@ void usage()
 }
 void getname(int i)
 {
-	char a[3];
-	strcpy(name,pre);
-	strcat(name,(const char *)itoa(i,a,10));
-	strcat(name,".");
-	strcat(name,ext);
+	sprintf( name, "%s%d.%s", pre, i, ext );
 }
 main(int c,char* v[])
 {
@@ -51,4 +49,4 @@ main(int c,char* v[])
 		fpdst=fopen(name,"wb+");
 		fclose(fpdst);
 	fclose(fpsrc);
-}
+}
