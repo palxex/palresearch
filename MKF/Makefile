@@ -1,6 +1,11 @@
 CC=gcc
+RM=rm
+TARGETS=cut mak
 
-all: cut mak
+all: $(TARGETS)
+
+clean: 
+	$(RM) *.o $(TARGETS)
 
 .c.o:
 	$(CC) -c $<
