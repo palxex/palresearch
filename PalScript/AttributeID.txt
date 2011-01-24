@@ -1,4 +1,4 @@
-Character Attributes
+Character Attributes(see ../our.txt for detail)
 @0000: 状态表情图像
 @0001: 战斗模型
 @0002: 地图模型
@@ -21,5 +21,5 @@ Character Attributes
 @0019: 水抗
 @001a: 火抗
 @001b: 土抗
-@0040: 行经帧数
+@0040: 单方向行走帧数
 @0041: 合体法术
