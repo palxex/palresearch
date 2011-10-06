@@ -1,6 +1,6 @@
 CC=gcc
 RM=rm
-TARGETS=cut mak
+TARGETS=CUT.EXE MAK.EXE
 
 all: $(TARGETS)
 
@@ -10,10 +10,13 @@ clean:
 .c.o:
 	$(CC) -c $<
 
-cut: cut.o
+.C.o:
+	$(CC) -c $<
+
+CUT.EXE: CUT.o
 	$(CC) $^ -o $@
 
-mak: mak.o
+MAK.EXE: CUT.o
 	$(CC) $^ -o $@
 
 	
