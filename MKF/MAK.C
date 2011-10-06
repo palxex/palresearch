@@ -27,7 +27,7 @@ time_t loctotime (int yr,int mo,int dy,int hr,int mn,int sc,int dstflag )
         if ( !(yr & 3) && (mo > 2) )
                 tmpdays++;
 		
-		/*°³ÃÇÊÇ¶«°ËÇøµÎ*/
+		/*ä¿ºä»¬æ˜¯ä¸œå…«åŒºæ»´*/
 		timezone=-8;
 
         tmptim = /* 365 days for each year */
@@ -49,7 +49,7 @@ time_t loctotime (int yr,int mo,int dy,int hr,int mn,int sc,int dstflag )
 
 void usage()
 {
-	printf("Usage:mak sam*.ext"); 
+	printf("Usage:mak prefix ext"); 
 }
 main(int c,char* v[])
 {
@@ -59,11 +59,9 @@ main(int c,char* v[])
 	char* pre;
 	void* buf;long t,loc=0,loct;
 	struct _utimbuf utb;
-	if(c!=2) {usage();exit(1);}
-	pre=strrchr(v[1],'.');
-	strcat(ext,pre);
-	pre=strrchr(v[1],'*');	*pre='\0';
+	if(c!=3) {usage();exit(1);}
 	pre=v[1];
+	sprintf( ext, ".%s", v[2] );
 	for(i=0;i<MAXSUB;i++)
 	{
 		sprintf( name, "%s%d%s", pre, i, ext );
@@ -81,6 +79,7 @@ main(int c,char* v[])
 	for(i=0;i<im;i++)
 	{
 		sprintf( name, "%s%d%s", pre, i, ext );
+		printf("seeking %s\n", name );
 		if((fpsrc=fopen(name,"rb"))==NULL) {printf("Open Error %s",name);exit(0);}
 		fseek(fpsrc,0,SEEK_END);
 		loct=ftell(fpsrc);

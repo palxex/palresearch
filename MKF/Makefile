@@ -16,7 +16,7 @@ clean:
 CUT.EXE: CUT.o
 	$(CC) $^ -o $@
 
-MAK.EXE: CUT.o
+MAK.EXE: MAK.o
 	$(CC) $^ -o $@
 
 	
