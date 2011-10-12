@@ -1,11 +1,9 @@
-//$ Id: rng.cpp 1.02 2006-05-24 14:34:50 +8:00 $
-
 /*
- * PAL RNG format Library
+ * PAL RNG format library
  * 
- * Author: Lou Yihua <louyihua@21cn.com>
+ * Author: Yihua Lou <louyihua@21cn.com>
  *
- * Copyright 2006 Lou Yihua
+ * Copyright 2006 - 2007 Yihua Lou
  *
  * This file is part of PAL library.
  *
@@ -26,9 +24,9 @@
  *
  *《仙剑奇侠传》RNG格式处理库
  *
- * 作者： Lou Yihua <louyihua@21cn.com>
+ * 作者： 楼奕华 <louyihua@21cn.com>
  *
- * 版权所有 2006 Lou Yihua
+ * 版权所有 2006 - 2007 楼奕华
  *
  * 本文件是《仙剑奇侠传》库的一部分。
  *
@@ -41,21 +39,23 @@
  * 自由软件基金会：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
+#include <stdlib.h>
 #include <memory.h>
 
-#include "pallibrary.h"
-using namespace PalLibrary;
+#include "pallib.h"
+using namespace Pal::Tools;
 
-PalLibrary::DataBuffer PalLibrary::DecodeRNG(const void *Source, void *PrevFrame)
+palerrno_t Pal::Tools::DecodeRNG(const void* Source, void* PrevFrame)
 {
-	int ptr = 0, dst_ptr = 0;
-	unsigned char data;
-	unsigned short wdata;
-	unsigned int rep, i;
-	unsigned char *src = (unsigned char *)Source, *dest = (unsigned char *)PrevFrame;
-	DataBuffer buf = {dest, 0xfa00};
-	if (!dest)
-		buf.data = dest = new unsigned char [0xfa00];
+	sint32 ptr = 0, dst_ptr = 0;
+	uint8 data;
+	uint16 wdata;
+	uint32 rep, i;
+	uint8* src = (uint8*)Source;
+	uint8* dest = (uint8*)PrevFrame;
+
+	if (Source == NULL || PrevFrame == NULL)
+		return PAL_EMPTY_POINTER;
 
 	while(1)
 	{
@@ -65,7 +65,7 @@ PalLibrary::DataBuffer PalLibrary::DecodeRNG(const void *Source, void *PrevFrame
 		case 0x00:
 		case 0x13:
 			//0x1000411b
-			return buf;
+			return PAL_OK;
 		case 0x01:
 		case 0x05:
 			break;
@@ -74,27 +74,27 @@ PalLibrary::DataBuffer PalLibrary::DecodeRNG(const void *Source, void *PrevFrame
 			break;
 		case 0x03:
 			data = *(src + ptr++);
-			dst_ptr += ((unsigned int)data + 1) << 1;
+			dst_ptr += ((uint32)data + 1) << 1;
 			break;
 		case 0x04:
-			wdata = *(unsigned short *)(src + ptr);
+			wdata = *(uint16 *)(src + ptr);
 			ptr += 2;
-			dst_ptr += ((unsigned int)wdata + 1) << 1;
+			dst_ptr += ((uint32)wdata + 1) << 1;
 			break;
 		case 0x0a:
-			*(unsigned short *)(dest + dst_ptr) = *(unsigned short *)(src + ptr);
+			*(uint16 *)(dest + dst_ptr) = *(uint16 *)(src + ptr);
 			ptr += 2; dst_ptr += 2;
 		case 0x09:
-			*(unsigned short *)(dest + dst_ptr) = *(unsigned short *)(src + ptr);
+			*(uint16 *)(dest + dst_ptr) = *(uint16 *)(src + ptr);
 			ptr += 2; dst_ptr += 2;
 		case 0x08:
-			*(unsigned short *)(dest + dst_ptr) = *(unsigned short *)(src + ptr);
+			*(uint16 *)(dest + dst_ptr) = *(uint16 *)(src + ptr);
 			ptr += 2; dst_ptr += 2;
 		case 0x07:
-			*(unsigned short *)(dest + dst_ptr) = *(unsigned short *)(src + ptr);
+			*(uint16 *)(dest + dst_ptr) = *(uint16 *)(src + ptr);
 			ptr += 2; dst_ptr += 2;
 		case 0x06:
-			*(unsigned short *)(dest + dst_ptr) = *(unsigned short *)(src + ptr);
+			*(uint16 *)(dest + dst_ptr) = *(uint16 *)(src + ptr);
 			ptr += 2; dst_ptr += 2;
 			break;
 		case 0x0b:
@@ -102,83 +102,83 @@ PalLibrary::DataBuffer PalLibrary::DecodeRNG(const void *Source, void *PrevFrame
 			rep = data; rep++;
 			for(i = 0; i < rep; i++)
 			{
-				*(unsigned short *)(dest + dst_ptr) = *(unsigned short *)(src + ptr);
+				*(uint16 *)(dest + dst_ptr) = *(uint16 *)(src + ptr);
 				ptr += 2; dst_ptr += 2;
 			}
 			break;
 		case 0x0c:
-			wdata = *(unsigned short *)(src + ptr);
+			wdata = *(uint16 *)(src + ptr);
 			ptr += 2; rep = wdata; rep++;
 			for(i = 0; i < rep; i++)
 			{
-				*(unsigned short *)(dest + dst_ptr) = *(unsigned short *)(src + ptr);
+				*(uint16 *)(dest + dst_ptr) = *(uint16 *)(src + ptr);
 				ptr += 2; dst_ptr += 2;
 			}
 			break;
 		case 0x0d:
-			wdata = *(unsigned short *)(src + ptr);	ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			wdata = *(uint16 *)(src + ptr);	ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
 			break;
 		case 0x0e:
-			wdata = *(unsigned short *)(src + ptr);	ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			wdata = *(uint16 *)(src + ptr);	ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
 			break;
 		case 0x0f:
-			wdata = *(unsigned short *)(src + ptr);	ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			wdata = *(uint16 *)(src + ptr);	ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
 			break;
 		case 0x10:
-			wdata = *(unsigned short *)(src + ptr);	ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
-			*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			wdata = *(uint16 *)(src + ptr);	ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+			*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
 			break;
 		case 0x11:
 			data = *(src + ptr++);
 			rep = data; rep++;
-			wdata = *(unsigned short *)(src + ptr);	ptr += 2;
+			wdata = *(uint16 *)(src + ptr);	ptr += 2;
 			for(i = 0; i < rep; i++)
 			{
-				*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+				*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
 			}
 			break;
 		case 0x12:
-			wdata = *(unsigned short *)(src + ptr);
+			wdata = *(uint16 *)(src + ptr);
 			rep = wdata; rep++; ptr += 2;
-			wdata = *(unsigned short *)(src + ptr);	ptr += 2;
+			wdata = *(uint16 *)(src + ptr);	ptr += 2;
 			for(i = 0; i < rep; i++)
 			{
-				*(unsigned short *)(dest + dst_ptr) = wdata; dst_ptr += 2;
+				*(uint16 *)(dest + dst_ptr) = wdata; dst_ptr += 2;
 			}
 			break;
 		}
 	}
-	return buf;
+	return PAL_OK;
 }
 
-static unsigned short encode_1(unsigned short *&start, unsigned short *&data, unsigned char *&dest)
+static uint16 encode_1(uint16 *&start, uint16 *&data, uint8 *&dest)
 {
-	unsigned short length = (unsigned short)(data - start - 1);
-	unsigned short len;
+	uint16 length = (uint16)(data - start - 1);
+	uint16 len;
 	if (length > 0xff)
 	{
 		*dest++ = 0x04;
-		*((unsigned short *)dest) = length;
+		*((uint16 *)dest) = length;
 		dest += 2;
 		len = 3;
 	}
 	else if (length > 0)
 	{
 		*dest++ = 0x03;
-		*dest++ = (unsigned char)length;
+		*dest++ = (uint8)length;
 		len = 2;
 	}
 	else
@@ -189,76 +189,82 @@ static unsigned short encode_1(unsigned short *&start, unsigned short *&data, un
 	return len;
 }
 
-static unsigned short encode_2(unsigned short *&start, unsigned short *&data, unsigned char *&dest)
+static uint16 encode_2(uint16 *&start, uint16 *&data, uint8 *&dest)
 {
-	unsigned short *temp;
-	unsigned short length = (unsigned short)(data - start - 1);
-	unsigned short len = (length + 1) << 1;
+	uint16* temp;
+	uint16 length = (uint16)(data - start - 1);
+	uint16 len = (length + 1) << 1;
 	if (length > 0xff)
 	{
 		*dest++ = 0xc;
-		*((unsigned short *)dest) = length;
+		*((uint16 *)dest) = length;
 		dest += 2;
 		len += 3;
 	}
 	else if (length > 0x4)
 	{
 		*dest++ = 0xb;
-		*dest++ = (unsigned char)length;
+		*dest++ = (uint8)length;
 		len += 2;
 	}
 	else
 	{
-		*dest++ = 0x6 + (unsigned char)length;
+		*dest++ = 0x6 + (uint8)length;
 		len++;
 	}
-	temp = (unsigned short *)dest;
-	for(int i = 0; i <= length; i++)
+	temp = (uint16 *)dest;
+	for(sint32 i = 0; i <= length; i++)
 		*temp++ = *start++;
-	dest = (unsigned char *)temp;
+	dest = (uint8 *)temp;
 	start = data;
 	return len;
 }
 
-static unsigned short encode_3(unsigned short *&start, unsigned short *&data, unsigned char *&dest)
+static uint16 encode_3(uint16 *&start, uint16 *&data, uint8 *&dest)
 {
-	unsigned short *temp;
-	unsigned short length = (unsigned short)(data - start - 1);
-	unsigned short len = 2;
+	uint16* temp;
+	uint16 length = (uint16)(data - start - 1);
+	uint16 len = 2;
 	if (length > 0xff)
 	{
 		*dest++ = 0x12;
-		*((unsigned short *)dest) = length;
+		*((uint16 *)dest) = length;
 		dest += 2;
 		len += 3;
 	}
 	else if (length > 0x4)
 	{
 		*dest++ = 0x11;
-		*dest++ = (unsigned char)length;
+		*dest++ = (uint8)length;
 		len += 2;
 	}
 	else
 	{
-		*dest++ = 0xc + (unsigned char)length;
+		*dest++ = 0xc + (uint8)length;
 		len++;
 	}
-	temp = (unsigned short *)dest;
+	temp = (uint16 *)dest;
 	*temp++ = *start;
-	dest = (unsigned char *)temp;
+	dest = (uint8 *)temp;
 	start = data;
 	return len;
 }
 
-PalLibrary::DataBuffer PalLibrary::EncodeRNG(const void *PrevFrame, const void *CurFrame)
+palerrno_t Pal::Tools::EncodeRNG(const void *PrevFrame, const void *CurFrame, void*& Destination, uint32& Length)
 {
-	int len = 0, status = 0;
-	unsigned short *data = (unsigned short *)CurFrame;
-	unsigned short *prev = (unsigned short *)PrevFrame;
-	unsigned short *start = data, *end = data + 0x7d00;
-	unsigned char *dest = new unsigned char [0x10000];
-	unsigned char *dst = dest;
-	DataBuffer buf = {0, 0};
+	sint32 len = 0, status = 0;
+	uint16* data = (uint16*)CurFrame;
+	uint16* prev = (uint16*)PrevFrame;
+	uint16* start = data;
+	uint16* end = data + 0x7d00;
+	uint8* dest;
+	uint8* dst;
+	void* pNewData;
+
+	if (PrevFrame == NULL || CurFrame == NULL)
+		return PAL_EMPTY_POINTER;
+	if ((dst = dest = (uint8*)malloc(0x10000)) == NULL)
+		return PAL_OUT_OF_MEMORY;
 
 	while(data < end)
 	{
@@ -354,10 +360,12 @@ PalLibrary::DataBuffer PalLibrary::EncodeRNG(const void *PrevFrame, const void *
 		len++;
 	}
 
-	buf.length = len;
-	buf.data = new unsigned char [len];
-	memcpy(buf.data, dst, len);
-	delete [] dst;
-
-	return buf;
+	if ((pNewData = realloc(dst, len)) == NULL)
+	{
+		free(dst);
+		return PAL_OUT_OF_MEMORY;
+	}
+	Destination = pNewData;
+	Length = len;
+	return PAL_OK;
 }
