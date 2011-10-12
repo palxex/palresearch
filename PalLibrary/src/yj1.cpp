@@ -1,11 +1,9 @@
-//$ Id: yj1.cpp 1.02 2006-05-24 14:34:50 +8:00 $
-
 /*
- * PAL(DOS) Compress Library
+ * PAL DOS compress format (YJ_1) library
  * 
- * Author: Lou Yihua <louyihua@21cn.com>
+ * Author: Yihua Lou <louyihua@21cn.com>
  *
- * Copyright 2006 Lou Yihua
+ * Copyright 2006 - 2007 Yihua Lou
  *
  * This file is part of PAL library.
  *
@@ -24,11 +22,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
  *
- *《仙剑奇侠传》DOS版(YJ_1)版压缩文件格式处理库
+ *《仙剑奇侠传》DOS版压缩格式(YJ_1)处理库
  *
- * 作者： Lou Yihua <louyihua@21cn.com>
+ * 作者： 楼奕华 <louyihua@21cn.com>
  *
- * 版权所有 2006 Lou Yihua
+ * 版权所有 2006 - 2007 楼奕华
  *
  * 本文件是《仙剑奇侠传》库的一部分。
  *
@@ -41,9 +39,9 @@
  * 自由软件基金会：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 /*
-YJ_1编码 & 解码程序 Version 1.0, Copyright by Lou Yihua
-YJ_1解码程序根据鲁痴兄的Deyj1.h修改而来
-YJ_1编码程序根据文件末尾附带的“YJ_1编码详解”编写
+YJ_1编解码程序（版本: 1.1）
+YJ_1解码程序根据鲁痴（palxex）的Deyj1.h修改而来。
+YJ_1编码程序根据本库附带的“YJ_1编码详解”编写。
 
 YJ_1编码过程：
 1、将输入数据流按0x4000(16K)大小进行分块；
@@ -57,57 +55,58 @@ YJ_1解码过程：
 2、对于每一个16K的块，根据输入数据进行Huffman或者LZSS解码。
 */
 
-#include <stdio.h>
+#include <stdlib.h>
 #include <memory.h>
+#include <string.h>
 
-#include "pallibrary.h"
-using namespace PalLibrary;
+#include "pallib.h"
+using namespace Pal::Tools;
 
 typedef struct _TreeNode
 {
-	unsigned char	value;
-	bool			leaf;
-	unsigned short	level;
-	unsigned int	weight;
+	uint8	value;
+	bool	leaf;
+	uint16	level;
+	uint32	weight;
 
-	struct _TreeNode	*parent;
-	struct _TreeNode	*left;
-	struct _TreeNode	*right;
+	struct _TreeNode*	parent;
+	struct _TreeNode*	left;
+	struct _TreeNode*	right;
 
 } TreeNode;
 
 typedef struct _TreeNodeList
 {
-	TreeNode	*node;
-	struct _TreeNodeList	*next;
+	TreeNode*	node;
+	struct _TreeNodeList*	next;
 } TreeNodeList;
 
 typedef struct _YJ_1_FILEHEADER
 {
-	unsigned int	Signature;		//YJ_1文件标识'YJ_1'
-	unsigned int	UncompressedLength;	//压缩前长度
-	unsigned int	CompressedLength;	//压缩后长度
-	unsigned short	BlockCount;		//划分为16K块的数目
-	unsigned char	Unknown;		//未知数据，可能仅为填充使用
-	unsigned char	HuffmanTreeLength;	//HUFFMAN编码树的长度，为实际存储长度的1/2
+	uint32	Signature;		//YJ_1文件标识'YJ_1'
+	uint32	UncompressedLength;	//压缩前长度
+	uint32	CompressedLength;	//压缩后长度
+	uint16	BlockCount;		//划分为16K块的数目
+	uint8	Unknown;		//未知数据，可能仅为填充使用
+	uint8	HuffmanTreeLength;	//HUFFMAN编码树的长度，为实际存储长度的1/2
 } YJ_1_FILEHEADER, *PYJ_1_FILEHEADER;
 
 typedef struct _YJ_1_BLOCKHEADER
 {
-	unsigned short	UncompressedLength;		//本块压缩前长度，最大为0x4000
-	unsigned short	CompressedLength;		//本块压缩后长度，含块头
-	unsigned short	LZSSRepeatTable[4];		//LZSS重复次数表
-	unsigned char	LZSSOffsetCodeLengthTable[4];	//LZSS偏移量编码长度表
-	unsigned char	LZSSRepeatCodeLengthTable[3];	//LZSS重复次数编码长度表
-	unsigned char	CodeCountCodeLengthTable[3];	//同类编码的编码数的编码长度表
-	unsigned char	CodeCountTable[2];		//同类编码的编码数表
+	uint16	UncompressedLength;		//本块压缩前长度，最大为0x4000
+	uint16	CompressedLength;		//本块压缩后长度，含块头
+	uint16	LZSSRepeatTable[4];		//LZSS重复次数表
+	uint8	LZSSOffsetCodeLengthTable[4];	//LZSS偏移量编码长度表
+	uint8	LZSSRepeatCodeLengthTable[3];	//LZSS重复次数编码长度表
+	uint8	CodeCountCodeLengthTable[3];	//同类编码的编码数的编码长度表
+	uint8	CodeCountTable[2];		//同类编码的编码数表
 } YJ_1_BLOCKHEADER, *PYJ_1_BLOCKHEADER;
 
-static inline unsigned int get_bits(const void *src, unsigned int &bitptr, unsigned int count)
+static inline uint32 get_bits(const void* src, uint32& bitptr, uint32 count)
 {
-	unsigned short *temp = ((unsigned short *)src) + (bitptr >> 4);
-	unsigned int bptr = bitptr & 0xf;
-	unsigned short mask;
+	uint16* temp = ((uint16*)src) + (bitptr >> 4);
+	uint32 bptr = bitptr & 0xf;
+	uint16 mask;
 	bitptr += count;
 	if (count > 16 - bptr)
 	{
@@ -116,16 +115,16 @@ static inline unsigned int get_bits(const void *src, unsigned int &bitptr, unsig
 		return ((*temp & mask) << count) | (temp[1] >> (16 - count));
 	}
 	else
-		return ((unsigned short)(*temp << bptr)) >> (16 - count);
+		return ((uint16)(*temp << bptr)) >> (16 - count);
 }
 
-static inline unsigned short get_loop(const void *src, unsigned int &bitptr, PYJ_1_BLOCKHEADER header)
+static inline uint16 get_loop(const void* src, uint32& bitptr, PYJ_1_BLOCKHEADER header)
 {
 	if (get_bits(src, bitptr, 1))
 		return header->CodeCountTable[0];
 	else
 	{
-		unsigned int temp = get_bits(src, bitptr, 2);
+		uint32 temp = get_bits(src, bitptr, 2);
 		if (temp)
 			return get_bits(src, bitptr, header->CodeCountCodeLengthTable[temp - 1]);
 		else
@@ -133,9 +132,9 @@ static inline unsigned short get_loop(const void *src, unsigned int &bitptr, PYJ
 	}
 }
 
-static inline unsigned short get_count(const void *src, unsigned int &bitptr, PYJ_1_BLOCKHEADER header)
+static inline uint16 get_count(const void* src, uint32& bitptr, PYJ_1_BLOCKHEADER header)
 {
-	unsigned short temp;
+	uint16 temp;
 	if (temp = get_bits(src, bitptr, 2))
 	{
 		if (get_bits(src, bitptr, 1))
@@ -147,27 +146,28 @@ static inline unsigned short get_count(const void *src, unsigned int &bitptr, PY
 		return header->LZSSRepeatTable[0];
 }
 
-PalLibrary::DataBuffer PalLibrary::DecodeYJ_1(const void *Source)
+palerrno_t Pal::Tools::DecodeYJ1(const void* Source, void*& Destination, uint32& Length)
 {
 	PYJ_1_FILEHEADER hdr = (PYJ_1_FILEHEADER)Source;
-	unsigned char *src = (unsigned char *)Source;
-	unsigned char *dest;
-	unsigned int i;
-	TreeNode *root, *node;
-	DataBuffer buf = {NULL, 0};
+	uint8* src = (uint8*)Source;
+	uint8* dest;
+	uint32 i;
+	TreeNode* root;
+	TreeNode* node;
 
-	if (hdr->Signature != '1_JY')
-		return buf;
-	buf.data = dest = new unsigned char [hdr->UncompressedLength];
-	buf.length = hdr->UncompressedLength;
+	if (Source == NULL)
+		return PAL_EMPTY_POINTER;
+	if (strncmp((char*)&hdr->Signature , "YJ_1",4))
+		return PAL_INVALID_DATA;
 
 	do
 	{
-		unsigned short tree_len = ((unsigned short)hdr->HuffmanTreeLength) << 1;
-		unsigned int bitptr = 0;
-		unsigned char *flag = (unsigned char *)src + 16 + tree_len;
+		uint16 tree_len = ((uint16)hdr->HuffmanTreeLength) << 1;
+		uint32 bitptr = 0;
+		uint8* flag = (uint8*)src + 16 + tree_len;
 
-		node = root = new TreeNode [tree_len + 1];
+		if ((node = root = new TreeNode [tree_len + 1]) == NULL)
+			return PAL_OUT_OF_MEMORY;
 		root[0].leaf = false;
 		root[0].value = 0;
 		root[0].left = root + 1;
@@ -187,22 +187,31 @@ PalLibrary::DataBuffer PalLibrary::DecodeYJ_1(const void *Source)
 		src += 16 + tree_len + (((tree_len & 0xf) ? (tree_len >> 4) + 1 : (tree_len >> 4)) << 1);
 	} while(0);
 
+	if ((Destination = malloc(hdr->UncompressedLength)) == NULL)
+	{
+		delete [] root;
+		return PAL_OUT_OF_MEMORY;
+	}
+	Length = hdr->UncompressedLength;
+	dest = (uint8*)Destination;
+
 	for(i = 0; i < hdr->BlockCount; i++)
 	{
-		unsigned int bitptr;
+		uint32 bitptr;
 		PYJ_1_BLOCKHEADER header;
 
 		header = (PYJ_1_BLOCKHEADER)src; src += 4;
 		if (!header->CompressedLength)
 		{
-			while(--header->UncompressedLength)
+			uint16 hul = header->UncompressedLength;
+			while(hul--)
 				*dest++ = *src++;
 			continue;
 		}
 		src += 20; bitptr = 0;
 		for(;;)
 		{
-			unsigned short loop;
+			uint16 loop;
 			if ((loop = get_loop(src, bitptr, header)) == 0)
 				break;
 
@@ -224,7 +233,7 @@ PalLibrary::DataBuffer PalLibrary::DecodeYJ_1(const void *Source)
 
 			while(loop--)
 			{
-				unsigned int pos, count;
+				uint32 pos, count;
 				count = get_count(src, bitptr, header);
 				pos = get_bits(src, bitptr, 2);
 				pos = get_bits(src, bitptr, header->LZSSOffsetCodeLengthTable[pos]);
@@ -235,15 +244,15 @@ PalLibrary::DataBuffer PalLibrary::DecodeYJ_1(const void *Source)
 				}
 			}
 		}
-		src = ((unsigned char *)header) + header->CompressedLength;
+		src = ((uint8*)header) + header->CompressedLength;
 	}
 	delete [] root;
-	return buf;
+	return PAL_OK;
 }
 
-static inline unsigned short get_bit_count(unsigned int word)
+static inline uint16 get_bit_count(uint32 word)
 {
-	unsigned short bits = 0;
+	uint16 bits = 0;
 	while(word)
 	{
 		bits++;
@@ -252,16 +261,16 @@ static inline unsigned short get_bit_count(unsigned int word)
 	return bits;
 }
 
-static inline unsigned int lz_analysize(unsigned char *base, unsigned short *result, unsigned int block_len, unsigned int freq[])
+static inline uint32 lz_analysize(uint8* base, uint16* result, uint32 block_len, uint32 freq[])
 {
-	int	head[0x100], prev[0x4000];
-	unsigned int ptr, dptr, baseptr;
+	sint32	head[0x100], prev[0x4000];
+	uint32 ptr, dptr, baseptr;
 
-	memset(head, 0xff, 0x100 * sizeof(int));
-	memset(prev, 0xff, 0x4000 * sizeof(int));
+	memset(head, 0xff, 0x100 * sizeof(sint32));
+	memset(prev, 0xff, 0x4000 * sizeof(sint32));
 	for(ptr = 0; ptr < block_len - 1; ptr++)
 	{
-		unsigned char hash = base[ptr] ^ base[ptr + 1];
+		uint8 hash = base[ptr] ^ base[ptr + 1];
 		if (head[hash] >= 0)
 			prev[ptr] = head[hash];
 		head[hash] = ptr;
@@ -270,14 +279,14 @@ static inline unsigned int lz_analysize(unsigned char *base, unsigned short *res
 	result[0] = 0; dptr = 1;
 	for(baseptr = ptr = 0; ptr < block_len;)
 	{
-		unsigned short match_len;
-		int prv, tmp;
+		uint16 match_len;
+		sint32 prv, tmp;
 
 		match_len = 0; tmp = ptr;
 		while((tmp = prev[tmp]) >= 0)
 		{
-			unsigned short match_len_t = 0;
-			int prv_t, cur_t;
+			uint16 match_len_t = 0;
+			sint32 prv_t, cur_t;
 
 			prv_t = tmp; cur_t = ptr;
 			while(base[prv_t++] == base[cur_t++] && match_len_t + ptr < block_len)
@@ -290,7 +299,7 @@ static inline unsigned int lz_analysize(unsigned char *base, unsigned short *res
 		}
 		if (match_len > 1 && match_len < 5)
 		{
-			unsigned short bit_count = 5 + get_bit_count(match_len) + get_bit_count(ptr - prv);
+			uint16 bit_count = 5 + get_bit_count(match_len) + get_bit_count(ptr - prv);
 			if (bit_count > (match_len << 3))
 				match_len = 1;
 		}
@@ -324,32 +333,32 @@ static inline unsigned int lz_analysize(unsigned char *base, unsigned short *res
 	return dptr << 1;
 }
 
-static inline unsigned int cb_analysize(PYJ_1_BLOCKHEADER header, unsigned short block[], unsigned int cb_len)
+static inline uint32 cb_analysize(PYJ_1_BLOCKHEADER header, uint16 block[], uint32 cb_len)
 {
-	int i, j, min, max, total, total_min, total_bits, count_len[15], total_len[15];
-	unsigned int ptr;
+	sint32 i, j, min, max, total, total_min, total_bits, count_len[15], total_len[15];
+	uint32 ptr;
 
 	do
 	{
-		unsigned int count[0x100];
-		unsigned char max1, max2;
-		memset(count, 0, 0x100 * sizeof(int));
-		memset(count_len, 0, 15 * sizeof(int));
-		memset(total_len, 0, 15 * sizeof(int));
+		uint32 count[0x100];
+		uint8 max1, max2;
+		memset(count, 0, 0x100 * sizeof(sint32));
+		memset(count_len, 0, 15 * sizeof(sint32));
+		memset(total_len, 0, 15 * sizeof(sint32));
 		max1 = max2 = 0;
 		for(ptr = 0; ptr < (cb_len >> 1); ptr++)
 		{
-			unsigned short temp = block[ptr] & 0x7fff;
+			uint16 temp = block[ptr] & 0x7fff;
 			if (temp < 0x100)
 			{
 				count[temp]++;
 				if (count[max1] < count[temp])
 				{
 					max2 = max1;
-					max1 = (unsigned char)temp;
+					max1 = (uint8)temp;
 				}
 				else if (count[max2] < count[temp] && temp != max1)
-					max2 = (unsigned char)temp;
+					max2 = (uint8)temp;
 			}
 			count_len[get_bit_count(temp)]++;
 			if (block[ptr] & 0x8000)
@@ -398,14 +407,14 @@ static inline unsigned int cb_analysize(PYJ_1_BLOCKHEADER header, unsigned short
 
 	do
 	{
-		unsigned int count[0x4000], tmp, maxs[4];
-		memset(maxs, 0, 4 * sizeof(int));
-		memset(count, 0, 0x4000 * sizeof(int));
-		memset(count_len, 0, 15 * sizeof(int));
-		memset(total_len, 0, 15 * sizeof(int));
+		uint32 count[0x4000], tmp, maxs[4];
+		memset(maxs, 0, 4 * sizeof(sint32));
+		memset(count, 0, 0x4000 * sizeof(sint32));
+		memset(count_len, 0, 15 * sizeof(sint32));
+		memset(total_len, 0, 15 * sizeof(sint32));
 		for(ptr = 0; ptr < (cb_len >> 1);)
 		{
-			unsigned short temp = block[ptr] & 0x7fff;
+			uint16 temp = block[ptr] & 0x7fff;
 			if (block[ptr++] & 0x8000)
 				for(i = 0; i < temp; i++)
 				{
@@ -450,7 +459,7 @@ static inline unsigned int cb_analysize(PYJ_1_BLOCKHEADER header, unsigned short
 		total_bits += (count[maxs[0]] << 1) + (count[maxs[1]] + count[maxs[2]] + count[maxs[3]]) * 3;
 		do
 		{
-			int lastmax = maxs[0];
+			sint32 lastmax = maxs[0];
 			for(i = 0; i < 4; i++)
 			{
 				if (maxs[i])
@@ -498,12 +507,12 @@ static inline unsigned int cb_analysize(PYJ_1_BLOCKHEADER header, unsigned short
 
 	do
 	{
-		int k, tmp;
-		memset(count_len, 0, 15 * sizeof(int));
-		memset(total_len, 0, 15 * sizeof(int));
+		sint32 k, tmp;
+		memset(count_len, 0, 15 * sizeof(sint32));
+		memset(total_len, 0, 15 * sizeof(sint32));
 		for(ptr = 0; ptr < (cb_len >> 1);)
 		{
-			unsigned short temp = block[ptr] & 0x7fff;
+			uint16 temp = block[ptr] & 0x7fff;
 			if (block[ptr++] & 0x8000)
 				for(i = 0; i < temp; i++)
 				{
@@ -566,21 +575,24 @@ static inline unsigned int cb_analysize(PYJ_1_BLOCKHEADER header, unsigned short
 	return total_bits;
 }
 
-static inline void list_insert(TreeNodeList *&head, TreeNode *node)
+static inline bool list_insert(TreeNodeList*& head, TreeNode* node)
 {
-	TreeNodeList *list, *temp;
+	TreeNodeList* list;
+	TreeNodeList* temp;
 	if (!head)
 	{
-		head = new TreeNodeList;
+		if ((head = new TreeNodeList) == NULL)
+			return false;
 		head->next = NULL;
 		head->node = node;
-		return;
+		return true;
 	}
 
 	for(list = head; list->next; list = list->next)
 		if (list->node->weight <= node->weight && list->next->node->weight > node->weight)
 		{
-			temp = new TreeNodeList;
+			if ((temp = new TreeNodeList) == NULL)
+				return false;
 			temp->next = list->next;
 			list->next = temp;
 			temp->node = node;
@@ -588,15 +600,18 @@ static inline void list_insert(TreeNodeList *&head, TreeNode *node)
 		}
 	if (!list->next)
 	{
-		list->next = new TreeNodeList;
+		if ((list->next = new TreeNodeList) == NULL)
+			return false;
 		list->next->next = NULL;
 		list->next->node = node;
 	}
+	return true;
 }
 
-static inline void list_delete(TreeNodeList *&head, TreeNode *node)
+static inline void list_delete(TreeNodeList*& head, TreeNode* node)
 {
-	TreeNodeList *list, *temp;
+	TreeNodeList* list;
+	TreeNodeList* temp;
 	if (!head || !node)
 		return;
 
@@ -621,21 +636,36 @@ static inline void list_delete(TreeNodeList *&head, TreeNode *node)
 	}
 }
 
-static inline TreeNode *build_tree(unsigned int freq[])
+static inline TreeNode* build_tree(uint32 freq[])
 {
-	TreeNode	*root, *node;
-	TreeNodeList	*head = NULL;
-	unsigned int i;
+	TreeNode*	root;
+	TreeNode*	node;
+	TreeNodeList*	head = NULL;
+	uint32 i;
 
 	for(i = 0; i < 0x100; i++)
 		if (freq[i])
 		{
-			node = new TreeNode;
+			if ((node = new TreeNode) == NULL)
+			{
+				for(TreeNodeList* temp = head; temp;)
+				{
+					TreeNodeList* tmp = temp->next;
+					delete temp->node;
+					delete temp;
+					temp = tmp;
+				}
+				return NULL;
+			}
 			node->leaf = true;
-			node->value = (unsigned char)i;
+			node->value = (uint8)i;
 			node->weight = freq[i];
 			node->left = node->right = NULL;
-			list_insert(head, node);
+			if (!list_insert(head, node))
+			{
+				delete node;
+				return NULL;
+			}
 		}
 
 	if (!head)
@@ -643,9 +673,20 @@ static inline TreeNode *build_tree(unsigned int freq[])
 
 	if (!head->next)
 	{
-		root = new TreeNode;
+		if ((root = new TreeNode) == NULL)
+		{
+			delete head->node;
+			delete head;
+			return NULL;
+		}
 		root->left = head->node;
-		root->right = new TreeNode;
+		if ((root->right = new TreeNode) == NULL)
+		{
+			delete head->node;
+			delete head;
+			delete root;
+			return NULL;
+		}
 		root->right->leaf = true;
 		root->right->left = root->right->right = NULL;
 		root->leaf = false;
@@ -659,7 +700,17 @@ static inline TreeNode *build_tree(unsigned int freq[])
 
 	for(; head->next;)
 	{
-		node = new TreeNode;
+		if ((node = new TreeNode) == NULL)
+		{
+			for(TreeNodeList* temp = head; temp;)
+			{
+				TreeNodeList* tmp = temp->next;
+				delete temp->node;
+				delete temp;
+				temp = tmp;
+			}
+			return NULL;
+		}
 		node->left = head->node;
 		node->right = head->next->node;
 		node->weight = node->left->weight + node->right->weight;
@@ -677,7 +728,7 @@ static inline TreeNode *build_tree(unsigned int freq[])
 	return root;
 }
 
-static inline void traverse_tree(TreeNode *root, unsigned int level, unsigned int &nodes)
+static inline void traverse_tree(TreeNode* root, uint32 level, uint32& nodes)
 {
 	if (!level)
 		nodes = 0;
@@ -692,7 +743,7 @@ static inline void traverse_tree(TreeNode *root, unsigned int level, unsigned in
 	traverse_tree(root->right, level + 1, nodes);
 }
 
-static inline unsigned int traverse_tree(TreeNode *root, unsigned int level, unsigned int *freq)
+static inline uint32 traverse_tree(TreeNode* root, uint32 level, uint32* freq)
 {
 	if (root->leaf)
 		return level * freq[root->value];
@@ -700,11 +751,11 @@ static inline unsigned int traverse_tree(TreeNode *root, unsigned int level, uns
 	return traverse_tree(root->left, level + 1, freq) + traverse_tree(root->right, level + 1, freq);
 }
 
-static inline void set_bit(void *dest, unsigned int &bitptr, bool bit)
+static inline void set_bit(void* dest, uint32& bitptr, bool bit)
 {
-	unsigned short *temp = ((unsigned short *)dest) + (bitptr >> 4);
-	unsigned int bptr = 15 - (bitptr & 0xf);
-	unsigned short mask = 1 << bptr;
+	uint16* temp = ((uint16*)dest) + (bitptr >> 4);
+	uint32 bptr = 15 - (bitptr & 0xf);
+	uint16 mask = 1 << bptr;
 	if (bit)
 		*temp |= mask;
 	else
@@ -712,28 +763,28 @@ static inline void set_bit(void *dest, unsigned int &bitptr, bool bit)
 	bitptr++;
 }
 
-static inline void set_bits(void *dest, unsigned int &bitptr, unsigned int data, unsigned int count)
+static inline void set_bits(void* dest, uint32& bitptr, uint32 data, uint32 count)
 {
-	unsigned short *temp = ((unsigned short *)dest) + (bitptr >> 4), tmp;
-	unsigned int bptr = bitptr & 0xf, cnt;
-	unsigned short mask;
+	uint16* temp = ((uint16*)dest) + (bitptr >> 4), tmp;
+	uint32 bptr = bitptr & 0xf, cnt;
+	uint16 mask;
 	bitptr += count;
 	if (count > 16 - bptr)
 	{
 		cnt = count + bptr - 16;
 		mask = 0xffff << (16 - bptr);
-		*temp = (*temp & mask) | ((unsigned short)(data >> cnt) & (unsigned short)(0xffff >> bptr));
-		temp[1] = (temp[1] & (unsigned short)(0xffff >> cnt)) | (unsigned short)(data << (16 - cnt));
+		*temp = (*temp & mask) | ((uint16)(data >> cnt) & (uint16)(0xffff >> bptr));
+		temp[1] = (temp[1] & (uint16)(0xffff >> cnt)) | (uint16)(data << (16 - cnt));
 	}
 	else
 	{
 		cnt = 16 - count - bptr;
 		tmp = (data & (0xffff >> (16 - count))) << cnt;
-		*temp = (*temp & (unsigned short)(~((0xffff >> bptr) & (0xffff << cnt)))) | tmp;
+		*temp = (*temp & (uint16)(~((0xffff >> bptr) & (0xffff << cnt)))) | tmp;
 	}
 }
 
-static void set_loop(void *dest, unsigned int &ptr, unsigned int count, PYJ_1_BLOCKHEADER header)
+static void set_loop(void* dest, uint32& ptr, uint32 count, PYJ_1_BLOCKHEADER header)
 {
 	if (count == header->CodeCountTable[0])
 		set_bit(dest, ptr, 1);
@@ -744,8 +795,8 @@ static void set_loop(void *dest, unsigned int &ptr, unsigned int count, PYJ_1_BL
 			set_bits(dest, ptr, 0, 2);
 		else
 		{
-			unsigned short cnt = get_bit_count(count);
-			unsigned int j;
+			uint16 cnt = get_bit_count(count);
+			uint32 j;
 			for(j = 0; j < 3; j++)
 				if (cnt <= header->CodeCountCodeLengthTable[j])
 				{
@@ -757,10 +808,10 @@ static void set_loop(void *dest, unsigned int &ptr, unsigned int count, PYJ_1_BL
 	}
 }
 
-static void set_count(void *dest, unsigned int &ptr, unsigned int match_len, PYJ_1_BLOCKHEADER header)
+static void set_count(void* dest, uint32& ptr, uint32 match_len, PYJ_1_BLOCKHEADER header)
 {
-	unsigned int k;
-	unsigned short cnt;
+	uint32 k;
+	uint16 cnt;
 	for(k = 0; k < 4; k++)
 		if (match_len == header->LZSSRepeatTable[k])
 		{
@@ -780,72 +831,159 @@ static void set_count(void *dest, unsigned int &ptr, unsigned int match_len, PYJ
 		}
 }
 
-PalLibrary::DataBuffer PalLibrary::EncodeYJ_1(const void *Source, unsigned int SourceLength)
+palerrno_t Pal::Tools::EncodeYJ1(const void* Source, uint32 SourceLength, void*& Destination, uint32& Length)
 {
 	YJ_1_FILEHEADER hdr;
 	PYJ_1_BLOCKHEADER header;
-	unsigned short code[0x100][0x10];
-	unsigned int freq[0x100];
-	unsigned int *cb_len, *lz_len, **bfreq;
-	unsigned int tree_nodes;
-	unsigned char **block;
-	unsigned char *src = (unsigned char *)Source, *dest;
-	int srclen = SourceLength;
-	TreeNode	*root, *leaf[0x100];
-	DataBuffer	buf;
+	uint16 code[0x100][0x10];
+	uint32 freq[0x100];
+	uint32* cb_len;
+	uint32* lz_len;
+	uint32** bfreq;
+	uint32 tree_nodes;
+	uint8** block;
+	uint8* src = (uint8*)Source;
+	uint8* dest;
+	sint32 srclen = SourceLength;
+	uint32 length;
+	void* pNewData;
+	TreeNode*	root;
+	TreeNode*	leaf[0x100];
 
-	hdr.Signature = '1_JY';
+	if (Source == NULL || SourceLength == 0)
+		return PAL_EMPTY_POINTER;
+
+	strncpy((char*)&hdr.Signature , "YJ_1",4);
 	hdr.UncompressedLength = srclen;
 	hdr.CompressedLength = 0;
 	hdr.BlockCount = (srclen & 0x3fff) ? (srclen >> 14) + 1 : (srclen >> 14);
 	hdr.Unknown = 0xff;
 	hdr.HuffmanTreeLength = 0;
 
-	memset(freq, 0, 0x100 * sizeof(int));
-	memset(code, 0, 0x100 * 0x10 * sizeof(short));
+	memset(freq, 0, 0x100 * sizeof(sint32));
+	memset(code, 0, 0x100 * 0x10 * sizeof(sint16));
 	memset(leaf, 0, 0x100 * sizeof(TreeNode*));
-	bfreq = new unsigned int * [hdr.BlockCount];
-	block = new unsigned char * [hdr.BlockCount];
-	cb_len = new unsigned int [hdr.BlockCount];
-	lz_len = new unsigned int [hdr.BlockCount];
-	header = new YJ_1_BLOCKHEADER [hdr.BlockCount];
-
-	for(int i = 0; i < hdr.BlockCount; i++)
+	if ((bfreq = new uint32 * [hdr.BlockCount]) == NULL)
+		return PAL_OUT_OF_MEMORY;
+	if ((block = new uint8 * [hdr.BlockCount]) == NULL)
 	{
-		unsigned int	baseptr, j;
-		unsigned char	*base;
+		delete [] bfreq;
+		return PAL_OUT_OF_MEMORY;
+	}
+	if ((cb_len = new uint32 [hdr.BlockCount]) == NULL)
+	{
+		delete [] block;
+		delete [] bfreq;
+		return PAL_OUT_OF_MEMORY;
+	}
+	if ((lz_len = new uint32 [hdr.BlockCount]) == NULL)
+	{
+		delete [] cb_len;
+		delete [] block;
+		delete [] bfreq;
+		return PAL_OUT_OF_MEMORY;
+	}
+	if ((header = new YJ_1_BLOCKHEADER [hdr.BlockCount]) == NULL)
+	{
+		delete [] lz_len;
+		delete [] cb_len;
+		delete [] block;
+		delete [] bfreq;
+		return PAL_OUT_OF_MEMORY;
+	}
 
-		baseptr = i << 14; base = (unsigned char *)src + baseptr;
+	for(sint32 i = 0; i < hdr.BlockCount; i++)
+	{
+		uint32	baseptr;
+		sint32	j;
+		uint8*	base;
+
+		baseptr = i << 14; base = (uint8*)src + baseptr;
 		header[i].UncompressedLength = (srclen - baseptr < 0x4000) ? srclen - baseptr : 0x4000;
 		header[i].CompressedLength = sizeof(YJ_1_BLOCKHEADER);
-		bfreq[i] = new unsigned int [0x100];
-		block[i] = new unsigned char [0xa000];
-		memset(bfreq[i], 0, 0x100 * sizeof(int));
-		cb_len[i] = lz_analysize(base, (unsigned short *)block[i], header[i].UncompressedLength, bfreq[i]);
-		lz_len[i] = cb_analysize(header + i, (unsigned short *)block[i], cb_len[i]);
+		if ((bfreq[i] = new uint32 [0x100]) == NULL)
+		{
+			for(j = 0; j < i; j++)
+			{
+				delete [] block[j];
+				delete [] bfreq[j];
+			}
+			delete [] header;
+			delete [] lz_len;
+			delete [] cb_len;
+			delete [] block;
+			delete [] bfreq;
+			return PAL_OUT_OF_MEMORY;
+		}
+		if ((block[i] = new uint8 [0xa000]) == NULL)
+		{
+			for(j = 0; j < i; j++)
+			{
+				delete [] block[j];
+				delete [] bfreq[j];
+			}
+			delete [] bfreq[i];
+			delete [] header;
+			delete [] lz_len;
+			delete [] cb_len;
+			delete [] block;
+			delete [] bfreq;
+			return PAL_OUT_OF_MEMORY;
+		}
+		memset(bfreq[i], 0, 0x100 * sizeof(sint32));
+		cb_len[i] = lz_analysize(base, (uint16*)block[i], header[i].UncompressedLength, bfreq[i]);
+		lz_len[i] = cb_analysize(header + i, (uint16*)block[i], cb_len[i]);
 		for(j = 0; j < 0x100; j++)
 			freq[j] += bfreq[i][j];
 
 		base = block[i];
-		block[i] = new unsigned char [cb_len[i]];
+		if ((block[i] = new uint8 [cb_len[i]]) == NULL)
+		{
+			for(j = 0; j < i; j++)
+			{
+				delete [] block[j];
+				delete [] bfreq[j];
+			}
+			delete [] bfreq[i];
+			delete [] base;
+			delete [] header;
+			delete [] lz_len;
+			delete [] cb_len;
+			delete [] block;
+			delete [] bfreq;
+			return PAL_OUT_OF_MEMORY;
+		}
 		memcpy(block[i], base, cb_len[i]);
 		delete [] base;
 	}
 
-	root = build_tree(freq);
+	if ((root = build_tree(freq)) == NULL)
+	{
+		for(sint32 i = 0; i < hdr.BlockCount; i++)
+		{
+			delete [] block[i];
+			delete [] bfreq[i];
+		}
+		delete [] header;
+		delete [] lz_len;
+		delete [] cb_len;
+		delete [] block;
+		delete [] bfreq;
+		return PAL_OUT_OF_MEMORY;
+	}
 	traverse_tree(root, 0, tree_nodes);
 	hdr.HuffmanTreeLength = tree_nodes >> 1;
 	hdr.CompressedLength = sizeof(YJ_1_FILEHEADER) + tree_nodes;
 	if (tree_nodes & 0xf)
 	{
-		unsigned short _tmp = (tree_nodes >> 4) + 1;
+		uint16 _tmp = (tree_nodes >> 4) + 1;
 		hdr.CompressedLength += _tmp << 1;
 	}
 	else
 		hdr.CompressedLength += tree_nodes >> 3;
-	for(int i = 0; i < hdr.BlockCount; i++)
+	for(sint32 i = 0; i < hdr.BlockCount; i++)
 	{
-		unsigned int len = lz_len[i] + traverse_tree(root, 0, bfreq[i]);
+		uint32 len = lz_len[i] + traverse_tree(root, 0, bfreq[i]);
 		len += header[i].CodeCountCodeLengthTable[0] + 3;
 		if (len & 0xf)
 			len = (len >> 4) + 1;
@@ -855,15 +993,29 @@ PalLibrary::DataBuffer PalLibrary::EncodeYJ_1(const void *Source, unsigned int S
 		hdr.CompressedLength += header[i].CompressedLength;
 	}
 
-	buf.length = hdr.CompressedLength;
-	buf.data = dest = new unsigned char [hdr.CompressedLength];
+	length = hdr.CompressedLength;
+	if ((pNewData = dest = (uint8*)malloc(hdr.CompressedLength)) == NULL)
+	{
+		for(sint32 i = 0; i < hdr.BlockCount; i++)
+		{
+			delete [] block[i];
+			delete [] bfreq[i];
+		}
+		delete [] header;
+		delete [] lz_len;
+		delete [] cb_len;
+		delete [] block;
+		delete [] bfreq;
+		return PAL_OUT_OF_MEMORY;
+	}
 	memcpy(dest, &hdr, sizeof(YJ_1_FILEHEADER));
 	dest += sizeof(YJ_1_FILEHEADER);
 	do
 	{
-		unsigned int head = 0, tail = 0, ptr = 0, i;
-		unsigned char *dst = dest + tree_nodes;
-		TreeNode *queue[0x200], *node;
+		uint32 head = 0, tail = 0, ptr = 0, i;
+		uint8* dst = dest + tree_nodes;
+		TreeNode* queue[0x200];
+		TreeNode* node;
 
 #define	put_in(v)	\
 	if (tail < 0x1ff)	\
@@ -909,8 +1061,8 @@ PalLibrary::DataBuffer PalLibrary::EncodeYJ_1(const void *Source, unsigned int S
 		for(i = 0; i < 0x100; i++)
 			if (leaf[i])
 			{
-				unsigned int k = 0;
-				unsigned int hcode[0x8] = {0, 0, 0, 0, 0, 0, 0, 0};
+				uint32 k = 0;
+				uint32 hcode[0x8] = {0, 0, 0, 0, 0, 0, 0, 0};
 				node = leaf[i];
 				while(node->parent)
 				{
@@ -929,13 +1081,13 @@ PalLibrary::DataBuffer PalLibrary::EncodeYJ_1(const void *Source, unsigned int S
 
 	} while(0);
 	
-	for(unsigned int i = 0; i < hdr.BlockCount; i++)
+	for(uint32 i = 0; i < hdr.BlockCount; i++)
 	{
-		unsigned short *bptr = (unsigned short *)block[i], count, match_len, pos;
-		unsigned char *base = (unsigned char *)src + (i << 14);
-		unsigned char *dst = dest;
-		unsigned int sptr = 0, ptr = 0, j;
-		TreeNode *node;
+		uint16* bptr = (uint16*)block[i], count, match_len, pos;
+		uint8* base = (uint8*)src + (i << 14);
+		uint8* dst = dest;
+		uint32 sptr = 0, ptr = 0, j;
+		TreeNode* node;
 		memcpy(dest, header + i, sizeof(YJ_1_BLOCKHEADER));
 		dest += sizeof(YJ_1_BLOCKHEADER);
 		while(sptr < header[i].UncompressedLength)
@@ -953,8 +1105,8 @@ PalLibrary::DataBuffer PalLibrary::EncodeYJ_1(const void *Source, unsigned int S
 					set_count(dest, ptr, match_len, header + i);
 					do
 					{
-						unsigned int k;
-						unsigned short cnt = get_bit_count(pos);
+						uint32 k;
+						uint16 cnt = get_bit_count(pos);
 						for(k = 0; k < 4; k++)
 							if (cnt <= header[i].LZSSOffsetCodeLengthTable[k])
 							{
@@ -967,8 +1119,8 @@ PalLibrary::DataBuffer PalLibrary::EncodeYJ_1(const void *Source, unsigned int S
 			}
 			else
 			{
-				unsigned char val;
-				unsigned int maxl;
+				uint8 val;
+				uint32 maxl;
 				for(j = 0; j < count; j++)
 				{
 					val = base[sptr++];
@@ -988,14 +1140,19 @@ PalLibrary::DataBuffer PalLibrary::EncodeYJ_1(const void *Source, unsigned int S
 		dest += ptr;
 	}
 
-	for(int i = 0; i < hdr.BlockCount; i++)
+	for(sint32 i = 0; i < hdr.BlockCount; i++)
 	{
 		delete [] block[i];
 		delete [] bfreq[i];
 	}
-	delete [] block;
+	delete [] header;
 	delete [] lz_len;
 	delete [] cb_len;
-	delete [] header;
-	return buf;
+	delete [] block;
+	delete [] bfreq;
+	Destination = pNewData;
+	Length = length;
+	return PAL_OK;
 }
+
+//#include "yj1s.h"
