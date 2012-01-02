@@ -18,6 +18,9 @@
 
 解开yj_1后的图片组察看器f.exe及源代码,这个是给手里有工具的人用的.
 
-所有程序使用DJGPP+Allegro编写.
+所有程序使用DJGPP+Allegro2编写.
 
 因为已经有了完备的察看程序，这里只留代码供察看。
+
+1/2/2011: 感谢grandpaul的patch，稍做修改后目前有了一个可以在allegro4下编译的pval4.c，有心自行编译修改的同学可参照其与pv.c的区别来修改其他源文件。
+          Snow Leopard 10.6.8下llvm-gcc-4.2+allegro-4.4.1.1验证通过。
