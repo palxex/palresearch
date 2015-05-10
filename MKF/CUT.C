@@ -17,7 +17,7 @@ void getname(int i)
 {
 	sprintf( name, "%s%d.%s", pre, i, ext );
 }
-main(int c,char* v[])
+int main(int c,char* v[])
 {
 	FILE *fpsrc;FILE *fpdst;
 	long ptr1,ptr2,i,length,t;

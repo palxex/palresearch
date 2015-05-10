@@ -11,7 +11,7 @@
 #else
 #include <sys/utime.h>
 #endif
-#define MAXSUB 500
+#define MAXSUB 5000
 
 int mondays[] = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 time_t loctotime (int yr,int mo,int dy,int hr,int mn,int sc,int dstflag )
@@ -51,10 +51,10 @@ void usage()
 {
 	printf("Usage:mak prefix ext"); 
 }
-main(int c,char* v[])
+int main(int c,char* v[])
 {
 	int i,im;
-	char name[12];char a[5];char mkf[12];char ext[5];
+	char name[80];char a[80];char mkf[80];char ext[80];
 	FILE* fpsrc;FILE* fpdst;
 	char* pre;
 	void* buf;long t,loc=0,loct;

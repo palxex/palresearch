@@ -120,3 +120,7 @@
 新增工具目录：PalLibrary
 作用：YJ1、WIN、RNG的编码和解码
 作者：SuperMouse
+
+新增工具目录：palss
+作用：SS版图像数据结构解析、转换
+作者：SuperMouse
