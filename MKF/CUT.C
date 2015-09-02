@@ -20,7 +20,7 @@ void getname(int i)
 int main(int c,char* v[])
 {
 	FILE *fpsrc;FILE *fpdst;
-	long ptr1,ptr2,i,length,t;
+	int ptr1,ptr2,i,length,t;
 	char* tc;
 	void* buf;
 	if(c!=3)	usage();
