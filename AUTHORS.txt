@@ -117,6 +117,10 @@
 作者：Simon Peter，鲁痴
 鸣谢：BSPAL,中华大圣
 
+新增工具：rix/util/rixdup.py
+作用：倍增rix数据，为延音加入尾部空白
+作者：鲁痴，中华大圣
+
 新增工具目录：PalLibrary
 作用：YJ1、WIN、RNG的编码和解码
 作者：SuperMouse
