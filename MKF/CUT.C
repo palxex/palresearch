@@ -7,7 +7,7 @@
 #define MAXEXT 3
 char* pre;
 char ext[MAXEXT+1];
-char name[11];
+char name[80];
 void usage()
 {
 	printf("Usage:cut sam.mkf ext\n");
