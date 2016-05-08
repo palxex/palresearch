@@ -22,7 +22,7 @@ $n：文字显示速度，n越大，显示越慢（影响之后的所有文字�
 @0005: 清屏 Int16 Int16 Boolean ;写屏方式? 延迟 若当前不在地图层，还原到地图层；否则重新生成画面，若参3非0，还要事先更新角色信息
 自动脚本无
 @0006: 几率继续 Int16 ScriptID
-自动脚本处理到跳转处(若跳转)
+自动脚本处理到跳转处(若跳转)。若ScriptID为0，则本轮停止执行，下次从当前行重新掷盅判断。
 两个实现均0000bug免疫，作了特殊处理
 @0007: 开战 EnemyTeamID ScriptID ScriptID ;EnemyTeam DefeatScript EscapeScript
 自动脚本无
