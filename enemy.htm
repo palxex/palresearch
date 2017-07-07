@@ -1,50 +1,80 @@
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv=Content-Type content="text/html; charset=utf-8">
-<title>敌人资料</title>
+	<title>敌人资料</title>
+	<meta charset="utf-8" />
+	<link href="http://meetselva.github.io/fixed-table-rows-cols/css/fixed_table_rc.css" type="text/css" rel="stylesheet" media="all" />
+	<script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
+	<script src="http://meetselva.github.io/fixed-table-rows-cols/js/fixed_table_rc.js" type="text/javascript"></script>
+	<style>
+		html, body {
+			font-family: Arial,​​sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f2f2f2;
+		}
+		
+		.ft_container table tr th {
+			background-color: #DBEAF9;
+		}
+
+		.ft_container table tr td:first-child{
+			background-color: #DBEAF9;
+		}
+	</style>
+	<script>
+	$(function () {
+		$('#fixed_hdr').fxdHdrCol({
+			fixedCols: 1,
+			width:     '100%',
+			height:    $(window).height(),
+		    colModal: [
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' },
+			   { width: 100, align: 'center' }
+		    ]
+		});
+	});
+	</script>
 </head>
-
-<body link=blue vlink=purple>
-
-<table x:str border=2 cellpadding=0 cellspacing=0 width=4021 style='border-collapse:
- collapse;table-layout:fixed;width:3007pt'>
- <tr>
-  <td>名称</td>
-  <td>空闲帧数:0</td>
-  <td>法术帧数:2</td>
-  <td>普攻帧数:4</td>
-  <td>蠕动帧数:6</td>
-  <td>重绘次数:8</td>
-  <td>位置Y调整:A</td>
-  <td>普攻音效:C</td>
-  <td>行动音效:E</td>
-  <td>施法音效:10</td>
-  <td>死亡音效:12</td>
-  <td>攻克音效:14</td>
-  <td>生命:16</td>
-  <td>经验值:18</td>
-  <td>钱:1A</td>
-  <td>等级:1C</td>
-  <td>绝招:1E</td>
-  <td>绝招频率:20</td>
-  <td width=136>攻击效果(物品):22</td>
-  <td>出现频率:24</td>
-  <td>偷窃物品:26</td>
-  <td>数量:28</td>
-  <td>武术:2A</td>
-  <td>灵力:2C</td>
-  <td>防御:2E</td>
-  <td>身法:30</td>
-  <td>吉运:32</td>
-  <td>毒抗:34</td>
-  <td>风抗:36</td>
-  <td>雷抗:38</td>
-  <td>水抗:3A</td>
-  <td>火抗:3C</td>
-  <td>土抗:3E</td>
-  <td>物抗:40</td>
-  <td>2次行动:42</td>
-  <td>灵葫值:44</td>
- </tr>
+<body>
+<table id="fixed_hdr">
+ <thead>
+  <tr><th>名称</th><th>空闲帧数:0</th><th>法术帧数:2</th><th>普攻帧数:4</th><th>蠕动帧数:6</th><th>重绘次数:8</th><th>位置Y调整:A</th><th>普攻音效:C</th><th>行动音效:E</th><th>施法音效:10</th><th>死亡音效:12</th><th>攻克音效:14</th><th>生命:16</th><th>经验值:18</th><th>钱:1A</th><th>等级:1C</th><th>绝招:1E</th><th>绝招频率:20</th><th>攻击效果(物品):22</th><th>出现频率:24</th><th>偷窃物品:26</th><th>数量:28</th><th>武术:2A</th><th>灵力:2C</th><th>防御:2E</th><th>身法:30</th><th>吉运:32</th><th>毒抗:34</th><th>风抗:36</th><th>雷抗:38</th><th>水抗:3A</th><th>火抗:3C</th><th>土抗:3E</th><th>物抗:40</th><th>2次行动:42</th><th>灵葫值:44</th></tr>
+ </thead>
  <tr>
   <td>史莱姆</td>
   <td>2</td>
@@ -5860,46 +5890,6 @@
   <td>0</td>
   <td>3</td>
  </tr>
- <![if supportMisalignedColumns]>
- <tr height=0>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td width=136></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
- </tr>
- <![endif]>
 </table>
 
 </body>
