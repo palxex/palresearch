@@ -16,8 +16,9 @@ def deMKF(f,postfix):
         with open(prefix+str(i)+"."+postfix, 'wb') as subfile:
             f.seek(i*2,os.SEEK_SET)
             begin,end = struct.unpack("<hh",f.read(4))
-            if end==0:
-                end=total_length/2
+            begin   = begin if begin > 0 else 32768+begin
+            end     = end   if end   > 0 else 32768+end
+            end     = end   if end  != 0 else total_length/2
             f.seek(begin*2,os.SEEK_SET)
             subfile.write(f.read(end*2-begin*2))
 
