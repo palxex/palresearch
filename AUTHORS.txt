@@ -128,3 +128,7 @@
 新增工具目录：palss
 作用：SS版图像数据结构解析、转换
 作者：SuperMouse
+
+新增工具目录：PackageUtils
+作用：仙剑DOS/98拆装包工具
+作者：路痴

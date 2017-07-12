@@ -2,6 +2,15 @@
 *.dylib
 *.dSYM
 
+*.so
+
+*.obj
+*.lib
+*.dll
+*.exp
+
+*.pyc
+
 *.mkf
 *.dat
 m.msg

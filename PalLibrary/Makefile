@@ -31,4 +31,4 @@ clean:
 
 $(TARGET): $(OBJFILES)
 	@echo LD $@
-	@$(CXX) $(LDFLAGS) $^ -dynamiclib -o $@
+	@$(CXX) $(LDFLAGS) $^ -shared -o $@

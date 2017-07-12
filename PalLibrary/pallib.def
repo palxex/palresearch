@@ -1,0 +1,6 @@
+LIBRARY   libpallib
+EXPORTS
+   encodeyj1
+   decodeyj1
+   encodeyj2
+   decodeyj2
