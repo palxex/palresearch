@@ -281,7 +281,6 @@ palerrno_t Pal::Tools::EncodeRle(const void* pSrc, int nSrcWidth, int nSrcHeight
 	return PAL_OK;
 }
 
-/*
 errno_t Pal::Tools::DecodeRLE(const void *Rle, void *Destination, sint32 Stride, sint32 Width, sint32 Height, sint32 x, sint32 y)
 {
 	sint32 sx, sy, dx, dy, temp;
@@ -508,4 +507,3 @@ errno_t Pal::Tools::EncodeRLE(const void *Source, const uint8 TransparentColor, 
 	Length = length;
 	return 0;
 }
-*/

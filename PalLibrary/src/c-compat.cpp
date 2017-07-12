@@ -1,5 +1,5 @@
 //”√”⁄ºÊ»› C ”Ô—‘
-/*
+
 #include "pallib.h"
 
 extern "C" errno_t decodeyj1(const void* Source, void** Destination, uint32* Length)
@@ -47,7 +47,7 @@ extern "C" errno_t encoderlet(const void* Source, uint8 TransparentColor, sint32
 	return Pal::Tools::EncodeRLE(Source, TransparentColor, Stride, Width, Height, *Destination, *Length);
 }
 
-
+/*
 extern "C" errno_t decodeyj1streaminitialize(void** pvState, uint32 uiGrowBy)
 {
 	return Pal::Tools::DecodeYJ1StreamInitialize(*pvState, uiGrowBy);

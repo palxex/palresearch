@@ -118,11 +118,11 @@ namespace Pal
 		palerrno_t EncodeYJ2(const void* Source, uint32 SourceLength, void*& Destination, uint32& Length, bool bCompatible = true);
 		palerrno_t DecodeRNG(const void* Source, void* PrevFrame);
 		palerrno_t EncodeRNG(const void* PrevFrame, const void* CurFrame, void*& Destination, uint32& Length);
-/*
 		errno_t DecodeRLE(const void* Rle, void* Destination, sint32 Stride, sint32 Width, sint32 Height, sint32 x, sint32 y);
 		errno_t EncodeRLE(const void* Source, const void *Base, sint32 Stride, sint32 Width, sint32 Height, void*& Destination, uint32& Length);
 		errno_t EncodeRLE(const void* Source, uint8 TransparentColor, sint32 Stride, sint32 Width, sint32 Height, void*& Destination, uint32& Length);
 
+/*
 		errno_t DecodeYJ1StreamInitialize(void*& pvState, uint32 uiGrowBy = 0x10000);
 		errno_t DecodeYJ1StreamInput(void* pvState, const void* Source, uint32 SourceLength);
 		errno_t DecodeYJ1StreamOutput(void* pvState, void* Destination, uint32 Length, uint32& ActualLength);
