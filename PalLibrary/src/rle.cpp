@@ -415,7 +415,7 @@ errno_t Pal::Tools::EncodeRLE(const void *Source, const void *Base, sint32 Strid
 			for(count = 0; j < Width && *src == *base; j++, base++, src++, count++);
 			while(count > 0)
 			{
-				*ptr++ = (count > 0x7f) ? 0xff : count;
+				*ptr++ = (count > 0x7f) ? 0xff : 0x80|count;
 				count -= 0x7f;
 			}
 			for(count = 0; j < Width && *src != *base; j++, base++, src++, count++);
@@ -424,13 +424,13 @@ errno_t Pal::Tools::EncodeRLE(const void *Source, const void *Base, sint32 Strid
 				if (count > 0x7f)
 				{
 					*ptr++ = 0x7f;
-					memcpy(src - count, ptr, 0x7f);
+					memcpy(ptr, src - count, 0x7f);
 					ptr += 0x7f;
 				}
 				else
 				{
 					*ptr++ = count;
-					memcpy(src - count, ptr, count);
+					memcpy(ptr, src - count, count);
 					ptr += count;
 				}
 				count -= 0x7f;
@@ -472,7 +472,7 @@ errno_t Pal::Tools::EncodeRLE(const void *Source, const uint8 TransparentColor, 
 			for(count = 0; j < Width && *src == TransparentColor; j++, src++, count++);
 			while(count > 0)
 			{
-				*ptr++ = (count > 0x7f) ? 0xff : count;
+				*ptr++ = (count > 0x7f) ? 0xff : 0x80|count;
 				count -= 0x7f;
 			}
 			for(count = 0; j < Width && *src != TransparentColor; j++, src++, count++);
@@ -481,13 +481,13 @@ errno_t Pal::Tools::EncodeRLE(const void *Source, const uint8 TransparentColor, 
 				if (count > 0x7f)
 				{
 					*ptr++ = 0x7f;
-					memcpy(src - count, ptr, 0x7f);
+					memcpy(ptr, src - count, 0x7f);
 					ptr += 0x7f;
 				}
 				else
 				{
 					*ptr++ = count;
-					memcpy(src - count, ptr, count);
+					memcpy(ptr, src - count, count);
 					ptr += count;
 				}
 				count -= 0x7f;
