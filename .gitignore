@@ -15,6 +15,13 @@
 *.dat
 m.msg
 
+*.smkf
+*.yj1
+*.yj2
+*.rle
+*.pat
+*.fbp
+
 MKF/cut
 MKF/mak
 

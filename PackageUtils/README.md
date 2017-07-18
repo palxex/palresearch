@@ -2,7 +2,7 @@
 ======
 背景知识：
 1. 仙剑的打包格式：最外层统一为mkf，封包多个子文件。第二层一般为smkf，封包同一动画多帧（RNG例外）；大多情况下第二层外面会有一层YJ_1(DOS)/YJ_2(Win95)压缩以减少空间占用。没有统一规则，每个文件的封包需要自己分析。
-2. 工具共通前提：编译好pallib。*nix（包括win32 msys2）下直接在PalLibrary下make即可。需要官方版python执行的话，用VC自带的命令行快捷方式跑PalLibrary/build-vc-dll.cmd。
+2. 工具共通前提：编译好pallib。\*nix（包括win32 msys2）下直接在PalLibrary下make即可。需要官方版python执行的话，用VC自带的命令行快捷方式跑PalLibrary/build-vc-dll.cmd。
 
 * demkf
 -------
