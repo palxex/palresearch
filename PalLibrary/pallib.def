@@ -4,7 +4,7 @@ EXPORTS
    decodeyj1
    encodeyj2
    decodeyj2
-   encoderle
+   encoderlet
    decoderle
    encoderng
    decoderng

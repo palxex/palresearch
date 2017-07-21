@@ -104,8 +104,7 @@ optional arguments:
 rle解压带调色板的bmp/png工具
 ```useage
 usage: derle.py [-h] [-o OUTPUT] -p PALETTE [-i PALETTE_ID]
-                [-d TRANSPARENT_PALETTE_INDEX] [--show] [--transparent]
-                [--saveraw]
+                [-d TRANSPARENT_PALETTE_INDEX] [--show] [--saveraw]
                 rle
 
 tool for converting RLE to palette BMP/PNG
@@ -122,13 +121,8 @@ optional arguments:
   -i PALETTE_ID, --palette_id PALETTE_ID
                         palette id
   -d TRANSPARENT_PALETTE_INDEX, --transparent_palette_index TRANSPARENT_PALETTE_INDEX
-                        palette id
+                        transparent index for color in palette; default 255
   --show                show decoded image
-  --transparent         output transparent as alpha zero - ~10x expensive, and
-                        not available in bmp target, and will REQUANTIZE
-                        palatte, which will deny the output picture from
-                        reimporting EXACTLY any more, leaving only viewable.
-                        Turned off by default
   --saveraw             save decoded raw data
 ```
 示例：
@@ -139,8 +133,8 @@ optional arguments:
 bmp/png压缩rle工具
 ```usage
 usage: enrle.py [-h] -o OUTPUT [-d TRANSPARENT_PALETTE_INDEX] [--quantize]
-                [-p PALETTE] [-i PALETTE_ID] [--transparent_png] [--dither]
-                [--save_quantized_png]
+                [-p PALETTE] [-i PALETTE_ID] [--dither] [--save_quantized_png]
+                [--show]
                 image
 
 tool for converting BMP/PNG to RLE
@@ -153,19 +147,19 @@ optional arguments:
   -o OUTPUT, --output OUTPUT
                         resulting rle
   -d TRANSPARENT_PALETTE_INDEX, --transparent_palette_index TRANSPARENT_PALETTE_INDEX
-                        palette id
+                        transparent index for color in palette; default 255
   --quantize            for images not with pal palette; notice: expensive!
   -p PALETTE, --palette PALETTE
                         PAT file for quantize
   -i PALETTE_ID, --palette_id PALETTE_ID
                         palette id
-  --transparent_png     use PNG transparent as RLE transparent
   --dither              whether ditter color when quantizing
   --save_quantized_png  save quantized png
+  --show                show quantized png
 ```
 
 示例：
 
 `./enrle.py ABC330.bmp -o ABC330.rle`
-
-`./enrle.py icon.png -o ABC330.rle -p PAT.MKF --quantize --transparent_png --dither`
+b
+`./enrle.py icon.png -o ABC330.rle -p PAT.MKF --quantize --dither`

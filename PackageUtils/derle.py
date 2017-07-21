@@ -34,14 +34,7 @@ def process():
     im=Image.frombytes("P", (width,height), buffer)
     im.putpalette(pat)
     
-    if args.transparent:
-        mask=Image.new('L', im.size, color=255)
-        draw=ImageDraw.Draw(mask) 
-        for x in range(0,width): 
-            for y in range(0,height):
-                if im.getpixel((x,y)) == args.transparent_palette_index:
-                    draw.point( (x,y), fill=0)
-        im.putalpha(mask)
+    im.info['transparency'] = args.transparent_palette_index
     
     if args.show:
         im.show(); 
@@ -60,11 +53,9 @@ if __name__ == "__main__":
     parser.add_argument('-i', '--palette_id', type=int, default=0,
                        help='palette id')
     parser.add_argument('-d', '--transparent_palette_index', default=0xff,
-                       help='palette id')
+                       help='transparent index for color in palette; default 255')
     parser.add_argument('--show', action='store_true', default=False,
                        help='show decoded image')
-    parser.add_argument('--transparent', action='store_true', default=False,
-                       help='output transparent as alpha zero - ~10x expensive, and not available in bmp target, and will REQUANTIZE palatte, which will deny the output picture from reimporting EXACTLY any more, leaving only viewable. Turned off by default')
     parser.add_argument('--saveraw', action='store_true', default=False,
                        help='save decoded raw data')
 

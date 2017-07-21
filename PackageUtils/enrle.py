@@ -20,11 +20,19 @@ def enRLE(indexed_buffer,width,height):
 def process():
     im=Image.open(args.image)
     if im.mode != "P": 
-        print "This image have no palette, that implies not a image derle produces; turn on quantize automatically"
-        args.quantize=True
+        if args.quantize == False:
+            print "This image have no palette, that implies not a image derle produces; turn on quantize automatically"
+            args.quantize=True
         if args.palette == None:
             print "Invalid configuration! quantize must specify palette/id"
             return
+    elif 'transparency' in im.info:
+        if args.transparent_palette_index != im.info['transparency'] :
+            if args.quantize:
+                im=im.convert("RGBA")
+            else:
+                print "bitmap built-in transparency color %d index not same as default %d; is it exported from derle? If not, suggest you rerun encoder with quantize, or color may be terrible" % (im.info['transparency'],args.transparent_palette_index)
+                args.transparent_palette_index = im.info['transparency']
     ima=im
     if args.quantize:
         pat = demkf.deMKF(args.palette,args.palette_id)
@@ -36,7 +44,9 @@ def process():
         im=utilcommon.quantizetopalette(im,imp, 1 if args.dither else 0)
     if args.save_quantized_png:
         im.save(args.output.name+".quantized.png")
-    if args.transparent_png:
+    if args.show:
+        im.show()
+    if args.quantize:
         for x in range(0,im.width): 
             for y in range(0,im.height):
                 if ima.getpixel( (x,y) )[3] == 0:
@@ -52,19 +62,19 @@ if __name__ == "__main__":
     parser.add_argument('-o','--output',type=argparse.FileType('wb'), required=True,
                        help='resulting rle')
     parser.add_argument('-d', '--transparent_palette_index', default=0xff,
-                       help='palette id')
+                       help='transparent index for color in palette; default 255')
     parser.add_argument('--quantize', action='store_true', default=False,
                        help='for images not with pal palette; notice: expensive!')
     parser.add_argument('-p', '--palette', type=argparse.FileType('rb'), 
                        help='PAT file for quantize')
     parser.add_argument('-i', '--palette_id',type=int, default=0,
                        help='palette id')
-    parser.add_argument('--transparent_png', action='store_true', default=False,
-                       help='use PNG transparent as RLE transparent')
     parser.add_argument('--dither', action='store_true', default=False,
                        help='whether ditter color when quantizing')
     parser.add_argument('--save_quantized_png', action='store_true', default=False,
                        help='save quantized png')
+    parser.add_argument('--show', action='store_true', default=False,
+                       help='show quantized png')
 
     args = parser.parse_args()
                        
