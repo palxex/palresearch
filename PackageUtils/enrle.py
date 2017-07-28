@@ -36,12 +36,14 @@ def process():
     ima=im
     if args.quantize:
         pat = demkf.deMKF(args.palette,args.palette_id)
-        if len(pat) > 768:
+        if len(pat) > 768: 
             pat=pat[0:768]
         pat="".join([chr(ord(x)*4) for x in pat])
+        pat=pat[0:args.transparent_palette_index*3]+"\x00\x00\x00"+pat[args.transparent_palette_index*3+3:]
         imp=Image.new("P",(16,16))
         imp.putpalette(pat)
         im=utilcommon.quantizetopalette(im,imp, 1 if args.dither else 0)
+
     if args.save_quantized_png:
         im.save(args.output.name+".quantized.png")
     if args.show:
