@@ -495,6 +495,8 @@ errno_t Pal::Tools::EncodeRLE(const void *Source, const uint8 TransparentColor, 
 		}
 		src += Stride - Width;
 	}
+	if( (ptr-temp) % 2 ) //smkf subfile must be even; need rle encoder archive it
+	    *ptr++ = 0;
 	length = (uint32)(ptr - temp);
 
 	if ((Destination = realloc(temp, length)) == NULL)
