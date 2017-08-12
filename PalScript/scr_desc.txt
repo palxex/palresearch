@@ -45,7 +45,7 @@ $n：文字显示速度，n越大，显示越慢（影响之后的所有文字�
 @0012: 相对移动对象 ObjectID Int16 Int16;
 @0013: 绝对移动对象 ObjectID Int16 Int16;
 @0014: 本对象置帧 Int16
-@0015: 设置队员方向和帧 DirectionID Int16 TeamMemberID ;Direction Frame# TeamMember
+@0015: 设置人物方向和帧 DirectionID Int16 RoleID ;Direction Frame# Role(in data.3)
 @0016: 设置对象动作 ObjectID DirectionID Int16 ; Object #WalkingFramesPerDirection CurrentFrame 
 ObjectID==0->啥都不干,<0->当前对象,在当前图内图内设置，不在绝对设置。
 @0017: 设置部位属性 BodyPartID AttributeID Int16

@@ -10,12 +10,14 @@ def deMKF(f,postfix):
     f.seek(0,os.SEEK_END)
     total_length=f.tell()
     f.seek(0,os.SEEK_SET)
-    first_index, = struct.unpack("<h",f.read(2))
+    packarg="<H" if use_unsigned_short else "<h"
+    first_index, = struct.unpack(packarg,f.read(2))
     subfiles = first_index-1
     for i in range(0,subfiles):
         with open(prefix+str(i)+"."+postfix, 'wb') as subfile:
             f.seek(i*2,os.SEEK_SET)
-            begin,end = struct.unpack("<hh",f.read(4))
+            begin,  = struct.unpack(packarg,f.read(2))
+            end,    = struct.unpack(packarg,f.read(2))
             begin   = begin if begin > 0 else 32768+begin
             end     = end   if end   > 0 else 32768+end
             end     = end   if end  != 0 else total_length/2
@@ -30,4 +32,5 @@ if __name__ == "__main__":
                        help='postfix for unpacked files')
 
     args = parser.parse_args()
+    use_unsigned_short = True if os.path.getsize(args.sMKF.name) > 64 * 1024 else False
     deMKF(args.sMKF,args.postfix)

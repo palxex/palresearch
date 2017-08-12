@@ -10,19 +10,23 @@ def getname(i):
 
 def ensMKF():
     maxfiles=10000
+    totalsize = 0
     for i in range(0,maxfiles):
         filename=getname(i)
         if not os.path.isfile(filename):
             maxfiles=i
             break
-    indexes=struct.pack("<h",maxfiles+1)
+        else:
+            totalsize += os.path.getsize(filename)
+    packarg="<H" if totalsize > 64 * 1024 else "<h"
+    indexes=struct.pack(packarg,maxfiles+1)
     offset=maxfiles+1
     for i in range(0,maxfiles):
         filename=getname(i)
         offset=offset+os.path.getsize(filename)/2
         if i == maxfiles-1:
             offset=0 #hack
-        indexes = indexes + struct.pack("<h",offset)
+        indexes = indexes + struct.pack(packarg,offset)
     with open(prefix+".smkf", 'wb') as mkffile:
         mkffile.write(indexes)
         for i in range(0,maxfiles):
