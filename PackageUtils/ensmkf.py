@@ -7,6 +7,9 @@ import re
 
 def getname(i):
     return prefix+str(i)+"."+postfix
+    
+def roundtoeven(i):
+    return i if i%2==0 else i+1
 
 def ensMKF():
     maxfiles=10000
@@ -17,13 +20,13 @@ def ensMKF():
             maxfiles=i
             break
         else:
-            totalsize += os.path.getsize(filename)
+            totalsize += roundtoeven(os.path.getsize(filename))
     packarg="<H" if totalsize > 64 * 1024 else "<h"
     indexes=struct.pack(packarg,maxfiles+1)
     offset=maxfiles+1
     for i in range(0,maxfiles):
         filename=getname(i)
-        offset=offset+os.path.getsize(filename)/2
+        offset=offset+roundtoeven(os.path.getsize(filename))/2
         if i == maxfiles-1:
             offset=0 #hack
         indexes = indexes + struct.pack(packarg,offset)
@@ -31,7 +34,10 @@ def ensMKF():
         mkffile.write(indexes)
         for i in range(0,maxfiles):
             with open(prefix+str(i)+"."+postfix, 'rb') as subfile:
-                mkffile.write(subfile.read())
+                content=subfile.read()
+                if len(content) %2 == 1:
+                    content+='\x00'
+                mkffile.write(content)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='sMKF pack util')
