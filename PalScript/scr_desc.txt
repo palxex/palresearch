@@ -45,7 +45,7 @@ $n：文字显示速度，n越大，显示越慢（影响之后的所有文字�
 @0012: 相对移动对象 ObjectID Int16 Int16;
 @0013: 绝对移动对象 ObjectID Int16 Int16;
 @0014: 本对象置帧 Int16
-@0015: 设置人物方向和帧 DirectionID Int16 RoleID ;Direction Frame# Role(in data.3)
+@0015: 设置队员方向和帧 DirectionID Int16 TeamMemberID ;Direction Frame# TeamMember
 @0016: 设置对象动作 ObjectID DirectionID Int16 ; Object #WalkingFramesPerDirection CurrentFrame 
 ObjectID==0->啥都不干,<0->当前对象,在当前图内图内设置，不在绝对设置。
 @0017: 设置部位属性 BodyPartID AttributeID Int16
@@ -104,7 +104,7 @@ EXE中arg3根本未实现，只能HMP同增。
 @0040: 设置对象触发方式 ObjectID TriggerMethodID ;Object TriggerMethod 参见脚本16
 @0041: 术法无效 ; 仙术前序脚本失败，不再执行下去
 @0042: 我方使用法术 WordID Int16 Int16 ;仙术 基本伤害 敌人序号(若为0或>5则为隐含，若<0则任选)
-@0043: 背景音乐 MusicID Int16 ; 音乐号 次数
+@0043: 背景音乐 MusicID MusicParamID ; 音乐号 播放参数
 @0044: 乘物中速行至 Int16 Int16 Int16 ; 参见3f。
 @0045: 设置战斗音乐 MusicID ;Music
 @0046: 设置队员块位置 Int16 Int16 Int16 ; XBlock YBlock HalfBlock 设置了一大堆相关数据结构……
@@ -145,7 +145,7 @@ EXE中arg3根本未实现，只能HMP同增。
 @0063: 敌人追逐感应倍增 Int16 ;Time
 @0064: 若该敌HP高于该比例则跳转 Int16 ScriptID ; Percent至少是1% Script
 0000bug候选，但无0000调用
-@0065: 设置队员形象 TeamMemberID SpriteID Boolean ;TeamMember Sprite Immediate 若不在战斗中，判断这个参数以决定是否立刻设置。
+@0065: 设置人物形象 RoleID SpriteID Boolean ;Role(in data.3) Sprite Immediate 若不在战斗中，判断这个参数以决定是否立刻设置。
 @0066: 投掷武器 WordID Int16 ;模拟法术 BaseDamage 武*int(rnd(4))+基本伤害存入arg2,然后执行模拟法术。
 @0067: 敌方使用法术 WordID Int16 ; 法 施术频率 敌只有一个法术位，每次该脚本改变之。频率同，默认100%。
 ffff为啥都不干，0为普攻。
@@ -227,10 +227,5 @@ ffff为啥都不干，0为普攻。
 @00a5: 淡入图片 PictureID SpriteID Int16 ;
 @00a6: 以当前屏幕为底
 
-继承98版新增：
+98版：
 00a7: 物品说明
-
-移植版新增：
-00a8: 设置相对跳转基地址 UInt16 ; 
-对高于0xFFFF的脚本，用这条自行设定跳转基地址，原有脚本跳转类均处理为相对跳转。
-约定:对高于0xFFFF的脚本段必须在最后一条指令前将基地址设置为0以保证原脚本正常工作。 

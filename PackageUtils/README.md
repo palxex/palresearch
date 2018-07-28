@@ -1,11 +1,19 @@
 打包工具
+Packaging Utilities
 ======
 背景知识：
+Background Knowledge
 1. 仙剑的打包格式：最外层统一为mkf，封包多个子文件。第二层一般为smkf，封包同一动画多帧（RNG例外）；大多情况下第二层外面会有一层YJ_1(DOS)/YJ_2(Win95)压缩以减少空间占用。没有统一规则，每个文件的封包需要自己分析。
+All MKFs that used in Pal has similar schema: outside is MKF, inner is sMKF/MKF(RNG only); in most cases sMKF was compressed by YJ1/YJ2. No universal rules exists, you'd analysis yourself.
+
 2. 工具共通前提：编译好pallib。\*nix（包括win32 msys2）下直接在PalLibrary下`make`即可。需要官方版python执行的话，用VC自带的命令行快捷方式跑`PalLibrary/build-vc-dll.cmd`。
+BEFORE USAGE: compile pallib as demoed above.
 3. 注意`pip install -r requirements.txt`安装依赖。
+BEFORE USAGE AGAIN: install requirements follow above instruments.
 4. 导出的bmp/png建议用[Usenti](http://www.coranac.com/projects/usenti/)或任何类似的支持调色板图像的编辑器编辑。windows画图会重整(requantize)调色板，导致再导入时需要重整调色板（否则颜色显示会有问题），无法实现精确的色彩把控，不推荐。
+It's not recommend to modify exported bmp/png with Windows Painter or any other app that don't supports saving with original palatte. They'll requantize it and makes exactly color manipulating impossible. Use them only when no other choise. Recommend app: UseNTI.
 5. 编辑时注意透明色由导出时的-d参数指定，默认为0xff。
+When exporting, please notice the `-d` param, it will tell the exporter what index in palette it should uses for the transparent 'color'. When its not specified, 0xff will be picked as default.
 
 * demkf
 -------

@@ -22,6 +22,8 @@ def ensMKF():
         else:
             totalsize += roundtoeven(os.path.getsize(filename))
     packarg="<H" if totalsize > 64 * 1024 else "<h"
+    if totalsize > 64 * 1024 and args.verbose:
+    	print("enter high mode")
     indexes=struct.pack(packarg,maxfiles+1)
     offset=maxfiles+1
     for i in range(0,maxfiles):
@@ -29,6 +31,8 @@ def ensMKF():
         offset=offset+roundtoeven(os.path.getsize(filename))/2
         if i == maxfiles-1:
             offset=0 #hack
+        if totalsize > 64 * 1024 and args.verbose:
+            print("now index:%d"%offset)
         indexes = indexes + struct.pack(packarg,offset)
     with open(prefix+".smkf", 'wb') as mkffile:
         mkffile.write(indexes)
@@ -45,6 +49,8 @@ if __name__ == "__main__":
                        help='prefix for files to pack')
     parser.add_argument('--postfix', required=True,
                        help='postfix for files to pack')
+    parser.add_argument('--verbose', '-v', action="store_true",
+                       help='show verbose log')
 
     args = parser.parse_args()
     prefix=args.prefix
