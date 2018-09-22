@@ -51,8 +51,8 @@ def process():
     if args.quantize:
         for x in range(0,im.width): 
             for y in range(0,im.height):
-                if ima.getpixel( (x,y) )[3] == 0:
-                    im.putpixel( (x,y), args.transparent_palette_index)
+                if im.mode != "P" and ima.getpixel( (x,y) )[3] == 0:
+                	im.putpixel( (x,y), args.transparent_palette_index)
     buffer = enRLE(im.tobytes(),im.width,im.height)
     if args.output:
         args.output.write(buffer)
