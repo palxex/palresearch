@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-  
 import platform
 import os
+import demkf
 from PIL import Image
 
 def getOSDynamicLibraryExtension():
@@ -32,3 +33,36 @@ def quantizetopalette(silf, palette, dither=False):
             )
     im = silf.im.convert("P", 1 if dither else 0, palette.im)
     return silf._makeself(im)
+
+def convertImage(im, args):
+    if im.mode != "P":
+        if args.quantize == False:
+            print "This image have no palette, that implies not a image derle produces; turn on quantize automatically"
+            args.quantize=True
+        if args.palette == None:
+            print "Invalid configuration! quantize must specify palette/id"
+            return
+    elif 'transparency' in im.info:
+        if args.transparent_palette_index != im.info['transparency'] :
+            if args.quantize:
+                im=im.convert("RGBA")
+            else:
+                print "input PNG built-in transparency color %d index not same as default %d; is it exported from derle? If not, suggest you rerun encoder with quantize, or color may be terrible" % (im.info['transparency'],args.transparent_palette_index)
+                args.transparent_palette_index = im.info['transparency']
+    else: #P but no transparency
+        if args.quantize:
+            im=im.convert("RGBA")
+        else:
+            print "input PNG not specified transparency color; it must not be exported from derle. Suggestion: rerun encoder with quantize, or color will be terrible"
+
+    ima=im
+    if args.quantize:
+        pat = demkf.deMKF(args.palette,args.palette_id)
+        if len(pat) > 768:
+            pat=pat[0:768]
+        pat="".join([chr(ord(x)*4) for x in pat])
+        pat=pat[0:args.transparent_palette_index*3]+"\x00\x00\x00"+pat[args.transparent_palette_index*3+3:]
+        imp=Image.new("P",(16,16))
+        imp.putpalette(pat)
+        im=quantizetopalette(im,imp, 1 if args.dither else 0)
+    return (im,ima)
