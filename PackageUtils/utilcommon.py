@@ -14,10 +14,17 @@ def getOSDynamicLibraryExtension():
     return switcher.get(_os, "so")
     
 def getPallibPath():
-    return os.path.dirname(__file__)+"/../PalLibrary/libpallib."+getOSDynamicLibraryExtension()
+    return (os.path.dirname(__file__)+"/" if __file__ else "") +"../PalLibrary/libpallib."+getOSDynamicLibraryExtension()
 
 def PallibExist():
     return os.path.isfile(getPallibPath())
+
+def getPalette(palette_file, palette_id):
+    pat = demkf.deMKF(palette_file, palette_id)
+    if len(pat) > 768:
+        pat=pat[0:768]
+    pat="".join([chr(ord(x)*4) for x in pat])
+    return pat
     
 def quantizetopalette(silf, palette, dither=False):
     """Convert an RGB or L mode image to use a given P image's palette."""

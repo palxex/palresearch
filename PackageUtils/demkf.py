@@ -4,11 +4,13 @@ import argparse
 import struct
 import os
 
+def deMKF_mem(content,index):
+    begin,end = struct.unpack("<II",content[index*4:(index+2)*4])
+    return content[begin:end]
+
 def deMKF(f,index):
-    f.seek(index*4,os.SEEK_SET)
-    begin,end = struct.unpack("<II",f.read(8))
-    f.seek(begin,os.SEEK_SET)
-    return f.read(end-begin)
+    f.seek(0)
+    return deMKF_mem(f.read(),index)
 
 def process(f,postfix):
     mkf_name=os.path.basename(f.name)
