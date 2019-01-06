@@ -270,13 +270,13 @@ optional arguments:
 示例：(将一部外源bik动画转为RNG)
 
 ```usage
-# generate gif and its palette
-ffmpeg -i demo.bik -vf scale=320:200 demo.gif
-ffmpeg -i demo.bik -vf scale=320:200:flags=lanczos,palettegen palette.png
+# calc palette and generate optimized gif with the palette
+ffmpeg -i demo.bik -vf fps=25,scale=320:200:flags=lanczos,palettegen=max_colors=256:reserve_transparent=0:stats_mode=full -y palette.png
+ffmpeg -i demo.bik -i palette.png -lavfi fps=25,scale=320:200:flags=lanczos[x];[x][1:v]paletteuse=new=0:dither=0:diff_mode=1 -y demo.gif
 # replace system palette; for example, the trademark palette(#3)
 ./demkf.py PAT.MKF -p pat
 ./enpat.py palette.png -o PAT3.pat
 ./enmkf.py --prefix PAT --postfix pat
-# requantize with the specified palette for less quality impacting
-./enrng.py demo.gif -o rng6.rng -p PAT.MKF --quantize -i 3 --dither
+# no requantize, directly reuse ffmpeg-optimized palette, avoid introduce quality impacting
+./enrng.py demo.gif -o rng6.rng -p PAT.MKF -i 3
 ```

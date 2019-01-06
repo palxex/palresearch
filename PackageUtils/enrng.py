@@ -35,7 +35,7 @@ def process():
     for frame in range(0, orig.n_frames):
     	orig.seek(frame)
     	im = orig
-    	(im,ima) = utilcommon.convertImage(im, args)
+    	(im,ima) = utilcommon.convertImage(im, args, silent=True)
         if args.saveraw:
            im.save(tempdir+"/temp%d.png"%frame)
            open(tempdir+"/temp%d.raw"%frame,"wb").write(im.tobytes())
