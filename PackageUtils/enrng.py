@@ -61,6 +61,8 @@ if __name__ == "__main__":
                        help='PAT file')
     parser.add_argument('-i', '--palette_id', type=int, default=0,
                        help='palette id')
+    parser.add_argument('-d', '--transparent_palette_index', default=0xff,
+                       help='transparent index for color in palette; default 255')
     parser.add_argument('--quantize', action='store_true', default=False,
                        help='for images not with pal palette; notice: expensive!')
     parser.add_argument('--dither', action='store_true', default=False,
