@@ -251,7 +251,7 @@ void crc_trans(WORD index,WORD v)
 	for(i=1;i<=11;i++)
 	{
 		res *= 1.06;
-		buffer[index*12+i] = res>>3;
+		buffer[index*12+i] = (res+4)>>3;
 	}
 }
 /*----------------------------------------------------------*/
