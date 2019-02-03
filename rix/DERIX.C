@@ -141,7 +141,7 @@ main(int parmn,char *parms[])
  printf("[CTRL] ---> Stop and End.\n");
  /*-------------------------- Get file ---------------------*/
  strcpy(filename, parms[1]);
- if(strcmp(filename+(strlen(parms[1])-4),".rix") != 0)
+ if(stricmp(filename+(strlen(parms[1])-4),".rix") != 0)
 	strcat(filename, ".rix\0");
  /*-------------------------- Usage ------------------------*/
  if(parmn < 2)
@@ -366,9 +366,7 @@ void rix_90_pro(WORD ctrl_l)
 		ins_to_reg(modify[ctrl_l*2+1],insbuf+13,insbuf[27]);
 		return;
 	}
-	else
-	{
-		if(ctrl_l > 6)
+	else if(ctrl_l > 6)
 		{
 			ins_to_reg(modify[ctrl_l*2+6],insbuf,insbuf[26]);
 			return;
@@ -379,7 +377,6 @@ void rix_90_pro(WORD ctrl_l)
 			ins_to_reg(15,insbuf+13,insbuf[27]);
 			return;
 		}
-	}
 }
 /*--------------------------------------------------------------*/
 void rix_A0_pro(WORD ctrl_l,WORD index)
@@ -395,11 +392,8 @@ void rix_A0_pro(WORD ctrl_l,WORD index)
 void prepare_a0b0(word index,word v)  /* important !*/
 {
 	short high = 0,low = 0; dword res;
-	low = ((unsigned)(v-0x2000))*0x19;
-	high = ((short)v)<0x2000?0xFFFF:0;
-	if(low == 0xFF && high == 0) return;
-	res = (((DWORD)high)|low)/0x2000;
-	low = res&0xFFFF;
+	long res1 = ((long)v-0x2000)*0x19;
+	low = res1/0x2000;
 	if(low < 0)
 	{
 		low = 0x18-low; high = (signed)low<0?0xFFFF:0;
