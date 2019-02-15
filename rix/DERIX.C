@@ -10,7 +10,69 @@
 /*----------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <dos.h>
+
+#ifdef __WATCOMC__
+#include <conio.h>
+#define enable _enable
+#define disable _disable
+#define getvect _dos_getvect
+#define setvect _dos_setvect
+#define outportb outp
+#define inportb inp
+#endif
+
+#ifdef __GNUC__
+#ifndef __DJGPP__ //assume ia16-elf-gcc
+#ifndef __FAR
+#error This prorgram only support ia16-elf-gcc
+#endif
+#define __GCCIA16__ 1
+#define interrupt static __far
+#include <conio.h>
+#include <i86.h>
+#define enable _enable
+#define disable _disable
+#define outportb outp
+#define inportb inp
+#define stricmp strcasecmp
+void __far *getvect(int intno)
+{
+        unsigned short seg, off;
+        asm volatile("int $0x21" :
+                     "=e"(seg), "=b"(off) :
+                     "Rah"((char)0x35), "Ral"((char)intno));
+        return MK_FP(seg,off);
+}
+static inline void setvect(int intno, void __far *vect)
+{
+        asm volatile("int $0x21" :
+                     : "Rah"((char)0x25), "Ral"((char)intno),
+                       "Rds"(FP_SEG(vect)), "d"(FP_OFF(vect)));
+}
+#else // __DJGPP__
+#define interrupt static
+#include <pc.h>
+#include <dpmi.h>
+#include <go32.h>
+typedef void (*TimerHandler)(void);
+static _go32_dpmi_seginfo	oldhandler, newhandler;
+TimerHandler getvect(int intno){
+  _go32_dpmi_get_protected_mode_interrupt_vector(intno, &oldhandler);
+  return (TimerHandler)-1;
+}
+void setvect(int intno, TimerHandler handler){
+  if((int)handler == -1) {
+  	_go32_dpmi_set_protected_mode_interrupt_vector(intno, &oldhandler);
+  }else{
+  	newhandler.pm_selector = _go32_my_cs();
+  	newhandler.pm_offset = (unsigned long)handler;
+  	_go32_dpmi_chain_protected_mode_interrupt_vector(intno, &newhandler);
+  }
+}
+#endif
+#endif
 /************************************************************/
 #define ESCAPE 0x01
 #define add    0x4E
@@ -26,25 +88,31 @@ typedef unsigned long  DWORD;
 typedef unsigned long  dword;
 typedef struct {BYTE v[14];}ADDT;
 typedef struct {WORD v[12];}BFDT;
+#ifndef __DJGPP__
 enum bool {false,true};
+#endif
 /************************************************************/
 int getkey()
 {
 	union REGS reg;
-	reg.x.ax = 0,
+	reg.x.ax = 0;
+#if __GCCIA16__
+	__asm__ __volatile__("int $0x16":"=a"(reg.x.ax):"a"(reg.x.ax));
+#else
 	int86(0x16,&reg,&reg);
+#endif
 	return reg.h.ah;
 }
 /************************************************************/
 /*      global various and flags                            */
 /************************************************************/
-#define default_pass 0x388;
+#define default_pass 0x220
 FILE * fp = NULL;
 FILE * tfp = NULL;
 char filename[12] = {0};
 DWORD filelen = 0;
 static DWORD I = 0;
-BYTE buf_addr[32768] = {0};  /* rix files' buffer */
+BYTE buf_addr[32767] = {0};  /* rix files' buffer */
 WORD buffer[300] = {0};
 WORD mus_block = 0;
 WORD ins_block = 0;
@@ -100,7 +168,7 @@ void ad_80_reg(WORD);              /**/
 void ad_a0b0_reg(WORD);            /**/
 void ad_a0b0l_reg(WORD,WORD,WORD); /**/
 void ad_bd_reg();                  /**/
-void ad_bop();                     /**/
+void ad_bop(WORD,WORD);                     /**/
 void ad_C0_reg(WORD);              /**/
 void ad_E0_reg(WORD);              /**/
 word ad_initial();                 /**/
@@ -125,7 +193,7 @@ void set_old_int();                /**/
 void set_speed(WORD);              /**/
 void set_time(word);               /**/
 void switch_ad_bd(WORD);           /**/
-dword strm_and_fr();               /* done */
+dword strm_and_fr(WORD);               /* done */
 
 /************************************************************/
 /*                                                          */
@@ -203,12 +271,14 @@ void data_initial()
 	I = mus_block+1;
 	if(rix_stereo != 0)
 	{
+		printf("percussion mode ON\n");
 		ad_a0b0_reg(6);
 		ad_a0b0_reg(7);
 		ad_a0b0_reg(8);
 		ad_a0b0l_reg(8,0x18,0);
 		ad_a0b0l_reg(7,0x1F,0);
-	}
+	}else
+		printf("percussion mode OFF\n");
 	bd_modify = 0;
 	ad_bd_reg();
 	set_speed(mus_time);
@@ -275,12 +345,12 @@ void prep_int()
 void ad_bop(WORD reg,WORD value)
 {
 	register int i;
-	outportb(0x388,reg);
+	outportb(default_pass,reg&0xff);
 	for(i=0;i<6;i++)
-	inportb(0x388);
-	outportb(0x389,value);
+	inportb(default_pass);
+	outportb(default_pass+1,value&0xff);
 	for(i=0;i<35;i++)
-	inportb(0x388);
+	inportb(default_pass);
 }
 /*------------------------------------------------------*/
 word ad_test()   /* Test the SoundCard */
@@ -289,11 +359,11 @@ word ad_test()   /* Test the SoundCard */
 	register short i;
 	ad_bop(0x04,0x60);
 	ad_bop(0x04,0x80);
-	result1 = inportb(0x388);
+	result1 = inportb(default_pass);
 	ad_bop(0x02,0xFF);
 	ad_bop(0x04,0x21);
-	for(i=0;i<0xC8;i++) inportb(0x388);
-	result2 = inportb(0x388);
+	for(i=0;i<0xC8;i++) inportb(default_pass);
+	result2 = inportb(default_pass);
 	ad_bop(0x04,0x60);
 	ad_bop(0x04,0x80);
 	if(result1&0xE0 != 0) return 0;
@@ -304,7 +374,11 @@ word ad_test()   /* Test the SoundCard */
 void interrupt int_08h_entry()
 {
 	word temp = 1;
+#ifdef __GNUC__
+	outportb(0x20,0x20);
+#else
 	old();
+#endif
 	while(temp)
 	if(unknown1 <= 0 && file_flag == 0)
 	{
@@ -391,31 +465,10 @@ void rix_A0_pro(WORD ctrl_l,WORD index)
 /*--------------------------------------------------------------*/
 void prepare_a0b0(word index,word v)  /* important !*/
 {
-	short high = 0,low = 0; dword res;
-	long res1 = ((long)v-0x2000)*0x19;
-	low = res1/0x2000;
-	if(low < 0)
-	{
-		low = 0x18-low; high = (signed)low<0?0xFFFF:0;
-		res = high; res<<=16; res+=low;
-		low = ((signed)res)/(signed)0xFFE7;
-		a0b0_data2[index] = low;
-		low = res;
-		res = low - 0x18;
-		high = (signed)res%0x19;
-		low = (signed)res/0x19;
-		if(high != 0) {low = 0x19; low = low-high;}
-	}
-	else
-	{
-		res = high = low;
-		low = (signed)res/(signed)0x19;
-		a0b0_data2[index] = low;
-		res = high;
-		low = (signed)res%(signed)0x19;
-	}
-	low = (signed)low*(signed)0x18;
-	displace[index] = low;
+    long res = ((long)v-0x2000)*0x19/0x2000;
+    long sgn=(res<0?-1:0);
+    a0b0_data2[index]=sgn;
+    displace[index]=(sgn>=0?(24*res):(576-(-res-1)*24));
 }
 /*--------------------------------------------------------------*/
 void ad_a0b0l_reg(WORD index,WORD p2,WORD p3)
