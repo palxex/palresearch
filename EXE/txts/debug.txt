@@ -82,3 +82,6 @@ heavy debug模式下的附加特色:
 类似BPM，但在线性地址空间中使用。
 ·HEAVYLOG
 启动或禁止重型CPU活动记录。DOSBOX将启动对最近20000个CPU周期内所有命令相关信息的记录。若有intCD发生(在调试器里即可使用int CD),或在严重错误后DOSBOX仍存留，则将如上信息拓入LOGCPU_INT_CD.TXT。对寻找DOSBOX在某点崩溃的原因非常有用。但与LOG类似，启动HEAVYLOG后DOSBOX的运行将显著放慢。
+
+如果需要一进入游戏就break在entry point上，使用`debug 待调试程序名`方式进入，如debug pal.exe。注意：dosbox-x的debug.exe换成了来自freedos的真debug（同MS-DOS debug语法），原命令替换为debugbox。
+segments.txt中记录了原版（unp两次以后）所有段地址。第一列记录原始偏移，第二列记录实际偏移（每个dosbox build实际偏移经常不同，尽管真机DOS中应为相同）。updatesegs.py是一个辅助脚本，作用是根据第三段（此段为entrypoint所在，如上进入break即可看到）的偏移校正所有段的实际偏移，方便接下来与静态结果对照。

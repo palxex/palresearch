@@ -110,7 +110,7 @@ EXE中arg3根本未实现，只能HMP同增。
 @0046: 设置队员块位置 Int16 Int16 Int16 ; XBlock YBlock HalfBlock 设置了一大堆相关数据结构……
 @0047: 播放音效 Int16
 0048: 音效相关... ; LOST SCRIPT!!!问题是没弄明白干吗……
-@0049: 设置对象状态 ObjectID StatusID ; 2=hero cannot walk over 参见16
+@0049: 设置对象状态 ObjectID StatusID ; 2=hero cannot walk over 参见16 ObjectID=0时，此指令等同nop
 @004a: 设置战场环境 PictureID ;BattleField
 @004b: 我方逃跑后僵直 Int16 ; 默认……10毫秒
 @004c: 本对象追向主角 Int16 Int16 Int16 ;警戒范围默认8 追及速度默认4 Boolean
@@ -198,7 +198,7 @@ ffff为啥都不干，0为普攻。
 @008e: 还原屏幕 ; 可以清掉所有文字对话框等等
 @008f: 金钱减半
 @0090: 设置RPG元素脚本 WordID ScriptID Int16;EnemyName 脚本 脚本类型
-@0091: 若调用之敌在队中不唯一则跳转 scriptID;
+@0091: 若调用之敌非同类中首位则跳转 scriptID;
 0000bug候选，但无0000调用
 @0092: 觉醒 CharacterID ;其实就是一个施法动作。
 @0093: 淡入淡出 Int16;速度;正数时淡入，负数时淡出
