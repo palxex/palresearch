@@ -1,0 +1,1 @@
+cl -I include src\*.cpp /LD /link /DEF:decodejy1.def /out:DecodeJY1.dll
