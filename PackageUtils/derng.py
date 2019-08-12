@@ -1,10 +1,11 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-  
 import argparse
 import struct
 import os
 import demkf
 import deyj1
+import deyj2
 import utilcommon
 from ctypes import *
 from PIL import Image, ImageDraw
@@ -20,23 +21,29 @@ def deRNG(source, prev_frame):
     return string_at(prev_frame,length)
 
 def process():
-    pat = utilcommon.getPalette(args.palette,args.palette_id)
+    pat = utilcommon.getPalette(args)
     frames = []
     memset(buffer,0,length)
-    num, = struct.unpack("<I",args.rng.read(4))
+    first_index, = struct.unpack("<I",args.rng.read(4))
+    num = first_index//4
     for frame in range(0, num):
         content=demkf.deMKF(args.rng, frame)
-        content=deyj1.deYJ1(content)
-        bytes = deRNG(content,buffer);
-        im = Image.frombytes("P", (320,200), bytes)
+        if len(content) == 0:
+            continue
+        if args.algorithm.lower() == 'YJ1'.lower():
+            content=deyj1.deYJ1(content)
+        elif args.algorithm.lower() == "YJ2".lower():
+            content=deyj2.deYJ2(content)
+        pixels = deRNG(content,buffer);
+        im = Image.frombytes("P", (320,200), pixels)
         im.putpalette(pat)
         im.info['transparency'] = args.transparent_palette_index
         frames.append(im)
         if args.saveraw:
             open(args.output.name+frame+".raw","wb").write(buffer)
     
-    img=Image.new("P", (320,200), args.transparent_palette_index)
-    img.save(args.output, save_all=True, append_images=frames, palette=pat, include_color_table=False, duration=args.millisecs_per_frame)
+    img=Image.frombytes("P", (320,200), frames[0].tobytes())
+    img.save(args.output, save_all=True, append_images=frames[1:], palette=pat, include_color_table=False, duration=args.millisecs_per_frame)
     
     if args.show:
         im.show() 
@@ -51,10 +58,14 @@ if __name__ == "__main__":
                        help='PAT file')
     parser.add_argument('-i', '--palette_id', type=int, default=0,
                        help='palette id')
+    parser.add_argument('-n', '--night', action='store_true', default=False,
+                       help='use night palette')
     parser.add_argument('-d', '--transparent_palette_index', default=0xff,
                        help='transparent index for color in palette; default 255')
     parser.add_argument('-m', '--millisecs_per_frame', type=int, default=100,
                        help='milliseconds per frame; default 100')
+    parser.add_argument('--algorithm', '-a', default='YJ1',
+                       help='decompression algorithm')
     parser.add_argument('--show', action='store_true', default=False,
                        help='show decoded image')
     parser.add_argument('--saveraw', action='store_true', default=False,

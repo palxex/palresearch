@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-  
 import argparse
 import os
@@ -14,6 +14,7 @@ def deYJ2(input):
     
 def process(inputf,output):
     output.write(deYJ2(inputf.read()))
+    output.close()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='YJ2 extraction util')
@@ -26,4 +27,4 @@ if __name__ == "__main__":
     if utilcommon.PallibExist():
         process(args.YJ2,args.output)
     else:
-        print "PalLib not exist. Please build it first in PalLibrary folder"    
+        print("PalLib not exist. Please build it first in PalLibrary folder")

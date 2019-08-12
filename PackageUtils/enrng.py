@@ -1,10 +1,11 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-  
 import argparse
 import struct
 import os
 import enmkf
 import enyj1
+import enyj2
 import utilcommon
 from ctypes import *
 from PIL import Image, ImageDraw
@@ -24,7 +25,7 @@ def enRNG(prev_frame,cur_frame):
     return string_at(buffer,len)
 
 def process():
-    pat = utilcommon.getPalette(args.palette,args.palette_id)
+    pat = utilcommon.getPalette(args)
     
     tempdir=tempfile.mkdtemp()
     if args.saveraw:
@@ -33,19 +34,22 @@ def process():
     orig=Image.open(args.gif)
     memset(prev_frame,0,length)
     for frame in range(0, orig.n_frames):
-    	orig.seek(frame)
-    	im = orig
-    	(im,ima) = utilcommon.convertImage(im, args, silent=True)
+        orig.seek(frame)
+        im = orig
+        (im,ima) = utilcommon.convertImage(im, args, silent=True)
         if args.saveraw:
            im.save(tempdir+"/temp%d.png"%frame)
            open(tempdir+"/temp%d.raw"%frame,"wb").write(im.tobytes())
-    	buf = enRNG(prev_frame,im.tobytes())
+        buf = enRNG(prev_frame,im.tobytes())
         if args.saveraw:
-           open(tempdir+"/temp%d.rf"%frame,"wb").write(buf)
-    	buf2 = enyj1.enYJ1(buf)
-    	open(tempdir+"/temp%d.yj1"%frame,"wb").write(buf2)
-    	memmove(prev_frame,orig.tobytes(),length)
-    
+            open(tempdir+"/temp%d.rf"%frame,"wb").write(buf)
+        if args.algorithm.lower() == 'YJ1'.lower():
+            buf2=enyj1.enYJ1(buf)
+        elif args.algorithm.lower() == "YJ2".lower():
+            buf2=enyj2.enYJ2(buf)
+        open(tempdir+"/temp%d.yj1"%frame,"wb").write(buf2)
+        memmove(prev_frame,orig.tobytes(),length)
+
     enmkf.enMKF(tempdir+"/temp","yj1")
     shutil.copyfile(tempdir+"/temp.mkf",args.output.name)
     if not args.saveraw:
@@ -61,6 +65,10 @@ if __name__ == "__main__":
                        help='PAT file')
     parser.add_argument('-i', '--palette_id', type=int, default=0,
                        help='palette id')
+    parser.add_argument('-n', '--night', action='store_true', default=False,
+                       help='use night palette')
+    parser.add_argument('--algorithm', '-a', default='YJ1',
+                       help='decompression algorithm')
     parser.add_argument('-d', '--transparent_palette_index', default=0xff,
                        help='transparent index for color in palette; default 255')
     parser.add_argument('--quantize', action='store_true', default=False,

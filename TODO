@@ -1,0 +1,4 @@
+对仙剑特有的一些格式比如yj1给出magic数据库override,方便file用
+derix的i16gcc支持，各种选项，opl3sur等
+用python重/新写mapeditor的配套脚本，具体计划见(https://trello.com/c/2k7hjKGJ/1-地图改良刍议)
+考虑远古工具的跨平台化

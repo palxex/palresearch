@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-  
 import argparse
 import struct
@@ -12,9 +12,9 @@ args=None
 def process():
     im=Image.open(args.image)
     if im.width != 320 or im.height !=200:
-        print "alert! not fit size for FBP"
+        print("alert! not fit size for FBP")
         return
-    (im,ima) = utilcommon.convertImage(im, args)
+    (im,ima) = utilcommon.convertImage(im, args, silent=True)
     args.output.write(im.tobytes())
 
 if __name__ == "__main__":
@@ -37,6 +37,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
                        
     if args.quantize and args.palette == None:
-        print "invalid configuration! quantize must specify palette/id"
+        print("invalid configuration! quantize must specify palette/id")
     else:
         process()

@@ -1,23 +1,15 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-  
 import argparse
 import struct
 import os
+import sys
 import demkf
 import utilcommon
 from ctypes import *
 from PIL import Image, ImageDraw
 
 args=None
-
-def dePAT(patfile,patid=0,day=1):
-    pat = demkf.deMKF(patfile,patid)
-    if len(pat) == 768 or day:
-        pat=pat[0:768]
-    else:
-        pat=pat[768:1536]
-    return "".join([chr(ord(x)*4) for x in pat])
-    
 
 def savepalette(palette,fp): #copied from pillow and modified...
     """Save palette to text file.
@@ -32,16 +24,21 @@ def savepalette(palette,fp): #copied from pillow and modified...
         fp.write("%d" % i)
         for j in range(i*len(palette.mode), (i+1)*len(palette.mode)):
             try:
-                fp.write(" %d" % ord(palette.palette[j])) # what the fuck of "%d"%str?
+                if sys.version_info[0]<3:
+                    fp.write(" %d" % ord(palette.palette[j]))
+                else:
+                    fp.write(" %d" % palette.palette[j])
             except IndexError:
                 fp.write(" 0")
         fp.write("\n")
     fp.close()
     
 def process():
-    pat = dePAT(args.palette,args.palette_id,not args.night)
-    buffer="".join([chr(x) for x in range(0,256)])
-    im=Image.frombytes("P", (16,16), buffer)
+    pat = utilcommon.getPalette(args)
+    buffer=bytearray(256);
+    for i in range(256):
+        buffer[i]=i
+    im=Image.frombytes("P", (16,16), bytes(buffer))
     im.putpalette(pat)
     
     if args.show:
@@ -69,6 +66,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     if not args.show and args.output == None:
-        print "Either Show or Specify output filename"
+        print("Either Show or Specify output filename")
     else:
         process()
