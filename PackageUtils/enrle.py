@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-  
 import argparse
 import struct
@@ -32,6 +32,7 @@ def process():
     buffer = enRLE(im.tobytes(),im.width,im.height)
     if args.output:
         args.output.write(buffer)
+        args.output.close()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='tool for converting BMP/PNG to RLE')
@@ -43,7 +44,7 @@ if __name__ == "__main__":
                        help='transparent index for color in palette; default 255')
     parser.add_argument('--quantize', action='store_true', default=False,
                        help='for images not with pal palette; notice: expensive!')
-    parser.add_argument('-p', '--palette', type=argparse.FileType('rb'), 
+    parser.add_argument('-p', '--palette', required=True, type=argparse.FileType('rb'), 
                        help='PAT file for quantize')
     parser.add_argument('-i', '--palette_id',type=int, default=0,
                        help='palette id')
@@ -57,6 +58,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
                        
     if args.quantize and args.palette == None:
-        print "invalid configuration! quantize must specify palette/id"
+        print("invalid configuration! quantize must specify palette/id")
     else:
         process()

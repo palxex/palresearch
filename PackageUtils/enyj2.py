@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-  
 import argparse
 import os
@@ -10,11 +10,14 @@ def enYJ2(input):
     buffer=POINTER(c_byte)()
     length=c_int()
     inbuf=input
+    if len(inbuf) == 0:
+    	return ""
     dll.encodeyj2(inbuf,len(inbuf),byref(buffer),byref(length),c_int(1))
     return string_at(buffer,length)
     
 def process(inputf,output):
     output.write(enYJ2(inputf.read()))
+    output.close()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='YJ2 compacting util')
@@ -27,4 +30,4 @@ if __name__ == "__main__":
     if utilcommon.PallibExist():
         process(args.file,args.output)
     else:
-        print "PalLib not exist. Please build it first in PalLibrary folder"
+        print("PalLib not exist. Please build it first in PalLibrary folder")

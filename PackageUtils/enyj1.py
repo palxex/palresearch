@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-  
 import argparse
 import os
@@ -15,9 +15,10 @@ def enYJ1(input):
     
 def process(inputf,output):
     output.write(enYJ1(inputf.read()))
+    output.close()
     
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='YJ1 compacting util')
+    parser = argparse.ArgumentParser(description='YJ1 compressing util')
     parser.add_argument('file', type=argparse.FileType('rb'),
                        help='file to compact')
     parser.add_argument('-o','--output', type=argparse.FileType('wb'), required=True,
@@ -27,4 +28,4 @@ if __name__ == "__main__":
     if utilcommon.PallibExist():
         process(args.file,args.output)
     else:
-        print "PalLib not exist. Please build it first in PalLibrary folder"
+        print("PalLib not exist. Please build it first in PalLibrary folder")

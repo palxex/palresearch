@@ -1,9 +1,8 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-  
 import argparse
 import struct
 import os
-import demkf
 import utilcommon
 from ctypes import *
 from PIL import Image, ImageDraw
@@ -21,10 +20,7 @@ def deRLE(input):
     return width,height,string_at(buffer,width*height)
 
 def process():
-    pat = demkf.deMKF(args.palette,args.palette_id)
-    if len(pat) > 768:
-        pat=pat[0:768]
-    pat="".join([chr(ord(x)*4) for x in pat])
+    pat = utilcommon.getPalette(args)
     
     width,height,buffer = deRLE(args.rle.read())
     
@@ -52,6 +48,8 @@ if __name__ == "__main__":
                        help='PAT file')
     parser.add_argument('-i', '--palette_id', type=int, default=0,
                        help='palette id')
+    parser.add_argument('-n', '--night', action='store_true', default=False,
+                       help='use night palette')
     parser.add_argument('-d', '--transparent_palette_index', default=0xff,
                        help='transparent index for color in palette; default 255')
     parser.add_argument('--show', action='store_true', default=False,
@@ -61,6 +59,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     if not args.show and args.output == None:
-        print "Either Show or Specify output filename"
+        print("Either Show or Specify output filename")
     else:
         process()

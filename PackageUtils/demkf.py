@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-  
 import argparse
 import struct
@@ -16,7 +16,7 @@ def process(f,postfix):
     mkf_name=os.path.basename(f.name)
     prefix=os.path.splitext(mkf_name)[0]
     first_index, = struct.unpack("<I",f.read(4))
-    subfiles = first_index/4
+    subfiles = first_index//4
     for i in range(0,subfiles):
         with open(prefix+str(i)+"."+postfix, 'wb') as subfile:
             subfile.write(deMKF(f,i))

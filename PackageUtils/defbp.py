@@ -1,33 +1,35 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-  
 import argparse
 import struct
 import os
-import demkf
+import utilcommon
 from PIL import Image
 
-def process(f,output,pal,id):
-    pat = demkf.deMKF(pal,id)
-    if len(pat) > 768:
-        pat=pat[0:768]
-    pat="".join([chr(ord(x)*4) for x in pat])
+def process(args):
+    pat = utilcommon.getPalette(args)
     
-    im=Image.frombytes("P", (320,200), f.read())
+    im=Image.frombytes("P", (320,200), args.fbp.read())
     im.putpalette(pat)
     
-    #im.show(); //uncomment it to view
-    im.save(output)
+    if args.show:
+        im.show(); 
+    im.save(args.output)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='convert FBP to palette BMP tool')
     parser.add_argument('fbp', type=argparse.FileType('rb'),
                        help='FBP file to decode')
-    parser.add_argument('bmp',type=argparse.FileType('wb'),
+    parser.add_argument('-o','--output',type=argparse.FileType('wb'),
                        help='resulting bmp')
     parser.add_argument('--palette', '-p', type=argparse.FileType('rb'), required=True, 
                        help='PAT file')
-    parser.add_argument('--patid', '-i', type=argparse.FileType('rb'), default=0,
+    parser.add_argument('--palette_id', '-i', type=argparse.FileType('rb'), default=0,
                        help='PAT file')
+    parser.add_argument('-n', '--night', action='store_true', default=False,
+                       help='use night palette')
+    parser.add_argument('--show', action='store_true', default=False,
+                       help='show decoded image')
 
     args = parser.parse_args()
-    process(args.fbp,args.bmp,args.palette,args.patid)
+    process(args)

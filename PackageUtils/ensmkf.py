@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-  
 import argparse
 import struct
@@ -28,7 +28,7 @@ def ensMKF():
     offset=maxfiles+1
     for i in range(0,maxfiles):
         filename=getname(i)
-        offset=offset+roundtoeven(os.path.getsize(filename))/2
+        offset=offset+roundtoeven(os.path.getsize(filename))//2
         if i == maxfiles-1:
             offset=0 #hack
         if totalsize > 64 * 1024 and args.verbose:
