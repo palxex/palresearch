@@ -2,3 +2,4 @@
 derix的i16gcc支持，各种选项，opl3sur等
 用python重/新写mapeditor的配套脚本，具体计划见(https://trello.com/c/2k7hjKGJ/1-地图改良刍议)
 考虑远古工具的跨平台化
+总结一些实现相关的问题，暂时想到的有：smkf、敌我毒抗定义不对等、敌我吉运定义不对等、敌背后灵、0000bug。
