@@ -31,6 +31,8 @@ if __name__ == "__main__":
                        help='PAT file for quantize')
     parser.add_argument('-i', '--palette_id',type=int, default=0,
                        help='palette id')
+    parser.add_argument('-n', '--night', action='store_true', default=False,
+                       help='use night palette')
     parser.add_argument('--dither', action='store_true', default=False,
                        help='whether ditter color when quantizing')
 
