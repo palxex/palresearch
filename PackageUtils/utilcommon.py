@@ -45,7 +45,11 @@ def quantizetopalette(silf, palette, dither=False):
             "only RGB/A or L/P mode images can be quantized to a palette! this mode:%s" % silf.mode
             )
     im = silf.im.convert("P", 1 if dither else 0, palette.im)
-    return silf._makeself(im)
+    imnew = Image.new('P',silf.size)
+    imnew.im = im
+    imnew.putpalette(palette.palette.tobytes())
+    silf.close()
+    return imnew
 
 def convbytes(str):
     if sys.version_info[0]<3:

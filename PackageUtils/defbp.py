@@ -13,8 +13,9 @@ def process(args):
     im.putpalette(pat)
     
     if args.show:
-        im.show(); 
-    im.save(args.output)
+        im.show()
+    if args.output:
+        im.save(args.output)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='convert FBP to palette BMP tool')
