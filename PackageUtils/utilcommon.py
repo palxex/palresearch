@@ -48,8 +48,8 @@ def quantizetopalette(silf, palette, dither=False):
     imnew = Image.new('P',silf.size)
     imnew.im = im
     imnew.putpalette(palette.palette.tobytes())
-    silf.close()
-    return imnew
+    im = imnew
+    return im
 
 def convbytes(str):
     if sys.version_info[0]<3:
@@ -69,8 +69,9 @@ def convertImage(im, args, silent=False):
         info=im.info
         if args.quantize:
             im=im.convert("RGBA")
-        if args.transparent_palette_index != info['transparency'] and not silent:
-            print("input image built-in transparency color %d index not same as default %d; is it exported from derle? If not, suggest you rerun encoder with quantize, or color may be terrible" % (im.info['transparency'],args.transparent_palette_index))
+        elif args.transparent_palette_index != info['transparency']:
+            if not silent:
+                print("input image built-in transparency color %d index not same as default %d; is it exported from derle? If not, suggest you rerun encoder with quantize, or color may be terrible" % (info['transparency'],args.transparent_palette_index))
             args.transparent_palette_index = info['transparency']
     else: #P but no transparency
         if args.quantize:
