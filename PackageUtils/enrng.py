@@ -11,6 +11,7 @@ from ctypes import *
 from PIL import Image, ImageDraw
 import tempfile
 import shutil
+import sys
 
 args=None
 length=320*200
@@ -36,6 +37,8 @@ def process():
     for frame in range(0, orig.n_frames):
         orig.seek(frame)
         im = orig
+        if args.progress:
+            utilcommon.printProgressBar(frame+1, orig.n_frames, prefix = 'Progress:', suffix = 'Complete', length = 50)
         (im,ima) = utilcommon.convertImage(im, args, silent=True)
         if args.saveraw:
            im.save(tempdir+"/temp%d.png"%frame)
@@ -77,6 +80,7 @@ if __name__ == "__main__":
                        help='whether ditter color when quantizing')
     parser.add_argument('--saveraw', action='store_true', default=False,
                        help='save decoded raw png data')
-
+    parser.add_argument('--progress', '-P', action="store_true", default=True,
+                       help='show progress bar')
     args = parser.parse_args()
     process()
