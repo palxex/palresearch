@@ -4,7 +4,7 @@ import argparse
 import struct
 import os
 
-def deMKF(f,postfix):
+def deSMKF(f,postfix):
     mkf_name=os.path.basename(f.name)
     prefix=os.path.splitext(mkf_name)[0]
     f.seek(0,os.SEEK_END)
@@ -12,7 +12,14 @@ def deMKF(f,postfix):
     f.seek(0,os.SEEK_SET)
     packarg="<H" if use_unsigned_short else "<h"
     first_index, = struct.unpack(packarg,f.read(2))
-    subfiles = first_index
+    subfiles = first_index-1
+
+    #addition check whether a LAST piece needed; some special case like abc1 needs it
+    f.seek(subfiles*2,os.SEEK_SET)
+    last_index,  = struct.unpack(packarg,f.read(2))
+    if last_index != 0 and last_index*2 < total_length:
+        subfiles=first_index
+
     for i in range(0,subfiles):
         with open(prefix+str(i)+"."+postfix, 'wb') as subfile:
             f.seek(i*2,os.SEEK_SET)
@@ -34,4 +41,4 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     use_unsigned_short = True if os.path.getsize(args.sMKF.name) > 64 * 1024 else False
-    deMKF(args.sMKF,args.postfix)
+    deSMKF(args.sMKF,args.postfix)
