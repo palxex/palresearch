@@ -28,7 +28,6 @@ MKF/mak
 PalScript/*.bin
 PalScript/*.dll
 PalScript/*.big5
-PalScript/*-dat-*
 
 MapEditor/gop*
 MapEditor/map*
