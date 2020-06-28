@@ -70,7 +70,7 @@ if __name__ == "__main__":
                        help='palette id')
     parser.add_argument('-n', '--night', action='store_true', default=False,
                        help='use night palette')
-    parser.add_argument('--algorithm', '-a', default='YJ1',
+    parser.add_argument('--algorithm', '-a', required=True,
                        help='decompression algorithm')
     parser.add_argument('-d', '--transparent_palette_index', default=0xff,
                        help='transparent index for color in palette; default 255')
@@ -80,7 +80,7 @@ if __name__ == "__main__":
                        help='whether ditter color when quantizing')
     parser.add_argument('--saveraw', action='store_true', default=False,
                        help='save decoded raw png data')
-    parser.add_argument('--progress', '-P', action="store_true", default=True,
+    parser.add_argument('--progress', '-P', action="store_true", default=False,
                        help='show progress bar')
     args = parser.parse_args()
     process()
