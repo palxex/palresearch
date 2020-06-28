@@ -258,13 +258,15 @@ optional arguments:
                         PAT file
   -i PALETTE_ID, --palette_id PALETTE_ID
                         palette id
+  -n, --night           use night palette
+  --algorithm ALGORITHM, -a ALGORITHM
+                        decompression algorithm
   -d TRANSPARENT_PALETTE_INDEX, --transparent_palette_index TRANSPARENT_PALETTE_INDEX
                         transparent index for color in palette; default 255
-  -m MILLISECS_PER_FRAME, --millisecs_per_frame MILLISECS_PER_FRAME
-                        milliseconds per frame; default 100
   --quantize            for images not with pal palette; notice: expensive!
   --dither              whether ditter color when quantizing
   --saveraw             save decoded raw png data
+  --progress, -P        show progress bar
 ```
 
 示例：(将一部外源bik动画转为RNG)
@@ -278,5 +280,5 @@ ffmpeg -i demo.bik -i palette.png -lavfi fps=25,scale=320:200:flags=lanczos[x];[
 ./enpat.py palette.png -o PAT3.pat
 ./enmkf.py --prefix PAT --postfix pat
 # no requantize, directly reuse ffmpeg-optimized palette, avoid introduce quality impacting
-./enrng.py demo.gif -o rng6.rng -p PAT.MKF -i 3
+./enrng.py demo.gif -o rng6.rng -p PAT.MKF -i 3 -a yj1 -P
 ```
