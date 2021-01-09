@@ -16,7 +16,15 @@ def enRLE(indexed_buffer,width,height):
     dll.encoderlet(indexed_buffer,args.transparent_palette_index,width,width,height,byref(buffer),byref(length))
     return string_at(buffer,length)
 
+def hex2rgb(color):
+    color = color.lstrip("#")
+    return tuple(
+        int(color[idx:idx+2], 16)
+        for idx in (0, 2, 4)
+    )
+
 def process():
+    tc=hex2rgb(args.transparent_rgb)
     im=Image.open(args.image)
     (im,ima) = utilcommon.convertImage(im, args)
 
@@ -27,7 +35,8 @@ def process():
     if args.quantize:
         for x in range(0,im.width): 
             for y in range(0,im.height):
-                if ima.getpixel( (x,y) )[3] == 0:
+                c=ima.getpixel((x,y))
+                if c[:3] == tc or (len(c) > 3 and c[3] == 0):
                 	im.putpixel( (x,y), args.transparent_palette_index)
     buffer = enRLE(im.tobytes(),im.width,im.height)
     if args.output:
@@ -42,6 +51,8 @@ if __name__ == "__main__":
                        help='resulting rle')
     parser.add_argument('-d', '--transparent_palette_index', type=int, default=0xff,
                        help='transparent index for color in palette; default 255')
+    parser.add_argument('-t', '--transparent_rgb', default="#ffffff",
+                       help='transparent color RGB; default #FFFFFF')
     parser.add_argument('--quantize', action='store_true', default=False,
                        help='for images not with pal palette; notice: expensive!')
     parser.add_argument('-p', '--palette', required=True, type=argparse.FileType('rb'), 

@@ -63,6 +63,8 @@ def convertImage(im, args, silent=False):
         if args.quantize == False:
             print("This image have no palette, that implies not a image derle produces; turn on quantize automatically")
             args.quantize=True
+            if im.mode == "RGB":
+                im=im.convert("RGBA")
         if args.palette == None:
             print("Invalid configuration! quantize must specify palette/id")
             return
