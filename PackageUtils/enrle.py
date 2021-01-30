@@ -3,6 +3,7 @@
 import argparse
 import struct
 import os
+import re
 import utilcommon
 from ctypes import *
 from PIL import Image, ImageDraw
@@ -24,7 +25,7 @@ def hex2rgb(color):
     )
 
 def process():
-    tc=hex2rgb(args.transparent_rgb)
+    tcs=[hex2rgb(x) for x in re.findall('#\d{6}',args.transparent_rgb)]
     im=Image.open(args.image)
     (im,ima) = utilcommon.convertImage(im, args)
 
@@ -36,7 +37,7 @@ def process():
         for x in range(0,im.width): 
             for y in range(0,im.height):
                 c=ima.getpixel((x,y))
-                if c[:3] == tc or (len(c) > 3 and c[3] == 0):
+                if c[:3] in tcs or (len(c) > 3 and c[3] == 0):
                 	im.putpixel( (x,y), args.transparent_palette_index)
     buffer = enRLE(im.tobytes(),im.width,im.height)
     if args.output:
