@@ -15,9 +15,9 @@ def enMKF(prefix,postfix):
         if not os.path.isfile(filename):
             maxfiles=i
             break
-    indexes=struct.pack("<I",maxfiles*4)
-    offset=maxfiles*4
-    for i in range(0,maxfiles-1):
+    indexes=struct.pack("<I",(maxfiles+1)*4)
+    offset=(maxfiles+1)*4
+    for i in range(0,maxfiles):
         filename=getname(prefix,postfix,i)
         offset=offset+os.path.getsize(filename)
         indexes = indexes + struct.pack("<I",offset)

@@ -72,7 +72,7 @@ if __name__ == "__main__":
                        help='use night palette')
     parser.add_argument('--algorithm', '-a', required=True,
                        help='decompression algorithm')
-    parser.add_argument('-d', '--transparent_palette_index', default=0xff,
+    parser.add_argument('-d', '--transparent_palette_index', type=int, default=0xff,
                        help='transparent index for color in palette; default 255')
     parser.add_argument('--quantize', action='store_true', default=False,
                        help='for images not with pal palette; notice: expensive!')

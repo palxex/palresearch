@@ -15,8 +15,18 @@ def deMKF(f,index):
 def process(f,postfix):
     mkf_name=os.path.basename(f.name)
     prefix=os.path.splitext(mkf_name)[0]
+    f.seek(0,os.SEEK_END)
+    total_length=f.tell()
+    f.seek(0,os.SEEK_SET)
     first_index, = struct.unpack("<I",f.read(4))
-    subfiles = first_index//4
+    subfiles = first_index//4 -1
+
+    #addition check whether a LAST piece needed
+    f.seek(subfiles*4,os.SEEK_SET)
+    last_index,  = struct.unpack("<I",f.read(4))
+    if last_index != 0 and last_index < total_length:
+        subfiles=first_index
+
     for i in range(0,subfiles):
         with open(prefix+str(i)+"."+postfix, 'wb') as subfile:
             subfile.write(deMKF(f,i))
