@@ -2,25 +2,25 @@
 以前对ylmson兄承诺记录下研究的历史，现在看来难以做到，谨留下这份记录，纪念我们生命中的这段激情燃烧的岁月。  
 需要指出的是，这份资料对早期研究者的强调是不够的，原因是前期大量资料被后来的工具、资料吸收和扩展后没有留下。
 
->原始资料：[SSS.txt](SSS.txt),[SSS.2.txt](./SSS.2.txt)  
+>原始资料：[SSS.txt](SSS.txt),[SSS.2.TXT](./SSS.2.TXT)  
 >作用：SSS格式解析  
 >扩展资料：[sssplusA.txt](sssplusA.txt),[sssplusB.txt](sssplusB.txt)  
 >扩展者：外塞之雾
 
->原始资料：[shop.txt](shop.txt)  
+>原始资料：[SHOP.TXT](SHOP.TXT)  
 >作用：店铺售卖资料
 
->原始资料：[team.txt](team.txt)  
+>原始资料：[TEAM.TXT](TEAM.TXT)  
 >作用：敌人团队组合
 
->原始资料：[]()level.txt  
+>原始资料：[LEVEL.TXT](LEVEL.TXT)  
 >作用：升级资料
 
 >新增资料：[battlefield.txt](battlefield.txt)  
 >作用：战场五象属性和特效  
 >作者：外塞之雾
 
->新增资料：[liulu.htm](liulu.htm),[data.htm](data.htm)  
+>新增资料：[liulu.htm](README.md),[data.htm](data.htm)  
 >作用：分别说明所有文件,data.mkf各子文件的作用  
 >作者：柳璐,鲁痴
 
@@ -32,16 +32,16 @@
 >作用：敌人全面资料  
 >作者：外塞之雾
 
->新增资料：[magic.txt](magic.txt)  
+>新增资料：[Magic.htm](Magic.htm)  
 >作用：法术全面资料  
 >作者：外塞之雾
 
->新增资料：[save.txt](save.txt)  
+>新增资料：[SAVE.TXT](SAVE.TXT)  
 >作用：仙剑存档格式rpg的字节级解析  
 >作者：馄饨  
 >增补者：外塞之雾、夜烟、鲁痴
 
->新增资料：[setup.txt](setup.txt)  
+>新增资料：[Setup.txt](Setup.txt)  
 >作用：仙剑DOS配置文件setup.dat的字节级解析  
 >作者：仙痴,SuperMouse
 
@@ -101,11 +101,11 @@
 >作用：adlib官方开发包中的ins格式  
 >作者：egsgx
 
->新增资料：[rix/playrix.exe](rix/playrix.exe),[rix/rix.exe](rix/rix.exe)  
+>新增资料：[rix/PLAYRIX.EXE](rix/PLAYRIX.EXE),[rix/RIX.EXE](rix/RIX.EXE)  
 >作用：DOS下rix播放  
 >作者：Googol Lee
 
->新增资料：[rix/playrix_final.asm](rix/playrix_final.asm),[rix/derix.c](rix/derix.c)  
+>新增资料：[rix/playrix_final.Asm](rix/playrix_final.Asm),[rix/DERIX.C](rix/DERIX.C)  
 >作用:反汇编playrix的结果  
 >作者：BSPAL
 
