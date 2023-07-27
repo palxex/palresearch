@@ -13,6 +13,8 @@ import tempfile
 import shutil
 import sys
 
+import derng
+
 args=None
 length=320*200
 ArrayType = c_int16 * length
@@ -27,13 +29,14 @@ def enRNG(prev_frame,cur_frame):
 
 def process():
     pat = utilcommon.getPalette(args)
-    
+
     tempdir=tempfile.mkdtemp()
     if args.saveraw:
     	print("working dir:"+tempdir)
-    
+
     orig=Image.open(args.gif)
-    memset(prev_frame,0,length)
+    # initialize with full transparent pixels
+    memset(prev_frame,-1,length)
     for frame in range(0, orig.n_frames):
         orig.seek(frame)
         im = orig
@@ -44,14 +47,18 @@ def process():
            im.save(tempdir+"/temp%d.png"%frame)
            open(tempdir+"/temp%d.raw"%frame,"wb").write(im.tobytes())
         buf = enRNG(prev_frame,im.tobytes())
+        # HACKHACK; eliminate the padding introduced by the encoder to ensure bitwize exactness( BEFORE compression )
+        if buf[-2:] == b'\x00\x00': 
+            buf = buf[:-1]
         if args.saveraw:
-            open(tempdir+"/temp%d.rf"%frame,"wb").write(buf)
+            open(tempdir+"/temp%d.diff"%frame,"wb").write(buf)
         if args.algorithm.lower() == 'YJ1'.lower():
             buf2=enyj1.enYJ1(buf)
         elif args.algorithm.lower() == "YJ2".lower():
             buf2=enyj2.enYJ2(buf)
         open(tempdir+"/temp%d.yj1"%frame,"wb").write(buf2)
-        memmove(prev_frame,orig.tobytes(),length)
+        # manually apply the patch, instead of directly using the new frame, since its unware of the transparent pixels
+        derng.deRNG(buf,prev_frame)
 
     enmkf.enMKF(tempdir+"/temp","yj1")
     shutil.copyfile(tempdir+"/temp.mkf",args.output.name)

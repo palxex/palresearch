@@ -12,13 +12,16 @@ from PIL import Image, ImageDraw
 
 args=None
 length=320*200
-ArrayType = c_int16 * length
+ArrayType = c_int8 * length
 buffer = ArrayType()
 
 def deRNG(source, prev_frame):
     dll=cdll.LoadLibrary(utilcommon.getPallibPath())
     dll.decoderng(source,c_void_p(addressof(prev_frame)))
     return string_at(prev_frame,length)
+
+def get_fname(full):
+    return os.path.splitext(os.path.basename(full))[0]
 
 def process():
     pat = utilcommon.getPalette(args)
@@ -40,7 +43,10 @@ def process():
         im.info['transparency'] = args.transparent_palette_index
         frames.append(im)
         if args.saveraw:
-            open(args.output.name+frame+".raw","wb").write(buffer)
+            fname=get_fname(args.rng.name)
+            open("%s%s.diff"%(fname,frame),"wb").write(content)
+            open("%s%s.raw"%(fname,frame),"wb").write(buffer)
+            im.save("%s%s.png"%(fname,frame))
     
     img=Image.frombytes("P", (320,200), frames[0].tobytes())
     img.save(args.output, save_all=True, append_images=frames[1:], palette=pat, include_color_table=False, duration=args.millisecs_per_frame)
