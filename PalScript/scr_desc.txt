@@ -162,7 +162,7 @@ ffff为啥都不干，0为普攻。
 其后因不小心删掉了原文件，所以对实现的评点丢掉了。
 @0071: 画面晃动 Int16 Int16 ; 晃动层次 步进	小到0，大到256消失
 0072: 更换对象形象 ObjectID Int16 Boolean;(0则当前) mgo号 是否重建mgo映像 LOST SCRIPT!!!
-@0073: 泛金消散 Int16 Int16 ; 每次消散耗时 消散次数
+@0073: 交叉淡出 Int16 Int16 ; 每次淡出耗时 淡出次数
 @0074: 我方有损耗则跳转 ScriptID ; 实现上混淆了队员与成员
 0000bug候选，但无0000调用
 @0075: 组队 CharacterID CharacterID CharacterID
