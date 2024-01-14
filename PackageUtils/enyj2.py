@@ -11,7 +11,7 @@ def enYJ2(input):
     length=c_int()
     inbuf=input
     if len(inbuf) == 0:
-    	return ""
+    	return b""
     dll.encodeyj2(inbuf,len(inbuf),byref(buffer),byref(length),c_int(1))
     return string_at(buffer,length)
     
