@@ -1,7 +1,129 @@
 #include <windows.h>
 #include <stdio.h>
+#include <direct.h>
 
 #include "pallib.h"
+
+//
+// 敌方战斗图像导出目录
+//
+#define outPathOfABC					"ABC\\"
+
+//
+// 道具图像导出目录
+//
+#define outPathOfBALL				"BALL\\"
+
+//
+// 我方战斗图像导出目录
+//
+#define outPathOfFIGHT				"FIGHT\\"
+
+//
+// 卷动/背景图像导出目录
+//
+#define outPathOfFBP					"FBP\\"
+
+//
+// 仙术特效图像导出目录
+//
+#define outPathOfFIRE				"FIRE\\"
+
+//
+// 地图图像导出目录
+//
+#define outPathOfMAP					"MAP\\"
+
+//
+// 地图角色移动/动作图像导出目录
+//
+#define outPathOfMGO					"MGO\\"
+
+//
+// 事件图像导出目录
+//
+#define outPathOfEVENT				"EVENT\\"
+
+//
+// 角色肖像导出目录
+//
+#define outPathOfRGM					"RGM\\"
+
+//
+// 过场动漫静态图像导出目录
+//
+#define outPathOfRNG					"RNG\\"
+
+//
+// 敌方战斗图像背景色索引
+//
+#define bgColorIndexOfABC			200
+
+//
+// 道具图像背景色索引
+//
+#define bgColorIndexOfBALL			160
+
+//
+// 我方战斗图像背景色索引
+//
+#define bgColorIndexOfFIGHT			200
+
+//
+// 卷动/背景图像背景色索引
+//
+#define bgColorIndexOfFBP			200
+
+//
+// 仙术特效图像背景色索引（默认自动，暂不提供）
+//
+#define bgColorIndexOfFIRE			0
+
+//
+// 地图图像背景色索引（默认自动，暂不提供）
+//
+#define bgColorIndexOfMAP			0
+
+//
+//  地图角色移动/动作图像背景色索引
+//
+#define bgColorIndexOfMGO			200
+
+//
+// 事件图像背景色索引
+//
+#define bgColorIndexOfEVENT			200
+
+//
+// 角色肖像背景色索引
+//
+#define bgColorIndexOfRGM			160
+
+//
+// 过场动漫静态图像背景色索引（默认自动，暂不提供）
+//
+#define bgColorIndexOfRNG			0
+
+CHAR szInputPath[0xFF];
+CHAR szOutputPath[0xFF];
+CHAR szOutputPathBuk[0xFF];
+
+CHAR szOutputFile[0xFF];
+CHAR szOutputFileBuk[0xFF];
+
+// 资源文件路径
+CHAR szAbcJ[0xFF];
+CHAR szBallNew[0xFF];
+CHAR szFbpPx[0xFF];
+CHAR szFffJ[0xFF];
+CHAR szFirenAv[0xFF];
+CHAR szMgoJ[0xFF];
+CHAR szMgoNew[0xFF];
+CHAR szMgopJoe[0xFF];
+CHAR szRgmJoe[0xFF];
+CHAR szRngAv[0xFF];
+CHAR szRngPal[0xFF];
+CHAR szAlldatNew[0xFF];
 
 #pragma pack(2)
 struct RGB555
@@ -153,8 +275,8 @@ void decode_rng(unsigned char* buf, unsigned char* buffer)
 
 void read_rng()
 {
-	FILE* fp = fopen("h:\\rng.av", "rb");
-	FILE* fp0 = fopen("h:\\rng.pal", "rb");
+	FILE* fp = fopen(szRngAv, "rb");
+	FILE* fp0 = fopen(szRngPal, "rb");
 	int seq = 0;
 	unsigned long num;
 	RGB555 palette[0x100];
@@ -183,6 +305,14 @@ void read_rng()
 		for(int i = 0; i < num; i++)
 			offsets[i] = ntohl(offsets[i]);
 
+		sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfRNG);
+
+		// 创建目录 ./game/PalSSOut/RNG
+		mkdir(szOutputFile);
+
+		// 备份路径
+		sprintf(szOutputFileBuk, "%s", szOutputFile);
+
 		for(int i = 0; i < num - 1; i++)
 		{
 			if (offsets[i] >= 0x80000000)
@@ -199,9 +329,22 @@ void read_rng()
 				decode_rng(buf, buffer);
 				free(buf);
 			}
-			char buf1[30];
-			sprintf(buf1, "f:\\pal\\%02d-%03d.bmp", seq, i);
-			OutputBitmap(buf1, palette, buffer, 320, 200);
+			// 还原路径....
+			sprintf(szOutputFile, "%s", szOutputFileBuk);
+
+			sprintf(szOutputFile, "%s\\RNG%d", szOutputFile, seq);
+
+			// 创建目录 ./game/PalSSOut/RNG/RNG0
+			mkdir(szOutputFile);
+
+			sprintf(szOutputFile, "%s\\RNG%d", szOutputFile, seq);
+
+			//
+			// 分开命名，方便 enrle
+			//
+			sprintf(szOutputFile, "%s%d.bmp", szOutputFile, i);
+
+			OutputBitmap(szOutputFile, palette, buffer, 320, 200);
 		}
 		printf("Processed RNG: %d\n", seq);
 //		getchar();
@@ -223,7 +366,7 @@ FIREN.AV：按 0x800 分块
 
 void read_firen()
 {
-	FILE* fp = fopen("h:\\firen.av", "rb");
+	FILE* fp = fopen(szFirenAv, "rb");
 	int seq = 0;
 	unsigned long num;
 	RGB555 palette[0x100];
@@ -235,6 +378,14 @@ void read_firen()
 	fread(indices, 2, 112, fp);
 	for(int i = 0; i < 112; i++)
 		indoff[i] = (unsigned long)ntohs(indices[i]) * 0x800;
+
+	sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfFIRE);
+
+	// 创建目录 ./game/PalSSOut/FIRE
+	mkdir(szOutputFile);
+
+	// 备份路径
+	sprintf(szOutputFileBuk, "%s", szOutputFile);
 
 	for(seq = 0; seq < 111; seq++)
 	{
@@ -259,9 +410,23 @@ void read_firen()
 			fread(buf, (offsets[i + 1] & 0x0fffffff) - offsets[i], 1, fp);
 			decode_rng(buf, buffer);
 			free(buf);
-			char buf1[30];
-			sprintf(buf1, "f:\\pal\\%03d-%03d.bmp", seq, i);
-			OutputBitmap(buf1, palette, buffer, 320, 200);
+
+			// 还原路径....
+			sprintf(szOutputFile, "%s", szOutputFileBuk);
+
+			sprintf(szOutputFile, "%s\\FIRE%d", szOutputFile, seq);
+
+			// 创建目录 ./game/PalSSOut/FIRE/FIRE0
+			mkdir(szOutputFile);
+
+			sprintf(szOutputFile, "%s\\FIRE%d", szOutputFile, seq);
+
+			//
+			// 分开命名，方便 enrle
+			//
+			sprintf(szOutputFile, "%s%d.bmp", szOutputFile, i);
+
+			OutputBitmap(szOutputFile, palette, buffer, 320, 200);
 		}
 		printf("Processed FIREN: %d\n", seq);
 //		getchar();
@@ -285,8 +450,8 @@ bool DecoderCallBack(int srcVal, uint8* pOutVal, void* pUserData)
 
 void read_rgm()
 {
-	FILE* fp = fopen("h:\\rgm.joe", "rb");
-	FILE* fp0 = fopen("h:\\ALLDAT.NEW", "rb");
+	FILE* fp = fopen(szRgmJoe, "rb");
+	FILE* fp0 = fopen(szAlldatNew, "rb");
 	int seq = -1;
 	RGB555 palette[8][0x100];
 	unsigned short* ppat = (unsigned short*)palette;
@@ -298,7 +463,21 @@ void read_rgm()
 	fread(palette, 2, 0x800, fp0);
 	for(int i = 0; i < 0x8; i++)
 		for(int j = 0; j < 256; j++)
-			ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
+			//
+			// 将图像背景改为对比色
+			//
+			if (j)
+				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
+			else
+				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + bgColorIndexOfRGM]);
+
+	sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfRGM);
+
+	// 创建目录 ./game/PalSSOut/RGM
+	mkdir(szOutputFile);
+
+	// 备份路径
+	sprintf(szOutputFileBuk, "%s", szOutputFile);
 
 	while(fread(inbuf, 1, 0x2800, fp))
 	{
@@ -308,12 +487,12 @@ void read_rgm()
 		*pw = ntohs(*pw); *ph = ntohs(*ph);
 		memset(buffer, 0, 0xfa00);
 		Pal::Tools::DecodeRle(inbuf, buffer, 320, 200, 0, 0, DecoderCallBack, NULL);
-		char buf1[30];
-//		for(int i = 0; i < 8; i++)
-		{
-			sprintf(buf1, "f:\\pal\\%03d.bmp", seq);
-			OutputBitmap(buf1, palette[3], buffer, 320, 200);
-		}
+		// 还原路径....
+		sprintf(szOutputFile, "%s", szOutputFileBuk);
+
+		sprintf(szOutputFile, "%s\\RGM%d%d.bmp", szOutputFile, 0, seq);
+
+		OutputBitmap(szOutputFile, palette[3], buffer, 320, 200);
 	}
 	fclose(fp0);
 	fclose(fp);
@@ -321,20 +500,40 @@ void read_rgm()
 
 void read_ball()
 {
-	FILE* fp = fopen("h:\\ball.new", "rb");
-	FILE* fp0 = fopen("h:\\ALLDAT.NEW", "rb");
+	FILE* fp = fopen(szBallNew, "rb");
+	FILE* fp0 = fopen(szAlldatNew, "rb");
 	RGB555 palette[8][0x100];
 	unsigned short* ppat = (unsigned short*)palette;
 	unsigned long offsets[253];
-	unsigned char inbuf[0xfa00];
-	unsigned char buffer[0xfa00];
+
+	// HACK: 宽高
+	INT iRleWidth = 48;
+	INT iRleHeight = 47;
+	INT iRleLength = iRleWidth * iRleHeight;
+	unsigned char inbuf[48 * 47];
+	unsigned char buffer[48 * 47];
+
 	unsigned short* pw = (unsigned short*)inbuf;
 	unsigned short* ph = pw + 1;
 
 	fread(palette, 2, 0x800, fp0);
 	for(int i = 0; i < 0x8; i++)
 		for(int j = 0; j < 256; j++)
-			ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
+			//
+			// 将图像背景改为对比色
+			//
+			if (j)
+				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
+			else
+				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + bgColorIndexOfBALL]);
+
+	sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfBALL);
+
+	// 创建目录 ./game/PalSSOut/BALL
+	mkdir(szOutputFile);
+
+	// 备份路径
+	sprintf(szOutputFileBuk, "%s", szOutputFile);
 
 	fread(offsets, 4, 253, fp);
 	for(int i = 0; i < 253; i++)
@@ -350,14 +549,18 @@ void read_ball()
 		if (*pw == 0 || *ph == 0)
 			continue;
 		*pw = ntohs(*pw); *ph = ntohs(*ph);
-		memset(buffer, 0, 0xfa00);
-		Pal::Tools::DecodeRle(inbuf, buffer, 320, 200, 0, 0, DecoderCallBack, NULL);
+
+		// HACK
+		memset(buffer, 0, iRleLength);
+		Pal::Tools::DecodeRle(inbuf, buffer, iRleWidth, iRleHeight, 0, 0, DecoderCallBack, NULL);
 		char buf1[30];
-//		for(int i = 0; i < 8; i++)
-		{
-			sprintf(buf1, "f:\\pal\\%03d.bmp", i);
-			OutputBitmap(buf1, palette[3], buffer, 320, 200);
-		}
+
+		// 还原路径....
+		sprintf(szOutputFile, "%s", szOutputFileBuk);
+
+		sprintf(szOutputFile, "%s\\%03d.bmp", szOutputFile, i);
+
+		OutputBitmap(szOutputFile, palette[3], buffer, iRleWidth, iRleHeight);
 	}
 	fclose(fp0);
 	fclose(fp);
@@ -365,8 +568,8 @@ void read_ball()
 
 void read_fbp()
 {
-	FILE* fp = fopen("h:\\fbp.px", "rb");
-	FILE* fp0 = fopen("h:\\ALLDAT.NEW", "rb");
+	FILE* fp = fopen(szFbpPx, "rb");
+	FILE* fp0 = fopen(szAlldatNew, "rb");
 	int seq = -1;
 	RGB555 palette[8][0x100];
 	unsigned short* ppat = (unsigned short*)palette;
@@ -375,22 +578,37 @@ void read_fbp()
 	fread(palette, 2, 0x800, fp0);
 	for(int i = 0; i < 0x8; i++)
 		for(int j = 0; j < 256; j++)
-			ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
+			//
+			// 将图像背景改为对比色
+			//
+			if (j)
+				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
+			else
+				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + bgColorIndexOfFBP]);
+
+	sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfFBP);
+
+	// 创建目录 ./game/PalSSOut/FBP
+	mkdir(szOutputFile);
+
+	// 备份路径
+	sprintf(szOutputFileBuk, "%s", szOutputFile);
 
 	while(fread(buffer, 0x10000, 1, fp))
 	{
 		seq++;
-		char buf1[30];
-//		for(int i = 0; i < 8; i++)
-		{
-			sprintf(buf1, "f:\\pal\\%03d.bmp", seq);
-			if (seq == 0 || seq == 1 || (seq >= 3 && seq <= 5))
-				OutputBitmap(buf1, palette[3], buffer, 320, 200);
-			else if (seq == 2)
-				OutputBitmap(buf1, palette[1], buffer, 320, 200);
-			else
-				OutputBitmap(buf1, palette[0], buffer, 320, 200);
-		}
+
+		// 还原路径....
+		sprintf(szOutputFile, "%s", szOutputFileBuk);
+
+		sprintf(szOutputFile, "%s\\%03d.bmp", szOutputFile, seq);
+
+		if (seq == 0 || seq == 1 || (seq >= 3 && seq <= 5))
+			OutputBitmap(szOutputFile, palette[3], buffer, 320, 200);
+		else if (seq == 2)
+			OutputBitmap(szOutputFile, palette[1], buffer, 320, 200);
+		else
+			OutputBitmap(szOutputFile, palette[0], buffer, 320, 200);
 	}
 	fclose(fp0);
 	fclose(fp);
@@ -398,9 +616,12 @@ void read_fbp()
 
 void read_j(int index)
 {
-	char* filename[] = {"h:\\abc.j", "h:\\fff.j", "h:\\mgo.j"};
+	CHAR szOutputFile[255];
+	CHAR szOutputFileBuk[255];
+
+	char* filename[] = { szAbcJ, szFffJ, szMgoJ };
 	FILE* fp = fopen(filename[index], "rb");
-	FILE* fp0 = fopen("h:\\ALLDAT.NEW", "rb");
+	FILE* fp0 = fopen(szAlldatNew, "rb");
 	RGB555 palette[8][0x100];
 	int max = 0, pi = (index == 2 ? 1 : 2);
 	unsigned short* ppat = (unsigned short*)palette;
@@ -408,7 +629,7 @@ void read_j(int index)
 	unsigned long offset;
 	unsigned long offsets[0x400];
 	unsigned char* inbuf = NULL;
-	unsigned char buffer[200][320];
+	unsigned char* buffer;
 	unsigned short* num;
 	struct __size{
 		unsigned short w;
@@ -418,13 +639,42 @@ void read_j(int index)
 	fread(palette, 2, 0x800, fp0);
 	for(int i = 0; i < 0x8; i++)
 		for(int j = 0; j < 256; j++)
-			ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
+			if (j)
+				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
+			else
+				// 根据不同的图像类别分配透明色背景和输出路径
+				switch (index)
+				{
+				case 0:
+					ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + bgColorIndexOfABC]);
+
+					sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfABC);
+					break;
+
+				case 1:
+					ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + bgColorIndexOfFIGHT]);
+
+					sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfFIGHT);
+					break;
+
+				case 2:
+					ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + bgColorIndexOfMGO]);
+
+					sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfMGO);
+					break;
+				}
+
+	// 创建目录 ./game/PalSSOut/ABC、FIGHT、 MGO
+	mkdir(szOutputFile);
+
+	// 备份路径
+	sprintf(szOutputFileBuk, "%s", szOutputFile);
 
 	fread(indices, 2, 0x400, fp);
 	for(int i = 0; i < 0x400 && indices[i]; i++)
 		offsets[i] = (unsigned long)ntohs(indices[i]) * 0x800, max = i;
 
-	for(int i = 0; i < max - 1; i++)
+	for(int i = 0; i < max; i++)
 	{
 		int len = offsets[i + 1] - offsets[i];
 		if (len == 0)
@@ -439,16 +689,24 @@ void read_j(int index)
 		{
 			psize[j].w = ntohs(psize[j].w);
 			psize[j].h = ntohs(psize[j].h);
-			memset(buffer, 0, 0xfa00);
-			for(int y = 0; y < psize[j].h; y++)
-				for(int x = 0; x < psize[j].w; x++)
-					buffer[y][x] = inbuf[offset++];
-			char buf1[30];
-//			for(int i = 0; i < 8; i++)
-			{
-				sprintf(buf1, "f:\\pal\\%03d-%02d.bmp", i, j);
-				OutputBitmap(buf1, palette[pi], (LPBYTE)buffer, 320, 200);
-			}
+
+			// 申请空间并清理画布内存
+			buffer = (unsigned char*)malloc(psize[j].w * psize[j].h);
+
+			memset(buffer, 0x0, sizeof(buffer));
+
+			for (int y = 0; y < psize[j].h * psize[j].w; y++)
+				buffer[y] = inbuf[offset++];
+
+			// 还原输出路径
+			sprintf(szOutputFile, "%s", szOutputFileBuk);
+
+			sprintf(szOutputFile, "%s\\%03d-%02d.bmp", szOutputFile, i, j);
+
+			OutputBitmap(szOutputFile, palette[pi], (LPBYTE)buffer, psize[j].w, psize[j].h);
+
+			// 释放内存
+			free(buffer);
 		}
 	}
 	free(inbuf);
@@ -458,8 +716,8 @@ void read_j(int index)
 
 void read_mgo_new()
 {
-	FILE* fp = fopen("h:\\mgo.new", "rb");
-	FILE* fp0 = fopen("h:\\ALLDAT.NEW", "rb");
+	FILE* fp = fopen(szMgoNew, "rb");
+	FILE* fp0 = fopen(szAlldatNew, "rb");
 	RGB555 palette[8][0x100];
 	int sub_count[] = {0, 11, 6, 8, 22, 17, 7, 2, 5, 2, 2, 1, 1, 2, 2, 1, 7, 4, 1, 15, 17, 10, 12, 15, 9, 12, 8, 7, 9, 3, 2, 3, 0, 0, 9, 9, 5, 5, 3, 1, 7, 7, 3, 1, 6, 4, 1, 13, 9, 20, 12, 8, 14, 13, 3, 2, 3, 0, 9, 10, 7, 3, 1, 2, 4, 8, 3, 8, 1, 2, 4, 5, 4, 3, 1, 3, 7, 7, 0, 4, 3, 12, 10, 1, 10, 1, 7, 1, 0, 6, 1, 11, 7, 21, 0, 1, 7, 4, 0, 4, 18, 8, 8, 3, 4, 0, 10, 1, 14, 8, 11, 8, 16, 3, 3, 4, 1, 4, 5, 10, 5, 3, 0, 0, 6, 1, 5, 8, 9, 12, 12, 3, 8, 2, 4, 4, 3, 2, 6, 5, 8, 3, 3, 5, 1, 3, 1, 8, 8, 6, 3, 4, 1, 7, 8, 2, 10, 1, 3, 3, 3, 2, 2, 2, 0, 4, 5, 5, 7, 3, 1, 1, 0, 7, 8, 6, 3, 0, 2, 5, 4, 2, 10, 4, 6, 5, 2, 3, 4, 6, 0, 8, 4, 4, 3, 2, 1, 5, 8, 5, 1, 10, 11, 6, 12, 6, 0, 2, 2, 3, 5, 3, 5, 2, 3, 2, 4, 4, 8, 14, 5, 0, 0, 0, 1, 1, 3, 2, 8, 2, 5, 3, 6, 5, 1, 0, 3, 6, 0, 1, 1, 2, 1, 9, 5, 2, 2, 5, 0, 4, 8, 2, 5, 3, 2, 5, 7, 1, 7, 6, 1, 1, 2, 4, 13, 11, 6, 5, 6, 5, 8, 0, 7, 0, 4, 0, 0, 2, 0, 9, 9, 7, 0, 8, 6, 0, 4, 0, 0, 0, 5, 5, 5, 6, 7, 2, 5, 6, 5};
 	int max = 0;//, pi = (index == 2 ? 1 : 2);
@@ -468,7 +726,7 @@ void read_mgo_new()
 	unsigned long offset, off;
 	unsigned long offsets[0x400];
 	unsigned char* inbuf = NULL;
-	unsigned char buffer[200][320];
+	unsigned char* buffer;
 	unsigned short* num;
 	struct __size{
 		unsigned short w;
@@ -478,13 +736,16 @@ void read_mgo_new()
 	fread(palette, 2, 0x800, fp0);
 	for(int i = 0; i < 0x8; i++)
 		for(int j = 0; j < 256; j++)
-			ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
+			if (j)
+				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
+			else
+				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + bgColorIndexOfEVENT]);
 
 	fread(indices, 2, 0x400, fp);
 	for(int i = 0; i < 0x400 && indices[i]; i++)
 		offsets[i] = (unsigned long)ntohs(indices[i]) * 0x800, max = i;
 
-//	FILE* fp3 = fopen("f:\\pal\\mgo--.txt", "w");
+//	FILE* fp3 = fopen(outPathOf % "mgo--.txt", "w");
 	for(int i = 0; i < max - 1; i++)
 	{
 		int len = offsets[i + 1] - offsets[i];
@@ -538,21 +799,35 @@ void read_mgo_new()
 		fclose(fp2);
 		continue;
 */
+
+		// 创建目录 ./game/PalSSOut/EVENT
+		sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfEVENT);
+		mkdir(szOutputFile);
+
+		// 备份路径
+		sprintf(szOutputFileBuk, "%s", szOutputFile);
+
 		for(int j = 0, n = 0; n < sub_count[i]; j += num[j] * 2 + 1, n++)
 		{
 			psize = (struct __size*)(num + j + 1);
 			for(int k = 0; k < num[j]; k++)
 			{
-				memset(buffer, 0, 0xfa00);
-				for(int y = 0; y < psize[k].h; y++)
-					for(int x = 0; x < psize[k].w; x++)
-						buffer[y][x] = inbuf[offset++];
-				char buf1[30];
-//				for(int i = 0; i < 8; i++)
-				{
-					sprintf(buf1, "f:\\pal\\mgo\\%03d-%02d-%02d.bmp", i, n, k);
-					OutputBitmap(buf1, palette[1], (LPBYTE)buffer, 320, 200);
-				}
+				// 申请内存空间
+				buffer = (unsigned char*)malloc(psize[k].w * psize[k].h);
+
+				memset(buffer, 0x0001, sizeof(buffer));
+
+				for (int y = 0; y < psize[k].w * psize[k].h; y++)
+					buffer[y] = inbuf[offset++];
+
+				// 还原输出路径
+				sprintf(szOutputFile, "%s", szOutputFileBuk);
+
+				sprintf(szOutputFile, "%s\\%03d-%02d-%02d.bmp", szOutputFile, i, n, k);
+
+				OutputBitmap(szOutputFile, palette[1], (LPBYTE)buffer, psize[k].w, psize[k].h);
+
+				free(buffer);
 			}
 		}
 	}
@@ -563,8 +838,8 @@ void read_mgo_new()
 
 void read_mgop()
 {
-	FILE* fp = fopen("h:\\mgop.joe", "rb");
-	FILE* fp0 = fopen("h:\\ALLDAT.NEW", "rb");
+	FILE* fp = fopen(szMgopJoe, "rb");
+	FILE* fp0 = fopen(szAlldatNew, "rb");
 	RGB555 palette[8][0x100];
 	int max = 0, cnt = 0;
 	unsigned short* ppat = (unsigned short*)palette;
@@ -612,7 +887,6 @@ void read_mgop()
 			map[index].base = ntohs(map[index].base);
 			map[index].overlay = ntohs(map[index].overlay);
 		}
-		char buf1[30];
 /*
 		memset(buffer, 0, 2064 * 2055);
 		for(int y = 0; y < 128; y++)
@@ -644,6 +918,13 @@ void read_mgop()
 		sprintf(buf1, "f:\\pal\\%03d-overlay.bmp", i);
 		OutputBitmap(buf1, palette[0], (LPBYTE)buffer, 2064, 2055);
 */
+
+		sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfMAP);
+		sprintf(szOutputFileBuk, "%s", szOutputFile);
+
+		// 创建目录    .\game\PalSSOut\MAP\ 
+		mkdir(szOutputFile);
+
 		memset(buffer, 0, 2064 * 2055);
 		for(int y = 0; y < 128; y++)
 			for(int x = 0, index = y << 7; x < 128; x++, index++)
@@ -660,8 +941,13 @@ void read_mgop()
 							buffer[dy * 2064 + dx] = gop[ioverlay - 1].pixel[sy][sx];
 					}
 			}
-		sprintf(buf1, "f:\\pal\\%03d-map.bmp", i);
-		OutputBitmap(buf1, palette[0], (LPBYTE)buffer, 2064, 2055);
+
+		// 还原输出路径
+		sprintf(szOutputFile, "%s", szOutputFileBuk);
+
+		sprintf(szOutputFile, "%s\\%03d.bmp", szOutputFile, i);
+
+		OutputBitmap(szOutputFile, palette[0], (LPBYTE)buffer, 2064, 2055);
 /*
 		sprintf(buf1, "f:\\pal\\%03d-overlay.bmp", i);
 		FILE* fp2 = fopen(buf1, "wb");
@@ -715,15 +1001,41 @@ void read_mgop()
 }
 
 int main(int argc, char* argv[])
-{
-//	read_rng1();
-//	read_rng();
-//	read_firen();
-//	read_rgm();
-//	read_ball();
-//	read_fbp();
-//	read_j(1);
-//	read_mgo_new();
+{	// 获取游戏路径
+	getcwd(szInputPath, 0xFF);
+
+	sprintf(szOutputPath, "%s", szInputPath);
+
+	// 获取图像输出目录工作路径
+	sprintf(szOutputPath, "%s\\PalSSOut\\", szOutputPath);
+
+	// 备份游戏路径
+	sprintf(szOutputPathBuk, "%s", szOutputPath);
+	mkdir(szOutputPath);
+
+	sprintf(szAlldatNew, "%s\\ALLDAT.NEW", szInputPath);
+	sprintf(szAbcJ, "%s\\abc.j", szInputPath);
+	sprintf(szBallNew, "%s\\ball.new", szInputPath);
+	sprintf(szFbpPx, "%s\\fbp.px", szInputPath);
+	sprintf(szFffJ, "%s\\fff.j", szInputPath);
+	sprintf(szFirenAv, "%s\\firen.av", szInputPath);
+	sprintf(szMgoJ, "%s\\mgo.j", szInputPath);
+	sprintf(szMgoNew, "%s\\mgo.new", szInputPath);
+	sprintf(szMgopJoe, "%s\\mgop.joe", szInputPath);
+	sprintf(szRgmJoe, "%s\\rgm.joe", szInputPath);
+	sprintf(szRngAv, "%s\\rng.av", szInputPath);
+	sprintf(szRngPal, "%s\\rng.pal", szInputPath);
+
+	//read_rng1();
+	read_rng();
+	read_firen();
+	read_rgm();
+	read_ball();
+	read_fbp();
+	read_j(0);
+	read_j(1);
+	read_j(2);
+	read_mgo_new();
 	read_mgop();
 	return 0;
 }
