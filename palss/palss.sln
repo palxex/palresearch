@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "palss", "palss.vcproj", "{EDE11AFC-A8BE-4066-9E8E-1E1DCBA5BAF7}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "palss", "palss.vcxproj", "{EDE11AFC-A8BE-4066-9E8E-1E1DCBA5BAF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "convert", "convert\convert.csproj", "{9BB24C89-2B85-49F4-85EC-7CD9664497AF}"
 EndProject
@@ -38,5 +40,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {554E6279-9AD1-4012-AD1E-B65C75EF3D98}
 	EndGlobalSection
 EndGlobal

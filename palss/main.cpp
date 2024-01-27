@@ -4,103 +4,105 @@
 
 #include "pallib.h"
 
+#define TRANSPARENT_INDEX			0xff
+
 //
-// µĞ·½Õ½¶·Í¼Ïñµ¼³öÄ¿Â¼
+// æ•Œæ–¹æˆ˜æ–—å›¾åƒå¯¼å‡ºç›®å½•
 //
 #define outPathOfABC					"ABC\\"
 
 //
-// µÀ¾ßÍ¼Ïñµ¼³öÄ¿Â¼
+// é“å…·å›¾åƒå¯¼å‡ºç›®å½•
 //
 #define outPathOfBALL				"BALL\\"
 
 //
-// ÎÒ·½Õ½¶·Í¼Ïñµ¼³öÄ¿Â¼
+// æˆ‘æ–¹æˆ˜æ–—å›¾åƒå¯¼å‡ºç›®å½•
 //
 #define outPathOfFIGHT				"FIGHT\\"
 
 //
-// ¾í¶¯/±³¾°Í¼Ïñµ¼³öÄ¿Â¼
+// å·åŠ¨/èƒŒæ™¯å›¾åƒå¯¼å‡ºç›®å½•
 //
 #define outPathOfFBP					"FBP\\"
 
 //
-// ÏÉÊõÌØĞ§Í¼Ïñµ¼³öÄ¿Â¼
+// ä»™æœ¯ç‰¹æ•ˆå›¾åƒå¯¼å‡ºç›®å½•
 //
 #define outPathOfFIRE				"FIRE\\"
 
 //
-// µØÍ¼Í¼Ïñµ¼³öÄ¿Â¼
+// åœ°å›¾å›¾åƒå¯¼å‡ºç›®å½•
 //
 #define outPathOfMAP					"MAP\\"
 
 //
-// µØÍ¼½ÇÉ«ÒÆ¶¯/¶¯×÷Í¼Ïñµ¼³öÄ¿Â¼
+// åœ°å›¾è§’è‰²ç§»åŠ¨/åŠ¨ä½œå›¾åƒå¯¼å‡ºç›®å½•
 //
 #define outPathOfMGO					"MGO\\"
 
 //
-// ÊÂ¼şÍ¼Ïñµ¼³öÄ¿Â¼
+// äº‹ä»¶å›¾åƒå¯¼å‡ºç›®å½•
 //
 #define outPathOfEVENT				"EVENT\\"
 
 //
-// ½ÇÉ«Ğ¤Ïñµ¼³öÄ¿Â¼
+// è§’è‰²è‚–åƒå¯¼å‡ºç›®å½•
 //
 #define outPathOfRGM					"RGM\\"
 
 //
-// ¹ı³¡¶¯Âş¾²Ì¬Í¼Ïñµ¼³öÄ¿Â¼
+// è¿‡åœºåŠ¨æ¼«é™æ€å›¾åƒå¯¼å‡ºç›®å½•
 //
 #define outPathOfRNG					"RNG\\"
 
 //
-// µĞ·½Õ½¶·Í¼Ïñ±³¾°É«Ë÷Òı
+// æ•Œæ–¹æˆ˜æ–—å›¾åƒèƒŒæ™¯è‰²ç´¢å¼•
 //
 #define bgColorIndexOfABC			200
 
 //
-// µÀ¾ßÍ¼Ïñ±³¾°É«Ë÷Òı
+// é“å…·å›¾åƒèƒŒæ™¯è‰²ç´¢å¼•
 //
-#define bgColorIndexOfBALL			160
+#define bgColorIndexOfBALL			0
 
 //
-// ÎÒ·½Õ½¶·Í¼Ïñ±³¾°É«Ë÷Òı
+// æˆ‘æ–¹æˆ˜æ–—å›¾åƒèƒŒæ™¯è‰²ç´¢å¼•
 //
 #define bgColorIndexOfFIGHT			200
 
 //
-// ¾í¶¯/±³¾°Í¼Ïñ±³¾°É«Ë÷Òı
+// å·åŠ¨/èƒŒæ™¯å›¾åƒèƒŒæ™¯è‰²ç´¢å¼•
 //
 #define bgColorIndexOfFBP			200
 
 //
-// ÏÉÊõÌØĞ§Í¼Ïñ±³¾°É«Ë÷Òı£¨Ä¬ÈÏ×Ô¶¯£¬Ôİ²»Ìá¹©£©
+// ä»™æœ¯ç‰¹æ•ˆå›¾åƒèƒŒæ™¯è‰²ç´¢å¼•ï¼ˆé»˜è®¤è‡ªåŠ¨ï¼Œæš‚ä¸æä¾›ï¼‰
 //
 #define bgColorIndexOfFIRE			0
 
 //
-// µØÍ¼Í¼Ïñ±³¾°É«Ë÷Òı£¨Ä¬ÈÏ×Ô¶¯£¬Ôİ²»Ìá¹©£©
+// åœ°å›¾å›¾åƒèƒŒæ™¯è‰²ç´¢å¼•ï¼ˆé»˜è®¤è‡ªåŠ¨ï¼Œæš‚ä¸æä¾›ï¼‰
 //
 #define bgColorIndexOfMAP			0
 
 //
-//  µØÍ¼½ÇÉ«ÒÆ¶¯/¶¯×÷Í¼Ïñ±³¾°É«Ë÷Òı
+//  åœ°å›¾è§’è‰²ç§»åŠ¨/åŠ¨ä½œå›¾åƒèƒŒæ™¯è‰²ç´¢å¼•
 //
 #define bgColorIndexOfMGO			200
 
 //
-// ÊÂ¼şÍ¼Ïñ±³¾°É«Ë÷Òı
+// äº‹ä»¶å›¾åƒèƒŒæ™¯è‰²ç´¢å¼•
 //
 #define bgColorIndexOfEVENT			200
 
 //
-// ½ÇÉ«Ğ¤Ïñ±³¾°É«Ë÷Òı
+// è§’è‰²è‚–åƒèƒŒæ™¯è‰²ç´¢å¼•
 //
-#define bgColorIndexOfRGM			160
+#define bgColorIndexOfRGM			0
 
 //
-// ¹ı³¡¶¯Âş¾²Ì¬Í¼Ïñ±³¾°É«Ë÷Òı£¨Ä¬ÈÏ×Ô¶¯£¬Ôİ²»Ìá¹©£©
+// è¿‡åœºåŠ¨æ¼«é™æ€å›¾åƒèƒŒæ™¯è‰²ç´¢å¼•ï¼ˆé»˜è®¤è‡ªåŠ¨ï¼Œæš‚ä¸æä¾›ï¼‰
 //
 #define bgColorIndexOfRNG			0
 
@@ -111,7 +113,7 @@ CHAR szOutputPathBuk[0xFF];
 CHAR szOutputFile[0xFF];
 CHAR szOutputFileBuk[0xFF];
 
-// ×ÊÔ´ÎÄ¼şÂ·¾¶
+// èµ„æºæ–‡ä»¶è·¯å¾„
 CHAR szAbcJ[0xFF];
 CHAR szBallNew[0xFF];
 CHAR szFbpPx[0xFF];
@@ -137,47 +139,54 @@ struct RGB555
 VOID OutputBitmap(char* filename, RGB555 palette[], LPBYTE lpBuffer, DWORD dwWidth, DWORD dwHeight)
 {
 	LPBITMAPFILEHEADER	lpFileHeader;
-	LPBITMAPINFOHEADER	lpInfoHeader;
-	LPRGBQUAD	lpBmpPalette;
+	LPBITMAPV5HEADER	lpInfoHeader;
 	LPBYTE	lpBmpContent;
-	DWORD	dwContentLength = dwWidth * dwHeight;
+	DWORD	dwContentLength = dwWidth * dwHeight * 4;
 
 	HANDLE hFile = CreateFile(filename, GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
 	HANDLE hMapping = CreateFileMapping(hFile, NULL, PAGE_READWRITE, 0, 1078 + dwContentLength, NULL);
 	lpFileHeader = (LPBITMAPFILEHEADER)MapViewOfFile(hMapping, FILE_MAP_READ | FILE_MAP_WRITE, 0, 0, 0);
-	lpInfoHeader = (LPBITMAPINFOHEADER)(lpFileHeader + 1);
-	lpBmpPalette = (LPRGBQUAD)(lpInfoHeader + 1);
-	lpBmpContent = (LPBYTE)(lpBmpPalette + 256);
+	lpInfoHeader = (LPBITMAPV5HEADER)(lpFileHeader + 1);
+	lpBmpContent = (LPBYTE)(lpInfoHeader + 1);
 
 	lpFileHeader->bfType = 'MB';
-	lpFileHeader->bfSize = 1078 + dwContentLength;
+	lpFileHeader->bfSize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPV5HEADER) + dwContentLength;
 	lpFileHeader->bfReserved1 = lpFileHeader->bfReserved2 = 0;
-	lpFileHeader->bfOffBits = 1078;
+	lpFileHeader->bfOffBits = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPV5HEADER);
 
-	lpInfoHeader->biSize = sizeof(BITMAPINFOHEADER);
-	lpInfoHeader->biWidth = dwWidth;
-	lpInfoHeader->biHeight = dwHeight;
-	lpInfoHeader->biPlanes = 1;
-	lpInfoHeader->biBitCount = 8;
-	lpInfoHeader->biCompression = BI_RGB;
-	lpInfoHeader->biSizeImage = dwContentLength;
-	lpInfoHeader->biXPelsPerMeter = lpInfoHeader->biYPelsPerMeter = 0;
-	lpInfoHeader->biClrUsed = lpInfoHeader->biClrImportant = 0;
+	lpInfoHeader->bV5Size = sizeof(BITMAPV5HEADER);
+	lpInfoHeader->bV5Width = dwWidth;
+	lpInfoHeader->bV5Height = dwHeight;
+	lpInfoHeader->bV5Planes = 1;
+	lpInfoHeader->bV5BitCount = 32;
+	lpInfoHeader->bV5Compression = BI_BITFIELDS;
+	lpInfoHeader->bV5SizeImage = dwContentLength;
+	lpInfoHeader->bV5XPelsPerMeter = lpInfoHeader->bV5YPelsPerMeter = 0;
+	lpInfoHeader->bV5ClrUsed = lpInfoHeader->bV5ClrImportant = 0;
+	lpInfoHeader->bV5RedMask   = 0x00ff0000;
+	lpInfoHeader->bV5GreenMask = 0x0000ff00;
+	lpInfoHeader->bV5BlueMask  = 0x000000ff;
+	lpInfoHeader->bV5AlphaMask = 0xff000000;
+	lpInfoHeader->bV5CSType = 0x73524742; // 'sRGB'
+	CIEXYZTRIPLE x = { 0 };
+	lpInfoHeader->bV5Endpoints = x;
+	lpInfoHeader->bV5GammaRed   = 0;
+	lpInfoHeader->bV5GammaGreen = 0;
+	lpInfoHeader->bV5GammaBlue  = 0;
+	lpInfoHeader->bV5Intent = 0;
+	lpInfoHeader->bV5ProfileData = 0;
+	lpInfoHeader->bV5ProfileSize = 0;
+	lpInfoHeader->bV5Reserved = 0;
 
-	for(int i = 0; i < 256; i++)
-	{
-		lpBmpPalette[i].rgbRed = palette[i].red << 3;
-		lpBmpPalette[i].rgbGreen = palette[i].green << 3;
-		lpBmpPalette[i].rgbBlue = palette[i].blue << 3;
-		lpBmpPalette[i].rgbReserved = 0;
-	}
-
-	lpBmpContent += dwContentLength;
 	for(int i = 0; i < dwHeight; i++)
 	{
-		lpBmpContent -= dwWidth;
-		CopyMemory(lpBmpContent, lpBuffer, dwWidth);
-		lpBuffer += dwWidth;
+		for (int j = 0; j < dwWidth; j++)
+		{
+			lpBmpContent[(dwWidth * (dwHeight - i - 1) + j) * 4 + 0] = (lpBuffer[i * dwWidth + j] == TRANSPARENT_INDEX) ? 0 : (palette[lpBuffer[i * dwWidth + j]].blue  << 3);
+			lpBmpContent[(dwWidth * (dwHeight - i - 1) + j) * 4 + 1] = (lpBuffer[i * dwWidth + j] == TRANSPARENT_INDEX) ? 0 : (palette[lpBuffer[i * dwWidth + j]].green << 3);
+			lpBmpContent[(dwWidth * (dwHeight - i - 1) + j) * 4 + 2] = (lpBuffer[i * dwWidth + j] == TRANSPARENT_INDEX) ? 0 : (palette[lpBuffer[i * dwWidth + j]].red   << 3);
+			lpBmpContent[(dwWidth * (dwHeight - i - 1) + j) * 4 + 3] = (lpBuffer[i * dwWidth + j] == TRANSPARENT_INDEX) ? 0 : 255;
+		}
 	}
 
 	UnmapViewOfFile(lpFileHeader);
@@ -186,27 +195,27 @@ VOID OutputBitmap(char* filename, RGB555 palette[], LPBYTE lpBuffer, DWORD dwWid
 }
 
 /*
-RNG.AV ½á¹¹£ºÒÔ 0x800 (2048) ×Ö½Ú£¨¼´Ò»¸ö¹âÅÌÉÈÇø´óĞ¡£©ÎªÒ»¸öÍêÕûµÄÊı¾İ¿é¡£ÆäÖĞÊı¾İ¾ùÎª Bit-Endian
-µÚ 1 ¿é£ºRNG ¸÷¶Î¶¯»­µÄÆğÊ¼Î»ÖÃË÷Òı£¬ÒÔÊı¾İ¿éÎªµ¥Î»£¬Ã¿¸öË÷Òı 2 ×Ö½Ú£¬×îºóÒ»¸öË÷ÒıÎªÎÄ¼şµÄ×Ü³¤¶È£¬Òò´Ë¹² 44 ¸öË÷Òı¡£
+RNG.AV ç»“æ„ï¼šä»¥ 0x800 (2048) å­—èŠ‚ï¼ˆå³ä¸€ä¸ªå…‰ç›˜æ‰‡åŒºå¤§å°ï¼‰ä¸ºä¸€ä¸ªå®Œæ•´çš„æ•°æ®å—ã€‚å…¶ä¸­æ•°æ®å‡ä¸º Bit-Endian
+ç¬¬ 1 å—ï¼šRNG å„æ®µåŠ¨ç”»çš„èµ·å§‹ä½ç½®ç´¢å¼•ï¼Œä»¥æ•°æ®å—ä¸ºå•ä½ï¼Œæ¯ä¸ªç´¢å¼• 2 å­—èŠ‚ï¼Œæœ€åä¸€ä¸ªç´¢å¼•ä¸ºæ–‡ä»¶çš„æ€»é•¿åº¦ï¼Œå› æ­¤å…± 44 ä¸ªç´¢å¼•ã€‚
 
-µÚ 2 ¿é£ºµÚÒ»¶Î¶¯»­µÄĞÅÏ¢¿é
-		µÚ 1 ¸ö DWORD£¬±íÊ¾¸Ã¶Î¶¯»­µÄÖ¡Êı
-		½ÓÏÂÀ´ N ¸ö DWORD£¬±íÊ¾¶¯»­Ã¿Ò»Ö¡Ïà¶ÔÓÚĞÅÏ¢¿éÊ×µØÖ·µÄÆ«ÒÆÁ¿¡£ÆäÖĞ×î¸ßµÄÒ»Î» bit ±íÊ¾¸ÃÖ¡ÊÇÈ«±àÂë(1)»¹ÊÇ²¿·Ö±àÂë(0)¡£
-		×îºó 1 ¸ö DWORD£¬±íÊ¾¸Ã¶Î¶¯»­Ö¡µÄ½áÊøÎ»ÖÃ¡£
-¡­¡­
+ç¬¬ 2 å—ï¼šç¬¬ä¸€æ®µåŠ¨ç”»çš„ä¿¡æ¯å—
+		ç¬¬ 1 ä¸ª DWORDï¼Œè¡¨ç¤ºè¯¥æ®µåŠ¨ç”»çš„å¸§æ•°
+		æ¥ä¸‹æ¥ N ä¸ª DWORDï¼Œè¡¨ç¤ºåŠ¨ç”»æ¯ä¸€å¸§ç›¸å¯¹äºä¿¡æ¯å—é¦–åœ°å€çš„åç§»é‡ã€‚å…¶ä¸­æœ€é«˜çš„ä¸€ä½ bit è¡¨ç¤ºè¯¥å¸§æ˜¯å…¨ç¼–ç (1)è¿˜æ˜¯éƒ¨åˆ†ç¼–ç (0)ã€‚
+		æœ€å 1 ä¸ª DWORDï¼Œè¡¨ç¤ºè¯¥æ®µåŠ¨ç”»å¸§çš„ç»“æŸä½ç½®ã€‚
+â€¦â€¦
 
-0x10: ÌøÖÁÏÂÒ»ĞĞ
+0x10: è·³è‡³ä¸‹ä¸€è¡Œ
 
-0x2W: Ìø¹ı 0xW + 1 ¸öÏñËØ
-0x3W 0xYZ: Ìø¹ı 0xWYZ ¸öÏñËØ
-0x4W: Ğ´Èë 0xW ¸ö 0xFF £¨ËÆºõÓ¦ÎªÍ¸Ã÷É«¸ü×¼È·£©
-0x5W 0xYZ: Ğ´Èë 0xWYZ ¸ö 0xFF £¨ËÆºõÓ¦ÎªÍ¸Ã÷É«¸ü×¼È·£©
-0x6W: Ğ´Èë½ÓÏÂÀ´µÄ 0xW ¸öÏñËØ
-0x7W 0xYZ: Ğ´Èë½ÓÏÂÀ´µÄ 0xWYZ ¸öÏñËØ
-0x8W: ÖØ¸´½ÓÏÂÀ´µÄÒ»¸öÏñËØ 0xW ´Î
-*0x9W 0xYZ: ÖØ¸´½ÓÏÂÀ´µÄÒ»¸öÏñËØ 0xWYZ ´Î
+0x2W: è·³è¿‡ 0xW + 1 ä¸ªåƒç´ 
+0x3W 0xYZ: è·³è¿‡ 0xWYZ ä¸ªåƒç´ 
+0x4W: å†™å…¥ 0xW ä¸ª 0xFF ï¼ˆä¼¼ä¹åº”ä¸ºé€æ˜è‰²æ›´å‡†ç¡®ï¼‰
+0x5W 0xYZ: å†™å…¥ 0xWYZ ä¸ª 0xFF ï¼ˆä¼¼ä¹åº”ä¸ºé€æ˜è‰²æ›´å‡†ç¡®ï¼‰
+0x6W: å†™å…¥æ¥ä¸‹æ¥çš„ 0xW ä¸ªåƒç´ 
+0x7W 0xYZ: å†™å…¥æ¥ä¸‹æ¥çš„ 0xWYZ ä¸ªåƒç´ 
+0x8W: é‡å¤æ¥ä¸‹æ¥çš„ä¸€ä¸ªåƒç´  0xW æ¬¡
+*0x9W 0xYZ: é‡å¤æ¥ä¸‹æ¥çš„ä¸€ä¸ªåƒç´  0xWYZ æ¬¡
 
-RNG.PAL ½á¹¹£º¹² 44 ¸öµ÷É«°å£¬Ã¿¸öµ÷É«°å¹² 256 Ïî£¬Ã¿Ïî 2 ×Ö½Ú£¨RGB555£©
+RNG.PAL ç»“æ„ï¼šå…± 44 ä¸ªè°ƒè‰²æ¿ï¼Œæ¯ä¸ªè°ƒè‰²æ¿å…± 256 é¡¹ï¼Œæ¯é¡¹ 2 å­—èŠ‚ï¼ˆRGB555ï¼‰
 */
 
 void decode_rng(unsigned char* buf, unsigned char* buffer)
@@ -307,10 +316,10 @@ void read_rng()
 
 		sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfRNG);
 
-		// ´´½¨Ä¿Â¼ ./game/PalSSOut/RNG
+		// åˆ›å»ºç›®å½• ./game/PalSSOut/RNG
 		mkdir(szOutputFile);
 
-		// ±¸·İÂ·¾¶
+		// å¤‡ä»½è·¯å¾„
 		sprintf(szOutputFileBuk, "%s", szOutputFile);
 
 		for(int i = 0; i < num - 1; i++)
@@ -329,18 +338,18 @@ void read_rng()
 				decode_rng(buf, buffer);
 				free(buf);
 			}
-			// »¹Ô­Â·¾¶....
+			// è¿˜åŸè·¯å¾„....
 			sprintf(szOutputFile, "%s", szOutputFileBuk);
 
 			sprintf(szOutputFile, "%s\\RNG%d", szOutputFile, seq);
 
-			// ´´½¨Ä¿Â¼ ./game/PalSSOut/RNG/RNG0
+			// åˆ›å»ºç›®å½• ./game/PalSSOut/RNG/RNG0
 			mkdir(szOutputFile);
 
 			sprintf(szOutputFile, "%s\\RNG%d", szOutputFile, seq);
 
 			//
-			// ·Ö¿ªÃüÃû£¬·½±ã enrle
+			// åˆ†å¼€å‘½åï¼Œæ–¹ä¾¿ enrle
 			//
 			sprintf(szOutputFile, "%s%d.bmp", szOutputFile, i);
 
@@ -354,13 +363,13 @@ void read_rng()
 }
 
 /*
-FIREN.AV£º°´ 0x800 ·Ö¿é
-µÚ 1 ¿éÎªË÷Òı£¨ÒÔ¿éÎªµ¥Î»£©
+FIREN.AVï¼šæŒ‰ 0x800 åˆ†å—
+ç¬¬ 1 å—ä¸ºç´¢å¼•ï¼ˆä»¥å—ä¸ºå•ä½ï¼‰
 
-µÚ 2 ¿é£º
-  ±¾¿éµ÷É«°å£¨0x200×Ö½Ú£¬RGB555£©
-  ¿éÄÚË÷Òı
-  ÄÚÈİ£¨¸ñÊ½Í¬RNG£©
+ç¬¬ 2 å—ï¼š
+  æœ¬å—è°ƒè‰²æ¿ï¼ˆ0x200å­—èŠ‚ï¼ŒRGB555ï¼‰
+  å—å†…ç´¢å¼•
+  å†…å®¹ï¼ˆæ ¼å¼åŒRNGï¼‰
 
 */
 
@@ -381,10 +390,10 @@ void read_firen()
 
 	sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfFIRE);
 
-	// ´´½¨Ä¿Â¼ ./game/PalSSOut/FIRE
+	// åˆ›å»ºç›®å½• ./game/PalSSOut/FIRE
 	mkdir(szOutputFile);
 
-	// ±¸·İÂ·¾¶
+	// å¤‡ä»½è·¯å¾„
 	sprintf(szOutputFileBuk, "%s", szOutputFile);
 
 	for(seq = 0; seq < 111; seq++)
@@ -411,18 +420,18 @@ void read_firen()
 			decode_rng(buf, buffer);
 			free(buf);
 
-			// »¹Ô­Â·¾¶....
+			// è¿˜åŸè·¯å¾„....
 			sprintf(szOutputFile, "%s", szOutputFileBuk);
 
 			sprintf(szOutputFile, "%s\\FIRE%d", szOutputFile, seq);
 
-			// ´´½¨Ä¿Â¼ ./game/PalSSOut/FIRE/FIRE0
+			// åˆ›å»ºç›®å½• ./game/PalSSOut/FIRE/FIRE0
 			mkdir(szOutputFile);
 
 			sprintf(szOutputFile, "%s\\FIRE%d", szOutputFile, seq);
 
 			//
-			// ·Ö¿ªÃüÃû£¬·½±ã enrle
+			// åˆ†å¼€å‘½åï¼Œæ–¹ä¾¿ enrle
 			//
 			sprintf(szOutputFile, "%s%d.bmp", szOutputFile, i);
 
@@ -434,12 +443,12 @@ void read_firen()
 	fclose(fp);
 }
 
-/* ALLDAT.NEW: Ç° 0x1000 ×Ö½ÚÎª 8 ¸öµ÷É«°å£¬ÆäÖĞ 3¡¢4 Í¬£¬5¡¢6 Í¬£»
-				0ÎªÕ½Ê±±³¾°µ÷É«°å£»1ÎªÆ½Ê±ÈËÎïÄ£ĞÍµ÷É«°å£»2ÎªÕ½Ê±ÈËÎïÄ£ĞÍµ÷É«°å£»3¡¢4ÎªÈËÎïÍ·Ïñ£¨×´Ì¬±³¾°£©µ÷É«°å
-   RGM.JOE: ÈËÎïÍ·Ïñ£¬RLE ¸ñÊ½£¬Ã¿ 0x2800 ×Ö½ÚÎªÒ»·ù
-   FBP.PX: ±³¾°£¬È«Í¼£¬Ã¿ 0x10000 ×Ö½ÚÎªÒ»·ù£¬ÆäÖĞÇ° 0xFA00 ÓĞĞ§
-           0¡¢1¡¢3¡¢4¡¢5£º×´Ì¬±³¾°£¬2(Æ¬Í·)->1
-   BALL.NEW: ¸ñÊ½Í¬ BALL.MKF£¬²»Í¬Ö®´¦ÎªË÷ÒıÊÇBE£¬ÇÒ×ÓÎÄ¼ş²»ÔÙÓĞ 4 ×Ö½ÚÍ·
+/* ALLDAT.NEW: å‰ 0x1000 å­—èŠ‚ä¸º 8 ä¸ªè°ƒè‰²æ¿ï¼Œå…¶ä¸­ 3ã€4 åŒï¼Œ5ã€6 åŒï¼›
+				0ä¸ºæˆ˜æ—¶èƒŒæ™¯è°ƒè‰²æ¿ï¼›1ä¸ºå¹³æ—¶äººç‰©æ¨¡å‹è°ƒè‰²æ¿ï¼›2ä¸ºæˆ˜æ—¶äººç‰©æ¨¡å‹è°ƒè‰²æ¿ï¼›3ã€4ä¸ºäººç‰©å¤´åƒï¼ˆçŠ¶æ€èƒŒæ™¯ï¼‰è°ƒè‰²æ¿
+   RGM.JOE: äººç‰©å¤´åƒï¼ŒRLE æ ¼å¼ï¼Œæ¯ 0x2800 å­—èŠ‚ä¸ºä¸€å¹…
+   FBP.PX: èƒŒæ™¯ï¼Œå…¨å›¾ï¼Œæ¯ 0x10000 å­—èŠ‚ä¸ºä¸€å¹…ï¼Œå…¶ä¸­å‰ 0xFA00 æœ‰æ•ˆ
+           0ã€1ã€3ã€4ã€5ï¼šçŠ¶æ€èƒŒæ™¯ï¼Œ2(ç‰‡å¤´)->1
+   BALL.NEW: æ ¼å¼åŒ BALL.MKFï¼Œä¸åŒä¹‹å¤„ä¸ºç´¢å¼•æ˜¯BEï¼Œä¸”å­æ–‡ä»¶ä¸å†æœ‰ 4 å­—èŠ‚å¤´
 
 */
 
@@ -463,20 +472,14 @@ void read_rgm()
 	fread(palette, 2, 0x800, fp0);
 	for(int i = 0; i < 0x8; i++)
 		for(int j = 0; j < 256; j++)
-			//
-			// ½«Í¼Ïñ±³¾°¸ÄÎª¶Ô±ÈÉ«
-			//
-			if (j)
-				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
-			else
-				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + bgColorIndexOfRGM]);
+			ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
 
 	sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfRGM);
 
-	// ´´½¨Ä¿Â¼ ./game/PalSSOut/RGM
+	// åˆ›å»ºç›®å½• ./game/PalSSOut/RGM
 	mkdir(szOutputFile);
 
-	// ±¸·İÂ·¾¶
+	// å¤‡ä»½è·¯å¾„
 	sprintf(szOutputFileBuk, "%s", szOutputFile);
 
 	while(fread(inbuf, 1, 0x2800, fp))
@@ -485,14 +488,16 @@ void read_rgm()
 		if (*pw == 0 || *ph == 0)
 			continue;
 		*pw = ntohs(*pw); *ph = ntohs(*ph);
-		memset(buffer, 0, 0xfa00);
-		Pal::Tools::DecodeRle(inbuf, buffer, 320, 200, 0, 0, DecoderCallBack, NULL);
-		// »¹Ô­Â·¾¶....
+		memset(buffer, TRANSPARENT_INDEX, 0xfa00);
+		int iWidth = ((unsigned short*)inbuf)[0];
+		int iHeight = ((unsigned short*)inbuf)[1];
+		Pal::Tools::DecodeRle(inbuf, buffer, iWidth, iHeight, 0, 0, DecoderCallBack, NULL);
+		// è¿˜åŸè·¯å¾„....
 		sprintf(szOutputFile, "%s", szOutputFileBuk);
 
 		sprintf(szOutputFile, "%s\\RGM%d%d.bmp", szOutputFile, 0, seq);
 
-		OutputBitmap(szOutputFile, palette[3], buffer, 320, 200);
+		OutputBitmap(szOutputFile, palette[3], buffer, iWidth, iHeight);
 	}
 	fclose(fp0);
 	fclose(fp);
@@ -506,12 +511,12 @@ void read_ball()
 	unsigned short* ppat = (unsigned short*)palette;
 	unsigned long offsets[253];
 
-	// HACK: ¿í¸ß
-	INT iRleWidth = 48;
-	INT iRleHeight = 47;
-	INT iRleLength = iRleWidth * iRleHeight;
-	unsigned char inbuf[48 * 47];
-	unsigned char buffer[48 * 47];
+	// HACK: å®½é«˜
+	INT iRleWidth;
+	INT iRleHeight;
+	INT iRleLength;
+	unsigned char inbuf[0xfa00];
+	unsigned char buffer[0xfa00];
 
 	unsigned short* pw = (unsigned short*)inbuf;
 	unsigned short* ph = pw + 1;
@@ -519,20 +524,14 @@ void read_ball()
 	fread(palette, 2, 0x800, fp0);
 	for(int i = 0; i < 0x8; i++)
 		for(int j = 0; j < 256; j++)
-			//
-			// ½«Í¼Ïñ±³¾°¸ÄÎª¶Ô±ÈÉ«
-			//
-			if (j)
-				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
-			else
-				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + bgColorIndexOfBALL]);
+			ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
 
 	sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfBALL);
 
-	// ´´½¨Ä¿Â¼ ./game/PalSSOut/BALL
+	// åˆ›å»ºç›®å½• ./game/PalSSOut/BALL
 	mkdir(szOutputFile);
 
-	// ±¸·İÂ·¾¶
+	// å¤‡ä»½è·¯å¾„
 	sprintf(szOutputFileBuk, "%s", szOutputFile);
 
 	fread(offsets, 4, 253, fp);
@@ -550,12 +549,14 @@ void read_ball()
 			continue;
 		*pw = ntohs(*pw); *ph = ntohs(*ph);
 
-		// HACK
-		memset(buffer, 0, iRleLength);
+		iRleWidth = ((unsigned short*)inbuf)[0];
+		iRleHeight = ((unsigned short*)inbuf)[1];
+		iRleLength = iRleWidth * iRleHeight;
+		memset(buffer, TRANSPARENT_INDEX, iRleLength);
 		Pal::Tools::DecodeRle(inbuf, buffer, iRleWidth, iRleHeight, 0, 0, DecoderCallBack, NULL);
 		char buf1[30];
 
-		// »¹Ô­Â·¾¶....
+		// è¿˜åŸè·¯å¾„....
 		sprintf(szOutputFile, "%s", szOutputFileBuk);
 
 		sprintf(szOutputFile, "%s\\%03d.bmp", szOutputFile, i);
@@ -579,7 +580,7 @@ void read_fbp()
 	for(int i = 0; i < 0x8; i++)
 		for(int j = 0; j < 256; j++)
 			//
-			// ½«Í¼Ïñ±³¾°¸ÄÎª¶Ô±ÈÉ«
+			// å°†å›¾åƒèƒŒæ™¯æ”¹ä¸ºå¯¹æ¯”è‰²
 			//
 			if (j)
 				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
@@ -588,17 +589,17 @@ void read_fbp()
 
 	sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfFBP);
 
-	// ´´½¨Ä¿Â¼ ./game/PalSSOut/FBP
+	// åˆ›å»ºç›®å½• ./game/PalSSOut/FBP
 	mkdir(szOutputFile);
 
-	// ±¸·İÂ·¾¶
+	// å¤‡ä»½è·¯å¾„
 	sprintf(szOutputFileBuk, "%s", szOutputFile);
 
 	while(fread(buffer, 0x10000, 1, fp))
 	{
 		seq++;
 
-		// »¹Ô­Â·¾¶....
+		// è¿˜åŸè·¯å¾„....
 		sprintf(szOutputFile, "%s", szOutputFileBuk);
 
 		sprintf(szOutputFile, "%s\\%03d.bmp", szOutputFile, seq);
@@ -642,7 +643,7 @@ void read_j(int index)
 			if (j)
 				ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
 			else
-				// ¸ù¾İ²»Í¬µÄÍ¼ÏñÀà±ğ·ÖÅäÍ¸Ã÷É«±³¾°ºÍÊä³öÂ·¾¶
+				// æ ¹æ®ä¸åŒçš„å›¾åƒç±»åˆ«åˆ†é…é€æ˜è‰²èƒŒæ™¯å’Œè¾“å‡ºè·¯å¾„
 				switch (index)
 				{
 				case 0:
@@ -664,10 +665,10 @@ void read_j(int index)
 					break;
 				}
 
-	// ´´½¨Ä¿Â¼ ./game/PalSSOut/ABC¡¢FIGHT¡¢ MGO
+	// åˆ›å»ºç›®å½• ./game/PalSSOut/ABCã€FIGHTã€ MGO
 	mkdir(szOutputFile);
 
-	// ±¸·İÂ·¾¶
+	// å¤‡ä»½è·¯å¾„
 	sprintf(szOutputFileBuk, "%s", szOutputFile);
 
 	fread(indices, 2, 0x400, fp);
@@ -690,7 +691,7 @@ void read_j(int index)
 			psize[j].w = ntohs(psize[j].w);
 			psize[j].h = ntohs(psize[j].h);
 
-			// ÉêÇë¿Õ¼ä²¢ÇåÀí»­²¼ÄÚ´æ
+			// ç”³è¯·ç©ºé—´å¹¶æ¸…ç†ç”»å¸ƒå†…å­˜
 			buffer = (unsigned char*)malloc(psize[j].w * psize[j].h);
 
 			memset(buffer, 0x0, sizeof(buffer));
@@ -698,14 +699,14 @@ void read_j(int index)
 			for (int y = 0; y < psize[j].h * psize[j].w; y++)
 				buffer[y] = inbuf[offset++];
 
-			// »¹Ô­Êä³öÂ·¾¶
+			// è¿˜åŸè¾“å‡ºè·¯å¾„
 			sprintf(szOutputFile, "%s", szOutputFileBuk);
 
 			sprintf(szOutputFile, "%s\\%03d-%02d.bmp", szOutputFile, i, j);
 
 			OutputBitmap(szOutputFile, palette[pi], (LPBYTE)buffer, psize[j].w, psize[j].h);
 
-			// ÊÍ·ÅÄÚ´æ
+			// é‡Šæ”¾å†…å­˜
 			free(buffer);
 		}
 	}
@@ -800,11 +801,11 @@ void read_mgo_new()
 		continue;
 */
 
-		// ´´½¨Ä¿Â¼ ./game/PalSSOut/EVENT
+		// åˆ›å»ºç›®å½• ./game/PalSSOut/EVENT
 		sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfEVENT);
 		mkdir(szOutputFile);
 
-		// ±¸·İÂ·¾¶
+		// å¤‡ä»½è·¯å¾„
 		sprintf(szOutputFileBuk, "%s", szOutputFile);
 
 		for(int j = 0, n = 0; n < sub_count[i]; j += num[j] * 2 + 1, n++)
@@ -812,7 +813,7 @@ void read_mgo_new()
 			psize = (struct __size*)(num + j + 1);
 			for(int k = 0; k < num[j]; k++)
 			{
-				// ÉêÇëÄÚ´æ¿Õ¼ä
+				// ç”³è¯·å†…å­˜ç©ºé—´
 				buffer = (unsigned char*)malloc(psize[k].w * psize[k].h);
 
 				memset(buffer, 0x0001, sizeof(buffer));
@@ -820,7 +821,7 @@ void read_mgo_new()
 				for (int y = 0; y < psize[k].w * psize[k].h; y++)
 					buffer[y] = inbuf[offset++];
 
-				// »¹Ô­Êä³öÂ·¾¶
+				// è¿˜åŸè¾“å‡ºè·¯å¾„
 				sprintf(szOutputFile, "%s", szOutputFileBuk);
 
 				sprintf(szOutputFile, "%s\\%03d-%02d-%02d.bmp", szOutputFile, i, n, k);
@@ -922,7 +923,7 @@ void read_mgop()
 		sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfMAP);
 		sprintf(szOutputFileBuk, "%s", szOutputFile);
 
-		// ´´½¨Ä¿Â¼    .\game\PalSSOut\MAP\ 
+		// åˆ›å»ºç›®å½•    .\game\PalSSOut\MAP\ 
 		mkdir(szOutputFile);
 
 		memset(buffer, 0, 2064 * 2055);
@@ -942,7 +943,7 @@ void read_mgop()
 					}
 			}
 
-		// »¹Ô­Êä³öÂ·¾¶
+		// è¿˜åŸè¾“å‡ºè·¯å¾„
 		sprintf(szOutputFile, "%s", szOutputFileBuk);
 
 		sprintf(szOutputFile, "%s\\%03d.bmp", szOutputFile, i);
@@ -1001,15 +1002,15 @@ void read_mgop()
 }
 
 int main(int argc, char* argv[])
-{	// »ñÈ¡ÓÎÏ·Â·¾¶
+{	// è·å–æ¸¸æˆè·¯å¾„
 	getcwd(szInputPath, 0xFF);
 
 	sprintf(szOutputPath, "%s", szInputPath);
 
-	// »ñÈ¡Í¼ÏñÊä³öÄ¿Â¼¹¤×÷Â·¾¶
+	// è·å–å›¾åƒè¾“å‡ºç›®å½•å·¥ä½œè·¯å¾„
 	sprintf(szOutputPath, "%s\\PalSSOut\\", szOutputPath);
 
-	// ±¸·İÓÎÏ·Â·¾¶
+	// å¤‡ä»½æ¸¸æˆè·¯å¾„
 	sprintf(szOutputPathBuk, "%s", szOutputPath);
 	mkdir(szOutputPath);
 
@@ -1027,9 +1028,9 @@ int main(int argc, char* argv[])
 	sprintf(szRngPal, "%s\\rng.pal", szInputPath);
 
 	//read_rng1();
+	read_rgm();
 	read_rng();
 	read_firen();
-	read_rgm();
 	read_ball();
 	read_fbp();
 	read_j(0);
