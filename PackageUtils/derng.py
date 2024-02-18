@@ -25,10 +25,10 @@ def get_fname(full):
 
 def process():
     pat = utilcommon.getPalette(args)
-    frames = []
     memset(buffer,0,length)
     first_index, = struct.unpack("<I",args.rng.read(4))
     num = first_index//4
+    fname=get_fname(args.rng.name)
     for frame in range(0, num):
         content=demkf.deMKF(args.rng, frame)
         if len(content) == 0:
@@ -41,25 +41,20 @@ def process():
         im = Image.frombytes("P", (320,200), pixels)
         im.putpalette(pat)
         im.info['transparency'] = args.transparent_palette_index
-        frames.append(im)
+        im.save(f"{args.output_directory}/{fname}{frame}.png")
         if args.saveraw:
-            fname=get_fname(args.rng.name)
             open("%s%s.diff"%(fname,frame),"wb").write(content)
             open("%s%s.raw"%(fname,frame),"wb").write(buffer)
             im.save("%s%s.png"%(fname,frame))
-    
-    img=Image.frombytes("P", (320,200), frames[0].tobytes())
-    img.save(args.output, save_all=True, append_images=frames[1:], palette=pat, include_color_table=False, duration=args.millisecs_per_frame)
-    
     if args.show:
         im.show() 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='tool for converting RNG to GIF animation')
+    parser = argparse.ArgumentParser(description='tool for converting RNG to PNG sequence animation')
     parser.add_argument('rng', type=argparse.FileType('rb'),
                        help='rng file to decode')
-    parser.add_argument('-o','--output', required=True, type=argparse.FileType('wb'),
-                       help='resulting gif')
+    parser.add_argument('-o','--output_directory', required=True, type=utilcommon.is_output_dir,
+                       help='resulting PNGs folder')
     parser.add_argument('-p', '--palette', type=argparse.FileType('rb'), required=True, 
                        help='PAT file')
     parser.add_argument('-i', '--palette_id', type=int, default=0,
@@ -68,8 +63,6 @@ if __name__ == "__main__":
                        help='use night palette')
     parser.add_argument('-d', '--transparent_palette_index', default=0xff,
                        help='transparent index for color in palette; default 255')
-    parser.add_argument('-m', '--millisecs_per_frame', type=int, default=100,
-                       help='milliseconds per frame; default 100')
     parser.add_argument('--algorithm', '-a', default='YJ1',
                        help='decompression algorithm')
     parser.add_argument('--show', action='store_true', default=False,

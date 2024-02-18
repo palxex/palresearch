@@ -108,3 +108,16 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, 
     # Print New Line on Complete
     if iteration == total: 
         print()
+
+def is_input_dir(folder):
+    if os.path.isdir(folder):
+        return folder
+    else:
+        raise NotADirectoryError(folder)
+
+def is_output_dir(folder):
+    if os.path.isdir(folder):
+        return folder
+    else:
+        os.mkdir(folder)
+        return folder

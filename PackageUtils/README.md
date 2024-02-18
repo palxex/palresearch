@@ -201,57 +201,51 @@ optional arguments:
 
 * derng
 
-解码rng为gif
+解码rng为png序列
 
 ```useage
-usage: derng.py [-h] -o OUTPUT -p PALETTE [-i PALETTE_ID]
-                [-d TRANSPARENT_PALETTE_INDEX] [-m MILLISECS_PER_FRAME]
-                [--show] [--saveraw]
-                rng
+usage: derng.py [-h] -o OUTPUT_DIRECTORY -p PALETTE [-i PALETTE_ID] [-n] [-d TRANSPARENT_PALETTE_INDEX] [--algorithm ALGORITHM] [--show] [--saveraw] rng
 
-tool for converting RNG to GIF animation
+tool for converting RNG to PNG sequence
 
 positional arguments:
   rng                   rng file to decode
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
-  -o OUTPUT, --output OUTPUT
-                        resulting gif
+  -o OUTPUT_DIRECTORY, --output_directory OUTPUT_DIRECTORY
+                        resulting PNGs folder
   -p PALETTE, --palette PALETTE
                         PAT file
   -i PALETTE_ID, --palette_id PALETTE_ID
                         palette id
+  -n, --night           use night palette
   -d TRANSPARENT_PALETTE_INDEX, --transparent_palette_index TRANSPARENT_PALETTE_INDEX
                         transparent index for color in palette; default 255
-  -m MILLISECS_PER_FRAME, --millisecs_per_frame MILLISECS_PER_FRAME
-                        milliseconds per frame; default 100
+  --algorithm ALGORITHM, -a ALGORITHM
+                        decompression algorithm
   --show                show decoded image
   --saveraw             save decoded raw png data
 ```
 
 示例：
-`./derng.py RNG6.rng -p PAT.MKF -i 3 -o rng6.gif`
+`./derng.py RNG6.rng -p PAT.MKF -i 3 -o rng6`
 
 ------
 
 * enrng
 
-将gif编码为rng
+将png序列编码为rng
 
 ```usage
-usage: enrng.py [-h] -o OUTPUT -p PALETTE [-i PALETTE_ID]
-                [-d TRANSPARENT_PALETTE_INDEX] [-m MILLISECS_PER_FRAME]
-                [--quantize] [--dither] [--saveraw]
-                gif
+usage: enrng.py [-h] -u INPUT_PREFIX -o OUTPUT -p PALETTE [-i PALETTE_ID] [-n] --algorithm ALGORITHM [-d TRANSPARENT_PALETTE_INDEX] [--quantize] [--dither] [--saveraw] [--progress]
 
-tool for converting GIF animation to RNG
+tool for converting PNG sequence to RNG
 
-positional arguments:
-  gif                   gif file to encode
-
-optional arguments:
+options:
   -h, --help            show this help message and exit
+  -u INPUT_PREFIX, --input_prefix INPUT_PREFIX
+                        input PNGs folder/prefix
   -o OUTPUT, --output OUTPUT
                         resulting rng
   -p PALETTE, --palette PALETTE
@@ -274,11 +268,12 @@ optional arguments:
 ```usage
 # calc palette and generate optimized gif with the palette
 ffmpeg -i demo.bik -vf fps=25,scale=320:200:flags=lanczos,palettegen=max_colors=256:reserve_transparent=0:stats_mode=full -y palette.png
-ffmpeg -i demo.bik -i palette.png -lavfi fps=25,scale=320:200:flags=lanczos[x];[x][1:v]paletteuse=new=0:dither=0:diff_mode=1 -y demo.gif
+mkdir demo
+ffmpeg -i demo.bik -i palette.png -lavfi fps=25,scale=320:200:flags=lanczos[x];[x][1:v]paletteuse=new=0:dither=0:diff_mode=1 -start_number 0 -y demo/demo%d.png
 # replace system palette; for example, the trademark palette(#3)
 ./demkf.py PAT.MKF -p pat
 ./enpat.py palette.png -o PAT3.pat
 ./enmkf.py --prefix PAT --postfix pat
 # no requantize, directly reuse ffmpeg-optimized palette, avoid introduce quality impacting
-./enrng.py demo.gif -o rng6.rng -p PAT.MKF -i 3 -a yj1 -P
+./enrng.py -u demo/demo -o rng6.rng -p PAT.MKF -i 3 -a yj1 -P
 ```

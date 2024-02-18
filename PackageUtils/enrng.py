@@ -27,6 +27,9 @@ def enRNG(prev_frame,cur_frame):
     dll.encoderng(prev_frame,cur_frame,byref(buffer),byref(len))
     return string_at(buffer,len)
 
+def getname(prefix,i):
+    return prefix+str(i)+".png"
+
 def process():
     pat = utilcommon.getPalette(args)
 
@@ -34,14 +37,19 @@ def process():
     if args.saveraw:
     	print("working dir:"+tempdir)
 
-    orig=Image.open(args.gif)
+    maxfiles=10000
+    for i in range(0,maxfiles):
+        filename=getname(args.input_prefix,i)
+        if not os.path.isfile(filename):
+            maxfiles=i
+            break
+
     # initialize with full transparent pixels
     memset(prev_frame,-1,length)
-    for frame in range(0, orig.n_frames):
-        orig.seek(frame)
-        im = orig
+    for frame in range(0, maxfiles):
+        im = Image.open(getname(args.input_prefix,frame))
         if args.progress:
-            utilcommon.printProgressBar(frame+1, orig.n_frames, prefix = 'Progress:', suffix = 'Complete', length = 50)
+            utilcommon.printProgressBar(frame+1, maxfiles, prefix = 'Progress:', suffix = 'Complete', length = 50)
         (im,ima) = utilcommon.convertImage(im, args, silent=True)
         if args.saveraw:
            im.save(tempdir+"/temp%d.png"%frame)
@@ -66,9 +74,9 @@ def process():
     	shutil.rmtree(tempdir)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='tool for converting GIF animation to RNG')
-    parser.add_argument('gif', type=argparse.FileType('rb'),
-                       help='gif file to encode')
+    parser = argparse.ArgumentParser(description='tool for converting PNG sequence animation to RNG')
+    parser.add_argument('-u','--input_prefix', required=True,
+                       help='input PNGs folder/prefix')
     parser.add_argument('-o','--output', required=True, type=argparse.FileType('wb'),
                        help='resulting rng')
     parser.add_argument('-p', '--palette', type=argparse.FileType('rb'), required=True, 
