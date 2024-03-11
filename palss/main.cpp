@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <direct.h>
 
+#include <png.h>
+
 #include "pallib.h"
 
 #define TRANSPARENT_INDEX			0xff
@@ -135,6 +137,14 @@ struct RGB555
 	unsigned short	blue:	5;
 };
 #pragma pack()
+#pragma pack(1)
+struct RGB888
+{
+	unsigned char	red;
+	unsigned char   green;
+	unsigned char	blue;
+};
+#pragma pack()
 
 VOID OutputBitmap(char* filename, RGB555 palette[], LPBYTE lpBuffer, DWORD dwWidth, DWORD dwHeight)
 {
@@ -168,8 +178,7 @@ VOID OutputBitmap(char* filename, RGB555 palette[], LPBYTE lpBuffer, DWORD dwWid
 	lpInfoHeader->bV5BlueMask  = 0x000000ff;
 	lpInfoHeader->bV5AlphaMask = 0xff000000;
 	lpInfoHeader->bV5CSType = 0x73524742; // 'sRGB'
-	CIEXYZTRIPLE x = { 0 };
-	lpInfoHeader->bV5Endpoints = x;
+	lpInfoHeader->bV5Endpoints = { 0 };
 	lpInfoHeader->bV5GammaRed   = 0;
 	lpInfoHeader->bV5GammaGreen = 0;
 	lpInfoHeader->bV5GammaBlue  = 0;
@@ -463,24 +472,36 @@ void read_rgm()
 	FILE* fp0 = fopen(szAlldatNew, "rb");
 	int seq = -1;
 	RGB555 palette[8][0x100];
+	RGB888 palette8[8][0x100] = { 0 };
 	unsigned short* ppat = (unsigned short*)palette;
 	unsigned char inbuf[0x2800];
 	unsigned char buffer[0xfa00];
 	unsigned short* pw = (unsigned short*)inbuf;
 	unsigned short* ph = pw + 1;
 
-	fread(palette, 2, 0x800, fp0);
-	for(int i = 0; i < 0x8; i++)
-		for(int j = 0; j < 256; j++)
-			ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
-
 	sprintf(szOutputFile, "%s%s", szOutputPath, outPathOfRGM);
 
 	// 创建目录 ./game/PalSSOut/RGM
 	mkdir(szOutputFile);
-
 	// 备份路径
 	sprintf(szOutputFileBuk, "%s", szOutputFile);
+
+	fread(palette, 2, 0x800, fp0);
+	for(int i = 0; i < 0x8; i++)
+	{
+		for(int j = 0; j < 256; j++)
+		{
+			ppat[(i << 8) + j] = ntohs(ppat[(i << 8) + j]);
+			palette8[i][j].red	 = palette[i][j].red	<< 1; // pal pat was vga pat, 6bit, 6-5=1
+			palette8[i][j].green = palette[i][j].green  << 1;
+			palette8[i][j].blue	 = palette[i][j].blue	<< 1;
+		}
+		char szPat[0xff];
+		sprintf(szPat, "%s/%s%d%s", szOutputFile, "pat",i,".pat");
+		FILE* fp2 = fopen(szPat, "wb");
+		fwrite(palette8[i], sizeof(palette8[i]), 1, fp2);
+		fclose(fp2);
+	}
 
 	while(fread(inbuf, 1, 0x2800, fp))
 	{

@@ -46,6 +46,7 @@
 #endif
 
 #include <errno.h>
+#define errno_t error_t
 
 #include "config.h"
 //#include "grf.h"

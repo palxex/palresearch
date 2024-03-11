@@ -14,6 +14,7 @@
 
 
 #include "StatusBar.h"
+#include "Map.h"
 
 CStatusBar::CStatusBar()
 {
@@ -88,10 +89,14 @@ VOID CStatusBar::SetHead(LPCSTR lpsz)
 	SetText(0, lpsz, SBT_NOBORDERS);
 }
 
-VOID CStatusBar::SetXY(LONG x, LONG y)
+VOID CStatusBar::SetXY(LONG xb, LONG yb)
 {
 	char Buffer[256];
-	::sprintf(Buffer, "X:%d, Y:%d", x, y);
+	int x2 = xb / 2;
+	int xe= xb % 2;
+	int xp = x2 * 32 + xe * 16;
+	int yp = yb * 16 + xe * 8;
+	::sprintf(Buffer, "XBlock:%d(0x%X),YBlock:%d(0x%X),Half:%d,X:%d(0x%X), Y:%d(0x%X)", x2,x2, yb,yb, xe, xp,xp, yp,yp);
 	SetText(1, Buffer, 0);
 }
 

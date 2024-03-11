@@ -22,13 +22,13 @@ def process():
 
     if args.save_quantized_png:
         im.save(args.output.name+".quantized.png")
-    if args.show:
-        im.show()
     if args.quantize:
         for x in range(0,im.width): 
             for y in range(0,im.height):
                 if ima.getpixel( (x,y) )[3] == 0:
                 	im.putpixel( (x,y), args.transparent_palette_index)
+    if args.show:
+        im.show()
     buffer = enRLE(im.tobytes(),im.width,im.height)
     if args.output:
         args.output.write(buffer)

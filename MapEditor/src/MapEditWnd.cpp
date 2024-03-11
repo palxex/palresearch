@@ -53,6 +53,9 @@ extern CStatusBar	g_StatusBar;
 
 extern BOOL		g_bAITemplatePaster;
 
+float sx = 1.5;
+float sy = 1.0;
+
 ////////////////////////////////////////////////////////////////////////////////
 // 内部变量
 ////////////////////////////////////////////////////////////////////////////////
@@ -336,7 +339,12 @@ LRESULT MapEditWnd_OnCreate(HWND hWnd, WPARAM wParam, LPARAM lParam)
 	hDCScreen	= ::GetDC(NULL);
 	MEW_hDCBack = ::CreateCompatibleDC(hDCScreen);
 
-	hBitmap = ::CreateCompatibleBitmap(hDCScreen, 1024, 768);
+	int cxScreen = ::GetSystemMetrics(SM_CXSCREEN);
+	int cyScreen = ::GetSystemMetrics(SM_CYSCREEN);
+	sx = cxScreen / 1024;
+	sy = cyScreen / 768;
+
+	hBitmap = ::CreateCompatibleBitmap(hDCScreen, 1024 * sx, 768 * sy);
 	::SelectObject(MEW_hDCBack, hBitmap);
 	::DeleteObject(hBitmap);
 
@@ -544,7 +552,7 @@ LRESULT MapEditWnd_OnTimer(HWND hWnd, WPARAM wParam, LPARAM lParam)
 	// 清屏
 	::Rectangle(MEW_hDCBack, 0, 0, 800, 600);
 
-	MapEx_Draw(MEW_hDCBack, 45, 30, (LPWORD)g_MapData, (HDC*)g_hDCTileImage, MEW_lxCamera, MEW_lyCamera);
+	MapEx_Draw(MEW_hDCBack, 45*sx, 30*sy, (LPWORD)g_MapData, (HDC*)g_hDCTileImage, MEW_lxCamera, MEW_lyCamera);
 
 	if (MEW_bShowObject)
 	{
@@ -567,7 +575,7 @@ LRESULT MapEditWnd_OnTimer(HWND hWnd, WPARAM wParam, LPARAM lParam)
 
 	if (MEW_bShowBarrier)
 	{
-		MapEx_MarkBarrier(MEW_hDCBack, 45, 30, (LPWORD)g_MapData, MEW_hDCBarrier, MEW_lxCamera, MEW_lyCamera);
+		MapEx_MarkBarrier(MEW_hDCBack, 45*sx, 30*sy, (LPWORD)g_MapData, MEW_hDCBarrier, MEW_lxCamera, MEW_lyCamera);
 	}
 
 	memset(&DrawTile, 0, sizeof(DRAWTILESTRUCT));
@@ -594,7 +602,7 @@ LRESULT MapEditWnd_OnTimer(HWND hWnd, WPARAM wParam, LPARAM lParam)
 
 	hDC = ::GetDC(hWnd);
 
-	::BitBlt(hDC, 0, 0, 1024, 768, MEW_hDCBack, 0, 0, SRCCOPY);
+	::BitBlt(hDC, 0, 0, 1024 * sx, 768 * sy, MEW_hDCBack, 0, 0, SRCCOPY);
 
 	::ReleaseDC(hWnd, hDC);
 

@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="WinMain">
+      <UniqueIdentifier>{004cb234-33e1-40cf-9c61-603ad7ea106d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{1b0f5b61-7da4-471b-a1b6-6be48943ecbf}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="MKFFile">
+      <UniqueIdentifier>{275b65fb-a903-4063-a193-3e9844db9ea6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWnd">
+      <UniqueIdentifier>{902f6e0a-8e1d-4325-938f-35cb4ff08828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{97b730e5-bb60-4709-9b56-47331c2fe7f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Palette">
+      <UniqueIdentifier>{6c3323e1-8cd4-488c-bb60-8cc3103d9a53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ToolBar">
+      <UniqueIdentifier>{292c67f1-4bbc-4c2f-b9a1-cdbe302b87d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImageSelWnd">
+      <UniqueIdentifier>{996f332f-79c9-4f8f-9e11-a81474dcd6d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Document">
+      <UniqueIdentifier>{63620654-eb19-4863-bd68-a8276c178c91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{7eb49cd6-2a2b-47ee-b913-c6619b4923e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapEditWnd">
+      <UniqueIdentifier>{2be8963c-4895-4eb1-95de-66a71b4cbd2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TemplateEditWnd">
+      <UniqueIdentifier>{4f98edc1-b844-4d43-9769-6a0b6f98b821}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MiniMapWnd">
+      <UniqueIdentifier>{13c1072e-4b60-44ea-b22e-0f37a4a2d5db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TileAttributeWnd">
+      <UniqueIdentifier>{6c98c4ff-a2d5-4cc4-b104-9ef5731bf87a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StatusBar">
+      <UniqueIdentifier>{d1a85945-082f-4243-b497-74694840ef79}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>WinMain</Filter>
+    </ClInclude>
+    <ClInclude Include="WinMain.h">
+      <Filter>WinMain</Filter>
+    </ClInclude>
+    <ClInclude Include="MKFFile.h">
+      <Filter>MKFFile</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWnd.h">
+      <Filter>FrameWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Palette.h">
+      <Filter>Palette</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolBar.h">
+      <Filter>ToolBar</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageSelWnd.h">
+      <Filter>ImageSelWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="Bitmap.h">
+      <Filter>Document</Filter>
+    </ClInclude>
+    <ClInclude Include="Document.h">
+      <Filter>Document</Filter>
+    </ClInclude>
+    <ClInclude Include="FileDialog.h">
+      <Filter>Document</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageGroup.h">
+      <Filter>Document</Filter>
+    </ClInclude>
+    <ClInclude Include="RLE.h">
+      <Filter>Document</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="MapEx.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="MapEditWnd.h">
+      <Filter>MapEditWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="TemplateEditWnd.h">
+      <Filter>TemplateEditWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMapWnd.h">
+      <Filter>MiniMapWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="TileAttributeDialog.h">
+      <Filter>TileAttributeWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="TileAttributeWnd.h">
+      <Filter>TileAttributeWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusBar.h">
+      <Filter>StatusBar</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>WinMain</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>WinMain</Filter>
+    </ClCompile>
+    <ClCompile Include="MKFFile.cpp">
+      <Filter>MKFFile</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWnd.cpp">
+      <Filter>FrameWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Palette.cpp">
+      <Filter>Palette</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolBar.cpp">
+      <Filter>ToolBar</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageSelWnd.cpp">
+      <Filter>ImageSelWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="Bitmap.cpp">
+      <Filter>Document</Filter>
+    </ClCompile>
+    <ClCompile Include="Document.cpp">
+      <Filter>Document</Filter>
+    </ClCompile>
+    <ClCompile Include="FileDialog.cpp">
+      <Filter>Document</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageGroup.cpp">
+      <Filter>Document</Filter>
+    </ClCompile>
+    <ClCompile Include="RLE.cpp">
+      <Filter>Document</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEx.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEditWnd.cpp">
+      <Filter>MapEditWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="TemplateEditWnd.cpp">
+      <Filter>TemplateEditWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMapWnd.cpp">
+      <Filter>MiniMapWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="TileAttributeDialog.cpp">
+      <Filter>TileAttributeWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="TileAttributeWnd.cpp">
+      <Filter>TileAttributeWnd</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusBar.cpp">
+      <Filter>StatusBar</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon_MapEdit.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon_MapMgr.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ToolBar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
