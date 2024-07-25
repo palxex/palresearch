@@ -92,6 +92,10 @@
 作用：RIX制作
 作者：Adlib corp.,Softstar corp.
 
+新增工具：rix/MakeRIX/rixtool_extractins.py
+作用：提取并还原RIX中的INS音色定义文件
+作者：PalMusicFan, palxex
+
 新增资料：rix/ins.txt
 作用：ins格式解析
 作者：中华大圣
@@ -107,6 +111,11 @@
 新增资料：rix/playrix_final.asm,rix/derix.c
 作用:反汇编playrix的结果
 作者：BSPAL
+
+新增资料：rix/derix262.c
+作用:基于derix添加：1. OPL3立体声支持(不再兼容OPL2硬件)，2.基于音量控制的通道调音台
+作者：PalMusicFan, SuperMouse, palxex
+鸣谢：BSPAL
 
 新增资料：rix/rxplayer.exe
 作用：derix的win32版本
