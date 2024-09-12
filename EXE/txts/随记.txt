@@ -1,6 +1,8 @@
+注意：下文所有int()调用应理解为floor()
+
 DDIM:((attrib_id*7+bodypart)*6+role)*2=x
-HP=HP.prev+10+rnd()*8
-MP=MP.prev+8+rnd(6)
+HP=HP.prev+10+int(rnd(8))
+MP=MP.prev+8+int(rnd(6))
 武=武.prev+4+rnd(1);
 灵=灵.prev+4+rnd(1);
 防=防.prev+2+rnd(1);
