@@ -1,0 +1,9 @@
+[submodule "palss/libpng"]
+	path = palss/libpng
+	url = https://github.com/pnggroup/libpng
+[submodule "palss/zlib"]
+	path = palss/zlib
+	url = https://github.com/madler/zlib
+[submodule "reference/PalSS_Unpak.NET"]
+	path = reference/PalSS_Unpak.NET
+	url = https://github.com/liuzhier/PalSS_Unpak.NET.git
