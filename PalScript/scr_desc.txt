@@ -166,6 +166,7 @@ ffff为啥都不干，0为普攻。
 @0074: 我方有损耗则跳转 ScriptID ; 实现上混淆了队员与成员
 0000bug候选，但无0000调用
 @0075: 组队 CharacterID CharacterID CharacterID
+要求：三个CharactorID往前Pack，不得有前面为0后面非0的；三个全0，第一个视为1
 @0076: 显示图片 PictureID Int16 ;Picture 等待时间
 @0077: 停止音乐 Int Boolean ; fade?(求测***) 是0则停止CD
 @0078: 战后返回地图
