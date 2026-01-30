@@ -2,7 +2,7 @@ segnum	SegOff	SegOff(Dx.Hdbg)	Description
 0	   0	 191		functional entry
 1	 FA6	1137		script functions?
 2	1F33	20C4		QB library functions
-3	23B4	2545		program entry,system library functions
+3	23B4	2BD7		program entry,system library functions
 4	2514	26A5		
 5	276C	28FD		QB library functions
 6	2811	29A2	Done	replace int 23(ctrl-break handling)

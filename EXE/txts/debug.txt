@@ -1,3 +1,5 @@
+dosbox引入JIT后的注意事项：想逐行用normal/simple内核！否则F10/F11不保证只跑一行！
+
 heavy debug模式下的附加特色:
 ·内存地址改变时激活的内存断点。
 ·CPU log，记录接下来的n个指令到文本文件。
