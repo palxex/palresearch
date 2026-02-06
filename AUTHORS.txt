@@ -22,7 +22,7 @@
 
 新增资料：liulu.htm,data.htm
 作用：分别说明所有文件,data.mkf各子文件的作用
-作者：柳璐,鲁痴
+作者：柳璐,鲁痴,Liuzhier
 
 新增资料：our.txt
 作用：data@3和rpg中的我方相关资料
