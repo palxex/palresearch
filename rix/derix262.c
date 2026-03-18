@@ -26,12 +26,43 @@
 #ifdef __TINY__
 #error This prorgram should compiled above tiny mode
 #endif
+
+#if defined(__linux__) || defined(__APPLE__) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__MINGW32__)
+#define MODERN_POSIX 1
+#else
+#define MODERN_POSIX 0
+#endif
+
+#if defined(__linux__)
+#define MODERN_LINUX_IO 1
+#else
+#define MODERN_LINUX_IO 0
+#endif
 /*----------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#if !MODERN_POSIX
 #include <dos.h>
+#endif
 #include <math.h>
+
+#if MODERN_POSIX
+#include <pthread.h>
+#include <stdbool.h>
+#if defined(__MINGW32__)
+#include <conio.h>
+#include <windows.h>
+#else
+#include <termios.h>
+#include <time.h>
+#include <unistd.h>
+#endif
+#endif
+
+#if MODERN_LINUX_IO
+#include <sys/io.h>
+#endif
 
 #ifdef __WATCOMC__
 #include <conio.h>
@@ -43,7 +74,7 @@
 #define inportb inp
 #endif
 
-#ifdef __GNUC__
+#if defined(__GNUC__) && !MODERN_POSIX
 #ifdef __DJGPP__
 #define interrupt static
 #include <pc.h>
@@ -98,6 +129,57 @@ void setvect(int intno, void __far *vect)
 #define farpointer
 #endif
 
+#if MODERN_LINUX_IO
+#if !defined(__i386__) && !defined(__x86_64__)
+#error Linux port supports x86/x86_64 only (iopl/in/out)
+#endif
+#define interrupt static
+#define enable()
+#define disable()
+static inline void outportb(unsigned short port, unsigned char value)
+{
+	outb(value, port);
+}
+static inline unsigned char inportb(unsigned short port)
+{
+	return inb(port);
+}
+#define stricmp strcasecmp
+#endif
+
+#if defined(__MINGW32__)
+#define interrupt static
+#define enable()
+#define disable()
+#define INPOUT32_DYN_IMPLEMENTATION
+#include "inpout32_dyn.h"
+
+static void mingw_portio_fatal(int err)
+{
+	if(err == INPOUT32_DYN_ERR_DLL_NOT_FOUND)
+		printf("\nInpOut DLL not found (inpoutx64.dll/inpout32.dll).\n"), exit(1);
+	if(err == INPOUT32_DYN_ERR_DRIVER_NOT_LOADED)
+		printf("\nInpOut driver not loaded.\n"), exit(1);
+	printf("\nPort I/O failed via InpOut32.\n"), exit(1);
+}
+
+static inline void outportb(unsigned short port, unsigned char value)
+{
+	if(!inpout32_dyn_write_port((short)port, (short)value))
+		mingw_portio_fatal(inpout32_dyn_get_last_error());
+}
+static inline unsigned char inportb(unsigned short port)
+{
+	short v = 0;
+	if(!inpout32_dyn_read_port((short)port, &v))
+		mingw_portio_fatal(inpout32_dyn_get_last_error());
+	return (unsigned char)v;
+}
+#ifndef stricmp
+#define stricmp _stricmp
+#endif
+#endif
+
 #define OPL3_EXTREG_BASE    0x100
 #define OPL3_4OP_REGISTER   0x104
 #define OPL3_MODE_REGISTER  0x105
@@ -143,12 +225,41 @@ typedef unsigned long  DWORD;
 typedef unsigned long  dword;
 typedef struct {BYTE v[14];}ADDT;
 typedef struct {WORD v[12];}BFDT;
-#ifndef __DJGPP__
+#if !defined(__DJGPP__) && !MODERN_POSIX
 enum bool {false,true};
 #endif
 /************************************************************/
 int getkey()
 {
+	#if MODERN_POSIX
+	#if defined(__MINGW32__)
+	int ch = _getch();
+	if(ch == 0 || ch == 224) { (void)_getch(); return 0; }
+	#else
+	int ch = getchar();
+	if(ch == EOF) return 0;
+	#endif
+	switch(ch)
+	{
+		case 27: return ESCAPE;
+		case 'p': case 'P': return pause;
+		case 'c': case 'C': return contn;
+		case '+': return add;
+		case '-': return sub;
+		case '1': return chn0;
+		case '2': return chn1;
+		case '3': return chn2;
+		case '4': return chn3;
+		case '5': return chn4;
+		case '6': return chn5;
+		case '7': return chn6;
+		case '8': return chn7;
+		case '9': return chn8;
+		case '0': return chn9;
+		case '_': return chn10;
+		default: return 0;
+	}
+	#else
 	union REGS reg;
 	reg.x.ax = 0;
 #if __GCCIA16__
@@ -157,14 +268,15 @@ int getkey()
 	int86(0x16,&reg,&reg);
 #endif
 	return reg.h.ah;
+	#endif
 }
 /************************************************************/
 /*      global various and flags                            */
 /************************************************************/
-#define default_pass 0x220
+WORD default_pass = 0x220;
 FILE * fp = NULL;
 FILE * tfp = NULL;
-char filename[12] = {0};
+char filename[260] = {0};
 DWORD filelen = 0;
 static DWORD I = 0;
 BYTE buf_addr[32767] = {0};  /* rix files' buffer */
@@ -213,6 +325,16 @@ WORD displace[11] = {0};
 int unknown1 = 0;
 void interrupt(*old)() farpointer; /* save old int */
 
+#if MODERN_POSIX
+static pthread_t g_timer_thread;
+static volatile int g_timer_running = 0;
+static volatile unsigned long long g_tick_ns = 0;
+#if !defined(__MINGW32__)
+static struct termios g_old_termios;
+static int g_termios_ready = 0;
+#endif
+#endif
+
 int i;
 int channel_on[11];
 int channel_vol[11];
@@ -260,14 +382,24 @@ void set_time(word);               /**/
 void switch_ad_bd(WORD);           /**/
 dword strm_and_fr(WORD);               /* done */
 
+#if MODERN_LINUX_IO
+static int linux_io_init(void);
+static void linux_io_deinit(void);
+#endif
+
+#if MODERN_POSIX
+static void *modern_timer_loop(void *arg);
+static int modern_key_init(void);
+static void modern_key_deinit(void);
+#endif
+
 /************************************************************/
 /*                                                          */
 /*    MAIN FUNCTION OF THE PROGRAM                          */
 /*                                                          */
 /************************************************************/
-main(int parmn,char *parms[])
+int main(int parmn,char *parms[])
 {
- int keycode;
  /*-------------------------- Title ------------------------*/
  printf("DERIX262 Version 0.10 by SDLPal Team\n");
  printf("\nAn Open Source (GPL v3) Reimplementation of\n");
@@ -278,14 +410,30 @@ main(int parmn,char *parms[])
  printf("\n[P]:Pause [C]:Continue [1] to [-]:Single Channel ON/OFF \n");
  printf("[ESC] ---> Stop and End.\n");
 
- /*-------------------------- Get file ---------------------*/
- strcpy(filename, parms[1]);
- if(stricmp(filename+(strlen(parms[1])-4),".rix") != 0)
-	strcat(filename, ".rix\0");
  /*-------------------------- Usage ------------------------*/
  if(parmn < 2)
-  printf("\nUsage: PlayRix [FileName].Rix.\n"),exit(1);
+  printf("\nUsage: PlayRix [FileName].Rix [PortHex].\n"),exit(1);
+ if(parmn >= 3)
+ {
+	default_pass = (word)(strtoul(parms[2], NULL, 16) & 0xFFFFUL);
+ }
+ /*-------------------------- Get file ---------------------*/
+ if(strlen(parms[1]) >= sizeof(filename))
+  printf("\nFile path too long.\n"),exit(1);
+ strcpy(filename, parms[1]);
+ if(strlen(filename) < 4 || stricmp(filename+(strlen(filename)-4),".rix") != 0)
+ {
+	if(strlen(filename) + 4 >= sizeof(filename))
+		printf("\nFile path too long.\n"),exit(1);
+	strcat(filename, ".rix");
+ }
  /*------------------------ preparations -------------------*/
+#if MODERN_LINUX_IO
+ if(!linux_io_init()) exit(1);
+#endif
+#if MODERN_POSIX
+ if(!modern_key_init()) exit(1);
+#endif
  init();
  set_new_int();
  music_pass = 0x388;
@@ -296,7 +444,7 @@ main(int parmn,char *parms[])
 	 channel_on[i] = 1;
 	 channel_vol[i] = 0;
  }
- while(true)
+ while(1)
  {
   switch(getkey())
   {
@@ -343,7 +491,10 @@ void chn_toogle(WORD channel)
 
 void set_new_int()
 {
-	if(!ad_initial()) exit(1);
+	if(!ad_initial()) {
+		printf("\nNo OPL card detected on port 0x%X.\n", default_pass);
+		exit(1);
+	}
 	prep_int();
 }
 /*----------------------------------------------------------*/
@@ -392,7 +543,12 @@ void data_initial()
 void set_old_int()
 {
 	set_time(0);
+	#if MODERN_POSIX
+	g_timer_running = 0;
+	pthread_join(g_timer_thread, NULL);
+	#else
 	setvect(INT,old);
+	#endif
 }
 /*----------------------------------------------------------*/
 word ad_initial()
@@ -435,19 +591,29 @@ void crc_trans(WORD index,WORD v)
 /*----------------------------------------------------------*/
 void set_time(word v)
 {
+	#if MODERN_POSIX
+	unsigned int divisor = (v == 0) ? 65536U : (unsigned int)v;
+	g_tick_ns = ((unsigned long long)divisor * 1000000000ULL) / 1193180ULL;
+	#else
 	disable();
 	outportb(0x43,0x36);
 	outportb(0x40,v&0xFF);
 	outportb(0x40,v>>8);
 	enable();
+	#endif
 }
 /*----------------------------------------------------------*/
 void prep_int()
 {
 	set_time(0);
 	file_flag = 0;
+	#if MODERN_POSIX
+	g_timer_running = 1;
+	pthread_create(&g_timer_thread, NULL, modern_timer_loop, NULL);
+	#else
 	old = getvect(INT);
 	setvect(INT,int_08h_entry);
+	#endif
 }
 /*----------------------------------------------------------*/
 void ad_bop(WORD reg,WORD value)
@@ -651,6 +817,13 @@ word ad_test()   /* Test the SoundCard */
 void interrupt int_08h_entry()
 {
 	word temp = 1;
+	#if defined(__GNUC__) && !MODERN_POSIX
+	__asm__ __volatile__("cld");
+	outportb(0x20,0x20);
+	#elif !MODERN_POSIX
+	old();
+	#endif
+	#if !MODERN_POSIX
 	for (i = 0; i < 11; i++)
 	{
 		if(channel_on[i] == 1)
@@ -662,12 +835,7 @@ void interrupt int_08h_entry()
 		}
 	}
 	printf("\r");
-#ifdef __GNUC__
-	__asm__ __volatile__("cld");
-	outportb(0x20,0x20);
-#else
-	old();
-#endif
+	#endif
 	while(temp)
 	if(unknown1 <= 0 && file_flag == 0)
 	{
@@ -927,3 +1095,109 @@ DWORD strm_and_fr(WORD parm)
 {
 	return ((DWORD)parm*6+10000)*0.27461678223;
 }
+
+#if MODERN_LINUX_IO
+static int linux_io_init(void)
+{
+	if(iopl(3) != 0)
+	{
+		perror("iopl(3)");
+		return 0;
+	}
+	atexit(linux_io_deinit);
+	return 1;
+}
+
+static void linux_io_deinit(void)
+{
+	iopl(0);
+}
+#endif
+
+#if MODERN_POSIX
+static void *modern_timer_loop(void *arg)
+{
+	unsigned long long next_tick_ns;
+	(void)arg;
+	if(g_tick_ns == 0) g_tick_ns = (65536ULL * 1000000000ULL) / 1193180ULL;
+
+	#if defined(__MINGW32__)
+	next_tick_ns = (unsigned long long)GetTickCount64() * 1000000ULL;
+	#else
+	{
+		struct timespec now;
+		clock_gettime(CLOCK_MONOTONIC, &now);
+		next_tick_ns = ((unsigned long long)now.tv_sec * 1000000000ULL) + (unsigned long long)now.tv_nsec;
+	}
+	#endif
+
+	while(g_timer_running)
+	{
+		unsigned long long ns = g_tick_ns;
+		if(ns == 0) ns = (65536ULL * 1000000000ULL) / 1193180ULL;
+		next_tick_ns += ns;
+
+		#if defined(__MINGW32__)
+		while(g_timer_running)
+		{
+			unsigned long long now_ns = (unsigned long long)GetTickCount64() * 1000000ULL;
+			unsigned long long remain_ns;
+			DWORD sleep_ms;
+			if(now_ns >= next_tick_ns) break;
+			remain_ns = next_tick_ns - now_ns;
+			sleep_ms = (DWORD)(remain_ns / 1000000ULL);
+			if(sleep_ms == 0) sleep_ms = 1;
+			Sleep(sleep_ms);
+		}
+		#else
+		{
+			struct timespec target;
+			target.tv_sec = (time_t)(next_tick_ns / 1000000000ULL);
+			target.tv_nsec = (long)(next_tick_ns % 1000000000ULL);
+			clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &target, NULL);
+		}
+		#endif
+
+		if(g_timer_running) int_08h_entry();
+	}
+	return NULL;
+}
+
+static int modern_key_init(void)
+{
+	#if defined(__MINGW32__)
+	return 1;
+	#else
+	if(tcgetattr(STDIN_FILENO, &g_old_termios) != 0)
+	{
+		perror("tcgetattr");
+		return 0;
+	}
+	{
+		struct termios raw = g_old_termios;
+		raw.c_lflag &= ~(ICANON | ECHO);
+		raw.c_cc[VMIN] = 1;
+		raw.c_cc[VTIME] = 0;
+		if(tcsetattr(STDIN_FILENO, TCSANOW, &raw) != 0)
+		{
+			perror("tcsetattr");
+			return 0;
+		}
+	}
+	g_termios_ready = 1;
+	atexit(modern_key_deinit);
+	return 1;
+	#endif
+}
+
+static void modern_key_deinit(void)
+{
+	#if !defined(__MINGW32__)
+	if(g_termios_ready)
+	{
+		tcsetattr(STDIN_FILENO, TCSANOW, &g_old_termios);
+		g_termios_ready = 0;
+	}
+	#endif
+}
+#endif
