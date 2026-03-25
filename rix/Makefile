@@ -48,15 +48,23 @@ TARGETS := $(DERIX_TARGET) $(DERIX262_TARGET)
 
 DERIX262_LDLIBS := $(LDLIBS) -lm
 
+ifeq ($(PLATFORM),linux)
+POST_BUILD_SETCAP = sudo setcap cap_sys_rawio+ep $@
+else
+POST_BUILD_SETCAP = @:
+endif
+
 .PHONY: all clean info
 
 all: $(TARGETS)
 
 $(DERIX_TARGET): $(DERIX_SRC)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $< $(LDLIBS)
+	$(POST_BUILD_SETCAP)
 
 $(DERIX262_TARGET): $(DERIX262_SRC)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $< $(DERIX262_LDLIBS)
+	$(POST_BUILD_SETCAP)
 
 info:
 	@echo CC=$(CC)

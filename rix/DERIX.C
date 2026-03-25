@@ -186,6 +186,8 @@ typedef unsigned long  dword;
 typedef struct {BYTE v[14];}ADDT;
 typedef struct {WORD v[12];}BFDT;
 /************************************************************/
+char progname[20];
+/************************************************************/
 int getkey()
 {
 #if MODERN_POSIX
@@ -219,7 +221,7 @@ int getkey()
 /************************************************************/
 /*      global various and flags                            */
 /************************************************************/
-WORD default_pass = 0x220;
+WORD default_pass = 0x388;
 FILE * fp = NULL;
 FILE * tfp = NULL;
 char filename[260] = {0};
@@ -342,8 +344,9 @@ int main(int parmn,char *parms[])
  printf("\n[P]:Pause [C]:Continue [+,-]:Chang Speed\n");
  printf("[ESC] ---> Stop and End.\n");
  /*-------------------------- Usage ------------------------*/
+ strcpy(progname, parms[0]);
  if(parmn < 2)
-  printf("\nUsage: PlayRix [FileName].Rix [PortHex].\n"),exit(1);
+  printf("\nUsage: %s [FileName].Rix [PortHex].\n", progname),exit(1);
  if(parmn >= 3)
  {
 	default_pass = (word)(strtoul(parms[2], NULL, 16) & 0xFFFFUL);
@@ -378,7 +381,7 @@ int main(int parmn,char *parms[])
 	case pause:  Pause(); break;
 	case contn:  pause_flag = 0; break;
 	case sub:    mus_time += 0x32; set_time(mus_time); break;
-	case add:    break;
+	case add:    mus_time += 0x32; set_time(mus_time); break;
   }
  }
 }
@@ -407,7 +410,7 @@ void Pause()
 void init()
 {
 	fp = fopen(filename, "rb");
-	if(fp == NULL) printf("\nUsage: PlayRix [FileName].Rix.\n"),exit(1);
+	if(fp == NULL) printf("\nUsage: %s [FileName].Rix.\n", progname),exit(1);
 	fseek(fp,0,SEEK_END); filelen = ftell(fp);
 	if(filelen > 32767 || filelen < 0) filelen = 32767;
 	fseek(fp,0,SEEK_SET);
@@ -513,7 +516,7 @@ void prep_int()
 void ad_bop(WORD reg,WORD value)
 {
 	register int i;
-	log_opl_write(default_pass, reg, value);
+	//log_opl_write(default_pass, reg, value);
 	outportb(default_pass,reg&0xff);
 	for(i=0;i<6;i++)
 	inportb(default_pass);
