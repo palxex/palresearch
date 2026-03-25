@@ -244,6 +244,8 @@ typedef struct {WORD v[12];}BFDT;
 enum bool {false,true};
 #endif
 /************************************************************/
+char progname[20];
+/************************************************************/
 int getkey()
 {
 	#if MODERN_POSIX
@@ -288,7 +290,7 @@ int getkey()
 /************************************************************/
 /*      global various and flags                            */
 /************************************************************/
-WORD default_pass = 0x220;
+WORD default_pass = 0x388;
 FILE * fp = NULL;
 FILE * tfp = NULL;
 char filename[260] = {0};
@@ -416,9 +418,9 @@ static void modern_key_deinit(void);
 int main(int parmn,char *parms[])
 {
  /*-------------------------- Title ------------------------*/
- printf("DERIX262 Version 0.10 by SDLPal Team\n");
+ printf("DERIX262 Version 0.20 by SDLPal Team\n");
  printf("\nAn Open Source (GPL v3) Reimplementation of\n");
- printf("    PlayRix Version 1.01 (TUBRO Version)\n");
+ printf("    PlayRIX Version 1.01 (TUBRO Version)\n");
  printf("    Program writen by Pei-Cheng Tong using assembly 1994.\n");
  printf("\nThis program requires OPL3(YMF262) or compatible chips.\n");
  printf("Surround OPL function comes from AdPlug and SDLPal. \n");
@@ -426,8 +428,9 @@ int main(int parmn,char *parms[])
  printf("[ESC] ---> Stop and End.\n");
 
  /*-------------------------- Usage ------------------------*/
+ strcpy(progname, parms[0]);
  if(parmn < 2)
-  printf("\nUsage: PlayRix [FileName].Rix [PortHex].\n"),exit(1);
+  printf("\nUsage: %s [FileName].Rix [PortHex].\n", progname),exit(1);
  if(parmn >= 3)
  {
 	default_pass = (word)(strtoul(parms[2], NULL, 16) & 0xFFFFUL);
@@ -467,7 +470,7 @@ int main(int parmn,char *parms[])
 	case pause:  Pause(); break;
 	case contn:  pause_flag = 0; break;
 	case sub:    mus_time += 0x32; set_time(mus_time); break;
-	case add:    break;
+	case add:    mus_time -= 0x32; set_time(mus_time); break;
 	
 	case chn0:   chn_toogle(0); break;
 	case chn1:   chn_toogle(1); break;
@@ -524,7 +527,7 @@ void Pause()
 void init()
 {
 	fp = fopen(filename, "rb");
-	if(fp == NULL) printf("\nUsage: PlayRix [FileName].Rix.\n"),exit(1);
+	if(fp == NULL) printf("\nUsage: DERIX262 [FileName].Rix.\n"),exit(1);
 	fseek(fp,0,SEEK_END); filelen = ftell(fp);
 	if(filelen > 32767 || filelen < 0) filelen = 32767;
 	fseek(fp,0,SEEK_SET);
@@ -585,54 +588,12 @@ word ad_initial()
 	ad_bopw(OPL3_MODE_REGISTER, 1);
 	ad_bopw(OPL3_4OP_REGISTER, 0);
 
-	/* Clear Everything in opl3 mode */
-	for ( i = 0; i < 512; i++ ) {
-		if ( i == 0x105 )
-			continue;
-		ad_bopw( i, 0xff );
-		ad_bopw( i, 0x0 );
-	}
-	ad_bopw( 0x105, 0x0 );
-	/* Clear everything in opl2 mode */
-	for ( i = 0; i < 255; i++ ) {
-		ad_bopw( i, 0xff );
-		ad_bopw( i, 0x0 );
-	}
-
-	ad_bopw(OPL3_MODE_REGISTER, 1);
-	ad_bopw(OPL3_4OP_REGISTER, 0);
-
-	for(i=0;i<9;i++)
-	{
-	 ad_bopw(0xA0 + i, 0);
-	 ad_bopw(0xB0 + i, 0);
-	 ad_bopw(OPL3_EXTREG_BASE + 0xA0 + i, 0);
-	 ad_bopw(OPL3_EXTREG_BASE + 0xB0 + i, 0);
-	 ad_bopw(0xC0 + i, 0);
-	 ad_bopw(OPL3_EXTREG_BASE + 0xC0 + i, 0);
-	}
-
-	for(i=0;i<18;i++)
-	{
-	 ad_bopw(0x20 + reg_data[i], 0);
-	 ad_bopw(0x40 + reg_data[i], 0);
-	 ad_bopw(0x60 + reg_data[i], 0);
-	 ad_bopw(0x80 + reg_data[i], 0);
-	 ad_bopw(0xE0 + reg_data[i], 0);
-	 ad_bopw(OPL3_EXTREG_BASE + 0x20 + reg_data[i], 0);
-	 ad_bopw(OPL3_EXTREG_BASE + 0x40 + reg_data[i], 0);
-	 ad_bopw(OPL3_EXTREG_BASE + 0x60 + reg_data[i], 0);
-	 ad_bopw(OPL3_EXTREG_BASE + 0x80 + reg_data[i], 0);
-	 ad_bopw(OPL3_EXTREG_BASE + 0xE0 + reg_data[i], 0);
-	}
-
 	ad_bopw(0x08, 0);
 	percussion = 0;
 	ad_bopw(0xBD, 0);
 	e0_reg_flag = 0x20;
 	ad_bopw(1, e0_reg_flag);
 
-	ad_bopw(OPL3_MODE_REGISTER, 1);
 	return ad_test();
 }
 /*----------------------------------------------------------*/
@@ -849,12 +810,12 @@ void ad_bopw(WORD reg,WORD value)
 {
 	register int i;
 	WORD base_port = default_pass + ((reg >> 7) & 0x2);
-	log_opl_write(base_port, reg, value);
+	//log_opl_write(base_port, reg, value);
 	outportb(base_port,reg & 0xFF);
-	for(i=0;i<6;i++)
+	for(i=0;i<0;i++)
 	inportb(base_port);
 	outportb(base_port + 1,value & 0xFF);
-	for(i=0;i<35;i++)
+	for(i=0;i<26;i++)
 	inportb(base_port);
 }
 /*------------------------------------------------------*/

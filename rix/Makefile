@@ -54,9 +54,11 @@ all: $(TARGETS)
 
 $(DERIX_TARGET): $(DERIX_SRC)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $< $(LDLIBS)
+	sudo setcap cap_sys_rawio+ep $@
 
 $(DERIX262_TARGET): $(DERIX262_SRC)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $< $(DERIX262_LDLIBS)
+	sudo setcap cap_sys_rawio+ep $@
 
 info:
 	@echo CC=$(CC)
