@@ -44,6 +44,11 @@
 #include <sys/io.h>
 #endif
 
+#ifdef __DJGPP__
+#define CRASH_HANDLER_DOS_IMPLEMENTATION
+#include "crash_handler_dos.h"
+#endif
+
 static FILE *g_outb_log = NULL;
 
 static void log_opl_write(unsigned short base, unsigned short reg, unsigned short value)
@@ -338,6 +343,9 @@ static void modern_key_deinit(void);
 /************************************************************/
 int main(int parmn,char *parms[])
 {
+#ifdef __DJGPP__
+ init_crash_handler();
+#endif
  /*-------------------------- Title ------------------------*/
  printf("PlayRix Version 1.01 ](TUBRO Version)[\n");
  printf("Program writen by Pei-Cheng Tong using assembly 1994.\n");

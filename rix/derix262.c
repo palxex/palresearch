@@ -64,6 +64,11 @@
 #include <sys/io.h>
 #endif
 
+#ifdef __DJGPP__
+#define CRASH_HANDLER_DOS_IMPLEMENTATION
+#include "crash_handler_dos.h"
+#endif
+
 static FILE *g_outb_log = NULL;
 
 static void log_opl_write(unsigned short base, unsigned short reg, unsigned short value)
@@ -417,6 +422,9 @@ static void modern_key_deinit(void);
 /************************************************************/
 int main(int parmn,char *parms[])
 {
+#ifdef __DJGPP__
+ init_crash_handler();
+#endif
  /*-------------------------- Title ------------------------*/
  printf("DERIX262 Version 0.20 by SDLPal Team\n");
  printf("\nAn Open Source (GPL v3) Reimplementation of\n");
