@@ -1,0 +1,288 @@
+FFFF enum status : __int16
+FFFF {
+FFFF     crazy         = 0x0,                // 疯
+FFFF     fixed         = 0x1,                // 定
+FFFF     sleep         = 0x2,                // 眠
+FFFF     sealed        = 0x3,                // 封
+FFFF     dummy         = 0x4,                // 傀儡
+FFFF     high_attack   = 0x5,
+FFFF     high_defend   = 0x6,
+FFFF     high_speed    = 0x7,
+FFFF     double_attack = 0x8,
+FFFF };
+
+00000000 #pragma pack(push, 1)
+00000000 struct Trans_Table // sizeof=0xA
+00000000 {                                       // XREF: seg030:XMS_Trans_tbl/r
+00000000     int Length_tt;
+00000002     __int16 Src_Handle;
+00000004     int Src_Offset;
+00000006     __int16 Dst_Handle;
+00000008     int Dst_Offset;
+0000000A };
+0000000A #pragma pack(pop)
+
+00000000 #pragma pack(push, 1)
+00000000 struct FHD // sizeof=0x8
+00000000 {                                       // XREF: DDIM/r
+00000000     __int16 FHD_oData;                  // [1]Offset of data start
+00000002     __int16 segment;                    // XREF: process_Battle+20E/r
+00000002                                         // process_Battle+21E/r
+00000002                                         // process_Battle+238/r
+00000002                                         // process_Battle+248/r
+00000002                                         // process_Battle+259/r
+00000002                                         // process_Battle+26A/r
+00000002                                         // process_Battle+284/r
+00000002                                         // process_Battle+294/r
+00000002                                         // process_Battle+2A5/r
+00000002                                         // process_Battle+2B6/r
+00000002                                         // process_Battle+2C7/r
+00000002                                         // process_Battle+2D8/r
+00000002                                         // process_Battle+2FC/r
+00000002                                         // process_Battle+30A/r
+00000002                                         // process_Battle+318/r ...
+00000002                                         // [1]Segment of data start
+00000004     __int16 FHD_pNext;                  // DGROUP offset of next FHD
+00000006     __int16 FHD_cPara;                  // Para count of entry (bytes for non-LNA)
+00000008 };
+00000008 #pragma pack(pop)
+
+00000000 #pragma pack(push, 1)
+00000000 struct DM // sizeof=0x4
+00000000 {                                       // XREF: DDIM/r DDIM/r DDIM/r
+00000000                                         // DDIM/r DDIM/r DDIM/r DDIM/r
+00000000                                         // DDIM/r
+00000000     __int16 Elements;                   // XREF: inventory_Equip:loc_15A6/r
+00000000                                         // inventory_Equip+3A2/r
+00000000                                         // inventory_Equip:loc_16A4/r
+00000000                                         // inventory_Equip:loc_16C6/r
+00000000                                         // inventory_Equip+437/r
+00000000                                         // inventory_Equip+519/r
+00000000                                         // inventory_Equip+576/r
+00000000                                         // select_thurgy+545/r
+00000000                                         // select_thurgy+6B4/r
+00000000                                         // process_Battle+38/r
+00000000                                         // process_Battle:loop_in_exp/r
+00000000                                         // process_Battle:attacking/r
+00000000                                         // process_Battle+66E/r
+00000000                                         // process_Battle+680/r
+00000000                                         // process_Battle+6B0/r ...
+00000000                                         // Element count for this dimension
+00000002     __int16 DM_iLbound;                 // Lower bound for this dimension
+00000004 };
+00000004 #pragma pack(pop)
+
+00000000 #pragma pack(push, 1)
+00000000 struct DDIM // sizeof=0x2E
+00000000 {                                       // XREF: seg034:DDIM_keybuf/r
+00000000                                         // seg034:DDIM_buf_SETUP_DAT/r
+00000000                                         // seg034:DDIM_battletime_role_HP_MP/r
+00000000                                         // seg034:DDIM_battletime_enemy_HP/r
+00000000                                         // seg034:DDIM_buf_common_short/r
+00000000                                         // seg034:DDIM_fadegap_031524/r
+00000000                                         // seg034:DDIM_buf_common/r
+00000000                                         // seg034:DDIM_vs_id_table/r
+00000000                                         // seg034:DDIM_posXs/r
+00000000                                         // seg034:DDIM_posYs/r
+00000000                                         // seg034:DDIM_21043_enemy_sequence/r
+00000000                                         // seg034:DDIM_RPG_team_positions/r
+00000000                                         // seg034:DDIM_role_attack_table/r
+00000000                                         // seg034:DDIM_RPG_team_trace/r
+00000000                                         // seg034:DDIM_x_off_fff0_fff0_10_10/r ...
+00000000     FHD header;                         // XREF: process_Battle+20E/r
+00000000                                         // process_Battle+21E/r
+00000000                                         // process_Battle+238/r
+00000000                                         // process_Battle+248/r
+00000000                                         // process_Battle+259/r
+00000000                                         // process_Battle+26A/r
+00000000                                         // process_Battle+284/r
+00000000                                         // process_Battle+294/r
+00000000                                         // process_Battle+2A5/r
+00000000                                         // process_Battle+2B6/r
+00000000                                         // process_Battle+2C7/r
+00000000                                         // process_Battle+2D8/r
+00000000                                         // process_Battle+2FC/r
+00000000                                         // process_Battle+30A/r
+00000000                                         // process_Battle+318/r ...
+00000008     char Dimensions;                    // Dimension count
+00000009     char AD_fFeatures;                  // Feature flags
+0000000A     __int16 offset;                     // XREF: process_Battle+20B/r
+0000000A                                         // process_Battle+21B/r
+0000000A                                         // process_Battle+235/r
+0000000A                                         // process_Battle+245/r
+0000000A                                         // process_Battle+256/r
+0000000A                                         // process_Battle+267/r
+0000000A                                         // process_Battle+281/r
+0000000A                                         // process_Battle+291/r
+0000000A                                         // process_Battle+2A2/r
+0000000A                                         // process_Battle+2B3/r
+0000000A                                         // process_Battle+2C4/r
+0000000A                                         // process_Battle+2D5/r
+0000000A                                         // process_Battle+2F9/r
+0000000A                                         // process_Battle+307/r
+0000000A                                         // process_Battle+315/r ...
+0000000C     __int16 AD_cbElement;               // Byte count per element
+0000000E     DM Dimension1 __tabform(NODUPS,,0); // First byte of first DM structure
+00000012     DM Dimension2;                      // XREF: inventory_Equip:loc_15A6/r
+00000012                                         // inventory_Equip+3A2/r
+00000012                                         // inventory_Equip:loc_16A4/r
+00000012                                         // inventory_Equip:loc_16C6/r
+00000012                                         // inventory_Equip+519/r
+00000012                                         // inventory_Equip+576/r
+00000012                                         // select_thurgy+545/r
+00000012                                         // select_thurgy+6B4/r
+00000012                                         // process_Battle+38/r
+00000012                                         // process_Battle:loop_in_exp/r
+00000012                                         // process_Battle:attacking/r
+00000012                                         // process_Battle+66E/r
+00000012                                         // process_Battle+680/r
+00000012                                         // process_Battle+6B0/r
+00000012                                         // process_Battle+862/r ...
+00000016     DM Dimension3;                      // XREF: inventory_Equip+437/r
+0000001A     DM Dimension4;
+0000001E     DM Dimension5;
+00000022     DM Dimension6;
+00000026     DM Dimension7;
+0000002A     DM Dimension8;
+0000002E };
+0000002E #pragma pack(pop)
+
+00000000 #pragma pack(push, 1)
+00000000 struct BSTR // sizeof=0x6
+00000000 {                                       // XREF: seg034:BSTR_local/r
+00000000                                         // seg034:BSTR_CDriver/r
+00000000                                         // seg034:BSTR_SETUP_DAT/r
+00000000                                         // seg034:BSTR_CHECK_CD_ROM/r
+00000000                                         // seg034:BSTR_NotFound/r
+00000000                                         // seg034:BSTR_NotReady/r
+00000000                                         // seg034:BSTR__/r
+00000000                                         // seg034:BSTR_in/r
+00000000                                         // seg034:BSTR_fan/r
+00000000                                         // seg034:BSTR_nullstr/r
+00000000                                         // seg034:BSTR_Free/r
+00000000                                         // seg034:BSTR_bytes/r
+00000000                                         // seg034:BSTR_ErrorFreeMemoryIsNotEnough570K/r
+00000000                                         // seg034:BSTR_XMS_eq/r
+00000000                                         // seg034:BSTR_k/r ...
+00000000     int pointer;
+00000002     _UNKNOWN __near *ptr_string __offset(OFF16,0x2F380);
+00000004     __int16 size;
+00000006 };
+00000006 #pragma pack(pop)
+
+00000000 #pragma pack(push, 1)
+00000000 struct device_request_header // sizeof=0xE
+00000000 {                                       // XREF: seg034:CDROM_request_header/r
+00000000     char len_drh;
+00000001     char subUnit;
+00000002     char funcNr;
+00000003     __int16 status;
+00000005     int reserved;
+00000007     int reserved_too;
+00000009     char media_descriptor;
+0000000A     int transfer_address;
+0000000C     __int16 bytes_to_access;
+0000000E };
+0000000E #pragma pack(pop)
+
+00000000 #pragma pack(push, 1)
+00000000 struct TMSF // sizeof=0x4
+00000000 {                                       // XREF: track_info_s/r
+00000000     char fr;
+00000001     char sec;
+00000002     char min;
+00000003     char reserved_tmsf;
+00000004 };
+00000004 #pragma pack(pop)
+
+00000000 #pragma pack(push, 1)
+00000000 struct TMS // sizeof=0x3
+00000000 {                                       // XREF: SubChannel/r
+00000000                                         // SubChannel/r AudioStatus_t/r
+00000000                                         // AudioStatus_t/r
+00000000     char minute;
+00000001     char second;
+00000002     char hour;
+00000003 };
+00000003 #pragma pack(pop)
+
+00000000 #pragma pack(push, 1)
+00000000 struct FILE_Struct // sizeof=0x6
+00000000 {                                       // XREF: seg034:RNG_MKF/r
+00000000                                         // seg034:MGO_MKF/r
+00000000                                         // seg034:F_MKF/r
+00000000                                         // seg034:ABC_MKF/r
+00000000     int pointee;
+00000002     __int16 open_flag;
+00000004     __int16 file_handle;
+00000006 };
+00000006 #pragma pack(pop)
+
+00000000 #pragma pack(push, 1)
+00000000 struct SubChannel // sizeof=0xA
+00000000 {                                       // XREF: seg034:SubChannelData/r
+00000000     char attribute;
+00000001     char subtrack;
+00000002     char index;
+00000003     TMS rel;
+00000006     char reserved_sc;
+00000007     TMS abs;
+0000000A };
+0000000A #pragma pack(pop)
+
+00000000 #pragma pack(push, 1)
+00000000 struct scanline // sizeof=0x6
+00000000 {
+00000000     __int16 pixels;
+00000002     int ptr;
+00000004     __int16 next;
+00000006 };
+00000006 #pragma pack(pop)
+
+00000000 #pragma pack(push, 1)
+00000000 struct AudioStatus_t // sizeof=0x9
+00000000 {                                       // XREF: seg034:AudioStatus/r
+00000000     char pause;
+00000001     TMS resStart;
+00000004     char reserved_as;
+00000005     TMS resEnd;
+00000008     char reserved_as2;
+00000009 };
+00000009 #pragma pack(pop)
+
+00000000 #pragma pack(push, 1)
+00000000 struct event_object // sizeof=0x20
+00000000 {
+00000000     __int16 vanish_time;
+00000002     __int16 pos_x;                      // XREF: process_scripts+3746/o
+00000002                                         // process_scripts+3754/o
+00000002                                         // process_scripts+3E55/o
+00000002                                         // process_scripts+3E63/o
+00000004     __int16 pos_y;                      // XREF: process_scripts+3767/o
+00000004                                         // process_scripts+3775/o
+00000004                                         // process_scripts+3E76/o
+00000004                                         // process_scripts+3E84/o
+00000006     __int16 layer;
+00000008     __int16 trigger_script;
+0000000A     __int16 auto_script;
+0000000C     __int16 obj_status;
+0000000E     __int16 trigger_method;
+00000010     __int16 image;
+00000012     __int16 frames;
+00000014     __int16 direction;
+00000016     __int16 curr_frame;
+00000018     __int16 scr_jmp_count;
+0000001A     __int16 image_ptr_offset;
+0000001C     __int16 frames_auto;
+0000001E     __int16 scr_jmp_count_auto;
+00000020 };
+00000020 #pragma pack(pop)
+
+00000000 #pragma pack(push, 1)
+00000000 struct track_info_s // sizeof=0x7
+00000000 {                                       // XREF: seg034:track_info_array/r
+00000000     char subfunc_id_B;
+00000001     char track;
+00000002     TMSF start;
+00000006     char attr;
+00000007 };

@@ -1,0 +1,31 @@
+IDA has found an unpacked version of database: E:\Game\palresearch\EXE\PALx.idb
+on the disk.
+
+Should we proceed with the unpacked files?
+ -> Pro~c~eed with unpacked base
+
+  bytes   pages size description
+--------- ----- ---- --------------------------------------------
+  1040384   127 8192 allocating memory for b-tree...
+   827392   101 8192 allocating memory for virtual array...
+   262144    32 8192 allocating memory for name pointers...
+-----------------------------------------------------------------
+  2129920            total memory allocated
+
+Loading type libraries...
+It appears some comments in this database contain localized characters,
+that need conversion to UTF-8. From your system, IDA guessed the
+source (OEM) encoding might be: "gb2312"
+
+Here is a sample of text that was translated into that encoding:
+"(emulator call)
+将时间入栈"
+
+If this does not look correct, please press 'No' to cancel the conversion
+and see the UPGRADE_CPSTRINGS_* directives in ida.cfg for more information. -> ~Y~es
+Can't use BIOS comments base. -> OK
+struct->til conversion failed: could not retrieve type of track_info_s.start
+Autoanalysis subsystem has been initialized.
+Database for file 'PALx.EXE' has been loaded.
+Flushing buffers, please wait...ok
+Unloading IDP module pc...

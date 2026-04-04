@@ -1,0 +1,1025 @@
+function_name	segment	start	length	locals	args_count	R	F	L	M	O	S	B	T	=	X
+$18_tpwr10	seg003	00000CA9	0000003E			R	.	.	.	.	.	.	.	.	.
+$i8_m8	seg003	00000223	0000004D			R	.	L	.	.	.	.	.	.	.
+$m4_i4	seg003	00000180	00000048			R	.	L	.	.	.	.	.	.	.
+$m8_i8	seg003	000001C8	0000005B			R	.	L	.	.	.	.	.	.	.
+B$$TCR	seg002	00001FEA	00000008	00000002		R	.	L	.	.	.	.	.	.	.
+B$$WCHT	seg002	00001FF2	00000009			R	.	L	.	.	.	.	.	.	.
+B$ADArraySize	seg002	00001DBE	00000030	00000008		R	.	L	.	.	.	.	.	.	.
+B$ADDL	seg002	000046E4	00000026	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$ADD_EXT	seg002	000030C0	00000017	00000002		R	.	L	.	.	.	.	.	.	.
+B$ASCRND	seg002	00001FA6	00000043	00000004		R	.	L	.	.	.	.	.	.	.
+B$AdjustDgroupPmi	seg005	000005F7	0000003E	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$AdjustStringAD	seg002	000019E3	0000001F	00000002	00000008	R	F	L	.	.	.	B	.	.	.
+B$AlcTmpSH	seg002	000021E4	00000033	00000000	00000002	R	F	L	.	.	.	B	.	.	.
+B$AllocDestStr	seg002	00000D28	00000035			R	F	L	.	.	.	.	.	.	.
+B$AllocFDB	seg002	000000FC	00000060	0000000A		R	F	L	.	.	.	.	.	.	.
+B$AssureStrTemp	seg002	0000225A	00000017			R	F	L	.	.	.	.	.	.	.
+B$BEEP	seg002	00001803	00000004			R	F	L	.	.	.	.	.	.	.
+B$BLEEP	seg002	00003315	00000012	00000004		R	.	L	.	.	.	.	.	.	.
+B$BREAK_CHK	seg002	00003181	00000024			R	.	L	.	.	.	.	.	.	.
+B$BumpDS	seg002	000042F7	0000000C	00000002		R	.	L	.	.	.	.	.	.	.
+B$BumpES	seg002	00004303	0000000C	00000002		R	.	L	.	.	.	.	.	.	.
+B$CENC	seg002	00000F3F	00000009	00000002	00000004	R	.	L	.	.	.	B	.	.	.
+B$CEND	seg002	00000F48	00000009	00000002		.	.	.	.	.	.	B	.	.	.
+B$CENP	seg002	00000F2A	00000017	00000002		R	F	L	.	.	.	B	.	.	.
+B$CHKFOPEN	seg002	0000025C	00000042	00000002		R	F	L	.	.	.	.	.	.	.
+B$CHKLASTCOL	seg002	0000175C	00000012			R	.	L	.	.	.	.	.	.	.
+B$CHKNAM	seg002	000001F8	0000006C	00000004		R	F	L	.	.	.	.	.	.	.
+B$CHK_WRITE	seg002	00001335	0000002C			R	F	L	.	.	.	.	.	.	.
+B$CLOS	seg002	000002B4	0000003A	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$CLOSE	seg002	00002D0D	00000009	00000002		R	F	L	.	.	.	.	.	.	.
+B$CLOSF	seg002	0000029E	00000016	00000002		R	.	L	.	.	.	.	.	.	.
+B$CLRSCN	seg002	000031CA	00000069	00000008		R	.	L	.	.	.	.	.	.	.
+B$CMI4	seg002	000000B9	0000001B	00000002	00000008	R	F	L	.	.	.	B	.	.	.
+B$CNINI	seg002	00002A8C	00000021			R	.	L	.	.	.	.	.	.	.
+B$CNKBDRESET	seg002	00002AC0	0000000B			R	.	L	.	.	.	.	.	.	.
+B$CNKBDSET	seg002	00002AAD	00000013			R	.	L	.	.	.	.	.	.	.
+B$CNTERM	seg002	00002ACB	00000024			R	.	L	.	.	.	.	.	.	.
+B$CON_STROUT	seg002	00003327	00000013	00000006		R	.	L	.	.	.	.	.	.	.
+B$CPI4	seg002	00000097	00000022	00000002	00000008	R	F	L	.	.	.	B	T	.	.
+B$CRLF	seg002	00001E5E	00000014			R	.	L	.	.	.	.	.	.	.
+B$CalcHugeArrayGap	seg002	00001986	00000020	00000000		R	.	L	.	.	.	.	.	.	.
+B$CbAllocSb	seg002	00001E96	00000007	00000002	00000006	R	F	L	.	.	.	B	.	.	.
+B$CbCompactHeap	seg005	00000061	00000047	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$CbReallocSb	seg002	00001E9D	00000037	00000002	00000006	R	F	L	.	.	.	B	.	.	.
+B$CbSizeSb	seg002	00001EE4	00000016	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$CheckBlockMove	seg005	0000056B	00000036	00000002	00000004	R	.	L	.	.	.	B	.	.	.
+B$ChkFNUM	seg002	00002C1B	0000000C			R	F	L	.	.	.	.	.	.	.
+B$ChkMonitor	seg002	00003F3C	0000003B			R	.	L	.	.	.	.	.	.	.
+B$CompactHandles	seg005	00000759	00000066	00000002		R	.	L	.	.	.	.	.	.	.
+B$CompactSB	seg002	00004484	000000DA	00000006		R	.	L	.	.	.	.	.	.	.
+B$CreateHeap	seg005	00000000	00000061	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$DDIM	seg002	00001808	00000134	00000002	00000008	R	F	L	.	.	.	B	T	.	.
+B$DEVOPN	seg002	00002F16	0000003E	00000002		R	F	.	.	.	.	.	.	.	.
+B$DISKOPEN	seg002	00002D16	000001E3	00000006		R	F	.	.	.	.	.	.	.	.
+B$DISK_BAKC	seg002	00002B6E	00000005			R	.	L	.	.	.	.	.	.	.
+B$DISK_CLOSE	seg002	00002B73	00000036	00000006		R	.	L	.	.	.	.	.	.	.
+B$DISK_EOF	seg002	00002BA9	00000027			R	F	L	.	.	.	.	.	.	.
+B$DISK_SINP	seg002	00002C50	0000007B	00000002		R	F	L	.	.	.	.	.	.	.
+B$DKERR	seg002	0000135F	0000000B			R	.	L	.	.	.	.	.	.	.
+B$DOS3CHECK	seg002	00003195	00000006			R	.	L	.	.	.	.	.	.	.
+B$DSEG	seg002	00001B71	0000000D	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$DSG0	seg002	00001B6C	00000005			R	F	L	.	.	.	.	.	.	.
+B$DVI4	seg002	0000008D	00000005			R	F	L	.	.	.	.	.	.	.
+B$DeLink	seg002	000046C9	0000001B			R	.	L	.	.	.	.	.	.	.
+B$DeallocFDB	seg002	00000163	00000051	0000000A		R	.	L	.	.	.	.	.	.	.
+B$DecDS	seg002	0000430F	0000000C	00000002		R	.	L	.	.	.	.	.	.	.
+B$DelStrBlock	seg002	0000442D	00000041			R	.	L	.	.	.	.	.	.	.
+B$DelStrTemp	seg002	0000228E	0000000B			R	.	L	.	.	.	.	.	.	.
+B$DelString	seg002	00002299	0000001C			R	.	L	.	.	.	.	.	.	.
+B$DelTempSH	seg002	00002271	0000001D			R	.	L	.	.	.	.	.	.	.
+B$DevDispatch	seg002	0000031E	00000005	00000006		R	.	L	.	.	.	.	.	.	.
+B$DosReadWrite	seg002	00002CEE	00000022	00000006		R	.	L	.	.	.	.	.	.	.
+B$END	seg002	00000F51	0000000C			R	.	.	.	.	.	.	.	.	.
+B$ENRA	seg002	00001C97	00000044	0000000C		R	.	L	.	.	.	B	.	.	.
+B$ENRD	seg002	00001C86	00000011			R	F	L	.	.	.	.	.	.	.
+B$ERAS	seg002	00004388	000000A5	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$ERR_SSC	seg002	000035CE	000000E2	00000000		R	F	L	.	.	.	B	.	.	.
+B$ERS1	seg002	000047A1	00000024	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$EXCY	seg002	00001D6D	00000034	00000008		R	F	L	.	.	.	.	.	.	.
+B$EXFA	seg002	00001D50	0000001D	00000002		R	F	L	.	.	.	.	.	.	.
+B$EXSA	seg002	00001CE1	0000006F	00000006		R	F	L	.	.	.	.	.	.	.
+B$EXTS	seg002	00001DA1	0000001C			R	F	L	.	.	.	.	.	.	.
+B$EgaPalPut	seg002	000045AE	00000028	00000000		R	.	L	.	.	.	.	.	.	.
+B$EgaPalSet	seg002	000045FB	00000057	00000002		R	.	L	.	.	.	.	.	.	.
+B$EgaPalTrans	seg002	000045D6	00000025	00000000		R	.	L	.	.	.	.	.	.	.
+B$EraseAllAFHDs	seg002	0000470A	0000004B			R	.	L	.	.	.	.	.	.	.
+B$ErrorReturn	seg002	0000272F	00000002			R	.	L	.	.	.	.	.	.	.
+B$FASC	seg002	0000093E	00000015	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$FAllocHandles	seg005	000007BF	00000069	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$FCHR	seg002	00000ED8	0000001C	00000002	00000002	R	F	L	.	.	.	B	T	.	.
+B$FCVC	seg002	00000BBE	00000018	00000000	00000004	R	F	L	.	.	.	B	.	.	.
+B$FCVD	seg002	00001B7E	00000051	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$FCVI_0	seg002	00000B9D	0000001E	00000000	00000004	R	F	L	.	.	.	B	.	.	.
+B$FCompactMove	seg005	0000083D	000000E5	0000000A	00000004	R	.	.	.	.	.	B	.	.	.
+B$FCompactMoveHandles	seg005	00000828	00000015	00000000	00000004	R	.	L	.	.	.	.	.	.	.
+B$FHAllocRealloc	seg002	0000446E	00000016			R	F	L	.	.	.	.	.	.	.
+B$FILESIZE	seg002	00002C2B	00000005			R	F	L	.	.	.	.	.	.	.
+B$FIN	seg002	00001DEE	0000001F	00000002		R	.	L	.	.	.	.	.	.	.
+B$FINP	seg002	0000035A	000000CB	00000002	00000004	R	F	L	.	.	.	B	T	.	.
+B$FIX4	seg003	00000082	00000016	00000002		R	F	L	.	.	.	B	.	.	.
+B$FLUSH	seg002	000012CA	0000001E			R	.	L	.	.	.	.	.	.	.
+B$FMDF	seg002	00000C42	00000010	00000002	00000008	R	F	L	.	.	.	B	.	.	.
+B$FMID	seg002	000009FC	0000001D	00000002	00000006	R	F	L	.	.	.	B	T	.	.
+B$FMKC	seg002	00000C00	00000015	00000002	00000008	R	F	L	.	.	.	B	.	.	.
+B$FMKI	seg002	00000BD6	00000015	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$FMKL	seg002	00000BEB	00000015	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$FMSF	seg002	00000C52	00000010	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$FOUTBX	seg002	00001F52	00000054			R	.	L	.	.	.	.	.	.	.
+B$FRI2	seg002	0000139A	00000008	00000002	00000004	R	.	.	.	.	.	B	T	.	.
+B$FReallocAdjustPpv	seg005	000000FC	00000007	00000000		R	F	L	.	.	.	B	.	.	.
+B$FReallocStackCb	seg005	00000480	00000038	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$FResizePpv	seg005	00000103	00000005			R	.	L	.	.	.	.	.	.	.
+B$FSEK	seg002	0000085C	0000001F	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$FSTF	seg002	0000136A	00000061	00000002		R	F	.	.	.	.	B	.	.	.
+B$FSTK	seg002	0000104E	0000001F	00000002		R	F	L	.	.	.	.	.	.	.
+B$FarRet	seg002	00001AB6	00000001			R	F	.	.	.	.	.	.	.	.
+B$FindFrame	seg002	000022FB	00000018			R	.	L	.	.	.	.	.	.	.
+B$FixTextPage	seg002	00004086	00000038	00000002		R	.	L	.	.	.	.	.	.	.
+B$FlushCount	seg002	000012E8	00000053	00000006		R	.	.	.	.	.	.	.	.	.
+B$FreeDataPpv	seg005	00000238	0000004D	00000000	00000006	R	F	L	.	.	.	B	.	.	.
+B$FreeHandle	seg005	0000074C	0000000D			R	.	L	.	.	.	.	.	.	.
+B$FreeHandleBlock	seg005	000003DC	00000024	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$FreeHandleBlockCh	seg005	00000400	0000002F	00000002	00000006	R	F	L	.	.	.	B	.	.	.
+B$FreeSb	seg002	00001ED4	00000010	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$FreeSbRange	seg002	00001F17	0000003A	00000002	00000002	R	.	L	.	.	.	B	.	.	.
+B$GETCH	seg002	00001E4E	00000010			R	.	L	.	.	.	.	.	.	.
+B$GETCH_NS	seg002	00001E4B	00000003			R	.	L	.	.	.	.	.	.	.
+B$GETCSRDATA	seg002	0000246C	0000001F	00000004		R	.	L	.	.	.	.	.	.	.
+B$GETEXTERR	seg002	0000343E	00000025	00000010		R	.	L	.	.	.	.	.	.	.
+B$GET_CUR_DIR	seg002	000030E0	0000001B	00000002		R	F	L	.	.	.	.	.	.	.
+B$GET_CUR_DRIVE	seg002	000030D7	00000009			R	.	L	.	.	.	.	.	.	.
+B$GET_CUR_NUM	seg002	000030F9	00000041	0000000C		R	.	L	.	.	.	.	.	.	.
+B$GET_PATHNAME	seg002	00002F82	00000103	0000000E		R	F	L	.	.	.	.	.	.	.
+B$GOSA	seg002	000015D4	0000000F	00000000		R	F	L	.	.	.	.	.	.	.
+B$GRMODE	seg002	0000243C	00000006			R	.	L	.	.	.	.	.	.	.
+B$GetAspect	seg002	000042EE	00000009			R	.	L	.	.	.	.	.	.	.
+B$GetFilePos	seg002	00002C30	00000020			R	F	L	.	.	.	.	.	.	.
+B$GetParm	seg002	0000263F	0000001D			R	F	L	.	.	.	.	.	.	.
+B$GetPosition	seg002	00002BD0	0000004B			R	F	L	.	.	.	.	.	.	.
+B$GetZStrLen	seg002	000022B5	00000013	00000004		R	.	L	.	.	.	.	.	.	.
+B$GrScreenSize	seg002	00002431	0000000B			R	.	L	.	.	.	.	.	.	.
+B$HFillStrArray	seg002	000019A6	0000002A	00000002		R	.	L	.	.	.	.	.	.	.
+B$HFirstAllocBlock	seg005	00000355	00000087	00000002	00000004	R	F	L	.	.	.	B	T	.	.
+B$HandleAlloc	seg005	0000064C	00000100	00000002	00000002	R	.	L	.	.	.	B	.	.	.
+B$IDD1	seg002	00004652	00000077	00000002	00000008	R	F	L	.	.	.	B	.	.	.
+B$INS2	seg002	000009B9	00000016	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$INS3	seg002	00000953	00000066	00000002	00000006	R	F	L	.	.	.	B	.	.	.
+B$INSCSR	seg002	000024B4	00000005			R	.	L	.	.	.	.	.	.	.
+B$INT4	seg003	00000098	00000016	00000002		R	F	L	.	.	.	B	.	.	.
+B$IOINI	seg002	0000313B	00000046	00000004		R	.	L	.	.	.	.	.	.	.
+B$IRAD	seg002	000047C6	00000044	00000002	00000006	R	F	L	.	.	.	B	.	.	.
+B$Init	seg002	00001AB7	00000025	00000004		R	F	L	.	.	.	.	.	.	.
+B$InitModeData	seg002	0000424A	00000035	0000000A		R	.	L	.	.	.	.	.	.	.
+B$InitReadChar	seg002	00001198	00000034			R	.	.	.	.	.	.	.	.	.
+B$InitSb	seg002	000023EA	00000021	00000002		R	F	L	.	.	.	.	.	.	.
+B$InpReset	seg002	00000605	0000001A			R	.	L	.	.	.	.	.	.	.
+B$InstallInt24	seg002	00003354	00000009	00000000		R	.	L	.	.	.	.	.	.	.
+B$Int0Handler	seg002	0000372A	00000012	00000000		R	F	L	.	.	.	.	.	.	.
+B$Int24Handler	seg002	0000335D	00000100	00000000		R	F	L	.	.	.	.	.	.	.
+B$Int4Handler	seg002	0000372E	0000000B			R	.	L	.	.	.	.	.	.	.
+B$KEYINP	seg002	00002764	0000006A	00000006		R	.	L	.	.	.	.	.	.	.
+B$KYBD_BAKC	seg002	00003493	00000004			R	.	L	.	.	.	.	.	.	.
+B$LBND	seg002	0000193B	0000004E	00000000	00000006	R	F	L	.	.	.	B	.	.	.
+B$LDFS	seg002	0000143E	0000002E	00000002	00000006	R	F	L	.	.	.	B	.	.	.
+B$LPTECHOStub	seg002	000016FC	00000022	0000000A		R	F	L	.	.	.	.	.	.	.
+B$LSET	seg002	000020B9	0000001F	00000002		R	F	L	.	.	.	B	.	.	.
+B$LocateFDB	seg002	000001D2	00000026	00000008		R	.	L	.	.	.	.	.	.	.
+B$MCVS	seg002	00000C15	0000002D	00000000	00000004	R	F	L	.	.	.	B	.	.	.
+B$MUI4	seg002	00000088	00000005	00000000	00000008	R	F	L	.	.	.	.	.	.	.
+B$MUL32	seg002	00002CC9	00000022			R	F	L	.	.	.	.	.	.	.
+B$MapVWC	seg002	0000427F	0000006F	00000002		R	.	L	.	.	.	.	.	.	.
+B$MoveFreeAdjust	seg005	000005A7	00000050	00000002		R	.	L	.	.	.	.	.	.	.
+B$MoveFreeBlock	seg005	0000099C	00000003			R	.	L	.	.	.	.	.	.	.
+B$MoveFreeBlockBX	seg005	0000099F	00000060			R	.	.	.	.	.	.	.	.	.
+B$MoveStackBase	seg005	000005A1	00000006			R	.	L	.	.	.	.	.	.	.
+B$NHAdjustADs	seg002	00002B58	00000016			R	.	L	.	.	.	.	.	.	.
+B$NHCLEAN	seg002	00002B18	00000019			R	.	L	.	.	.	.	.	.	.
+B$NHClearRange	seg002	00002B31	00000027			R	.	.	.	.	.	.	.	.	.
+B$NearRetEvent	seg002	0000313A	00000001			R	.	L	.	.	.	.	.	.	.
+B$NextFDB	seg002	000001B4	0000001E	00000008		R	.	L	.	.	.	.	.	.	.
+B$OFFCSR	seg002	000024C9	00000072	00000000		R	.	L	.	.	.	.	.	.	.
+B$OGSA	seg002	00001626	00000048	00000012		.	F	L	.	.	.	B	.	.	.
+B$OOPN	seg002	0000126B	00000061	00000002	00000008	R	F	L	.	.	.	B	.	.	.
+B$OPEN	seg002	0000122A	00000043	00000002	00000008	R	F	L	.	.	.	B	T	.	.
+B$OPENIT	seg002	000011CC	00000027	00000000		R	F	L	.	.	.	.	.	.	.
+B$OPEN_DEV	seg002	00002F14	00000002			R	.	.	.	.	.	.	.	.	.
+B$OneTimeTerm	seg002	00000F83	0000005E	00000002		R	.	L	.	.	.	.	.	.	.
+B$OutBlanks	seg002	000005E7	0000001E	00000004		R	.	L	.	.	.	.	.	.	.
+B$OutWord	seg002	0000431B	00000007			R	.	L	.	.	.	.	.	.	.
+B$PCCY	seg002	0000166E	00000003			R	F	L	.	.	.	.	.	.	.
+B$PCI2	seg002	0000041E	00000005	00000000	00000008	R	F	L	.	.	.	.	.	.	.
+B$PCI4	seg002	00000428	00000005	00000000	00000008	R	F	L	.	.	.	.	.	.	.
+B$PCSD	seg002	00000437	00000005			R	F	L	.	.	.	.	.	.	.
+B$PEI2	seg002	00000423	00000005	00000000	00000008	R	F	L	.	.	.	.	.	.	.
+B$PEI4	seg002	00000432	00000005	00000000	00000008	R	F	L	.	.	.	.	.	.	.
+B$PEOS	seg002	000005A1	00000037	00000002		R	F	L	.	.	.	B	.	.	.
+B$PESD	seg002	00000441	00000013	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$PRINT	seg002	00000457	00000064	00000002	00000008	R	F	.	.	.	.	B	.	.	.
+B$PRINTNUM	seg002	00001FFB	00000026			R	.	L	.	.	.	.	.	.	.
+B$PRINT_out	seg002	000004BB	0000004F			R	.	.	.	.	.	.	.	.	.
+B$PRTCHK	seg002	0000050A	0000002C			R	.	L	.	.	.	.	.	.	.
+B$PSI2	seg002	00000454	00000003	00000002	00000008	R	F	L	.	.	.	.	.	.	.
+B$PSI4	seg002	0000042D	00000005			R	F	L	.	.	.	.	.	.	.
+B$PSSD	seg002	0000043C	00000005			R	F	L	.	.	.	.	.	.	.
+B$PUTCHR	seg002	000036FF	00000009	00000002		R	.	.	.	.	.	.	.	.	.
+B$PUTCR	seg002	000036D0	0000001A	00000004		R	.	L	.	.	.	.	.	.	.
+B$PUTHB	seg002	000036EA	0000000D	00000002		R	.	L	.	.	.	.	.	.	.
+B$PUTNUM	seg002	000036AA	00000026	00000002		R	.	L	.	.	.	.	.	.	.
+B$PUTUI	seg002	00003708	0000001B			R	.	L	.	.	.	.	.	.	.
+B$ParseNumber	seg002	00003B82	0000010B	00000004		R	F	L	.	.	.	.	.	.	.
+B$Pause	seg002	00002AEF	00000029			R	F	L	.	.	.	.	.	.	.
+B$PpvAllocCb	seg005	000000AC	00000050	00000000	00000006	R	F	L	.	.	.	B	.	.	.
+B$PpvAllocStackCb	seg005	0000044C	00000034	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$PpvWalkHeap	seg005	00000319	0000003C	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$PrintReset	seg002	00000580	00000021			R	.	.	.	.	.	.	.	.	.
+B$PtrDispatch	seg002	00000329	0000002A	00000004		R	.	.	.	.	.	.	.	.	.
+B$PvAllocData	seg005	00000285	00000056	00000002	00000002	R	.	L	.	.	.	B	.	.	.
+B$PvAllocFixedCb	seg005	00000A05	0000004D	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$RDIM	seg002	00004368	00000020	00000002	00000003	R	F	L	.	.	.	B	.	.	.
+B$RELA	seg002	000015E3	00000035	00000000		R	F	L	.	.	.	.	.	.	.
+B$RESETSCN	seg002	00002694	0000009B			R	.	L	.	.	.	.	.	.	.
+B$RETA	seg002	000015FD	0000000A	00000000		R	.	L	.	.	.	.	.	.	.
+B$RGHT	seg002	000009CF	0000002D	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$RMI4	seg002	00000092	00000005			R	F	L	.	.	.	.	.	.	.
+B$RND0	seg002	00000FC2	00000008	00000002		R	F	L	.	.	.	B	.	.	.
+B$RND1	seg002	00000FCA	0000002B	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$RNZP	seg002	0000103B	00000012	00000002	00000008	R	F	L	.	.	.	B	T	.	.
+B$RSET	seg002	0000209C	00000013	00000002		R	.	L	.	.	.	B	.	.	.
+B$RSTA	seg002	0000063A	00000008	00000002		R	F	L	.	.	.	B	.	.	.
+B$RSTB	seg002	00000660	00000027	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$RTCLR	seg002	00001B08	0000002C	00000004		R	.	L	.	.	.	.	.	.	.
+B$RTLLINI	seg002	000027EA	00000059			R	.	L	.	.	.	.	.	.	.
+B$RTLLTERM	seg002	00002843	00000018			R	.	L	.	.	.	.	.	.	.
+B$RTRM	seg002	00000B26	0000003F	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$RUN1	seg002	0000106D	00000004	00000000		R	F	L	.	.	.	B	.	.	.
+B$ReMapAltOwners	seg002	00004755	0000004C	00000006		R	.	L	.	.	.	.	.	.	.
+B$ReadVal	seg002	000006D0	0000003B	00000004		R	.	.	.	.	.	.	.	.	.
+B$ReallocHandle	seg002	00002217	00000013			R	.	L	.	.	.	.	.	.	.
+B$ReallocTemp	seg002	000021A4	00000040	00000002		R	F	L	.	.	.	.	.	.	.
+B$RefStrLen	seg002	0000213E	00000017			R	.	.	.	.	.	.	.	.	.
+B$RefStrLenArgLast	seg002	0000213B	00000003			R	.	L	.	.	.	.	.	.	.
+B$RefStringArgLast	seg002	000020FE	0000003D			R	.	L	.	.	.	.	.	.	.
+B$RegisterNotify	seg002	000019D0	00000013	00000008		R	.	L	.	.	.	.	.	.	.
+B$ResetEGA	seg002	00004322	00000045	00000004		R	.	L	.	.	.	.	.	.	.
+B$SACT	seg002	00000E2A	000000B3	00000002	00000006	R	F	L	.	.	.	B	T	.	.
+B$SAS1	seg002	00000C99	0000008F	00000002	00000004	R	F	L	.	.	.	B	T	.	.
+B$SASF	seg002	00000C74	00000025	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$SCINIT	seg002	00003D5D	0000003C			R	.	L	.	.	.	.	.	.	.
+B$SCLR	seg002	000010A2	0000000A	00000000	00000006	R	.	L	.	.	.	B	.	.	.
+B$SCMP	seg002	00000EF4	00000035	00000002	00000004	R	F	L	.	.	.	B	T	.	.
+B$SCNCLR	seg002	0000208E	0000000A			R	.	L	.	.	.	.	.	.	.
+B$SCNCRLF	seg002	0000178C	00000009			R	.	L	.	.	.	.	.	.	.
+B$SCNIO	seg002	00002428	00000009	00000006		R	.	L	.	.	.	.	.	.	.
+B$SCNLOC	seg002	0000249D	00000004			R	.	.	.	.	.	.	.	.	.
+B$SCNSWI	seg002	00001E72	00000018			R	.	L	.	.	.	.	.	.	.
+B$SCPF	seg002	000015BB	00000019	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$SCPY	seg002	00001575	0000000D	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$SCRN_STROUT	seg002	00002081	00000006			R	.	L	.	.	.	.	.	.	.
+B$SCROLL	seg002	000025F0	00000034	00000008		R	.	L	.	.	.	.	.	.	.
+B$SCROUT	seg002	00003233	00000017	0000000A		R	.	L	.	.	.	.	.	.	.
+B$SCT1	seg002	00000D8B	000000A4	00000002	00000004	R	F	L	.	.	.	B	T	.	.
+B$SEGINI	seg002	0000285B	00000006			R	.	L	.	.	.	.	.	.	.
+B$SELAPG	seg002	00002448	00000024			R	.	L	.	.	.	.	.	.	.
+B$SELVPG	seg002	00002442	00000006			R	.	L	.	.	.	.	.	.	.
+B$SETCSR	seg002	00002499	00000004	00000000		R	.	L	.	.	.	.	.	.	.
+B$SETSCNDATA	seg002	0000265C	00000038	00000000		R	.	L	.	.	.	.	.	.	.
+B$SGN4	seg003	000000AE	00000024	00000004		R	F	L	.	.	.	B	.	.	.
+B$SPAC	seg002	00000A90	0000000F	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$SSClearRange	seg002	00002313	00000072	00000002		R	.	L	.	.	.	.	.	.	.
+B$SSEG	seg002	00000B65	00000010	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$SSEK	seg002	0000087B	0000004C	00000002	00000006	R	F	L	.	.	.	B	.	.	.
+B$SSTK	seg002	0000108B	000000E5	00000002	00000006	R	F	L	.	.	.	B	.	.	.
+B$STACKINIT	seg002	00001A7E	0000001B			R	F	L	.	.	.	.	.	.	.
+B$STDGET	seg002	000027CE	0000001A	00000006		R	.	L	.	.	.	.	.	.	.
+B$STDL	seg002	00001582	0000000D	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$STDPUT	seg002	0000333A	00000019	00000006		R	.	L	.	.	.	.	.	.	.
+B$STI2	seg002	0000140E	0000000F	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$STI4	seg002	0000141D	0000000F	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$STRI	seg002	00000AB1	00000010	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$STRS	seg002	00000AC1	00000019	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$STRSCAN	seg002	00001E0D	0000003E	00000004		R	.	L	.	.	.	.	.	.	.
+B$STRSOUT	seg002	0000324A	000000CB	00000006		R	.	L	.	.	.	.	.	.	.
+B$STR_COMMON	seg002	0000142C	00000012	00000002		R	.	L	.	.	.	.	.	.	.
+B$SWP8	seg002	000000D4	00000027	00000000	0000000A	R	F	L	.	.	.	B	.	.	.
+B$SWPN	seg002	000014C3	0000007E	00000002	0000000C	R	F	L	.	.	.	B	T	.	.
+B$SWSD	seg002	00001541	00000034	00000002		R	F	L	.	.	.	B	.	.	.
+B$SbScanNext	seg002	00001EFA	0000001D	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+B$ScnioDispatch	seg002	0000030B	00000013	00000002		R	.	L	.	.	.	.	.	.	.
+B$Screen0	seg002	00004003	00000083	00000000		R	.	L	.	.	.	.	.	.	.
+B$ScreenInit	seg002	00003C8E	000000CF			R	.	L	.	.	.	.	.	.	.
+B$ScreenN	seg002	00002624	0000001B	00000008		R	.	L	.	.	.	.	.	.	.
+B$ScreenOut	seg002	00001686	00000013	00000002		R	.	L	.	.	.	.	.	.	.
+B$SeekFromStart	seg002	00002C27	00000004			R	F	L	.	.	.	.	.	.	.
+B$SetAdapter	seg002	00003D99	00000143	00000008		R	.	L	.	.	.	.	.	.	.
+B$SetLocalNotify	seg005	00000524	0000002F	00000002	00000008	R	F	L	.	.	.	B	.	.	.
+B$SlowUsrCsr	seg002	000024A1	00000013			R	.	.	.	.	.	.	.	.	.
+B$StrAlcTmpCopy	seg002	000022C8	00000015	00000004		R	.	L	.	.	.	.	.	.	.
+B$StrAlcTmpCopySH	seg002	0000217A	0000002F	00000002		R	F	L	.	.	.	.	.	.	.
+B$StrDelAllTemps	seg002	000022DD	0000001E	00000004		R	.	L	.	.	.	.	.	.	.
+B$StrInit	seg002	00002385	0000004B	00000002		R	.	L	.	.	.	.	.	.	.
+B$StrPutZ	seg002	0000222D	0000002D	00000002		R	.	L	.	.	.	.	.	.	.
+B$StrRefreshDsSi	seg002	00002155	00000025			R	.	L	.	.	.	.	.	.	.
+B$TERM	seg002	00000F6D	00000016	00000002		R	F	L	.	.	.	.	.	.	.
+B$TEST_CLOSE	seg002	000011F3	00000037	00000004		R	.	L	.	.	.	.	.	.	.
+B$TIMR	seg002	00001C1C	00000043	00000002		R	F	L	.	.	.	B	.	.	.
+B$TTYGetChar	seg002	000034BF	0000000A			R	.	L	.	.	.	.	.	.	.
+B$TTYIN	seg002	000034C9	00000088			R	.	L	.	.	.	.	.	.	.
+B$TTYST	seg002	00003497	00000028	00000002		R	.	L	.	.	.	.	.	.	.
+B$TTY_GPOS	seg002	000017EC	00000012			R	.	L	.	.	.	.	.	.	.
+B$TTY_GWID	seg002	000017FE	00000005			R	.	L	.	.	.	.	.	.	.
+B$TTY_SINP	seg002	00003478	0000001B			R	.	L	.	.	.	.	.	.	.
+B$TTY_SOUT	seg002	00001699	00000063	00000004		R	.	L	.	.	.	.	.	.	.
+B$TYPSTR	seg002	00002021	00000052			R	.	L	.	.	.	.	.	.	.
+B$TransferStack	seg005	000004C9	00000014	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$UCAS	seg002	00000AF1	00000035	00000000	00000002	R	F	L	.	.	.	B	.	.	.
+B$UPCASE	seg002	00001E8A	0000000B			R	.	L	.	.	.	.	.	.	.
+B$UPDATE_CSR	seg002	00002073	0000000E			R	.	L	.	.	.	.	.	.	.
+B$USRCSR	seg002	000024B9	00000010			R	.	L	.	.	.	.	.	.	.
+B$VARP	seg002	00000ADA	00000017	00000002	00000004	R	F	L	.	.	.	B	.	.	.
+B$WCHSET	seg002	000005D8	0000000F	00000006		R	.	L	.	.	.	.	.	.	.
+B$WHOME	seg002	00002087	00000007			R	.	L	.	.	.	.	.	.	.
+B$WRIT	seg002	0000061F	0000001A	00000002		R	F	L	.	.	.	B	.	.	.
+B$WhichSb	seg002	00000D5B	00000023			R	.	L	.	.	.	.	.	.	.
+B$cinitsub	seg003	000005BF	00000008			R	F	L	.	.	.	.	.	.	.
+B$sub_1FB7A	seg002	0000084A	00000015			R	F	.	.	.	.	.	.	.	.
+CDROM_SendDriverRequest	seg003	00000E4A	0000000D			R	.	.	.	.	.	.	.	.	.
+CDROM_functions	seg003	00000DE4	00000066	00000002	00000008	R	F	.	.	.	.	B	T	.	.
+CDROM_info_check	seg003	000011C7	00000056			R	.	.	.	.	.	.	.	.	.
+CD_is_pause?	seg003	00000EC7	00000099			R	.	.	.	.	.	.	.	.	.
+CD_play	seg003	0000115F	00000068	00000008		R	.	.	.	.	.	.	.	.	.
+CD_resume	seg003	00001030	0000002E			R	.	.	.	.	.	.	.	.	.
+CD_stoppause	seg003	00000FEE	00000023			R	.	.	.	.	.	.	.	.	.
+CD_stopplay	seg003	00000EA2	0000001E			R	.	.	.	.	.	.	.	.	.
+CRT_Shake	seg012	000000D3	0000001D	00000002	00000004	R	F	.	.	.	.	B	.	.	.
+Check_CD_info	seg003	000010FF	00000060			R	.	.	.	.	.	.	.	.	.
+ClearWithEffect_internal	seg001	00008A93	000000CC	00000020	00000006	R	F	.	.	.	.	B	.	.	.
+Clear_XMS_Trans_Table	seg030	000001DA	0000000E	00000002		R	.	.	.	.	.	.	.	.	.
+DOS_CloseFile	seg028	0000004B	00000018	00000002	00000004	R	F	.	.	.	.	B	T	.	.
+DOS_CreateFile	seg028	00000006	00000023	00000002	00000008	R	F	.	.	.	.	B	T	.	.
+DOS_OpenFile	seg028	00000029	00000022	00000002	00000008	R	F	.	.	.	.	B	T	.	.
+DOS_ReadFile_toBuf	seg028	000000DF	00000028	00000002	0000000C	R	F	.	.	.	.	B	T	.	.
+DOS_ReadFile_toSeg	seg028	000000B2	0000002D	00000002	0000000C	R	F	.	.	.	.	B	T	.	.
+DOS_SeekFile_Absolute	seg028	00000107	00000023	00000002	00000008	R	F	.	.	.	.	B	T	.	.
+DOS_WriteFile_fromBuf	seg028	0000008D	00000025	00000002	0000000C	R	F	.	.	.	.	B	T	.	.
+DOS_WriteFile_fromSeg	seg028	00000063	0000002A	00000002	0000000C	R	F	.	.	.	.	B	T	.	.
+DOS_openfile	seg002	00002F01	00000013			R	.	.	.	.	.	.	.	.	.
+DeRLE	seg024	0000000C	000003E8	00000012	00000010	R	F	.	.	.	.	B	T	.	.
+DeRLE_Brighter	seg014	00000000	00000420	00000014	00000014	R	F	.	.	.	.	B	T	.	.
+DeRLE_Shadow	seg016	00000006	00000398	00000012	00000010	R	F	.	.	.	.	B	T	.	.
+DeRLE_filtered	seg015	00000000	00000436	00000014	00000014	R	F	.	.	.	.	B	T	.	.
+DeRLE_scanline	seg025	00000002	0000045B	00000028	0000001C	R	F	.	.	.	.	B	T	.	.
+DeYJ_1	seg026	0000042A	0000019C	00000002	00000008	R	F	.	.	.	.	B	T	.	.
+DrawFont	seg013	00000000	00000340	0000000A	0000001C	R	F	.	.	.	.	B	.	.	.
+ENTER_	seg002	000028D5	00000055	00000000		R	F	.	.	.	.	B	.	.	.
+ERR_OSS	seg002	00001615	00000006	00000002		R	F	.	.	.	.	B	.	.	.
+EnemyClearPoison_Status	seg001	0000043F	0000005F	00000014	00000004	R	F	.	.	.	.	B	.	.	.
+FadeInOrOut_internal	seg001	00008126	000000E2	00000022	00000004	R	F	.	.	.	.	B	.	.	.
+FadeInPic_imp	seg001	0000BCDE	00000249	0000002C	00000008	R	F	.	.	.	.	B	.	.	.
+Final_Stage_imp	seg001	0000C79A	00000302	00000040		R	F	.	.	.	.	B	.	.	.
+Free_XMSes	seg001	0000F7D9	000000F7	00000000		R	F	.	.	.	.	B	.	.	.
+GameLoop_OneCycle	seg001	0000B602	000004C4	00000038	00000004	R	F	.	.	.	.	B	.	.	.
+Generate_16Word_Mask	seg011	00000000	0000002C	00000002	00000008	R	F	.	.	.	.	B	T	.	.
+GetNextRnd	seg002	00000FF5	00000045	00000002		R	.	L	.	.	.	.	.	.	.
+GetSubChannelData	seg003	00000F60	0000008E			R	.	.	.	.	.	.	.	.	.
+GetThisTrackMSF	seg003	0000105E	0000004A			R	.	.	.	.	.	.	.	.	.
+Get_Bit_Masked	seg011	0000002C	0000001B	00000002	0000000C	R	F	.	.	.	.	B	T	.	.
+Get_EventObject_for_currScene	seg001	0000AEE0	000000BB	0000001A	00000004	R	F	.	.	.	.	B	.	.	.
+Get_track_attr	seg003	000010A8	00000057			R	.	.	.	.	.	.	.	.	.
+IRQ_handle_fm?	seg022	0000076F	0000004D	00000012		R	F	.	.	.	.	.	.	.	.
+Init_Dataseg_Stack	seg002	00001B34	00000038	00000008		R	.	.	.	.	.	.	.	.	.
+Inits	seg002	00001A99	0000001D			R	.	.	.	.	.	.	.	.	.
+LevelUp_internal	seg001	00009EF6	0000035E	00000024	00000008	R	F	.	.	.	.	B	.	.	.
+LoadRPG_internal	seg001	0000AAD8	00000405	0000004A	00000004	R	F	.	.	.	.	B	.	.	.
+LoadUnloadMedia	seg003	0000126C	0000005C			R	.	.	.	.	.	.	.	.	.
+Load_Data	seg000	0000EAFD	0000015A	0000001A		R	F	.	.	.	.	B	.	.	.
+Load_system_files	seg000	0000C412	0000050C	0000007C		R	F	.	.	.	.	B	.	.	.
+NPC_walk_one_step	seg001	0000B4A3	0000015C	00000016	00000006	R	F	.	.	.	.	B	T	.	.
+Open_File	seg001	0000BF74	000000E8	00000022	00000006	R	F	.	.	.	.	B	T	.	.
+Parse_key	seg027	000001EC	00000039	00000002	00000008	R	F	.	.	.	.	B	.	.	.
+ReadFile_toseg	seg001	0000A86C	000000AA	0000001E	00000006	R	F	.	.	.	.	B	T	.	.
+Read_subfile_to_glb_1	seg001	0000A6A8	00000077	0000001A	00000006	R	F	.	.	.	.	B	.	.	.
+Redraw_Tiles_or_Fade_to_pic	seg000	0000CF98	00000125	00000018		R	F	.	.	.	.	B	.	.	.
+RollPicture_Imp	seg001	0000BAC9	00000212	0000002A	00000008	R	F	.	.	.	.	B	.	.	.
+STRCPY	seg002	00000B76	00000024	00000006		R	F	.	.	.	.	.	.	.	.
+STRINGADDRESS	seg002	000008EE	00000012	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+STRINGASSIGN	seg002	0000146C	00000057	00000002	0000000C	R	F	L	.	.	.	B	T	.	.
+STRINGLENGTH	seg002	00000900	0000003E	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+STRINGRELEASE	seg002	0000158F	0000002C	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+SaveRPG_internal	seg001	0000CFAB	000003D9	00000048	00000004	R	F	.	.	.	.	B	.	.	.
+ShakeScreen	seg001	000083DD	00000064	00000016		R	F	.	.	.	.	B	.	.	.
+UseItem_internal	seg001	0000820B	00000130	00000016	00000006	R	F	.	.	.	.	B	.	.	.
+Video_Func	seg012	000000C2	00000011	00000002	00000004	R	F	.	.	.	.	B	.	.	.
+WaitForKey_internal	seg001	00009E32	00000049	00000014		R	F	.	.	.	.	B	.	.	.
+XMS_Alloc_Block	seg030	000000F1	00000021	00000002	00000008	R	F	.	.	.	.	B	T	.	.
+XMS_CopyBlockFromXMS	seg030	000001E8	0000004F	00000002	0000000C	R	F	.	.	.	.	B	T	.	.
+XMS_CopyBlockFromXMS_toAddr	seg030	00000237	00000059	00000002	00000010	R	F	.	.	.	.	B	T	.	.
+XMS_CopyBlockToXMS	seg030	00000131	0000004F	00000002	0000000C	R	F	.	.	.	.	B	T	.	.
+XMS_CopyBlockToXMS_byOffset	seg030	00000180	0000005A	00000002	00000010	R	F	.	.	.	.	B	T	.	.
+XMS_Free_Block	seg030	00000112	0000001F	00000002	00000004	R	F	.	.	.	.	B	.	.	.
+XMS_Init	seg030	0000009A	00000034	00000002	00000004	R	F	.	.	.	.	B	T	.	.
+XMS_Lock_Block	seg030	00000290	00000023	00000002	00000008	R	F	.	.	.	.	B	.	.	.
+XMS_Query_Amount	seg030	000000CE	00000023	00000002	00000004	R	F	.	.	.	.	B	T	.	.
+XMS_Unlock_Block	seg030	000002B3	0000001B	00000002	00000004	R	F	.	.	.	.	B	.	.	.
+Xms_alloc_and_Load_sfx_music	seg001	0000EFC2	00000436	00000056		R	F	.	.	.	.	B	.	.	.
+__FF_MSGBANNER	seg002	00003723	00000007			R	F	L	.	.	.	.	.	.	.
+__FMSG_TEXT	seg003	000000D2	00000039	00000002	00000002	R	F	L	.	.	.	B	.	.	.
+__FPEXCEPTION87	seg004	000001D9	00000373	00000020		R	F	L	.	.	.	.	.	.	.
+__aFldiv	seg003	000002A2	0000009A	00000002	00000008	R	F	L	.	.	.	B	.	.	.
+__aFlmul	seg003	00000270	00000032	00000002	00000008	R	F	.	.	.	.	B	.	.	.
+__aFlrem	seg003	0000033C	000000A0	00000002	00000008	R	F	L	.	.	.	B	.	.	.
+__chkstk	seg003	000003F4	0000002E			R	F	L	.	.	.	.	.	.	.
+__cinit	seg003	000004F0	000000D5			R	F	L	.	.	.	.	.	.	.
+__ctermsub	seg003	0000064B	00000019			R	F	L	.	.	.	.	.	.	.
+__fpmath	seg004	0000002A	0000001B			R	F	L	.	.	.	.	.	.	.
+__fpreset	seg003	000003DC	00000018			R	F	L	.	.	.	.	.	.	.
+__fpsignal	seg003	0000014B	00000035	00000000		R	F	L	.	.	.	B	.	.	.
+_execve	seg003	0000041B	0000000A	00000002		R	F	L	.	.	.	B	.	.	.
+_exit	seg003	000005C7	00000084	00000002	00000002	.	F	L	.	.	.	B	.	.	.
+_init_int_scn	seg002	00001ADF	0000001E	00000004		R	F	.	.	.	.	.	.	.	.
+_init_mem	seg002	00003759	0000006D	00000002		R	F	.	.	.	.	.	.	.	.
+_main	seg002	00001A02	0000002F			R	F	L	.	.	.	.	.	.	.
+ad_bop	seg029	00000C1E	00000037			R	.	.	.	.	.	.	.	.	.
+ad_func_?	seg029	0000004E	00000374	00000002	00000008	R	F	.	.	.	.	B	.	.	.
+ad_test	seg029	0000066B	0000005A	00000002		R	.	.	.	.	.	.	.	.	.
+adbop_aXbX	seg029	00000BA4	00000013			R	.	.	.	.	.	.	.	.	.
+add_brick_to_draw_list	seg017	000014BE	00000033	00000002	00000010	R	F	.	.	.	.	B	T	.	.
+add_bricks_to_draw_array	seg023	000001C5	00000105	00000008	00000014	R	F	.	.	.	.	B	.	.	.
+add_goods_to_list	seg001	00001034	000000DF	00000014	00000006	R	F	.	.	.	.	B	.	.	.
+addto_drawing_array	seg017	00001473	0000004B	00000002	00000010	R	F	.	.	.	.	B	T	.	.
+adlib_sub_2DBD0	seg029	000007A0	0000009B	00000006		R	.	.	.	.	.	.	.	.	.
+adlibsub_2DCEB	seg029	000008BB	00000020			R	.	.	.	.	.	.	.	.	.
+adlibsub_2DDE7	seg029	000009B7	0000011D	00000006		R	.	.	.	.	.	.	.	.	.
+analysis	seg026	000005C6	0000023A			R	.	.	.	.	.	.	.	.	.
+attack_make?	seg000	00002C2E	000000E7	00000016		R	F	.	.	.	.	B	.	.	.
+backup_screen	seg001	0000CA9F	00000037	00000016		R	F	.	.	.	.	B	.	.	.
+barrier_check	seg001	0000856F	0000007A	00000016	00000008	R	F	.	.	.	.	B	T	.	.
+battle_move_role_and_draw	seg001	0000CAD9	000000E3	00000020		R	F	.	.	.	.	B	.	.	.
+battle_produce_screen?	seg000	0000B12D	000003F4	00000040		R	F	.	.	.	.	B	.	.	.
+begin_scene	seg001	0000E984	0000063B	0000006C		R	F	.	.	.	.	B	.	.	.
+block_tweak	seg008	00000002	0000002D	00000002	00000010	R	F	.	.	.	.	B	T	.	.
+bout_selection	seg001	000019AD	00000246	00000024	00000004	R	F	.	.	.	.	B	.	.	.
+calc_base_damage	seg001	00009E7E	00000075	0000001A	00000006	R	F	.	.	.	.	B	T	.	.
+calc_display_EXP	seg001	00000B27	000003B7	0000004A	00000004	R	F	.	.	.	.	B	.	.	.
+calc_display_theurgy	seg000	00009942	00000A25	00000050	0000000A	R	F	.	.	.	.	B	.	.	.
+calc_facing_to	seg020	0000003A	0000004E	00000002	0000000C	R	F	.	.	.	.	B	T	.	.
+calc_redraw_flags	seg023	00000124	000000A1	00000002	00000018	R	F	.	.	.	.	B	T	.	.
+calc_team_walking	seg000	00000E54	00000157	00000000		R	.	.	.	.	.	.	.	.	.
+calc_trace_frames	seg001	0000C73D	0000005A	00000000		R	F	.	.	.	.	B	.	.	.
+call_B$RTCLR	seg002	00001AFF	00000009			R	.	.	.	.	.	.	.	.	.
+call_magic	seg002	00003885	0000000F	00000002		R	F	.	.	.	.	.	.	.	.
+call_preset	seg002	00001AFA	00000005			R	.	.	.	.	.	.	.	.	.
+call_recursive	seg003	00000664	00000013	00000000		R	.	L	.	.	.	.	.	.	.
+chk_evt_can_trigger?	seg023	000002D8	00000054	00000002	00000010	R	F	.	.	.	.	B	.	.	.
+chk_map_Barrier	seg023	0000000C	0000005D	00000002	00000010	R	F	.	.	.	.	B	T	.	.
+clear_DDIM	seg019	0000000E	00000024	00000002	00000008	R	F	.	.	.	.	B	T	.	.
+clear_spirite_array	seg017	00001457	00000007			R	F	.	.	.	.	.	.	.	.
+clear_timer	seg029	00001423	00000007			R	F	.	.	.	.	.	.	.	.
+color_fading_by_1	seg021	000000B2	0000002E	00000002	00000008	R	F	.	.	.	.	B	.	.	.
+convert_xy_to_rch	seg023	00000069	000000BB	00000010	0000000C	R	F	.	.	.	.	B	T	.	.
+count_item_equiping	seg001	00009AC7	00000081	0000001E	00000004	R	F	.	.	.	.	B	.	.	.
+count_item_gained	seg001	00009B4B	00000063	0000001C	00000004	R	F	.	.	.	.	B	.	.	.
+crossFadeOut	seg001	00008B62	0000017C	00000026	00000008	R	F	.	.	.	.	B	T	.	.
+crossFade_F?	seg009	000001F1	000000BB	00000002	0000000C	R	F	.	.	.	.	B	.	.	.
+crossFade_FullScreen	seg009	000000F9	000000F8	00000002	00000008	R	F	.	.	.	.	B	.	.	.
+crossFade_assimilate	seg009	00000000	0000006E	00000002	00000010	R	F	.	.	.	.	B	T	.	.
+crossFade_desalt	seg009	0000006E	0000008B	00000002	00000010	R	F	.	.	.	.	B	T	.	.
+delay_centisecond	seg029	0000142A	00000021	00000002	00000004	R	F	.	.	.	.	B	T	.	.
+deyj1_fbp_subfile_to_screen_buf	seg000	0000BB4D	00000053	00000016	00000004	R	F	.	.	.	.	B	.	.	.
+deyj1_makesub_f_to_glb_5	seg001	0000AA47	0000008E	00000016	00000006	R	F	.	.	.	.	B	.	.	.
+dialog_string	seg000	0000DE14	0000014C	0000002C	0000000C	R	F	.	.	.	.	B	.	.	.
+draw_?	seg000	0000A36A	0000018F	0000002C	00000006	R	F	.	.	.	.	B	T	.	.
+draw_battle_scene	seg000	0000B524	00000320	0000003E	00000006	R	F	.	.	.	.	B	T	.	.
+draw_battle_scene@selecting	seg000	0000ED37	000000A0	0000001A		R	F	.	.	.	.	B	.	.	.
+draw_dialog_frame	seg000	0000D2BC	000000F2	0000001E	0000000A	R	F	.	.	.	.	B	T	.	.
+draw_one_brick	seg024	0000042E	00000033	00000002	00000010	R	F	.	.	.	.	B	T	.	.
+draw_oneline_m_text	seg001	0000D387	000001FD	00000022	00000008	R	F	.	.	.	.	B	T	.	.
+draw_onescreen_map	seg010	0000000C	000000EF	0000000E	00000018	R	F	.	.	.	.	B	.	.	.
+draw_scanline_to_scrn	seg018	00000016	0000008B	00000002	0000000C	R	F	.	.	.	.	B	T	.	.
+draw_sprites	seg017	000014F1	00000076	00000002	0000000C	R	F	.	.	.	.	B	T	.	.
+dx_ax_shr_1_byte	seg002	000038C0	00000017			R	.	.	.	.	.	.	.	.	.
+enemy_attack_role	seg001	000004A1	00000683	0000005E	00000006	R	F	.	.	.	.	B	T	.	.
+enemy_attack_themselves	seg001	00000033	00000409	00000044	00000006	R	F	.	.	.	.	B	.	.	.
+enemy_level_scaler	seg000	00002D70	0000003C	00000014	00000006	R	F	.	.	.	.	B	T	.	.
+enemy_magical_attack	seg000	00001C71	00000D78	0000007C	0000000A	R	F	.	.	.	.	B	T	.	.
+enemy_phisical_attack_role	seg000	00002DAF	00000B1F	00000082	00000008	R	F	.	.	.	.	B	T	.	.
+ensure_role_in_map_boundary	seg017	0000000A	00000045	00000002	00000010	R	F	.	.	.	.	B	.	.	.
+escape_internal	seg000	00009471	0000029E	0000003C	00000006	R	F	.	.	.	.	B	.	.	.
+exchange_palettes	seg021	0000008E	00000024	00000002	0000000C	R	F	.	.	.	.	B	.	.	.
+exec_int	seg002	00003B69	00000018			R	F	.	.	.	.	.	.	.	.
+fade_in	seg001	0000807A	000000A9	00000016	00000004	R	F	.	.	.	.	B	.	.	.
+fade_out	seg001	00007F97	000000E0	0000001A	00000004	R	F	.	.	.	.	B	.	.	.
+fcmp_st_st1	seg003	0000006B	00000016	00000002		R	F	.	.	.	.	B	.	.	.
+fild_ax	seg003	00000010	00000014	00000000		R	F	.	.	.	.	B	.	.	.
+fild_sp_pointto	seg002	00002A38	00000008	00000002		R	.	.	.	.	.	.	.	.	.
+fill_data	seg002	00003748	0000000C			R	F	.	.	.	.	.	.	.	.
+fill_opr0	seg003	00001356	0000000D			R	.	.	.	.	.	.	.	.	.
+fill_opr1_2_3	seg003	00001331	00000025			R	.	.	.	.	.	.	.	.	.
+fill_some_struct	seg002	000038DA	0000002B	00000002		R	.	.	.	.	.	.	.	.	.
+fill_something	seg002	00002A07	00000031	00000004		R	.	.	.	.	.	.	.	.	.
+filter_full_screen	seg007	00000004	0000008D	00000008	00000014	R	F	.	.	.	.	B	.	.	.
+find__si_cx__bx_ptr	seg002	000028B9	0000001C	00000002		R	.	.	.	.	.	.	.	.	.
+fistp_to_ax	seg003	00000024	00000011	00000004		R	F	.	.	.	.	B	.	.	.
+fistp_to_dx_ax	seg003	00000035	00000012	00000006		R	F	.	.	.	.	B	.	.	.
+frame_menu	seg000	0000D0C0	000001F9	0000002C	0000000E	R	F	.	.	.	.	B	.	.	.
+get_YJ_1_extracted_len_in_words	seg026	00000800	00000019	00000002	00000008	R	F	.	.	.	.	B	T	.	.
+get_battlefield_prop	seg001	00008CE1	00000095	0000001E	00000006	R	F	.	.	.	.	B	.	.	.
+get_cons_attrib	seg000	0000D819	00000078	00000018	00000006	R	F	.	.	.	.	B	T	.	.
+get_enemy_alive	seg000	00002D18	00000055	0000001A		R	F	.	.	.	.	B	.	.	.
+get_fbp_two_scene_cat_to_glb_scrn	seg001	0000A803	00000066	00000018	00000004	R	F	.	.	.	.	B	.	.	.
+get_gop_id	seg017	00001610	00000044	00000002	00000018	R	F	.	.	.	.	B	.	.	.
+get_item_index	seg001	00009A60	00000064	00000018	00000004	R	F	.	.	.	.	B	.	.	.
+get_key	seg027	000001A4	00000048	00000002	00000004	R	F	.	.	.	.	B	.	.	.
+get_m_msg	seg000	0000BA99	000000B1	0000001C	00000004	R	F	.	.	.	.	B	.	.	.
+get_member_alive	seg000	0000A710	0000006E	0000001A		R	F	.	.	.	.	B	.	.	.
+get_movie_to_xms	seg001	0000B38B	00000115	0000001E	0000000A	R	F	.	.	.	.	B	T	.	.
+get_scene_map_source	seg000	0000BEB8	0000016E	0000002E	00000004	R	F	.	.	.	.	B	.	.	.
+get_sprites_curr_scene	seg000	0000BC7D	000001F1	00000024		R	F	.	.	.	.	B	.	.	.
+get_subfile_len	seg000	00008F56	000000A7	0000001E	00000005	R	F	.	.	.	.	B	.	.	.
+get_the_trigger_event	seg001	0000D587	0000030A	0000002E	00000008	R	F	.	.	.	.	B	T	.	.
+get_theurgy_index	seg001	00008A20	00000070	00000018	00000006	R	F	.	.	.	.	B	.	.	.
+hockshop_internal	seg001	0000DBBD	000000DD	0000002C		R	F	.	.	.	.	B	.	.	.
+i_2BC62	seg022	00000752	0000001D	00000006		R	F	.	.	.	.	.	.	.	.
+int34_3b_has_fpu	seg004	00000755	0000004C	00000000	00000008	R	F	.	.	.	.	B	.	.	.
+int34_3b_no_fpu	seg004	00000BA0	000001A9	00000000	00000014	R	F	.	.	.	.	B	.	.	.
+int_3c_has_fpu	seg004	00000702	0000002D	00000000	00000008	R	F	.	.	.	.	B	.	.	.
+int_3c_no_fpu	seg004	00000B5F	00000040	00000002		R	F	.	.	.	.	.	.	.	.
+int_3d_has_fpu	seg004	0000072F	00000005	00000000	00000002	R	F	.	.	.	.	.	.	.	.
+int_3d_no_fpu	seg004	00000B42	00000015	00000006		R	F	.	.	.	.	B	.	.	.
+int_handle_RIX?	seg029	00000CED	0000011E	00000012		R	F	.	.	.	.	.	.	.	.
+int_timer	seg003	0000129C	00000025			R	F	.	.	.	.	.	.	.	.
+inventory_Equip	seg000	0000129A	000005EF	00000016		R	.	.	.	.	.	B	.	.	.
+inventory_Use	seg000	00001889	00000132	00000014		R	.	.	.	.	.	B	.	.	.
+is_pause?	seg003	00000EC0	00000007			R	.	.	.	.	.	.	.	.	.
+item_list_pack	seg000	0000D628	000000FF	00000018	00000004	R	F	.	.	.	.	B	.	.	.
+j_B$ERR_SSC	seg005	000009FF	00000005			R	F	.	.	.	.	.	.	.	.
+j_B$NearRetEvent	seg002	00002098	00000003			R	.	.	.	.	.	.	.	.	.
+keyboard_interrupt	seg027	0000006E	00000031	00000006		R	F	.	.	.	.	.	.	.	.
+learnmagic_internal	seg001	00009BB1	0000027E	0000004A	00000008	R	F	.	.	.	.	B	.	.	.
+libfunc_?	seg002	00000687	00000049	00000000	00000008	R	F	.	.	.	.	B	.	.	.
+load_MagicEffect_to_decoded_pack	seg000	0000BE71	00000044	00000016		R	F	.	.	.	.	B	.	.	.
+load_enemy_pic_pos	seg001	0000A4B6	000001EF	00000028		R	F	.	.	.	.	B	.	.	.
+load_enemy_pos	seg001	0000CBBF	000000FE	0000001A		R	F	.	.	.	.	B	.	.	.
+load_our_pic	seg001	0000A9B1	00000093	0000001C		R	F	.	.	.	.	B	.	.	.
+load_team_mgo	seg000	0000C07D	0000021B	0000001C		R	F	.	.	.	.	B	.	.	.
+load_theurgy_data	seg000	0000EA9F	0000005B	0000001A	00000004	R	F	.	.	.	.	B	.	.	.
+load_theurgy_image	seg001	0000A919	00000095	0000001E	00000004	R	F	.	.	.	.	B	.	.	.
+load_this_enemy_data	seg000	0000E8F7	000001A5	0000001E	00000006	R	F	.	.	.	.	B	.	.	.
+magic_sub	seg002	00003894	0000002C	0000000C		R	.	.	.	.	.	.	.	.	.
+make_dialog_frame	seg000	0000EF40	000000AE	0000001C	0000000A	R	F	.	.	.	.	B	T	.	.
+menu_Inventory	seg000	0000123D	0000005D	00000000		R	.	.	.	.	.	.	.	.	.
+menu_Magic	seg000	00001034	00000209	00000014		R	.	.	.	.	.	B	.	.	.
+menu_Magic_selecting	seg000	0000484C	000000FD	00000020	00000008	R	F	.	.	.	.	B	T	.	.
+menu_Status	seg000	0000102E	00000006			R	.	.	.	.	.	.	.	.	.
+menu_Status_internal	seg001	0000C6DF	0000005B	00000014		R	F	.	.	.	.	B	.	.	.
+menu_System	seg000	000019BB	00000054	00000000		R	.	.	.	.	.	.	.	.	.
+menu_loop	seg000	000045C4	00000077	0000001A	0000000E	R	F	.	.	.	.	B	.	.	.
+menu_select	seg000	0000463E	0000020B	00000038	0000000C	R	F	.	.	.	.	B	.	.	.
+midi_timer_dispatch	seg003	0000137D	00000018			R	F	.	.	.	.	.	.	.	.
+morph?	seg000	0000B969	0000012D	00000026	00000006	R	F	.	.	.	.	B	.	.	.
+move_usable_screen	seg000	0000F65D	000003F4	00000052		R	F	.	.	.	.	B	.	.	.
+my_int_2	seg004	00002562	0000001E			R	F	.	.	.	.	.	.	.	.
+my_int_23	seg004	0000254A	00000018	00000006		R	.	.	.	.	.	.	.	.	.
+new_int_23	seg006	00000033	00000001			R	F	.	.	.	.	.	.	.	.
+nullsub_10	seg003	000012D3	00000001			R	F	.	.	.	.	.	.	.	.
+nullsub_11	seg003	0000132E	00000001			R	.	.	.	.	.	.	.	.	.
+nullsub_12	seg003	0000132F	00000001			R	.	.	.	.	.	.	.	.	.
+nullsub_13	seg003	00001330	00000001			R	.	.	.	.	.	.	.	.	.
+nullsub_3	seg022	000005DD	00000001			R	.	.	.	.	.	.	.	.	.
+nullsub_6	seg005	00000A04	00000001			R	F	.	.	.	.	.	.	.	.
+nullsub_7	seg003	0000132B	00000001			R	.	.	.	.	.	.	.	.	.
+nullsub_8	seg003	0000132C	00000001			R	.	.	.	.	.	.	.	.	.
+nullsub_9	seg003	0000132D	00000001			R	.	.	.	.	.	.	.	.	.
+or_seg0_1_2E	seg002	00001A36	0000004D	00000002		R	F	.	.	.	.	.	.	.	.
+our_team_setdraw	seg000	0000F0E5	000000CD	00000020		R	F	.	.	.	.	B	.	.	.
+output_levelup?	seg001	0000A257	0000025C	0000005C	00000006	R	F	.	.	.	.	B	.	.	.
+overlay_palette_by_24colors	seg021	0000014F	00000031	00000002	0000000C	R	F	.	.	.	.	B	.	.	.
+overlay_palette_by_3colors	seg021	00000180	0000002F	00000002	00000008	R	F	.	.	.	.	B	.	.	.
+palette_filter_fading	seg001	00007ED8	000000BC	00000018	00000004	R	F	.	.	.	.	B	.	.	.
+parse_RNG_data_draw	seg031	0000016F	00000215	00000002	00000004	R	F	.	.	.	.	B	.	.	.
+playCD	seg003	00000E57	0000004B			R	.	.	.	.	.	.	.	.	.
+playRNG_impl	seg001	0000E601	00000226	00000034	00000008	R	F	.	.	.	.	B	.	.	.
+play_all_kinds_music	seg001	0000C05F	000000D4	0000001E	00000008	R	F	.	.	.	.	B	.	.	.
+play_rix_music	seg001	0000C136	00000107	00000022	00000006	R	F	.	.	.	.	B	.	.	.
+play_sfx_internal	seg001	0000C240	0000006E	00000014	00000004	R	F	.	.	.	.	B	.	.	.
+pre_fill_struct	seg002	000038D7	00000003			R	.	.	.	.	.	.	.	.	.
+process_AutoScript	seg001	0000D894	00000326	0000002A	00000006	R	F	.	.	.	.	B	T	.	.
+process_Battle	seg000	000051AB	00003DA8	00006778	00000006	R	F	.	.	.	.	B	.	.	.
+process_Explore	seg000	00001B65	00000109	00000014		R	.	.	.	.	.	B	.	.	.
+process_Key	seg001	00001116	00000203	0000001E	00000006	R	F	.	.	.	.	B	T	.	.
+process_Menu	seg000	00000FAB	00000083	00000000		R	.	.	.	.	.	.	.	.	.
+process_Script	seg000	0000C921	00000674	00000056	00000006	R	F	.	.	.	.	B	T	.	.
+process_scripts	seg001	00002702	000057D3	0000026A	0000000E	R	F	.	.	.	.	B	T	.	.
+produce_one_screen_map	seg000	0000EC5A	000000DA	0000001C		R	F	.	.	.	.	B	.	.	.
+read_from_screen	seg012	0000001D	00000020	00000002	00000004	R	F	.	.	.	.	B	.	.	.
+read_mgo_subfile_to_glb_1	seg000	0000C029	00000051	00000016	00000004	R	F	.	.	.	.	B	.	.	.
+read_mkf_to_xms	seg000	0000BBA3	000000D7	0000001A	00000006	R	F	.	.	.	.	B	T	.	.
+read_palette	seg001	0000B0BC	00000056	00000018	00000004	R	F	.	.	.	.	B	.	.	.
+read_subfile	seg000	0000C29B	00000174	00000022	00000006	R	F	.	.	.	.	B	T	.	.
+read_voc_to_xms_leaving	seg001	0000CCC0	000000BF	0000001C		R	F	.	.	.	.	B	.	.	.
+real_entry	seg000	00000030	00000E24	00000014		R	.	.	.	.	.	B	.	.	.
+record_step	seg001	0000CF50	00000058	00000000		R	F	.	.	.	.	B	.	.	.
+redraw_everything	seg000	0000EDDA	0000007A	00000018	00000004	R	F	.	.	.	.	B	.	.	.
+redraw_tile	seg000	0000F483	000001D7	00000028	0000000E	R	F	.	.	.	.	B	T	.	.
+release_resources_exit	seg001	00008444	000000FF	00000022		R	F	.	.	.	.	B	.	.	.
+replace_IRQ_handle	seg022	00000428	00000042			R	.	.	.	.	.	.	.	.	.
+replace_int_23	seg006	00000006	0000002D	0000000A		R	F	.	.	.	.	.	.	.	.
+replace_interrupt_2_23	seg004	0000250A	0000002F	00000004		R	.	.	.	.	.	.	.	.	.
+replace_interrupt_time	seg003	000012E7	00000028	0000000A		R	.	.	.	.	.	.	.	.	.
+replace_interrupts	seg004	0000011D	00000048			R	.	L	.	.	.	.	.	.	.
+replace_keyboard_interrupt	seg027	0000000A	0000003F	00000008		R	F	.	.	.	.	.	.	.	.
+replace_timer_interrupt	seg029	0000144B	00000035	00000004		R	F	.	.	.	.	.	.	.	.
+restore_IRQ_handle	seg022	0000046A	00000031			R	.	.	.	.	.	.	.	.	.
+restore_int_23	seg004	00002539	00000011	00000006		R	.	.	.	.	.	.	.	.	.
+restore_int_34	seg004	00000165	00000016			R	.	L	.	.	.	.	.	.	.
+restore_int_timer	seg003	0000130F	0000001C	00000006		R	.	.	.	.	.	.	.	.	.
+restore_keyboard_interrupt	seg027	00000049	00000025	00000004		R	F	.	.	.	.	.	.	.	.
+restore_screen	seg001	0000C2B1	0000003D	00000016		R	F	.	.	.	.	B	.	.	.
+restore_timer_interrupt	seg029	00001480	00000023	00000002		R	F	.	.	.	.	.	.	.	.
+rix_load?	seg001	0000AF9E	0000011B	0000002C	00000004	R	F	.	.	.	.	B	.	.	.
+role_attack_all?	seg001	000094DA	00000583	00000056	00000006	R	F	.	.	.	.	B	.	.	.
+role_phisical_attack	seg000	0000AB60	000005CA	0000004C	0000000A	R	F	.	.	.	.	B	T	.	.
+role_restore_position	seg001	00008D79	00000084	00000000	00000004	R	F	.	.	.	.	B	.	.	.
+role_status_determine	seg001	00008E00	000000ED	00000016	00000004	R	F	.	.	.	.	B	.	.	.
+save_evt_obj_curr_scene	seg001	0000F75B	0000007B	0000001A		R	F	.	.	.	.	B	.	.	.
+scanline_draw_normal_scene	seg000	0000D3B1	0000013C	00000016	00000004	R	F	.	.	.	.	B	.	.	.
+seek_char_pos	seg019	000000EB	00000028	00000002	0000000C	R	F	.	.	.	.	B	.	.	.
+seg4d_0_parse_env	seg004	0000004C	00000098	00000002		R	.	L	.	.	.	.	.	.	.
+seg4d_1_initfpu	seg004	000000F4	0000000F			R	.	L	.	.	.	.	.	.	.
+seg4d_2_restore_ints_fninit	seg004	000000E4	00000010			R	.	L	.	.	.	.	.	.	.
+seg4d_3_fill_seg33_0_2	seg004	00000115	00000008			R	.	L	.	.	.	.	.	.	.
+seg4d_4_fldcw_ax	seg004	000005F2	00000019			R	.	.	.	.	.	.	.	.	.
+seg4d_5_get_saved_1332	seg004	0000060B	00000004			R	.	.	.	.	.	.	.	.	.
+seg4d_6_round_int	seg004	0000062D	00000045			R	.	.	.	.	.	.	.	.	.
+seg4d_7	seg004	00000672	00000066			R	.	.	.	.	.	.	.	.	.
+seg4d_8	seg004	0000060F	0000001E			R	.	.	.	.	.	.	.	.	.
+seg4d_9_fpu_clearexception	seg004	00000103	00000012			R	.	L	.	.	.	.	.	.	.
+seg4d_a	seg004	0000017B	0000003F	0000000E		R	.	L	.	.	.	.	.	.	.
+seg4d_b	seg004	000001BA	00000005			R	.	L	.	.	.	.	.	.	.
+seg4d_c	seg004	000001BF	00000004			R	.	L	.	.	.	.	.	.	.
+select_RPG_internal	seg001	00001BF6	0000029B	00000050		R	F	.	.	.	.	B	.	.	.
+select_a_live_role_randomly	seg000	0000EEB4	00000089	00000016		R	F	.	.	.	.	B	.	.	.
+select_an_enemy_randomly	seg000	0000EE57	0000005A	00000016		R	F	.	.	.	.	B	.	.	.
+select_item_with_filter	seg000	00004AA1	00000707	00000082	00000008	R	F	.	.	.	.	B	T	.	.
+select_targeting_enemy	seg000	00003CD8	00000141	00000024		R	F	.	.	.	.	B	.	.	.
+select_thurgy	seg000	00003E1C	000006E1	0000007E	00000008	R	F	.	.	.	.	B	.	.	.
+setMovie_impl	seg001	0000B115	000000C3	00000018	00000004	R	F	.	.	.	.	B	.	.	.
+set_DeRLE_rect	seg024	000003F4	0000002E	00000002	00000010	R	F	.	.	.	.	B	T	.	.
+set_draw_sprite_calc_envelop	seg001	000085EC	00000431	0000004C	0000000E	R	F	.	.	.	.	B	T	.	.
+set_effective_Y	seg017	0000145E	00000015	00000002	00000004	R	F	.	.	.	.	B	.	.	.
+set_palette	seg029	000015A5	00000040	00000002	00000004	R	F	.	.	.	.	B	T	.	.
+set_time_gap	seg003	00001363	00000014	00000006		R	.	.	.	.	.	.	.	.	.
+set_time_gap_12_5	seg003	00001377	00000006			R	.	.	.	.	.	.	.	.	.
+set_video_addr	seg018	00000008	0000000E	00000002	00000002	R	F	.	.	.	.	B	.	.	.
+setup_MIDI?	seg003	00000CE8	000000FB	00000002	0000000C	R	F	.	.	.	.	B	T	.	.
+setup_RIX?	seg029	0000001E	00000030	00000002	0000000C	R	F	.	.	.	.	B	.	.	.
+setup_our_team_data_things	seg001	0000CD82	000001CB	00000020		R	F	.	.	.	.	B	.	.	.
+setup_role_status	seg000	00009712	0000022D	00000020		R	F	.	.	.	.	B	.	.	.
+sfx_func?	seg022	0000000E	000000AD	00000002	00000008	R	F	.	.	.	.	B	.	.	.
+shop_internal	seg001	000013EB	000005BF	00000098	00000004	R	F	.	.	.	.	B	.	.	.
+show_curr_money_num	seg000	0000D9A4	00000113	00000022	0000000A	R	F	.	.	.	.	B	T	.	.
+show_current_money	seg000	0000D894	000000E0	00000028	0000000C	R	F	.	.	.	.	B	T	.	.
+show_face	seg001	0000E541	000000BD	00000022	00000008	R	F	.	.	.	.	B	T	.	.
+show_fbp	seg000	0000EFF1	000000F1	00000026	00000006	R	F	.	.	.	.	B	T	.	.
+show_item_created	seg001	0000A722	000000DE	00000022	00000004	R	F	.	.	.	.	B	.	.	.
+show_number	seg000	0000DABA	000000DF	0000001E	0000000A	R	F	.	.	.	.	B	T	.	.
+show_pointer	seg000	0000E374	000000C4	0000001A	00000006	R	F	.	.	.	.	B	T	.	.
+show_role_status	seg001	0000DE2E	00000710	000000A8	00000004	R	F	.	.	.	.	B	.	.	.
+show_status_bar	seg000	0000A781	000003DC	00000054		R	F	.	.	.	.	B	.	.	.
+show_stauts_numbers	seg000	0000F1B5	000002CB	00000044	0000000A	R	F	.	.	.	.	B	T	.	.
+show_text_shadow	seg000	0000DF63	0000007C	0000001A	0000000A	R	F	.	.	.	.	B	.	.	.
+show_white_number	seg000	0000D977	0000002A	00000014	0000000A	R	F	.	.	.	.	B	.	.	.
+soft_FPU?	seg004	00001BD9	00000043			R	.	.	.	.	.	.	.	.	.
+some_adjust_on_enemy_02468_unknown	seg000	000029EC	00000132	00000026	00000004	R	F	.	.	.	.	B	.	.	.
+split_scrn_to_scanlines_in_redraw	seg018	000000B9	000001D3	00000002	00000020	R	F	.	.	.	.	B	T	.	.
+sprites_sort	seg017	00001567	000000A9	00000000		R	.	.	.	.	.	.	.	.	.
+st0_op_al	seg002	00001C5F	00000021	00000004		R	.	L	.	.	.	.	.	.	.
+start	seg003	0000042C	000000B3			R	F	.	.	.	.	.	.	.	.
+sth_about_equip	seg002	00003EDC	00000060			R	.	L	.	.	.	.	.	.	.
+stop_CD	seg003	00001011	0000001F			R	.	.	.	.	.	.	.	.	.
+stop_and_update_frame	seg001	0000E82A	00000157	0000001A		R	F	.	.	.	.	B	.	.	.
+store_step	seg020	0000000A	00000030	00000002	00000004	R	F	.	.	.	.	B	T	.	.
+store_team_frame_data	seg001	0000C351	0000038B	0000002E		R	F	.	.	.	.	B	.	.	.
+sub_10941	seg001	00000EE1	00000150	00000038	00000004	R	F	.	.	.	.	B	.	.	.
+sub_10D7C	seg001	0000131C	000000CC	00000014	0000000A	R	F	.	.	.	.	B	.	.	.
+sub_118F4	seg001	00001E94	0000050B	00000070	0000000A	R	F	.	.	.	.	B	.	.	.
+sub_11E02	seg001	000023A2	000001D1	00000040	00000004	R	F	.	.	.	.	B	.	.	.
+sub_17FA6	seg001	00008546	00000026	00000014		R	F	.	.	.	.	B	.	.	.
+sub_18950	seg001	00008EF0	000000D7	00000018	00000004	R	F	.	.	.	.	B	.	.	.
+sub_18A2A	seg001	00008FCA	0000050D	00000056	00000006	R	F	.	.	.	.	B	.	.	.
+sub_1AC3B	seg001	0000B1DB	000001AD	0000003A	00000004	R	F	.	.	.	.	B	.	.	.
+sub_1B98A	seg001	0000BF2A	00000047	00000014	00000004	R	F	.	.	.	.	B	.	.	.
+sub_1F362	seg002	00000032	00000055	00000004		R	.	.	.	.	.	.	.	.	.
+sub_1F48C	seg002	0000015C	00000007	0000000A		R	.	L	.	.	.	.	.	.	.
+sub_1F653	seg002	00000323	00000006			R	.	.	.	.	.	.	.	.	.
+sub_1F866	seg002	00000536	00000015			R	.	L	.	.	.	.	.	.	.
+sub_1F87B	seg002	0000054B	00000035			R	.	L	.	.	.	.	.	.	.
+sub_1F972	seg002	00000642	0000001E			R	.	.	.	.	.	.	.	.	.
+sub_1FA37	seg002	00000707	00000020	00000000		R	.	.	.	.	.	.	.	.	.
+sub_1FA57	seg002	00000727	0000000A			R	.	.	.	.	.	.	.	.	.
+sub_1FA78	seg002	00000748	000000B0	00000000		R	.	L	.	.	.	.	.	.	.
+sub_1FB3A	seg002	0000080A	00000051			R	F	L	.	.	.	.	.	.	.
+sub_1FBF8	seg002	000008C8	00000026	00000002		R	.	L	.	.	.	.	.	.	.
+sub_1FD49	seg002	00000A19	0000000A	00000002	00000004	R	.	L	.	.	.	B	.	.	.
+sub_1FD53	seg002	00000A23	0000006D			R	F	L	.	.	.	.	.	.	.
+sub_1FDCF	seg002	00000A9F	00000012			R	.	L	.	.	.	.	.	.	.
+sub_1FF92	seg002	00000C62	00000012	00000004		R	.	.	.	.	.	.	.	.	.
+sub_2028D	seg002	00000F5D	00000010			R	.	L	.	.	.	.	.	.	.
+sub_20A4E	seg002	0000171E	0000003E	00000002		R	.	L	.	.	.	.	.	.	.
+sub_20A9E	seg002	0000176E	0000000B			R	.	.	.	.	.	.	.	.	.
+sub_20AA9	seg002	00001779	00000013			R	.	.	.	.	.	.	.	.	.
+sub_20AC5	seg002	00001795	00000011			R	.	.	.	.	.	.	.	.	.
+sub_20AD6	seg002	000017A6	00000022			R	.	.	.	.	.	.	.	.	.
+sub_20AF8	seg002	000017C8	00000012			R	.	L	.	.	.	.	.	.	.
+sub_20B0A	seg002	000017DA	00000012			R	.	L	.	.	.	.	.	.	.
+sub_20F04	seg002	00001BD4	00000049			R	.	.	.	.	.	.	.	.	.
+sub_20FB0	seg002	00001C80	00000006	00000002		R	F	L	.	.	.	B	.	.	.
+sub_2100B	seg002	00001CDB	00000006	00000002		R	F	L	.	.	.	B	.	.	.
+sub_213FE	seg002	000020CE	0000002F			R	.	.	.	.	.	.	.	.	.
+sub_21700	seg002	000023D0	0000001A	0000000A		R	.	.	.	.	.	.	.	.	.
+sub_2185D	seg002	0000252D	000000C3			R	.	.	.	.	.	.	.	.	.
+sub_21B92	seg002	00002862	00000007	00000002		R	.	.	.	.	.	.	.	.	.
+sub_21B99	seg002	00002869	00000050	00000002		R	.	.	.	.	.	.	.	.	.
+sub_21C5E	seg002	0000292E	00000015	00000002		R	F	.	.	.	.	.	.	.	.
+sub_21C73	seg002	00002943	00000069			R	.	.	.	.	.	.	.	.	.
+sub_21CDC	seg002	000029AC	0000000A			R	.	.	.	.	.	.	.	.	.
+sub_21CE6	seg002	000029B6	00000031	00000006		R	.	.	.	.	.	.	.	.	.
+sub_21D17	seg002	000029E7	00000020	00000002	00000002	R	.	.	.	.	.	B	.	.	.
+sub_21D70	seg002	00002A40	0000000B	00000004		R	.	.	.	.	.	.	.	.	.
+sub_21D7B	seg002	00002A4B	00000010			R	.	.	.	.	.	.	.	.	.
+sub_21D8B	seg002	00002A5B	00000033			R	F	.	.	.	.	.	.	.	.
+sub_22223	seg002	00002EF3	0000000E			R	.	.	.	.	.	.	.	.	.
+sub_223B5	seg002	00003085	0000002B			R	.	L	.	.	.	.	.	.	.
+sub_223E0	seg002	000030B0	00000009			R	.	L	.	.	.	.	.	.	.
+sub_223E9	seg002	000030B9	00000007			R	.	L	.	.	.	.	.	.	.
+sub_22A27	seg002	000036F7	00000008			R	.	.	.	.	.	.	.	.	.
+sub_22AF1	seg002	000037C1	00000030			R	F	.	.	.	.	.	.	.	.
+sub_22B21	seg002	000037F1	00000032	00000006		R	F	.	.	.	.	.	.	.	.
+sub_22B53	seg002	00003823	0000002F	00000004		R	.	.	.	.	.	.	.	.	.
+sub_22B82	seg002	00003852	0000001F	00000002		R	.	.	.	.	.	.	.	.	.
+sub_22BA1	seg002	00003871	00000008			R	.	.	.	.	.	.	.	.	.
+sub_22BA9	seg002	00003879	0000000C			R	.	.	.	.	.	.	.	.	.
+sub_22C35	seg002	00003905	00000013	00000004		R	.	.	.	.	.	.	.	.	.
+sub_22C48	seg002	00003918	00000017			R	F	.	.	.	.	.	.	.	.
+sub_22C5F	seg002	0000392F	00000057	0000000C		R	F	.	.	.	.	.	.	.	.
+sub_22CB6	seg002	00003986	00000021	00000004		R	.	.	.	.	.	.	.	.	.
+sub_22CD7	seg002	000039A7	0000005A	00000004		R	.	.	.	.	.	.	.	.	.
+sub_22D31	seg002	00003A01	00000014	00000004		R	.	.	.	.	.	.	.	.	.
+sub_22D45	seg002	00003A15	00000046	0000000C		R	.	.	.	.	.	.	.	.	.
+sub_22D8B	seg002	00003A5B	0000000E			R	.	.	.	.	.	.	.	.	.
+sub_22D99	seg002	00003A69	0000000C			R	.	.	.	.	.	.	.	.	.
+sub_22DA5	seg002	00003A75	00000003	00000002		R	.	.	.	.	.	.	.	.	.
+sub_22DA8	seg002	00003A78	00000021	00000002		R	.	.	.	.	.	.	.	.	.
+sub_22DC9	seg002	00003A99	00000020	00000002		R	.	.	.	.	.	.	.	.	.
+sub_22DE9	seg002	00003AB9	00000007	00000002		R	.	.	.	.	.	.	.	.	.
+sub_22E15	seg002	00003AE5	00000029	00000002	00000004	R	F	.	.	.	.	B	.	.	.
+sub_22E3E	seg002	00003B0E	0000000B			R	.	.	.	.	.	.	.	.	.
+sub_22E49	seg002	00003B19	0000001E	00000002		R	.	.	.	.	.	.	.	.	.
+sub_22E67	seg002	00003B37	00000032	00000002		R	F	.	.	.	.	.	.	.	.
+sub_233EE	seg002	000040BE	00000058			R	.	L	.	.	.	.	.	.	.
+sub_23446	seg002	00004116	00000004			R	.	L	.	.	.	.	.	.	.
+sub_2344A	seg002	0000411A	0000006A			R	.	L	.	.	.	.	.	.	.
+sub_234B4	seg002	00004184	00000010			R	.	L	.	.	.	.	.	.	.
+sub_234C4	seg002	00004194	00000020			R	.	L	.	.	.	.	.	.	.
+sub_234E4	seg002	000041B4	00000095			R	.	L	.	.	.	.	.	.	.
+sub_23B87	seg003	00000047	00000024	00000006		R	F	.	.	.	.	B	.	.	.
+sub_23C5D	seg003	0000011D	00000019			R	F	L	.	.	.	.	.	.	.
+sub_2401F	seg003	000004DF	0000000F			R	F	.	.	.	.	.	.	.	.
+sub_241D0	seg003	00000690	00000006	00000002		R	F	.	.	.	.	.	.	.	.
+sub_241D6	seg003	00000696	0000008E			R	.	.	.	.	.	.	.	.	.
+sub_24299	seg003	00000759	00000073			R	.	.	.	.	.	.	.	.	.
+sub_242D7	seg003	00000797	00000041			R	.	.	.	.	.	.	.	.	.
+sub_24318	seg003	000007D8	00000124			R	.	.	.	.	.	.	.	.	.
+sub_2443C	seg003	000008FC	000000AA			R	.	.	.	.	.	.	.	.	.
+sub_244E6	seg003	000009A6	00000016	00000006		R	.	.	.	.	.	.	.	.	.
+sub_244FC	seg003	000009BC	00000009			R	.	.	.	.	.	.	.	.	.
+sub_24540	seg003	00000A00	00000075			R	.	.	.	.	.	.	.	.	.
+sub_2457A	seg003	00000A3A	00000022			R	.	.	.	.	.	.	.	.	.
+sub_2459F	seg003	00000A5F	00000020			R	.	.	.	.	.	.	.	.	.
+sub_245BC	seg003	00000A7C	00000011			R	.	.	.	.	.	.	.	.	.
+sub_245D0	seg003	00000A90	0000001F			R	.	.	.	.	.	.	.	.	.
+sub_2460D	seg003	00000ACD	00000055			R	.	.	.	.	.	.	.	.	.
+sub_24641	seg003	00000B01	0000002C			R	.	.	.	.	.	.	.	.	.
+sub_24EF2	seg003	000013B2	0000000F	00000002	00000002	R	.	.	.	.	.	B	.	.	.
+sub_24F01	seg003	000013C1	00000057	00000006		R	.	.	.	.	.	.	.	.	.
+sub_24F58	seg003	00001418	00000032	00000002		R	.	.	.	.	.	.	.	.	.
+sub_24F8A	seg003	0000144A	00000025	00000002	00000006	R	.	.	.	.	.	B	.	.	.
+sub_24FAF	seg003	0000146F	00000025	00000002	00000006	R	.	.	.	.	.	B	.	.	.
+sub_24FD4	seg003	00001494	00000025	00000002	00000006	R	.	.	.	.	.	B	.	.	.
+sub_24FF9	seg003	000014B9	00000025	00000002	00000006	R	.	.	.	.	.	B	.	.	.
+sub_2501E	seg003	000014DE	0000001C	00000002	00000004	R	.	.	.	.	.	B	.	.	.
+sub_2503A	seg003	000014FA	0000001C	00000002	00000004	R	.	.	.	.	.	B	.	.	.
+sub_25056	seg003	00001516	00000025	00000002	00000006	R	.	.	.	.	.	B	.	.	.
+sub_2507B	seg003	0000153B	0000002F	00000002	00000004	R	.	.	.	.	.	B	.	.	.
+sub_250AA	seg003	0000156A	00000012	00000006		R	.	.	.	.	.	.	.	.	.
+sub_250BC	seg003	0000157C	00000027	00000002	00000002	R	.	.	.	.	.	B	.	.	.
+sub_250E3	seg003	000015A3	00000035	00000002	00000002	R	.	.	.	.	.	B	.	.	.
+sub_25118	seg003	000015D8	00000021	00000004		R	.	.	.	.	.	.	.	.	.
+sub_25303	seg004	000001C3	00000010			R	.	L	.	.	.	.	.	.	.
+sub_25313	seg004	000001D3	00000006			R	.	L	.	.	.	.	.	.	.
+sub_25525	seg004	000003E5	0000000E			R	.	L	.	.	.	.	.	.	.
+sub_25608	seg004	000004C8	00000042			R	.	.	.	.	.	.	.	.	.
+sub_25660	seg004	00000520	00000008			R	.	.	.	.	.	.	.	.	.
+sub_25668	seg004	00000528	0000004D	0000000A		R	.	.	.	.	.	.	.	.	.
+sub_25818	seg004	000006D8	0000002A			R	F	.	.	.	.	.	.	.	.
+sub_25874	seg004	00000734	00000021	00000004		R	F	.	.	.	.	.	.	.	.
+sub_25DB8	seg004	00000C78	0000003C	00000002		R	F	.	.	.	.	.	.	.	.
+sub_25E57	seg004	00000D17	0000001E			R	.	.	.	.	.	.	.	.	.
+sub_25E75	seg004	00000D35	00000005			R	F	.	.	.	.	.	.	.	.
+sub_25EF0	seg004	00000DB0	0000000A			R	.	.	.	.	.	.	.	.	.
+sub_25EFA	seg004	00000DBA	0000000A			R	.	.	.	.	.	.	.	.	.
+sub_25F04	seg004	00000DC4	00000021			R	.	.	.	.	.	.	.	.	.
+sub_25F25	seg004	00000DE5	0000000A			R	.	.	.	.	.	.	.	.	.
+sub_25F2F	seg004	00000DEF	0000000A			R	.	.	.	.	.	.	.	.	.
+sub_25F39	seg004	00000DF9	00000057			R	F	.	.	.	.	.	.	.	.
+sub_25F45	seg004	00000E05	0000008F			R	.	.	.	.	.	.	.	.	.
+sub_25F8D	seg004	00000E4D	0000000C			R	.	.	.	.	.	.	.	.	.
+sub_25F99	seg004	00000E59	0000000C			R	.	.	.	.	.	.	.	.	.
+sub_25FA5	seg004	00000E65	0000000C			R	.	.	.	.	.	.	.	.	.
+sub_25FB1	seg004	00000E71	0000002B			R	F	.	.	.	.	.	.	.	.
+sub_25FBA	seg004	00000E7A	0000003E			R	F	.	.	.	.	.	.	.	.
+sub_25FC9	seg004	00000E89	0000000A			R	F	.	.	.	.	.	.	.	.
+sub_25FD3	seg004	00000E93	00000006			R	.	.	.	.	.	.	.	.	.
+sub_25FDA	seg004	00000E9A	00000005			R	.	.	.	.	.	.	.	.	.
+sub_25FE0	seg004	00000EA0	00000005			R	.	.	.	.	.	.	.	.	.
+sub_25FE6	seg004	00000EA6	00000007			R	.	.	.	.	.	.	.	.	.
+sub_25FEE	seg004	00000EAE	00000009			R	.	.	.	.	.	.	.	.	.
+sub_25FF8	seg004	00000EB8	00000007			R	.	.	.	.	.	.	.	.	.
+sub_26000	seg004	00000EC0	00000023			R	.	.	.	.	.	.	.	.	.
+sub_26023	seg004	00000EE3	00000004			R	.	.	.	.	.	.	.	.	.
+sub_26027	seg004	00000EE7	00000007			R	.	.	.	.	.	.	.	.	.
+sub_2602E	seg004	00000EEE	00000007			R	.	.	.	.	.	.	.	.	.
+sub_26035	seg004	00000EF5	00000002			R	.	.	.	.	.	.	.	.	.
+sub_26037	seg004	00000EF7	00000007			R	.	.	.	.	.	.	.	.	.
+sub_2603E	seg004	00000EFE	0000000F			R	.	.	.	.	.	.	.	.	.
+sub_2604D	seg004	00000F0D	00000005			R	.	.	.	.	.	.	.	.	.
+sub_26052	seg004	00000F12	00000005			R	.	.	.	.	.	.	.	.	.
+sub_26057	seg004	00000F17	00000005			R	.	.	.	.	.	.	.	.	.
+sub_2605C	seg004	00000F1C	00000008			R	.	.	.	.	.	.	.	.	.
+sub_26064	seg004	00000F24	00000004			R	.	.	.	.	.	.	.	.	.
+sub_26068	seg004	00000F28	00000013			R	.	.	.	.	.	.	.	.	.
+sub_2607B	seg004	00000F3B	00000008			R	.	.	.	.	.	.	.	.	.
+sub_26083	seg004	00000F43	0000000D			R	.	.	.	.	.	.	.	.	.
+sub_26090	seg004	00000F50	0000000D			R	.	.	.	.	.	.	.	.	.
+sub_2609D	seg004	00000F5D	0000001C			R	.	.	.	.	.	.	.	.	.
+sub_260B9	seg004	00000F79	00000190			R	.	.	.	.	.	.	.	.	.
+sub_261E9	seg004	000010A9	0000030C	00000002		R	.	.	.	.	.	.	.	.	.
+sub_2636A	seg004	0000122A	00000091			R	.	.	.	.	.	.	.	.	.
+sub_263FB	seg004	000012BB	0000008A			R	.	.	.	.	.	.	.	.	.
+sub_26673	seg004	00001533	0000008C			R	.	.	.	.	.	.	.	.	.
+sub_2672E	seg004	000015EE	00000154			R	.	.	.	.	.	.	.	.	.
+sub_2685C	seg004	0000171C	000000D5			R	.	.	.	.	.	.	.	.	.
+sub_2698A	seg004	0000184A	000001A1			R	.	.	.	.	.	.	.	.	.
+sub_26ACA	seg004	0000198A	00000068			R	.	.	.	.	.	.	.	.	.
+sub_26B32	seg004	000019F2	0000004D	00000002		R	.	.	.	.	.	.	.	.	.
+sub_26B7F	seg004	00001A3F	00000056			R	.	.	.	.	.	.	.	.	.
+sub_26BD5	seg004	00001A95	0000000C	00000002		R	.	.	.	.	.	.	.	.	.
+sub_26BE1	seg004	00001AA1	00000056			R	.	.	.	.	.	.	.	.	.
+sub_26C37	seg004	00001AF7	0000005A			R	.	.	.	.	.	.	.	.	.
+sub_26C91	seg004	00001B51	00000012	00000002		R	.	.	.	.	.	.	.	.	.
+sub_26CA3	seg004	00001B63	00000063			R	.	.	.	.	.	.	.	.	.
+sub_26D06	seg004	00001BC6	00000013			R	.	.	.	.	.	.	.	.	.
+sub_26D5C	seg004	00001C1C	00000027			R	.	.	.	.	.	.	.	.	.
+sub_26D83	seg004	00001C43	00000091			R	.	.	.	.	.	.	.	.	.
+sub_26E14	seg004	00001CD4	00000097			R	.	.	.	.	.	.	.	.	.
+sub_26F14	seg004	00001DD4	0000009D			R	.	.	.	.	.	.	.	.	.
+sub_26F5A	seg004	00001E1A	00000009			R	.	.	.	.	.	.	.	.	.
+sub_26F63	seg004	00001E23	00000007			R	.	.	.	.	.	.	.	.	.
+sub_26F6A	seg004	00001E2A	00000007			R	.	.	.	.	.	.	.	.	.
+sub_26F71	seg004	00001E31	00000047			R	.	.	.	.	.	.	.	.	.
+sub_26FB8	seg004	00001E78	00000005			R	.	.	.	.	.	.	.	.	.
+sub_26FBD	seg004	00001E7D	00000025			R	.	.	.	.	.	.	.	.	.
+sub_26FE2	seg004	00001EA2	0000004E			R	.	.	.	.	.	.	.	.	.
+sub_27009	seg004	00001EC9	00000007			R	.	.	.	.	.	.	.	.	.
+sub_2701E	seg004	00001EDE	00000007			R	.	.	.	.	.	.	.	.	.
+sub_27025	seg004	00001EE5	00000007			R	.	.	.	.	.	.	.	.	.
+sub_2702C	seg004	00001EEC	00000006			R	.	.	.	.	.	.	.	.	.
+sub_27032	seg004	00001EF2	00000007			R	.	.	.	.	.	.	.	.	.
+sub_27039	seg004	00001EF9	00000007			R	.	.	.	.	.	.	.	.	.
+sub_27040	seg004	00001F00	00000010			R	.	.	.	.	.	.	.	.	.
+sub_2709E	seg004	00001F5E	00000005			R	.	.	.	.	.	.	.	.	.
+sub_270A3	seg004	00001F63	00000005			R	.	.	.	.	.	.	.	.	.
+sub_270A8	seg004	00001F68	00000005			R	.	.	.	.	.	.	.	.	.
+sub_270AD	seg004	00001F6D	00000005			R	.	.	.	.	.	.	.	.	.
+sub_270B2	seg004	00001F72	00000005			R	.	.	.	.	.	.	.	.	.
+sub_270B7	seg004	00001F77	00000005			R	.	.	.	.	.	.	.	.	.
+sub_270BC	seg004	00001F7C	0000002A			R	.	.	.	.	.	.	.	.	.
+sub_27182	seg004	00002042	000000DF	00000002		R	.	.	.	.	.	.	.	.	.
+sub_27261	seg004	00002121	00000012			R	.	.	.	.	.	.	.	.	.
+sub_27273	seg004	00002133	00000018			R	.	.	.	.	.	.	.	.	.
+sub_2728B	seg004	0000214B	0000000D			R	.	.	.	.	.	.	.	.	.
+sub_27298	seg004	00002158	00000008			R	.	.	.	.	.	.	.	.	.
+sub_272CB	seg004	0000218B	000000C3			R	.	.	.	.	.	.	.	.	.
+sub_27363	seg004	00002223	00000015	00000002		R	.	.	.	.	.	.	.	.	.
+sub_2737C	seg004	0000223C	00000063			R	.	.	.	.	.	.	.	.	.
+sub_273DB	seg004	0000229B	00000078			R	.	.	.	.	.	.	.	.	.
+sub_27453	seg004	00002313	00000025			R	.	.	.	.	.	.	.	.	.
+sub_27478	seg004	00002338	00000007			R	.	.	.	.	.	.	.	.	.
+sub_2747F	seg004	0000233F	00000028			R	.	.	.	.	.	.	.	.	.
+sub_274A7	seg004	00002367	00000066			R	.	.	.	.	.	.	.	.	.
+sub_2750D	seg004	000023CD	00000008			R	.	.	.	.	.	.	.	.	.
+sub_27515	seg004	000023D5	00000020			R	.	.	.	.	.	.	.	.	.
+sub_27535	seg004	000023F5	00000028			R	.	.	.	.	.	.	.	.	.
+sub_2755D	seg004	0000241D	0000007E	00000002		R	.	.	.	.	.	.	.	.	.
+sub_275DB	seg004	0000249B	00000028			R	.	.	.	.	.	.	.	.	.
+sub_27603	seg004	000024C3	00000036	00000002		R	.	.	.	.	.	.	.	.	.
+sub_277CA	seg005	0000010A	0000012E	00000002	00000006	R	F	L	.	.	.	B	.	.	.
+sub_279C7	seg005	00000307	00000012			R	.	L	.	.	.	.	.	.	.
+sub_27AEF	seg005	0000042F	0000001D			R	.	L	.	.	.	.	.	.	.
+sub_27B78	seg005	000004B8	00000011	00000002	00000006	R	.	L	.	.	.	B	.	.	.
+sub_27B9D	seg005	000004DD	00000047	00000002		R	.	L	.	.	.	.	.	.	.
+sub_27C13	seg005	00000553	00000018	00000008		R	.	L	.	.	.	.	.	.	.
+sub_27CF5	seg005	00000635	00000003			R	.	L	.	.	.	.	.	.	.
+sub_27CF8	seg005	00000638	00000014			R	.	.	.	.	.	.	.	.	.
+sub_27FE2	seg005	00000922	0000001B	00000002		R	.	L	.	.	.	.	.	.	.
+sub_27FFD	seg005	0000093D	0000005F			R	.	L	.	.	.	.	.	.	.
+sub_285E8	seg012	00000008	00000015	00000004		R	F	.	.	.	.	.	.	.	.
+sub_2864B	seg012	0000006B	00000057	00000002	0000000C	R	F	.	.	.	.	B	.	.	.
+sub_29616	seg016	000003A6	00000033	00000002	00000010	R	F	.	.	.	.	B	T	.	.
+sub_2AC94	seg017	00001654	00000041	00000002	00000008	R	F	.	.	.	.	B	.	.	.
+sub_2B02C	seg018	0000035C	00000071	00000002	0000000C	R	F	.	.	.	.	B	.	.	.
+sub_2B0C2	seg019	00000032	00000042	00000002	00000004	R	F	.	.	.	.	B	.	.	.
+sub_2B109	seg019	00000079	00000031	00000002	00000010	R	F	.	.	.	.	B	T	.	.
+sub_2B13A	seg019	000000AA	00000006			R	F	.	.	.	.	.	.	.	.
+sub_2B146	seg019	000000B6	00000035	00000002	00000010	R	F	.	.	.	.	B	T	.	.
+sub_2B1A3	seg019	00000113	0000001A	00000002	00000008	R	F	.	.	.	.	B	.	.	.
+sub_2B1BD	seg019	0000012D	00000026	00000002	00000006	R	F	.	.	.	.	B	.	.	.
+sub_2B1E3	seg019	00000153	00000049	00000002	00000010	R	F	.	.	.	.	B	.	.	.
+sub_2B21	seg000	00002B21	0000010A	00000022	00000004	R	F	.	.	.	.	B	.	.	.
+sub_2B22C	seg019	0000019C	00000037	00000002	00000010	R	F	.	.	.	.	B	.	.	.
+sub_2B263	seg019	000001D3	00000066	00000002	0000000C	R	F	.	.	.	.	B	.	.	.
+sub_2B351	seg021	00000001	0000002F	00000000	0000000E	R	F	.	.	.	.	B	.	.	.
+sub_2B380	seg021	00000030	00000041	00000002	0000000C	R	F	.	.	.	.	B	.	.	.
+sub_2B430	seg021	000000E0	00000049	00000002	00000010	R	F	.	.	.	.	B	.	.	.
+sub_2B479	seg021	00000129	00000026	00000002	00000010	R	F	.	.	.	.	B	.	.	.
+sub_2B4FF	seg021	000001AF	0000001E	00000002	00000008	R	F	.	.	.	.	B	.	.	.
+sub_2B5CB	seg022	000000BB	00000048			R	F	.	.	.	.	.	.	.	.
+sub_2B613	seg022	00000103	00000065			R	F	.	.	.	.	.	.	.	.
+sub_2B678	seg022	00000168	00000020			R	F	.	.	.	.	.	.	.	.
+sub_2B698	seg022	00000188	00000026			R	F	.	.	.	.	.	.	.	.
+sub_2B6BE	seg022	000001AE	00000020			R	F	.	.	.	.	.	.	.	.
+sub_2B6DE	seg022	000001CE	00000016	00000002		R	.	.	.	.	.	.	.	.	.
+sub_2B6F4	seg022	000001E4	00000029			R	.	.	.	.	.	.	.	.	.
+sub_2B71D	seg022	0000020D	00000028			R	.	.	.	.	.	.	.	.	.
+sub_2B745	seg022	00000235	00000008	00000002		R	.	.	.	.	.	.	.	.	.
+sub_2B74D	seg022	0000023D	000000D6			R	.	.	.	.	.	.	.	.	.
+sub_2B823	seg022	00000313	0000001D			R	.	.	.	.	.	.	.	.	.
+sub_2B840	seg022	00000330	0000003A			R	.	.	.	.	.	.	.	.	.
+sub_2B87A	seg022	0000036A	00000017			R	.	.	.	.	.	.	.	.	.
+sub_2B891	seg022	00000381	0000001E	00000004		R	.	.	.	.	.	.	.	.	.
+sub_2B8AF	seg022	0000039F	00000019			R	.	.	.	.	.	.	.	.	.
+sub_2B8C8	seg022	000003B8	00000021	00000002		R	.	.	.	.	.	.	.	.	.
+sub_2B8E9	seg022	000003D9	0000003B	00000002		R	.	.	.	.	.	.	.	.	.
+sub_2B924	seg022	00000414	00000014	00000002		R	.	.	.	.	.	.	.	.	.
+sub_2B9AB	seg022	0000049B	0000000B	00000004		R	.	.	.	.	.	.	.	.	.
+sub_2B9B6	seg022	000004A6	0000001A	00000004		R	.	.	.	.	.	.	.	.	.
+sub_2B9D0	seg022	000004C0	00000010	00000002		R	.	.	.	.	.	.	.	.	.
+sub_2B9E0	seg022	000004D0	00000007			R	.	.	.	.	.	.	.	.	.
+sub_2B9E7	seg022	000004D7	0000004A	00000004		R	.	.	.	.	.	.	.	.	.
+sub_2BA31	seg022	00000521	00000022			R	.	.	.	.	.	.	.	.	.
+sub_2BA53	seg022	00000543	00000032			R	.	.	.	.	.	.	.	.	.
+sub_2BA85	seg022	00000575	00000013	00000004		R	.	.	.	.	.	.	.	.	.
+sub_2BA98	seg022	00000588	00000005			R	.	.	.	.	.	.	.	.	.
+sub_2BA9D	seg022	0000058D	00000025	00000004		R	.	.	.	.	.	.	.	.	.
+sub_2BAC2	seg022	000005B2	0000002B			R	.	.	.	.	.	.	.	.	.
+sub_2BAEE	seg022	000005DE	00000063			R	.	.	.	.	.	.	.	.	.
+sub_2BB51	seg022	00000641	00000066			R	.	.	.	.	.	.	.	.	.
+sub_2BBB7	seg022	000006A7	00000065			R	.	.	.	.	.	.	.	.	.
+sub_2BC1C	seg022	0000070C	00000046	00000008		R	.	.	.	.	.	.	.	.	.
+sub_2D43A	seg029	0000000A	00000013	00000002	00000004	R	F	.	.	.	.	B	.	.	.
+sub_2D7F2	seg029	000003C2	00000030			R	.	.	.	.	.	.	.	.	.
+sub_2D822	seg029	000003F2	00000279			R	.	.	.	.	.	.	.	.	.
+sub_2DAF5	seg029	000006C5	000000B5	00000002		R	.	.	.	.	.	.	.	.	.
+sub_2DBAA	seg029	0000077A	00000026	00000002		R	.	.	.	.	.	.	.	.	.
+sub_2DC6B	seg029	0000083B	00000080			R	.	.	.	.	.	.	.	.	.
+sub_2DD0B	seg029	000008DB	000000DC	00000006		R	.	.	.	.	.	.	.	.	.
+sub_2DF04	seg029	00000AD4	00000019	00000002		R	.	.	.	.	.	.	.	.	.
+sub_2DF1D	seg029	00000AED	0000002D			R	.	.	.	.	.	.	.	.	.
+sub_2DF4A	seg029	00000B1A	00000055	00000002		R	.	.	.	.	.	.	.	.	.
+sub_2DF9F	seg029	00000B6F	00000035			R	.	.	.	.	.	.	.	.	.
+sub_2DFE7	seg029	00000BB7	00000067	00000004		R	.	.	.	.	.	.	.	.	.
+sub_2E085	seg029	00000C55	00000017	00000002		R	.	.	.	.	.	.	.	.	.
+sub_2E09C	seg029	00000C6C	00000081	00000006		R	.	.	.	.	.	.	.	.	.
+sub_2ECDE	seg030	000002CE	00000093	00000002	00000018	R	F	.	.	.	.	B	T	.	.
+sub_2ED72	seg031	00000002	0000001F	00000002	00000008	R	F	.	.	.	.	B	.	.	.
+sub_2ED91	seg031	00000021	0000011E	00000002	0000000C	R	F	.	.	.	.	B	.	.	.
+sub_2EEAF	seg031	0000013F	00000014			R	.	.	.	.	.	.	.	.	.
+sub_2EEC3	seg031	00000153	0000001C			R	.	.	.	.	.	.	.	.	.
+sub_38D1	seg000	000038D1	0000020B	00000026	00000008	R	F	.	.	.	.	B	.	.	.
+sub_3ADF	seg000	00003ADF	000001F6	0000002C	00000004	R	F	.	.	.	.	B	.	.	.
+sub_4500	seg000	00004500	000000C1	0000001C		R	F	.	.	.	.	B	.	.	.
+sub_494C	seg000	0000494C	00000152	00000028		R	F	.	.	.	.	B	.	.	.
+sub_9262	seg000	00009262	0000020C	00000030	00000006	R	F	.	.	.	.	B	.	.	.
+sub_B847	seg000	0000B847	0000011F	00000028	00000004	R	F	.	.	.	.	B	.	.	.
+sub_D72A	seg000	0000D72A	000000EC	0000001E	00000006	R	F	.	.	.	.	B	T	.	.
+sub_DB9C	seg000	0000DB9C	00000275	0000003C	0000000A	R	F	.	.	.	.	B	T	.	.
+sub_DFE2	seg000	0000DFE2	00000131	0000001E		R	F	.	.	.	.	B	.	.	.
+sub_E116	seg000	0000E116	0000025B	00000026		R	F	.	.	.	.	B	.	.	.
+sub_E43B	seg000	0000E43B	00000143	00000026	00000004	R	F	.	.	.	.	B	.	.	.
+sub_E581	seg000	0000E581	0000023C	00000028		R	F	.	.	.	.	B	.	.	.
+sub_E7C0	seg000	0000E7C0	00000073	00000018		R	F	.	.	.	.	B	.	.	.
+sub_E836	seg000	0000E836	000000BE	0000001E	0000000A	R	F	.	.	.	.	B	.	.	.
+summon_imgs?	seg000	0000A4FC	00000211	0000003E	00000004	R	F	.	.	.	.	B	.	.	.
+summon_lasting?	seg000	00009000	0000025F	00000032	00000002	R	F	.	.	.	.	B	.	.	.
+system_ExitGame	seg000	00001B37	0000002E	00000000		R	.	.	.	.	.	.	.	.	.
+system_LoadRPG	seg000	00001A34	00000025	00000000		R	.	.	.	.	.	.	.	.	.
+system_MusicOption	seg000	00001A59	000000A9	00000000		R	.	.	.	.	.	.	.	.	.
+system_SaveRPG	seg000	00001A0F	00000025			R	.	.	.	.	.	.	.	.	.
+system_SfxOption	seg000	00001B02	00000035	00000000		R	.	.	.	.	.	.	.	.	.
+team_walk_one_step	seg001	0000C2F1	0000005D	00000000		R	F	.	.	.	.	B	.	.	.
+theurgy_sort	seg000	0000D4F0	00000135	0000001E	00000004	R	F	.	.	.	.	B	.	.	.
+timer_func	seg003	000012D4	00000013	00000004		R	.	.	.	.	.	.	.	.	.
+timer_interrupt	seg029	000014A3	000000F2	00000004		R	F	.	.	.	.	.	.	.	.
+transfer_MEM	seg021	00000071	0000001D	00000002	0000000C	R	F	.	.	.	.	B	.	.	.
+type_uplevel	seg001	0000F3FB	00000286	0000004A	00000008	R	F	.	.	.	.	B	.	.	.
+unequip_for_use	seg001	0000833E	0000009C	0000001E	00000006	R	F	.	.	.	.	B	.	.	.
+unknown_libname_1	seg003	00000118	00000005			R	F	L	.	.	.	.	.	.	.
+visible_NPC_movment_setdraw	seg001	0000DC9D	0000018E	00000024		R	F	.	.	.	.	B	.	.	.
+wait_internal	seg029	00001406	0000001D	00000002	00000002	R	F	.	.	.	.	B	T	.	.
+wait_key	seg001	0000F684	00000062	0000001A	00000004	R	F	.	.	.	.	B	.	.	.
+wait_show_icon	seg001	0000F6E9	0000006F	00000016		R	F	.	.	.	.	B	.	.	.
+wave_screen	seg018	0000028C	0000008C	00000002	0000000C	R	F	.	.	.	.	B	T	.	.
+write_to_screen	seg012	0000003D	0000002E	00000002	00000004	R	F	.	.	.	.	B	.	.	.
+xor_ax_ax	seg003	00000418	00000003			R	F	.	.	.	.	.	.	.	.
+yes_no_dialog	seg001	00002576	00000189	0000003E	00000006	R	F	.	.	.	.	B	.	.	.
