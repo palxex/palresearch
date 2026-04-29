@@ -14,6 +14,16 @@
 #define MODERN_POSIX 0
 #endif
 
+#if defined(USE_SDL2_TIMER) && defined(USE_SDL3_TIMER)
+#error Choose only one SDL timer backend
+#endif
+
+#if defined(USE_SDL2_TIMER) || defined(USE_SDL3_TIMER)
+#define SDL_TIMER_BACKEND 1
+#else
+#define SDL_TIMER_BACKEND 0
+#endif
+
 #if defined(__linux__)
 #define MODERN_LINUX_IO 1
 #else
@@ -23,6 +33,13 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#if SDL_TIMER_BACKEND
+#if defined(USE_SDL3_TIMER)
+#include <SDL3/SDL.h>
+#else
+#include <SDL.h>
+#endif
+#endif
 #if !MODERN_POSIX
 #include <dos.h>
 #endif
@@ -104,9 +121,26 @@ static inline void setvect(int intno, void __far *vect)
 }
 #else // __DJGPP__
 #define interrupt static
+#include <conio.h>
 #include <pc.h>
 #include <dpmi.h>
 #include <go32.h>
+static unsigned long g_djgpp_outportb_count = 0;
+
+static inline void djgpp_outportb_logged(unsigned short port, unsigned char value)
+{
+	outportb(port, value);
+	if((g_djgpp_outportb_count & 0x3FUL) == 0)
+	{
+		printf("[DBG][djgpp outportb] #%lu port=0x%X write=0x%02X\n",
+			g_djgpp_outportb_count,
+			(unsigned int)port,
+			(unsigned int)value);
+	}
+	g_djgpp_outportb_count++;
+}
+
+#define outportb djgpp_outportb_logged
 typedef void (*TimerHandler)(void);
 static _go32_dpmi_seginfo	oldhandler, newhandler;
 TimerHandler getvect(int intno){
@@ -193,6 +227,19 @@ typedef struct {WORD v[12];}BFDT;
 /************************************************************/
 char progname[20];
 /************************************************************/
+static int map_keycode(int ch)
+{
+	switch(ch)
+	{
+		case 27: return ESCAPE;
+		case 'p': case 'P': return pause;
+		case 'c': case 'C': return contn;
+		case '-': return sub;
+		case '+': return add;
+		default: return 0;
+	}
+}
+
 int getkey()
 {
 #if MODERN_POSIX
@@ -203,24 +250,22 @@ int getkey()
 	int ch = getchar();
 	if(ch == EOF) return 0;
 #endif
-	switch(ch)
+	return map_keycode(ch);
+#elif SDL_TIMER_BACKEND
+	if(!kbhit()) return 0;
 	{
-		case 27: return ESCAPE;
-		case 'p': case 'P': return pause;
-		case 'c': case 'C': return contn;
-		case '-': return sub;
-		case '+': return add;
-		default: return 0;
+		int ch = getch();
+		return map_keycode(ch);
 	}
 #else
-        union REGS reg;
-        reg.x.ax = 0;
+	union REGS reg;
+	reg.x.ax = 0;
 #if __GCCIA16__
-        __asm__ __volatile__("int $0x16":"=a"(reg.x.ax):"a"(reg.x.ax));
+	__asm__ __volatile__("int $0x16":"=a"(reg.x.ax):"a"(reg.x.ax));
 #else
-        int86(0x16,&reg,&reg);
+	int86(0x16,&reg,&reg);
 #endif
-        return reg.h.ah;
+	return reg.h.ah;
 #endif
 }
 /************************************************************/
@@ -277,11 +322,32 @@ WORD music_spd = 0;
 WORD displace[11] = {0};
 int unknown1 = 0;
 void interrupt(*old)(); /* save old int */
+static unsigned long g_opl_write_count = 0;
+
+#if SDL_TIMER_BACKEND
+static unsigned long g_sdl_tick_count = 0;
+static volatile int g_in_timer_callback = 0;
+#endif
+
+#if MODERN_POSIX || SDL_TIMER_BACKEND
+static volatile int g_timer_running = 0;
+#endif
 
 #if MODERN_POSIX
-static pthread_t g_timer_thread;
-static volatile int g_timer_running = 0;
 static volatile unsigned long long g_tick_ns = 0;
+#endif
+
+#if SDL_TIMER_BACKEND
+static SDL_TimerID g_sdl_timer_id = 0;
+static volatile Uint32 g_tick_ms = 1;
+static int g_sdl_timer_ready = 0;
+#endif
+
+#if MODERN_POSIX && !SDL_TIMER_BACKEND
+static pthread_t g_timer_thread;
+#endif
+
+#if MODERN_POSIX
 #if !defined(__MINGW32__)
 static struct termios g_old_termios;
 static int g_termios_ready = 0;
@@ -324,14 +390,24 @@ void set_speed(WORD);              /**/
 void set_time(word);               /**/
 void switch_ad_bd(WORD);           /**/
 dword strm_and_fr(WORD);               /* done */
+static void timer_tick_core(void);
 
 #if MODERN_LINUX_IO
 static int linux_io_init(void);
 static void linux_io_deinit(void);
 #endif
 
-#if MODERN_POSIX
+#if SDL_TIMER_BACKEND
+static Uint32 sdl_timer_cb(Uint32 interval, void *arg);
+static int sdl_timer_init(void);
+static void sdl_timer_deinit(void);
+#endif
+
+#if MODERN_POSIX && !SDL_TIMER_BACKEND
 static void *modern_timer_loop(void *arg);
+#endif
+
+#if MODERN_POSIX
 static int modern_key_init(void);
 static void modern_key_deinit(void);
 #endif
@@ -346,11 +422,13 @@ int main(int parmn,char *parms[])
 #ifdef __DJGPP__
  init_crash_handler();
 #endif
+	setvbuf(stdout, NULL, _IONBF, 0);
  /*-------------------------- Title ------------------------*/
  printf("PlayRix Version 1.01 ](TUBRO Version)[\n");
  printf("Program writen by Pei-Cheng Tong using assembly 1994.\n");
  printf("\n[P]:Pause [C]:Continue [+,-]:Chang Speed\n");
  printf("[ESC] ---> Stop and End.\n");
+ printf("[DBG] Screen debug logging is ON.\n");
  /*-------------------------- Usage ------------------------*/
  strcpy(progname, parms[0]);
  if(parmn < 2)
@@ -383,7 +461,27 @@ int main(int parmn,char *parms[])
  /*---------------------------------------------------------*/
  while(1)
  {
-  switch(getkey())
+ int key = getkey();
+	#if SDL_TIMER_BACKEND
+	{
+		static unsigned long last_tick_print = 0;
+		if(g_sdl_tick_count >= last_tick_print + 64UL)
+		{
+			printf("[DBG] main observes sdl ticks=%lu interval_ms=%u\n", g_sdl_tick_count, (unsigned int)g_tick_ms);
+			last_tick_print = g_sdl_tick_count;
+		}
+	}
+	#endif
+
+	#if SDL_TIMER_BACKEND && !MODERN_POSIX
+	if(key == 0)
+	{
+		SDL_Delay(1);
+		continue;
+	}
+	#endif
+
+ switch(key)
   {
 	case ESCAPE: music_pass = 0; set_old_int(); music_ctrl(); exit(0);
 	case pause:  Pause(); break;
@@ -452,9 +550,13 @@ void data_initial()
 void set_old_int()
 {
 	set_time(0);
-	#if MODERN_POSIX
+	#if MODERN_POSIX || SDL_TIMER_BACKEND
 	g_timer_running = 0;
+	#if SDL_TIMER_BACKEND
+	sdl_timer_deinit();
+	#else
 	pthread_join(g_timer_thread, NULL);
+	#endif
 	#else
 	setvect(INT,old);
 	#endif
@@ -496,7 +598,15 @@ void crc_trans(WORD index,WORD v)
 /*----------------------------------------------------------*/
 void set_time(word v)
 {
-	#if MODERN_POSIX
+	#if SDL_TIMER_BACKEND
+	{
+		unsigned int divisor = (v == 0) ? 65536U : (unsigned int)v;
+		unsigned long long tick_ns = ((unsigned long long)divisor * 1000000000ULL) / 1193180ULL;
+		Uint32 ms = (Uint32)((tick_ns + 999999ULL) / 1000000ULL);
+		if(ms == 0) ms = 1;
+		g_tick_ms = ms;
+	}
+	#elif MODERN_POSIX
 	unsigned int divisor = (v == 0) ? 65536U : (unsigned int)v;
 	g_tick_ns = ((unsigned long long)divisor * 1000000000ULL) / 1193180ULL;
 	#else
@@ -512,10 +622,19 @@ void prep_int()
 {
 	set_time(0);
 	file_flag = 0;
-	#if MODERN_POSIX
+	printf("[DBG] prep_int: SDL_TIMER_BACKEND=%d MODERN_POSIX=%d\n", (int)SDL_TIMER_BACKEND, (int)MODERN_POSIX);
+	#if MODERN_POSIX || SDL_TIMER_BACKEND
 	g_timer_running = 1;
-	pthread_create(&g_timer_thread, NULL, modern_timer_loop, NULL);
+	#if SDL_TIMER_BACKEND
+	if(!sdl_timer_init())
+	{
+		printf("\nSDL timer backend init failed.\n");
+		exit(1);
+	}
 	#else
+	pthread_create(&g_timer_thread, NULL, modern_timer_loop, NULL);
+	#endif
+	#elif MODERN_POSIX
 	old = getvect(INT);
 	setvect(INT,int_08h_entry);
 	#endif
@@ -524,6 +643,17 @@ void prep_int()
 void ad_bop(WORD reg,WORD value)
 {
 	register int i;
+	g_opl_write_count++;
+	#if SDL_TIMER_BACKEND
+	if(!g_in_timer_callback)
+	#endif
+	{
+		printf("[OPL] #%lu base=0x%X reg=0x%02X val=0x%02X\n",
+			g_opl_write_count,
+			(unsigned int)default_pass,
+			(unsigned int)(reg & 0xFF),
+			(unsigned int)(value & 0xFF));
+	}
 	//log_opl_write(default_pass, reg, value);
 	outportb(default_pass,reg&0xff);
 	for(i=0;i<6;i++)
@@ -546,19 +676,28 @@ word ad_test()   /* Test the SoundCard */
 	result2 = inportb(default_pass);
 	ad_bop(0x04,0x60);
 	ad_bop(0x04,0x80);
+	printf("[DBG] ad_test: status1=0x%02X status2=0x%02X\n", (unsigned int)result1, (unsigned int)result2);
 	if(result1&0xE0 != 0) return 0;
 	if(result2&0xE0 != 0xC0) return 0;
+	printf("[DBG] ad_test: PASS\n");
 	return 1;
 }
 /*--------------------------------------------------------------*/
 void interrupt int_08h_entry()
 {
-	word temp = 1;
+	#if !SDL_TIMER_BACKEND
 #if defined(__GNUC__) && !MODERN_POSIX
 	outportb(0x20,0x20);
 #elif !MODERN_POSIX
 	old();
 #endif
+	#endif
+	timer_tick_core();
+}
+/*--------------------------------------------------------------*/
+static void timer_tick_core(void)
+{
+	word temp = 1;
 	while(temp)
 	if(unknown1 <= 0 && file_flag == 0)
 	{
@@ -828,7 +967,75 @@ static void linux_io_deinit(void)
 }
 #endif
 
-#if MODERN_POSIX
+#if SDL_TIMER_BACKEND
+static Uint32 sdl_timer_cb(Uint32 interval, void *arg)
+{
+	(void)interval;
+	(void)arg;
+	g_sdl_tick_count++;
+	if(!g_timer_running) return 0;
+	g_in_timer_callback = 1;
+	timer_tick_core();
+	g_in_timer_callback = 0;
+	if(!g_timer_running) return 0;
+	return g_tick_ms;
+}
+
+static int sdl_timer_init(void)
+{
+	if(g_sdl_timer_ready) return 1;
+
+	#if defined(USE_SDL3_TIMER)
+	if(!SDL_Init(0))
+	{
+		fprintf(stderr, "SDL_Init failed: %s\n", SDL_GetError());
+		return 0;
+	}
+	#else
+	if(SDL_InitSubSystem(SDL_INIT_TIMER) != 0)
+	{
+		fprintf(stderr, "SDL_InitSubSystem(SDL_INIT_TIMER) failed: %s\n", SDL_GetError());
+		return 0;
+	}
+	#endif
+
+	g_sdl_timer_id = SDL_AddTimer(g_tick_ms, sdl_timer_cb, NULL);
+	if(g_sdl_timer_id == 0)
+	{
+		fprintf(stderr, "SDL_AddTimer failed: %s\n", SDL_GetError());
+		#if defined(USE_SDL3_TIMER)
+		SDL_Quit();
+		#else
+		SDL_QuitSubSystem(SDL_INIT_TIMER);
+		#endif
+		return 0;
+	}
+
+	g_sdl_timer_ready = 1;
+	printf("[DBG] SDL timer ready: tick_ms=%u timer_id=%lu\n", (unsigned int)g_tick_ms, (unsigned long)g_sdl_timer_id);
+	return 1;
+}
+
+static void sdl_timer_deinit(void)
+{
+	if(g_sdl_timer_id != 0)
+	{
+		SDL_RemoveTimer(g_sdl_timer_id);
+		g_sdl_timer_id = 0;
+	}
+	if(g_sdl_timer_ready)
+	{
+		#if defined(USE_SDL3_TIMER)
+		SDL_Quit();
+		#else
+		SDL_QuitSubSystem(SDL_INIT_TIMER);
+		#endif
+		g_sdl_timer_ready = 0;
+	}
+}
+#endif
+
+#if MODERN_POSIX && !SDL_TIMER_BACKEND
 static void *modern_timer_loop(void *arg)
 {
 	#if defined(__MINGW32__)
@@ -867,7 +1074,9 @@ static void *modern_timer_loop(void *arg)
 	return NULL;
 	#endif
 }
+#endif
 
+#if MODERN_POSIX
 static int modern_key_init(void)
 {
 	#if defined(__MINGW32__)
