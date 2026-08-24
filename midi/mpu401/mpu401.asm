@@ -2,9 +2,6 @@
 ; mpu401.drv — SoftStar MMS-Midi Driver
 ; 仙剑 DOS 版 MPU-401 MIDI 驱动（原作者 Pei-Cheng Tong）
 ;
-; 由 mpu401.drv.orig 逐字节重建。`nasm -f bin mpu401.asm` 输出应
-; 与原件完全一致（build_nasm.py --verify 自动校验）。
-;
 ; 修改要点：
 ;   * SONG_BUFFER 是歌曲数据缓冲基址，代码里所有引用都走这个宏；
 ;     想挪缓冲/加代码，先改它再调布局。
@@ -13,8 +10,12 @@
 BITS 16
 CPU 386
 
-SONG_BUFFER  equ 0x09AD   ; 歌曲数据缓冲基址
+SONG_BUFFER  equ 0x2000   ; 歌曲数据缓冲基址（代码区 0x180..0x1FFF 可自由使用）
 MPU_PORT     equ 0x0331      ; MPU-401 状态端口
+
+; 三个修复用新例程（放在原 0x9AD 之后腾出的空间里）
+PB_HANDLER   equ 0x9B0       ; Pitch Bend 补发 MSB
+SX_HANDLER   equ 0x9C0       ; SysEx 剥 SMF 长度
 
 ; ---------------- 0x000-0x031: 签名 ----------------
 sig:        db "SoftStar MMS-Midi Driver Writen By Pei-Cheng Tong", 0x1A
@@ -27,7 +28,7 @@ sig:        db "SoftStar MMS-Midi Driver Writen By Pei-Cheng Tong", 0x1A
 
 ; ---------------- 0x03E-0x04D: 消息分发表 ----------------
 ; 索引 = (status>>4)-8: 8..F -> NoteOff,NoteOn,PolyAT,CC,Prog,ChanAT,Pitch,Sys
-handlers:   dw L42D, L43C, L44B, L45A, L466, L46E, L476, L47F
+handlers:   dw L42D, L43C, L44B, L45A, L466, L46E, PB_HANDLER, SX_HANDLER
 
 ; ---------------- 0x04E-0x155: 播放器结构体 x3 ----------------
 ; 每份 0x58 字节；字段见 struct_layout.csv
@@ -567,11 +568,11 @@ L5C6:    db 0x8B, 0xC6  ; mov ax,si  (0x05C6 raw)
          call L52F  ; 0x05DA  e8 52 ff
          db 0x8B, 0xC6  ; mov ax,si  (0x05DD raw)
          or al,0xb0  ; 0x05DF  0c b0
-         call L52F  ; 0x05E1  e8 4b ff
+         call L4FD  ; 0x05E1  e8 19 ff  (修复3: 数据口)
          mov al,0x40  ; 0x05E4  b0 40
-         call L52F  ; 0x05E6  e8 46 ff
+         call L4FD  ; 0x05E6  e8 14 ff  (修复3: 数据口)
          mov ax,0x0  ; 0x05E9  b8 00 00
-         call L52F  ; 0x05EC  e8 40 ff
+         call L4FD  ; 0x05EC  e8 0e ff  (修复3: 数据口)
          inc si  ; 0x05EF  46
          cmp si,0x10  ; 0x05F0  83 fe 10
          jnz L5C6  ; 0x05F3  75 d1
@@ -927,6 +928,45 @@ L9A5:    mov si,SONG_BUFFER  ; 0x09A5  be ad 09
          pop eax  ; 0x09AA  66 58
          ret  ; 0x09AC  c3
 
-; ---------------- 0x9AD-0xBAC: 歌曲数据缓冲 ----------------
+; ============ 修复1: Pitch Bend 补发 MSB (0x9B0) ============
+; 原处理器读 MSB 后不发送，此例程补发
+times (PB_HANDLER - ($-$$)) db 0
+pb_fix:
+         call L4FD          ; 发 status
+         lodsb
+         call L4FD          ; 发 LSB
+         lodsb
+         call L4FD          ; 发 MSB（原来丢掉）
+         ret
+
+; ============ 修复2: SysEx 剥 SMF 长度 (0x9C0) ============
+; 原例程从 F0 起逐字节发到 F7，把 SMF 长度也发了；
+; 此例程发 F0 → 跳过完整 VLQ 长度 → 发负载直到 F7
+times (SX_HANDLER - ($-$$)) db 0
+sx_fix:
+         cmp al, 0xf0
+         jnz near L490       ; F1/F2/F3 走原路径
+         dec si
+         mov di, si          ; 记起点
+         lodsb
+         call L4FD           ; 发 F0
+.skip_vlq:
+         lodsb
+         test al, 0x80
+         jnz .skip_vlq       ; 跳过 VLQ 多字节长度
+.send_payload:
+         lodsb
+         mov bl, al
+         call L4FD
+         cmp bl, 0xf7
+         jnz .send_payload   ; 循环到 F7
+         mov ax, si
+         sub ax, di          ; 返回消耗字节数
+         ret
+
+; ============ 填充剩余空间到 SONG_BUFFER ============
+times (SONG_BUFFER - ($-$$)) db 0
+
+; ---------------- 0x2000-0x21FF: 歌曲数据缓冲 ----------------
 song_buffer: times 512 db 0
 
