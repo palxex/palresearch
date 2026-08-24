@@ -141,3 +141,7 @@
 新增工具目录：PackageUtils
 作用：仙剑DOS/98拆装包工具
 作者：路痴
+
+新增目录：midi/mpu401
+作用：MPU401.DRV重建及修正
+作者：palxex
