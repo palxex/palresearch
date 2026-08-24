@@ -17,6 +17,11 @@ MPU_PORT     equ 0x0331      ; MPU-401 状态端口
 PB_HANDLER   equ 0x9B0       ; Pitch Bend 补发 MSB
 SX_HANDLER   equ 0x9C0       ; SysEx 剥 SMF 长度
 
+; CC64 归一化与强制透传（也在腾出的空间里）
+CC_FIX       equ 0x1000      ; CC 处理器：CC64 归一化 0/127，或按标志透传
+CC64_SETUP   equ 0x1030      ; 初始化：UART 初始化 + SUSSPAN 文件检查
+CC64_DATA    equ 0x1180      ; SUSPAN_FLAG 标志 / 文件名
+
 ; ---------------- 0x000-0x031: 签名 ----------------
 sig:        db "SoftStar MMS-Midi Driver Writen By Pei-Cheng Tong", 0x1A
 
@@ -28,7 +33,7 @@ sig:        db "SoftStar MMS-Midi Driver Writen By Pei-Cheng Tong", 0x1A
 
 ; ---------------- 0x03E-0x04D: 消息分发表 ----------------
 ; 索引 = (status>>4)-8: 8..F -> NoteOff,NoteOn,PolyAT,CC,Prog,ChanAT,Pitch,Sys
-handlers:   dw L42D, L43C, L44B, L45A, L466, L46E, PB_HANDLER, SX_HANDLER
+handlers:   dw L42D, L43C, L44B, cc_fix, L466, L46E, PB_HANDLER, SX_HANDLER
 
 ; ---------------- 0x04E-0x155: 播放器结构体 x3 ----------------
 ; 每份 0x58 字节；字段见 struct_layout.csv
@@ -585,7 +590,7 @@ L5F8:    push bx  ; 0x05F8  53
          push es  ; 0x05FB  06
          inc dx  ; 0x05FC  42
          mov cs:[0x170],dx  ; 0x05FD  2e 89 16 70 01
-         call L4BA  ; 0x0602  e8 b5 fe
+         call cc64_setup  ; 0x0602  e8 xx xx (原 call L4BA，初始化例程内部先做 UART 初始化)
          db 0x33, 0xC9  ; xor cx,cx  (0x0605 raw)
 L607:    db 0x8B, 0xD9  ; mov bx,cx  (0x0607 raw)
          shl bx,1  ; 0x0609  d1 e3
@@ -963,6 +968,75 @@ sx_fix:
          mov ax, si
          sub ax, di          ; 返回消耗字节数
          ret
+
+; ============ CC64 归一化 / 透传 (0x1000) ============
+; SUSPAN_FLAG = 1 → CC64 原样透传（保留原始值）
+; SUSPAN_FLAG = 0 → CC64 <64 归 0、>=64 归 127（GM/GS/XG 规范开关，默认）
+times (CC_FIX - ($-$$)) db 0
+cc_fix:
+         call L4FD           ; 发 status
+         lodsb               ; controller
+         mov cl, al          ; 保存（CL 在 L4FD 中存活）
+         call L4FD           ; 发 controller
+         lodsb               ; value
+         cmp cl, 0x40        ; CC64 Damper Pedal?
+         jne .send
+         cmp byte cs:[SUSPAN_FLAG], 0
+         jne .send           ; 强制透传
+         cmp al, 64
+         jb .zero
+         mov al, 127
+         jmp .send
+.zero:
+         xor al, al
+.send:
+         call L4FD           ; 发 value
+         ret
+
+; ============ CC64 模式初始化 (0x1030) ============
+; 在初始化最前面调用（替换原 call L4BA）；内部先做 UART 初始化。
+; 若当前目录存在 SUSSPAN 文件 → SUSPAN_FLAG=1（CC64 透传）；
+; 否则 SUSPAN_FLAG=0（默认归一化 0/127，GM/GS/XG 规范开关）。
+; 注意：文件检查用 DOS INT 21h FindFirst，若此路径运行在 ISR 上下文
+; 存在重入风险——强制开关本来就是给"不想默认归一化"的场景用的。
+times (CC64_SETUP - ($-$$)) db 0
+cc64_setup:
+         call L4BA           ; 原 UART 初始化（排空 + 0x3F + flush）
+         push ax
+         push bx
+         push cx
+         push dx
+         push si
+         push di
+         ; --- 强制透传开关：存在 SUSSPAN 文件 → 保留 CC64 原始值 ---
+         push ds             ; 临时保存/恢复 DS，不占主栈槽位
+         push cs
+         pop ds
+         mov ah,0x4e         ; DOS FindFirst
+         xor cx,cx           ; 普通文件
+         mov dx,SUSSPAN_NAME
+         int 0x21
+         pop ds
+         jc .normalize       ; 无文件 → 默认归一化
+         mov al,1
+         jmp .set_flag
+.normalize:
+         xor al,al
+.set_flag:
+         mov cs:[SUSPAN_FLAG],al
+         pop di
+         pop si
+         pop dx
+         pop cx
+         pop bx
+         pop ax
+         ret
+
+; ============ 模式标志数据 (0x1180) ============
+; 初始化运行在 ISR 上下文，除 SUSSPAN 文件检查外不做文件 I/O（无日志）
+times (CC64_DATA - ($-$$)) db 0
+SUSPAN_FLAG: db 0             ; 0 = CC64 归一化 0/127（默认）, 1 = 透传
+SUSSPAN_NAME: db "susspan", 0 ; 存在则强制 CC64 透传
 
 ; ============ 填充剩余空间到 SONG_BUFFER ============
 times (SONG_BUFFER - ($-$$)) db 0
