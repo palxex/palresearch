@@ -560,7 +560,7 @@ L5A3:    push bx  ; 0x05A3  53
 L5BC:    push ax  ; 0x05BC  50
          push si  ; 0x05BD  56
          mov al,0x5  ; 0x05BE  b0 05
-         call L52F  ; 0x05C0  e8 6c ff
+         db 0x90, 0x90, 0x90  ; 0x05C0  nop x3（原 call L52F：向 331 发 0x05，UART 下被忽略，无用）
          mov si,0x0  ; 0x05C3  be 00 00
 L5C6:    db 0x8B, 0xC6  ; mov ax,si  (0x05C6 raw)
          or al,0xb0  ; 0x05C8  0c b0
@@ -570,7 +570,7 @@ L5C6:    db 0x8B, 0xC6  ; mov ax,si  (0x05C6 raw)
          mov ax,0x0  ; 0x05D2  b8 00 00
          call L4FD  ; 0x05D5  e8 25 ff
          mov al,0xd0  ; 0x05D8  b0 d0
-         call L52F  ; 0x05DA  e8 52 ff
+         db 0x90, 0x90, 0x90  ; 0x05DA  nop x3（原 call L52F：向 331 发 0xD0，UART 下被忽略，无用）
          db 0x8B, 0xC6  ; mov ax,si  (0x05DD raw)
          or al,0xb0  ; 0x05DF  0c b0
          call L4FD  ; 0x05E1  e8 19 ff  (修复3: 数据口)
