@@ -21,6 +21,7 @@ SX_HANDLER   equ 0x9C0       ; SysEx 剥 SMF 长度
 CC_FIX       equ 0x1000      ; CC 处理器：CC64 归一化 0/127，或按标志透传
 CC64_SETUP   equ 0x1030      ; 初始化：UART 初始化 + SUSSPAN 文件检查
 CC64_DATA    equ 0x1180      ; SUSPAN_FLAG 标志 / 文件名
+CC_RESET     equ 0x9F0       ; 全静音例程：16 通道 CC#121 All Controllers Off
 
 ; ---------------- 0x000-0x031: 签名 ----------------
 sig:        db "SoftStar MMS-Midi Driver Writen By Pei-Cheng Tong", 0x1A
@@ -559,8 +560,7 @@ L5A3:    push bx  ; 0x05A3  53
          ret word 0x8  ; 0x05B9  c2 08 00
 L5BC:    push ax  ; 0x05BC  50
          push si  ; 0x05BD  56
-         mov al,0x5  ; 0x05BE  b0 05
-         db 0x90, 0x90, 0x90  ; 0x05C0  nop x3（原 call L52F：向 331 发 0x05，UART 下被忽略，无用）
+         db 0x90, 0x90, 0x90, 0x90, 0x90  ; 0x05BE  nop x5（原 mov al,0x5 + call L52F：向 331 发 0x05，UART 下被忽略，配套死代码一并清掉）
          mov si,0x0  ; 0x05C3  be 00 00
 L5C6:    db 0x8B, 0xC6  ; mov ax,si  (0x05C6 raw)
          or al,0xb0  ; 0x05C8  0c b0
@@ -569,8 +569,8 @@ L5C6:    db 0x8B, 0xC6  ; mov ax,si  (0x05C6 raw)
          call L4FD  ; 0x05CF  e8 2b ff
          mov ax,0x0  ; 0x05D2  b8 00 00
          call L4FD  ; 0x05D5  e8 25 ff
-         mov al,0xd0  ; 0x05D8  b0 d0
-         db 0x90, 0x90, 0x90  ; 0x05DA  nop x3（原 call L52F：向 331 发 0xD0，UART 下被忽略，无用）
+         call cc_reset  ; 0x05D8  e8 xx xx（原 mov al,0xd0 + call L52F，改为 CC#121 all controllers off）
+         db 0x90, 0x90  ; 0x05DB  nop x2
          db 0x8B, 0xC6  ; mov ax,si  (0x05DD raw)
          or al,0xb0  ; 0x05DF  0c b0
          call L4FD  ; 0x05E1  e8 19 ff  (修复3: 数据口)
@@ -967,6 +967,19 @@ sx_fix:
          jnz .send_payload   ; 循环到 F7
          mov ax, si
          sub ax, di          ; 返回消耗字节数
+         ret
+
+; ============ 修复4: All Controllers Off (0x9F0) ============
+; L5BC/L5C6 全静音例程新增：16 通道全部控制器复位（B0+ch / 0x79 / 0x00）
+times (CC_RESET - ($-$$)) db 0
+cc_reset:
+         mov ax,si
+         or al,0xb0
+         call L4FD           ; B0+ch
+         mov al,0x79
+         call L4FD           ; 0x79 = CC#121 All Controllers Off
+         mov ax,0x0
+         call L4FD           ; 0x00
          ret
 
 ; ============ CC64 归一化 / 透传 (0x1000) ============
