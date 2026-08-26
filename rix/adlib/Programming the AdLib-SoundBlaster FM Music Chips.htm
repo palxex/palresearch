@@ -19,7 +19,7 @@
   This HTML version copyright &copy； 1996 by Jeffrey S. Lee<br>      
   <br>
   <a href="mailto:godfrey@shipbrook.com">godfrey@shipbrook.com</a><br>
-  BSPAL</span><span style="FONT-SIZE: 13.5pt; FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">翻译,中华大圣补完</span><span lang="EN-US" style="FONT-SIZE: 13.5pt"><br>
+  BSPAL</span><span style="FONT-SIZE: 13.5pt; FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">翻译,中华大圣补完,GTR3QQ精修(MMXXV)</span><span lang="EN-US" style="FONT-SIZE: 13.5pt"><br>
   <br>
   </span><b><span style="FONT-SIZE: 13.5pt; FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">版权声明及保证</span></b></p>
   <p style="TEXT-INDENT: 24pt; mso-char-indent-count: 2.0"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">本文档基于“假设既定”的原则撰写，对于其在某一应用场合下关于质量和性能方面的问题，作者没有直接地或暗示性地提供任何保证，也不负连带责任。对于因为使用本文档上的信息而造成的特殊的、直接或间接的、必然或偶然的损失，本文作者不负任何责任，一切风险由读者自行承担。</span></p>
@@ -34,7 +34,7 @@
   <p><span lang="EN-US"><span style="mso-tab-count: 1"> 
     </span><span style="mso-spacerun: yes"></span></span><span lang="EN-US">IBM-PC</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">计算机上两个最为流行的声卡是</span><span lang="EN-US">AdLib</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">和</span><span lang="EN-US">Sound   
     Blaster</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，程序员们目前非常缺乏关于它们的明晰资料。</span><span lang="EN-US">AdLib</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">公司和创新公司均出售他们声卡产品的相关开发包，不过价格都十分昂贵，而且（就</span><span lang="EN-US">Sound   
-    Blaster</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">的开发包而言）是极为隐秘的。</span></p>
+    Blaster</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">的开发包而言）是极为隐晦的。</span></p>
   <p style="TEXT-INDENT: 24pt; mso-char-indent-count: 2.0"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">本文档试图为广大程序设计人员提供有关这些声卡的免费资料。</span></p>
   <p style="TEXT-INDENT: 24pt; mso-char-indent-count: 2.0"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">本文档里的内容是由</span><span lang="EN-US">Sound   
     Blaster</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">开发包里的信息组合而成，它们是作者下大力气后才掌握的。部分信息可能不适用于</span><span lang="EN-US">AdLib</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">声卡，对此，在这里先行道歉。</span></p>
@@ -50,17 +50,17 @@
     <p class="MsoNormal"><tt><span lang="EN-US" style="FONT-SIZE: 10pt">0388       
     （hex） – </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: SimSun; mso-ascii-font-family: 'Courier New'; mso-hansi-font-family: 'Courier New'">地址</span><span lang="EN-US" style="FONT-SIZE: 10pt">/</span><span style="FONT-SIZE: 10pt; FONT-FAMILY: SimSun; mso-ascii-font-family: 'Courier New'; mso-hansi-font-family: 'Courier New'">状态</span><span style="FONT-SIZE: 10pt">       
     </span><span style="FONT-SIZE: 10pt; FONT-FAMILY: SimSun; mso-ascii-font-family: 'Courier New'; mso-hansi-font-family: 'Courier New'">端口</span><span lang="EN-US" style="FONT-SIZE: 10pt"> 
-    （R/W）</span></tt><span lang="EN-US" style="FONT-SIZE: 10pt; FONT-FAMILY: 'Courier New'"><br>      
+    （读写）</span></tt><span lang="EN-US" style="FONT-SIZE: 10pt; FONT-FAMILY: 'Courier New'"><br>      
     <tt>0389 （hex） – </tt></span><tt><span style="FONT-SIZE: 10pt; FONT-FAMILY: SimSun; mso-ascii-font-family: 'Courier New'; mso-hansi-font-family: 'Courier New'">数据端口</span><span lang="EN-US" style="FONT-SIZE: 10pt">   
-    （W/O）</span></tt></p>      
+    （只写）</span></tt></p>      
   </blockquote>
   <p style="TEXT-INDENT: 24pt; mso-char-indent-count: 2.0"><span lang="EN-US">Sound  
-    Blaster Pro</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">声卡能够处理立体声效果的</span><span lang="EN-US">FM</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">音乐，使用的是完全相同的方法。</span><span lang="EN-US">0220</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">端口和</span><span lang="EN-US">0221</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">端口（</span><span lang="EN-US">16</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">进制）是左扬声器的“地址</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">数据”端口，而</span><span lang="EN-US">0222</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">和</span><span lang="EN-US">0223</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">（</span><span lang="EN-US">16</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">进制）端口则是右扬声器的端口。</span><span lang="EN-US">0388</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">和</span><span lang="EN-US">0389</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">（</span><span lang="EN-US">16</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">进制）端口则使得左右扬声器共同发声。</span></p>  
+    Blaster Pro</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">声卡能够合成立体声效果的</span><span lang="EN-US">FM</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">音乐，使用的是完全相同的方法。</span><span lang="EN-US">0220</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">端口和</span><span lang="EN-US">0221</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">端口（</span><span lang="EN-US">16</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">进制）是左扬声器的“地址</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">数据”端口，而</span><span lang="EN-US">0222</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">和</span><span lang="EN-US">0223</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">（</span><span lang="EN-US">16</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">进制）端口则是右扬声器的端口。</span><span lang="EN-US">0388</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">和</span><span lang="EN-US">0389</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">（</span><span lang="EN-US">16</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">进制）端口则使得左右扬声器共同发声。</span></p>  
   <p><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">声卡配备有一组共计两百四十四个寄存器。要向某个特定的寄存器写入数据，首先要将寄存器序号（</span><span lang="EN-US">01</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">－</span><span lang="EN-US">F5</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">）送至地址端口，将待写的数据送至数据端口。</span></p>
-  <p><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">向寄存器端口写入信息后，要接着写入数据，你必须等待十二个时钟周期。写入数据后，再经过八十四个时钟周期后，其他的声卡操作才被执行。</span></p>
+  <p><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">向寄存器端口写入信息后，要接着写入数据，你必须等待十二个时钟周期(让芯片Setup数据接口)。写入数据后，再经过八十四个时钟周期后，方可执行其他的寄存器操作。</span></p>
   <p><span lang="EN-US">AdLib</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">的手册以微秒为单位给出了等待时间：地址操作耗费三点三微秒，数据操作耗费二十三微秒。</span></p>
-  <p><span lang="EN-US">AdLib</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">建议在写入寄存器端口后，由六次读取寄存器端口来产生延时，而在写入数据端口后，由三十五次读取寄存器端口来产成延时。但是，随着硬件性能的不断提升，这个方法不再可靠。</span></p>
-  <p><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">声卡的寄存器是只写的。</span></p>
+  <p><span lang="EN-US">AdLib</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">建议在写入寄存器端口后，用六次读取寄存器端口来产生延时，而在写入数据端口后，用三十五次读取寄存器端口来产成延时。但是，随着硬件性能的不断提升(CPU频率变快)，这个方法不再可靠的输出目标延时。</span></p>
+  <p><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">OPL2的寄存器是只写的。</span></p>
   <p><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">地址端口同时也用作声卡的状态标志字节。要获得声卡的状态，只需简单地读取</span><span lang="EN-US">0388</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">端口，得到的状态字节按照如下的格式定义：</span></p>
   <blockquote style="MARGIN-TOP: 5pt; MARGIN-BOTTOM: 5pt">
     <table class="MsoNormalTable" style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt" cellPadding="0" border="1">
@@ -93,16 +93,16 @@
         </tr>
         <tr style="mso-yfti-irow: 1; mso-yfti-lastrow: yes">
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
-            <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">双定时器</span></p>
+            <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">所有计时器状态</span></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
-            <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">定时器</span><span lang="EN-US">1</span></p>
+            <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">计时器</span><span lang="EN-US">1</span></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
-            <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">定时器</span><span lang="EN-US">2</span></p>
+            <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">计时器</span><span lang="EN-US">2</span></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 61%; PADDING-TOP: 0.75pt" width="61%" colSpan="5">
-            <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">未使用</span></p>
+            <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">未定义</span></p>
           </td>
         </tr>
       </tbody>
@@ -115,7 +115,7 @@
           <p class="MsoNormal" style="TEXT-ALIGN: right" align="right"><span lang="EN-US">7&nbsp;-</span></p>
         </td>
         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">任何定时器到时则置</span><span lang="EN-US">1</span></p>
+          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">任何计时器到时溢出则置</span><span lang="EN-US">1</span></p>
         </td>
       </tr>
       <tr style="mso-yfti-irow: 1">
@@ -123,7 +123,7 @@
           <p class="MsoNormal" style="TEXT-ALIGN: right" align="right"><span lang="EN-US">6&nbsp;-</span></p>
         </td>
         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">如果定时器</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">到时则置</span><span lang="EN-US">1</span></p>
+          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">如果计时器</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">到时溢出则置</span><span lang="EN-US">1</span></p>
         </td>
       </tr>
       <tr style="mso-yfti-irow: 2; mso-yfti-lastrow: yes">
@@ -131,7 +131,7 @@
           <p class="MsoNormal" style="TEXT-ALIGN: right" align="right"><span lang="EN-US">5&nbsp;-</span></p>
         </td>
         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">如果定时器</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">到时则置</span><span lang="EN-US">1</span></p>
+          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">如果计时器</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">到时溢出则置</span><span lang="EN-US">1</span></p>
         </td>
       </tr>
     </tbody>
@@ -160,7 +160,7 @@
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
             
-          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">测试</span><span lang="EN-US">SI/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">启动波形控制</span></p>      
+          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">测试芯片晶圆功能(雅马哈工厂保留使用)</span><span lang="EN-US">./</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">启用波形控制</span></p>      
           </td>
         </tr>
         <tr style="mso-yfti-irow: 2">
@@ -168,7 +168,7 @@
             <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US"><a href="#02">02</a></span></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">定时器</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">数据</span></p>
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">计时器</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">数据</span></p>
           </td>
         </tr>
         <tr style="mso-yfti-irow: 3">
@@ -176,7 +176,7 @@
             <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US"><a href="#03">03</a></span></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">定时器</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">数据</span></p>
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">计时器</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">数据</span></p>
           </td>
         </tr>
         <tr style="mso-yfti-irow: 4">
@@ -184,7 +184,7 @@
             <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US"><a href="#04">04</a></span></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">定时器控制标志</span></p>
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">计时器控制与其标志</span></p>
           </td>
         </tr>
         <tr style="mso-yfti-irow: 5">
@@ -193,7 +193,7 @@
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
             
-          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">音色</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">合成模式</span><span lang="EN-US">/键盘分割音符选择</span></p>      
+          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">选择</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">合成模式</span><span lang="EN-US">/分割键盘模式选择</span></p>      
           </td>
         </tr>
         <tr style="mso-yfti-irow: 6">
@@ -202,7 +202,7 @@
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
             
-          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">调幅</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">颤音</span><span lang="EN-US">/包络发生模式/音符缩放比例/频率调节倍率</span></p>     
+          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">调幅</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">颤音</span><span lang="EN-US">/包络生成模式/键缩放包络/倍频选择</span></p>     
           </td>
         </tr>
         <tr style="mso-yfti-irow: 7">
@@ -211,7 +211,7 @@
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
             
-          <p class="MsoNormal"><span lang="EN-US">音符缩放比例电平/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US">输出电平</span></p>
+          <p class="MsoNormal"><span lang="EN-US">键缩放电平/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US">输出电平</span></p>
           </td>
         </tr>
         <tr style="mso-yfti-irow: 8">
@@ -219,7 +219,7 @@
             <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US"><a href="#60-75">60..75</a></span></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">起音</span><span style="font-family: SimSun; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">率</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">衰减率</span></p>
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">起音</span><span style="font-family: SimSun; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">速率</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">衰减速率</span></p>
           </td>
         </tr>
         <tr style="mso-yfti-irow: 9">
@@ -228,7 +228,7 @@
           </td>
           
         <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt"> 
-          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">延音</span><span lang="EN-US">电平</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">释音率</span></p>      
+          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">延音</span><span lang="EN-US">电平</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">释音速率</span></p>      
           </td>
         </tr>
         <tr style="mso-yfti-irow: 10">
@@ -237,7 +237,7 @@
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
             
-          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">频率</span><span lang="EN-US">（</span><span style="font-family: SimSun; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">低八位字节</span><span lang="EN-US">）</span></p>   
+          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">频率值(Fnum)</span><span lang="EN-US">（</span><span style="font-family: SimSun; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">Fnum的低八位比特</span><span lang="EN-US">）</span></p>   
           </td>
         </tr>
         <tr style="mso-yfti-irow: 11">
@@ -246,7 +246,7 @@
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
             
-          <p class="MsoNormal"><span lang="EN-US">发音开关/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">八度音</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">频率</span><span lang="EN-US">（</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">高</span><span lang="EN-US">二</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">位</span><span lang="EN-US">字节）</span></p>   
+          <p class="MsoNormal"><span lang="EN-US">启振开关/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">八度块选择(BLOCKnum)</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">频率值</span><span lang="EN-US">（</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">Fnum的高</span><span lang="EN-US">二</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">位</span><span lang="EN-US">比特）</span></p>   
           </td>
         </tr>
         <tr style="mso-yfti-irow: 12">
@@ -255,7 +255,7 @@
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
             
-          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">调幅程度</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">颤音深度</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">节奏乐器控制</span></p>     
+          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">深调幅</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">深揉弦</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">节奏乐器通道控制</span></p>     
           </td>
         </tr>
         <tr style="mso-yfti-irow: 13">
@@ -264,7 +264,7 @@
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
             
-          <p class="MsoNormal"><span lang="EN-US">回馈强度/运算方式</span></p>     
+          <p class="MsoNormal"><span lang="EN-US">OP1自调制深度/算法(OP间链接方式)</span></p>     
           </td>
         </tr>
         <tr style="mso-yfti-irow: 14; mso-yfti-lastrow: yes">
@@ -317,7 +317,7 @@
         </tr>
         <tr style="mso-yfti-irow: 1">
           <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; PADDING-TOP: 3.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US"> 
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US"> 
             1</span></p>      
           </td>
           <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; PADDING-TOP: 3.75pt">
@@ -350,7 +350,7 @@
         </tr>
         <tr style="mso-yfti-irow: 2; mso-yfti-lastrow: yes">
           <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; PADDING-TOP: 3.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US"> 
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US"> 
             2</span></p>      
           </td>
           <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; PADDING-TOP: 3.75pt">
@@ -384,7 +384,7 @@
       </tbody>
     </table>
   </blockquote>
-  <p><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">因此，对于通道</span><span lang="EN-US">3</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">的第一个操作单元处的起音</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">衰减字节来说，其地址是</span><span lang="EN-US">62</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，第二个的地址则是</span><span lang="EN-US">65</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">（第二个操作单元的地址值总是由第一个操作单元的地址值加上三得到的）。</span></p>
+  <p><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">因此，对于通道</span><span lang="EN-US">3</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">的第一个振荡器处的起音</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">衰减字节来说，其地址是</span><span lang="EN-US">62</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，第二个的地址则是</span><span lang="EN-US">65</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">（第二个振荡器的地址值总是由第一个振荡器的地址值加上三得到的）。</span></p>
   <p><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">为了更进一步地讲明其关系，举个例子，要操控通道</span><span lang="EN-US">5</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，其地址是：</span></p>
   <blockquote style="MARGIN-TOP: 5pt; MARGIN-BOTTOM: 5pt">
     <table class="MsoNormalTable" style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt" cellPadding="0" border="1">
@@ -394,11 +394,11 @@
             <p class="MsoNormal"><b><span lang="EN-US">29</span></b></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US"> 
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US"> 
             1</span></p>      
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">调幅</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">颤音</span><span lang="EN-US">/包络发生模式/音符缩放比例/频率调节倍率</span></p>
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">调幅</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">颤音</span><span lang="EN-US">/包络发生模式/键缩放速率/频率调节倍率</span></p>
           </td>
         </tr>
         <tr style="mso-yfti-irow: 1">
@@ -406,11 +406,11 @@
             <p class="MsoNormal"><b><span lang="EN-US">2C</span></b></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US"> 
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US"> 
             2</span></p>      
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">调幅</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">颤音</span><span lang="EN-US">/包络发生模式/音符缩放比例/频率调节倍率</span></p>
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">调幅</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">颤音</span><span lang="EN-US">/包络发生模式/键缩放速率/频率调节倍率</span></p>
           </td>
         </tr>
         <tr style="mso-yfti-irow: 2">
@@ -418,11 +418,11 @@
             <p class="MsoNormal"><b><span lang="EN-US">49</span></b></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US"> 
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US"> 
             1</span></p>      
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span lang="EN-US">音符缩放比例电平/输出电平</span></p>
+            <p class="MsoNormal"><span lang="EN-US">键缩放电平/输出电平</span></p>
           </td>
         </tr>
         <tr style="mso-yfti-irow: 3">
@@ -430,11 +430,11 @@
             <p class="MsoNormal"><b><span lang="EN-US">4C</span></b></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US"> 
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US"> 
             2</span></p>      
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span lang="EN-US"> 音符缩放比例电平/输出电平</span></p>
+            <p class="MsoNormal"><span lang="EN-US"> 键缩放电平/输出电平</span></p>
           </td>
         </tr>
         <tr style="mso-yfti-irow: 4">
@@ -442,7 +442,7 @@
             <p class="MsoNormal"><b><span lang="EN-US">69</span></b></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US"> 
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US"> 
             1</span></p>      
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
@@ -454,7 +454,7 @@
             <p class="MsoNormal"><b><span lang="EN-US">6C</span></b></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US"> 
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US"> 
             2</span></p>      
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
@@ -466,7 +466,7 @@
             <p class="MsoNormal"><b><span lang="EN-US">89</span></b></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US"> 
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US"> 
             1</span></p>      
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
@@ -478,7 +478,7 @@
             <p class="MsoNormal"><b><span lang="EN-US">8C</span></b></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US"> 
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US"> 
             2</span></p>      
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
@@ -494,7 +494,7 @@
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
             
-          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">频率</span><span lang="EN-US">（</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">低八位</span><span lang="EN-US">）</span></p>    
+          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">频率值(Fnum)</span><span lang="EN-US">（</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">低八位</span><span lang="EN-US">）</span></p>    
           </td>
         </tr>
         <tr style="mso-yfti-irow: 9">
@@ -506,7 +506,7 @@
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
             
-          <p class="MsoNormal"><span lang="EN-US">发音开关/八度音/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">频率</span><span lang="EN-US">（</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">高</span>二<span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">位</span><span lang="EN-US">）</span></p>    
+          <p class="MsoNormal"><span lang="EN-US">启振开关/八度块选择(BLOCKnum)/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">频率值(Fnum)</span><span lang="EN-US">（</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">高</span>二<span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">位</span><span lang="EN-US">）</span></p>    
           </td>
         </tr>
         <tr style="mso-yfti-irow: 10">
@@ -517,7 +517,7 @@
             <p class="MsoNormal"><span lang="EN-US">&nbsp;</span></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span lang="EN-US">回馈/运算方式</span></p>
+            <p class="MsoNormal"><span lang="EN-US">OP1自调制深度(反馈深度)/算法选择</span></p>
           </td>
         </tr>
         <tr style="mso-yfti-irow: 11">
@@ -525,11 +525,11 @@
             <p class="MsoNormal"><b><span lang="EN-US">E9</span></b></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US"> 
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US"> 
             1</span></p>      
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">波形</span></p>
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">波形选择</span></p>
           </td>
         </tr>
         <tr style="mso-yfti-irow: 12; mso-yfti-lastrow: yes">
@@ -537,11 +537,11 @@
             <p class="MsoNormal"><b><span lang="EN-US">EC</span></b></p>
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US"> 
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US"> 
             2</span></p>      
           </td>
           <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">波形</span></p>
+            <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">波形选择</span></p>
           </td>
         </tr>
       </tbody>
@@ -566,7 +566,7 @@
           </span></b></p>
         </td>
         <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; WIDTH: 678.05pt; PADDING-TOP: 3.75pt; HEIGHT: 66pt" vAlign="top" width="904">
-          <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">该字节通常用于测试</span><span lang="EN-US">LSI</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">设备。所有位通常为零值。如果第五位被启用，</span><span lang="EN-US">FM</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">芯片就能够控制每个操作单元的波形。</span></p>
+          <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">该比特由雅马哈在工厂中用于测试</span><span lang="EN-US">LSI</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">芯片质量。所有位通常为零。如第五位启用，</span><span lang="EN-US">FM</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">OPL2芯片就会处理每个振荡器的波形选择。(雅马哈保留此位以完美兼容OPL YM3526) (WS = Wave Select)</span></p>
           <table class="MsoNormalTable" style="MARGIN-LEFT: 0.75pt; WIDTH: 33.8%; mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt" cellPadding="0" width="33%" border="1">
             <tbody>
               <tr style="HEIGHT: 13.75pt; mso-yfti-irow: 0">
@@ -624,9 +624,9 @@
           <p class="MsoNormal"><b><span lang="EN-US">02</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">字节</span></b></p>
         </td>
         <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; WIDTH: 669pt; PADDING-TOP: 3.75pt" vAlign="top" width="892">
-          <p class="MsoNormal"><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号定时器数据。如果</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号定时器启用，这个寄存器内的值将一直增加直至溢出。当出现溢出时，声卡将产生一个</span><span lang="EN-US">TIMER</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">中断</span><span lang="EN-US">（INT       
+          <p class="MsoNormal"><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号计时器数据。如果</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号计时器启用，这个寄存器内的值将一直增加直至溢出。当出现溢出时，声卡将产生一个</span><span lang="EN-US">TIMER</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">中断</span><span lang="EN-US">（INT       
           08）</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">。</span></p>
-          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">并设置其状态字节里的第七位和第六位。该定时器的值每八十微秒增加一次。</span></p>
+          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">并设置其状态字节里的第七位和第六位为高。该计时器的值每八十微秒增加一次。</span></p>
         </td>
       </tr>
     </tbody>
@@ -640,9 +640,9 @@
           <p class="MsoNormal"><b><span lang="EN-US">03</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">字节</span></b></p>
         </td>
         <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; WIDTH: 669pt; PADDING-TOP: 3.75pt" vAlign="top" width="892">
-          <p class="MsoNormal"><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号定时器数据。如果</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号定时器启用，这个寄存器内的值将一直增加直至溢出。当出现溢出时，声卡将产生一个</span><span lang="EN-US">TIMER</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">中断</span><span lang="EN-US">（INT       
+          <p class="MsoNormal"><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号计时器数据。如果</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号计时器启用，这个寄存器内的值将一直增加直至溢出。当出现溢出时，声卡将产生一个</span><span lang="EN-US">TIMER</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">中断</span><span lang="EN-US">（INT       
           08）</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">。</span></p>
-          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">并设置其状态字节里的第七位和第五位。该定时器的值每三百二十微秒增加一次。</span></p>
+          <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">并设置其状态字节里的第七位和第五位为高。该计时器的值每三百二十微秒增加一次。</span></p>
         </td>
       </tr>
     </tbody>
@@ -656,7 +656,7 @@
           <p class="MsoNormal" style="MARGIN-RIGHT: -4.45pt; mso-para-margin-right: -.37gd"><b><span lang="EN-US">04</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">字节</span></b></p>
         </td>
         <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; WIDTH: 681.75pt; PADDING-TOP: 3.75pt" vAlign="top" width="909">
-          <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">定时器控制字节</span></p>
+          <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">计时器控制字节</span></p>
           <table class="MsoNormalTable" style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt" cellPadding="0" border="1">
             <tbody>
               <tr style="mso-yfti-irow: 0">
@@ -691,19 +691,19 @@
                   </span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">重置</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 12%; PADDING-TOP: 0cm" width="12%">
-                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">定时器</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">屏蔽位</span></p>
+                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">计时器</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">屏蔽位</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 12%; PADDING-TOP: 0cm" width="12%">
-                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">定时器</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">屏蔽位</span></p>
+                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">计时器</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">屏蔽位</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 37%; PADDING-TOP: 0cm" width="37%" colSpan="3">
                   <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">未使用</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
-                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">二号定时器控制</span></p>
+                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">二号计时器控制</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
-                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">一号定时器控制</span></p>
+                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">一号计时器控制</span></p>
                 </td>
               </tr>
             </tbody>
@@ -717,7 +717,7 @@
                   <p class="MsoNormal"><span lang="EN-US">7</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">位</span><span lang="EN-US">&nbsp;-</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-                  <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">重置</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">、</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号定时器标志。当该位位</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">时，其他所有位将被忽略。</span></p>
+                  <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">重置</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">、</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号计时器标志。当该位位</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">时，其他所有位将被忽略。</span></p>
                 </td>
               </tr>
               <tr style="mso-yfti-irow: 1">
@@ -725,7 +725,7 @@
                   <p class="MsoNormal"><span lang="EN-US">6</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">位</span><span lang="EN-US">&nbsp;-</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-                  <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">屏蔽</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号定时器。该位为</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">时，</span><span lang="EN-US">0</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">位将被忽略。</span></p>
+                  <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">屏蔽</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号计时器。该位为</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">时，</span><span lang="EN-US">0</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">位将被忽略。</span></p>
                 </td>
               </tr>
               <tr style="mso-yfti-irow: 2">
@@ -733,7 +733,7 @@
                   <p class="MsoNormal"><span lang="EN-US">5</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">位</span><span lang="EN-US">&nbsp;-</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-                  <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">屏蔽</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号定时器。该位为</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">时，</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">位将被忽略。</span></p>
+                  <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">屏蔽</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号计时器。该位为</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">时，</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">位将被忽略。</span></p>
                 </td>
               </tr>
               <tr style="mso-yfti-irow: 3">
@@ -741,8 +741,8 @@
                   <p class="MsoNormal"><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">位</span><span lang="EN-US">&nbsp;-</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-                  <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">将之清零，</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号定时器将不工作。</span></p>
-                  <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">该位为</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">时，</span><span lang="EN-US">03</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">字节的数值将传输给</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号定时器，并开始增加。</span></p>
+                  <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">将之清零，</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号计时器将不工作。</span></p>
+                  <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">该位为</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">时，</span><span lang="EN-US">03</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">字节的数值将传输给</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号计时器，并开始增加。</span></p>
                 </td>
               </tr>
               <tr style="mso-yfti-irow: 4; mso-yfti-lastrow: yes">
@@ -750,8 +750,8 @@
                   <p class="MsoNormal"><span lang="EN-US">0</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">位</span><span lang="EN-US">&nbsp;-</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-                  <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">将之清零，</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号定时器将不工作。</span><span lang="EN-US"><br>
-                  </span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">该位为</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">时，</span><span lang="EN-US">02</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">字节的数值将传输给</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号定时器，并开始增加。</span></p>
+                  <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">将之清零，</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号计时器将不工作。</span><span lang="EN-US"><br>
+                  </span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">该位为</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">时，</span><span lang="EN-US">02</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">字节的数值将传输给</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">号计时器，并开始增加。</span></p>
                 </td>
               </tr>
             </tbody>
@@ -804,7 +804,7 @@
               </tr>
               <tr style="mso-yfti-irow: 1; mso-yfti-lastrow: yes">
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
-                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">音色合成模式</span></p>
+                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">复合正弦合成模式</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
                   <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">键盘分割</span></p>
@@ -838,7 +838,7 @@
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
                   
               <p class="MsoNormal"><span lang="EN-US">选择键盘分割点（与F-Number数据结合）。Sound 
-                Blaster手册说明文档的这部分实在是令人费解，原文引用又侵权……</span></p>    
+                Blaster手册说明文档的这部分实在是令人费解，原文引用又侵权……(不重要,没人用!)</span></p>    
                 </td>
               </tr>
             </tbody>
@@ -860,7 +860,7 @@
         </td>
         <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; PADDING-TOP: 3.75pt" vAlign="top">
           <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">调幅</span><span lang="EN-US"> 
-          / 颤音 / 包络发生模式 / 音符缩放比例/ 频率调节倍率</span></p>     
+          / 颤音 / 包络生成模式 / 键缩放速率/ 倍频选择</span></p>     
           <table class="MsoNormalTable" style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt" cellPadding="0" border="1">
             <tbody>
               <tr style="mso-yfti-irow: 0; mso-row-margin-right: .15pt">
@@ -894,19 +894,19 @@
               </tr>
               <tr style="mso-yfti-irow: 1; mso-yfti-lastrow: yes">
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
-                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">振幅调制</span></p>
+                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">调制输出振幅("颤音")</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
-                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">颤音</span></p>
+                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">调制输出频率("揉弦")</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
-                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">包络发生模式</span></p>
+                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">包络生成模式</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
-                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US"> 音符缩放比例</span></p>
+                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US"> 键缩放速率</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 50%; PADDING-TOP: 0.75pt" width="50%" colSpan="5">
-                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">频率调节倍率</span></p>
+                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">倍频选择</span></p>
                 </td>
               </tr>
             </tbody>
@@ -921,7 +921,7 @@
               <p class="MsoNormal"><span lang="EN-US">7位-</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-                  <p class="MsoNormal"><span lang="EN-US">启用后允许调频；调频深度是由地址BD处的调频深度标志来控制。</span></p>
+                  <p class="MsoNormal"><span lang="EN-US">启用后振荡器输出振幅将震荡；颤音深度是由地址BD处的颤音深度标志来控制。</span></p>
                 </td>
               </tr>
               <tr style="mso-yfti-irow: 1">
@@ -931,7 +931,7 @@
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
                   
-              <p class="MsoNormal"><span lang="EN-US">启用后允许颤音；颤音深度是由地址BD处的颤音深度标志来控制。</span></p>
+              <p class="MsoNormal"><span lang="EN-US">启用后振荡器输出频率将震荡；抖音深度是由地址BD处的抖音深度标志来控制。</span></p>
                 </td>
               </tr>
               <tr style="mso-yfti-irow: 2">
@@ -941,7 +941,7 @@
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
                   
-              <p class="MsoNormal"><span lang="EN-US">启用后，声音的延音电平将会持续到释放音符。将之清零，声音完成</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">延音</span><span lang="EN-US">周期后立刻开始衰减。</span></p>
+              <p class="MsoNormal"><span lang="EN-US">启用后，声音的延音电平将会持续,直到接受到KeyOFF释放音符后才开始衰减阶段。将之清零，包络在</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">延音</span><span lang="EN-US">阶段后立即开始衰减。</span></p>
                 </td>
               </tr>
               <tr style="mso-yfti-irow: 3">
@@ -951,7 +951,7 @@
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
                   
-              <p class="MsoNormal"><span lang="EN-US"> 音符缩放比例. 这是Sound Blaster手册上另一个不容易理解的地方。按经验来看，启用后，声音的包络会随音高增高减小。</span></p> 
+              <p class="MsoNormal"><span lang="EN-US"> 键缩放速率. 这是Sound Blaster手册上另一个不容易理解的地方。按经验来看，启用后，声音的包络会随音高增高减小。(以模拟真实乐器,详见YM3812 APP 手册)</span></p> 
                 </td>
               </tr>
               <tr style="mso-yfti-irow: 4; mso-yfti-lastrow: yes">
@@ -960,7 +960,7 @@
               <p class="MsoNormal"><span lang="EN-US">3-0位-</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
-                  <p class="MsoNormal"><span lang="EN-US">这些位指示</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span>用相对于标准音的何种音高关系来发生声音（或调制）。</p>
+                  <p class="MsoNormal"><span lang="EN-US">这些位指示</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span>用相对于Fnum选中的频率以何种关系来震荡（或调制）。</p>
                   <table class="MsoNormalTable" style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" cellPadding="0" border="0">
                     <tbody>
                       <tr style="mso-yfti-irow: 0">
@@ -974,7 +974,7 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">降一个八度</span></p>
+                          <p class="MsoNormal"><span lang="EN-US">x0.5 即降一个八度</span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 1">
@@ -988,7 +988,7 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">就在标准音</span></p>
+                          <p class="MsoNormal"><span lang="EN-US">x1 等于Fnum选中频率</span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 2">
@@ -1002,7 +1002,7 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">升八度</span></p>
+                          <p class="MsoNormal"><span lang="EN-US">x2 升八度</span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 3">
@@ -1016,8 +1016,8 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">升一个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">大五度</span></p>
-                        </td>
+                          <p class="MsoNormal"><span lang="EN-US">x3 升一个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">五度</span></p>
+                        </td>// 五度不分大小...汗.
                       </tr>
                       <tr style="mso-yfti-irow: 4">
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
@@ -1030,7 +1030,7 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">升两个八度</span></p>
+                          <p class="MsoNormal"><span lang="EN-US">x4 升两个八度</span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 5">
@@ -1044,7 +1044,7 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">升两个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">大三度</span></p>
+                          <p class="MsoNormal"><span lang="EN-US">x5 升两个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">大三度</span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 6">
@@ -1058,7 +1058,7 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">升两个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">大五度</span></p>
+                          <p class="MsoNormal"><span lang="EN-US">x6 升两个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">五度</span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 7">
@@ -1072,7 +1072,7 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">升两个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">小七度</span></p>
+                          <p class="MsoNormal"><span lang="EN-US">x7 升两个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">小七度</span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 8">
@@ -1086,7 +1086,7 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">升三个八度</span></p>
+                          <p class="MsoNormal"><span lang="EN-US">x8 升三个八度</span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 9">
@@ -1100,7 +1100,7 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">升三个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">大二度</span></p>
+                          <p class="MsoNormal"><span lang="EN-US">x9 升三个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">大二度</span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 10">
@@ -1114,7 +1114,7 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">升三个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">大三度</span></p>
+                          <p class="MsoNormal"><span lang="EN-US">x10 升三个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">大三度</span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 11">
@@ -1129,7 +1129,7 @@
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
                           
-                    <p class="MsoNormal"><span lang="EN-US"><i>升三个八度+一个大三度</i></span></p>
+                    <p class="MsoNormal"><span lang="EN-US"><i>x10 升三个八度+一个大三度(稍微高些)</i></span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 12">
@@ -1143,7 +1143,7 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">升三个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">大五度</span></p>
+                          <p class="MsoNormal"><span lang="EN-US">x12 升三个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">五度</span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 13">
@@ -1158,7 +1158,7 @@
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
                           
-                    <p class="MsoNormal"><span lang="EN-US"><i>升三个八度+</i></span><i><span lang="EN-US">一个大五度</span></i></p>
+                    <p class="MsoNormal"><span lang="EN-US"><i>x12 升三个八度+</i></span><i><span lang="EN-US">一个五度(稍微高些)</span></i></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 14">
@@ -1172,7 +1172,7 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">升三个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">大七度</span></p>
+                          <p class="MsoNormal"><span lang="EN-US">x15 升三个八度+</span><span lang="EN-US">一个</span><span lang="EN-US">大七度</span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 15; mso-yfti-lastrow: yes">
@@ -1187,7 +1187,7 @@
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
                           
-                    <p class="MsoNormal"><span lang="EN-US"><i>升三个八度+</i></span><i><span lang="EN-US">一个大七度</span></i></p>
+                    <p class="MsoNormal"><span lang="EN-US"><i>x15 升三个八度+</i></span><i><span lang="EN-US">一个大七度(稍微高些)</span></i></p>
                         </td>
                       </tr>
                     </tbody>
@@ -1215,8 +1215,8 @@
           <p class="MsoNormal"><b><span lang="EN-US">Bytes&nbsp;40-55</span></b></p>
         </td>
         <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; PADDING-TOP: 3.75pt" vAlign="top">
-          <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span lang="EN-US">音符缩放比例电平     
-          / </span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US">      
+          <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span lang="EN-US">键缩放电平     
+          / </span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US">      
             输出电平</span></p>
           <table class="MsoNormalTable" style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt" cellPadding="0" border="1">
             <tbody>
@@ -1248,7 +1248,7 @@
               </tr>
               <tr style="mso-yfti-irow: 1; mso-yfti-lastrow: yes">
                 <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 25%; PADDING-TOP: 0cm" width="25%" colSpan="2">
-                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">缩放比例电平</span></p>
+                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">键缩放电平</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
                   <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">24<br>
@@ -1301,7 +1301,7 @@
                           <p class="MsoNormal"><span lang="EN-US">-</span></p>
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
-                          <p class="MsoNormal"><span lang="EN-US">不变</span></p>
+                          <p class="MsoNormal"><span lang="EN-US">默认</span></p>
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 1">
@@ -1316,7 +1316,7 @@
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
                           
-                    <p class="MsoNormal"><span lang="EN-US">1.5 dB/八度</span></p>   
+                    <p class="MsoNormal"><span lang="EN-US">衰减1.5 dB/八度</span></p>   
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 2">
@@ -1331,7 +1331,7 @@
                         </td>
                         <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm">
                           
-                    <p class="MsoNormal"><span lang="EN-US">3 dB/八度</span></p>   
+                    <p class="MsoNormal"><span lang="EN-US">衰减3 dB/八度</span></p>   
                         </td>
                       </tr>
                       <tr style="mso-yfti-irow: 3; mso-yfti-lastrow: yes">
@@ -1346,7 +1346,7 @@
                         </td>
                         
                   <td style="PADDING-RIGHT: 0cm; PADDING-LEFT: 0cm; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm"> 
-                    <p class="MsoNormal"><span lang="EN-US">6 dB/八度</span></p>   
+                    <p class="MsoNormal"><span lang="EN-US">衰减6 dB/八度</span></p>   
                         </td>
                       </tr>
                     </tbody>
@@ -1363,7 +1363,7 @@
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
                   
-              <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">控制操作单元的总输出电平</span><span lang="EN-US">。全部位清零为最大，全部位启用是最小。甭问我为什么。</span></p> 
+              <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">控制振荡器的总衰减值(Total Level of attenuation)</span><span lang="EN-US">。全部位清零为最大，全部位启用是最小。甭问我为什么。(雅马哈妙妙芯片设计..节省了几个把数值反相的非门...)</span></p> 
                 </td>
               </tr>
             </tbody>
@@ -1437,7 +1437,7 @@
                 </td>
                 
             <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt"> 
-              <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">起音率</span><span lang="EN-US"></span><span lang="EN-US">。0为最慢，F则最快。</span></p>
+              <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">起音速率</span><span lang="EN-US"></span><span lang="EN-US">。0为最慢，F则最快。</span></p>
                 </td>
               </tr>
               <tr style="mso-yfti-irow: 1; mso-yfti-lastrow: yes">
@@ -1447,7 +1447,7 @@
                 </td>
                 
             <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt"> 
-              <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">衰减率</span><span lang="EN-US">。0为最慢，F则最快。</span></p>
+              <p class="MsoNormal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">衰减速率</span><span lang="EN-US">。0为最慢，F则最快。</span></p>
                 </td>
               </tr>
             </tbody>
@@ -1505,7 +1505,7 @@
                 </td>
                 
             <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 50%; PADDING-TOP: 0.75pt" width="50%" colSpan="4"> 
-              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">释音率</span></p>
+              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">释音速率</span></p>
                 </td>
               </tr>
             </tbody>
@@ -1521,7 +1521,7 @@
                 </td>
                 
             <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt"> 
-              <p class="MsoNormal"><span lang="EN-US">延音电平。0为最高， F则最低。</span></p>   
+              <p class="MsoNormal"><span lang="EN-US">设置延音电平。0为最高， F则最低。</span></p>   
                   <table class="MsoNormalTable" style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 0cm 0cm 0cm" cellPadding="0" border="0">
                     <tbody>
                       <tr style="mso-yfti-irow: 0">
@@ -1594,7 +1594,7 @@
                 </td>
                 
             <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt"> 
-              <p class="MsoNormal"><span lang="EN-US">释音率。0为最慢，F则最快。</span></p>
+              <p class="MsoNormal"><span lang="EN-US">释音速率。0为最慢，F则最快。(具体有"多快"见YM3812 APP 手册)</span></p>
                 </td>
               </tr>
             </tbody>
@@ -1616,8 +1616,8 @@
         </td>
         <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; PADDING-TOP: 3.75pt" vAlign="top">
           
-        <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span lang="EN-US">八度音/    
-          F-Number / 发音开关</span></p>   
+        <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span lang="EN-US">八度块选择/    
+          F-Number / 起振开关</span></p>   
           <table class="MsoNormalTable" style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt" cellPadding="0" border="1">
             <tbody>
               <tr style="mso-yfti-irow: 0">
@@ -1650,7 +1650,7 @@
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 100%; PADDING-TOP: 0.75pt" width="100%" colSpan="8">
                   
               <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">F-Number    
-                （低位字节）</span></p>
+                （低位比特）</span></p>
                 </td>
               </tr>
             </tbody>
@@ -1688,19 +1688,19 @@
               <tr style="mso-yfti-irow: 1; mso-yfti-lastrow: yes">
                 <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; WIDTH: 25%; PADDING-TOP: 0cm" width="25%" colSpan="2">
                   
-              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">未使用</span></p>
+              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">未定义</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
                   
-              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">发音开关</span></p>
+              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">起振开关</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 37%; PADDING-TOP: 0.75pt" width="37%" colSpan="3">
                   
-              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">八度音</span></p>
+              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">八度块选择</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 25%; PADDING-TOP: 0.75pt" width="25%" colSpan="2">
                   <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">F-Number<br>
-                高位字节</span></p>
+                高位比特</span></p>
                 </td>
               </tr>
             </tbody>
@@ -1726,7 +1726,7 @@
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
                   
-              <p class="MsoNormal"><span lang="EN-US">八度音分组（0-7）。0最低， 7为最高。</span></p>   
+              <p class="MsoNormal"><span lang="EN-US">八度块（0-7）将0-phiM/72 Hz 分为8个频率块(BLOCKnum)。0最低， 7为最高。等于Fnum除乘2的BLOCK幂 </span></p>   
                 </td>
               </tr>
               <tr style="mso-yfti-irow: 2; mso-yfti-lastrow: yes">
@@ -1754,7 +1754,7 @@
         </td>
         <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; PADDING-TOP: 3.75pt">
           
-        <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span lang="EN-US">在第四组八度中，F-number值对应的音阶及其频率是:</span></p>   
+        <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span lang="EN-US">在第四块八度中，F-number值对应的音阶及其频率是:(网上有YM3812频率计算器,可以看看)</span></p>   
           <table class="MsoNormalTable" style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt" cellPadding="0" border="1">
             <tbody>
               <tr style="mso-yfti-irow: 0">
@@ -1922,7 +1922,7 @@
         </td>
         <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; PADDING-TOP: 3.75pt" vAlign="top">
           
-        <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span lang="EN-US">回馈强度/运算方式</span></p>
+        <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span lang="EN-US">OP1自反馈调制深度/算法(OP链接方式)</span></p>
           <table class="MsoNormalTable" style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt" cellPadding="0" border="1">
             <tbody>
               <tr style="mso-yfti-irow: 0">
@@ -1958,11 +1958,11 @@
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 37%; PADDING-TOP: 0.75pt" width="37%" colSpan="3">
                   
-              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">回馈强度</span></p>
+              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">自反馈深度</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
                   
-              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center">运算方式</p>
+              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center">算法</p>
                 </td>
               </tr>
             </tbody>
@@ -1978,9 +1978,9 @@
                 </td>
                 
             <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt" width="832"> 
-              <p class="MsoNormal"><span lang="EN-US">回馈强度。如果全部为全设置为0，则没有回馈。取1-7的值，    
-                </span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span> 
-                <span lang="EN-US">1会将它部分输出发送会自身。设置为1回馈量最小，7最大。</span></p>      
+              <p class="MsoNormal"><span lang="EN-US">OP1自反馈调制深度。如果全部为全设置为0，则禁用。1-7(八进制)的数值有效，    
+                </span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span> 
+                <span lang="EN-US">1会将它部分输出发送会自身。设置为1反馈深度最小，7最大。</span></p>      
                 </td>
               </tr>
               <tr style="mso-yfti-irow: 1; mso-yfti-lastrow: yes">
@@ -1990,10 +1990,10 @@
                 </td>
                 
             <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt" width="832"> 
-              <p class="MsoNormal"><span lang="EN-US">如果将之清零， </span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US">    
-                1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">调制操作单元</span><span lang="EN-US">    
-                2。这种情况下，只有</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span><span lang="EN-US">    
-                2发声。如果设置为1，这两个</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">操作单元</span>都将直接发声<span lang="EN-US">。运算方式设置为0的情况下比较容易产生复杂的声音。</span></p>   
+              <p class="MsoNormal"><span lang="EN-US">如果将之清零， </span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US">    
+                1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">频率调制振荡器</span><span lang="EN-US">    
+                2。这种情况下，只有</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span><span lang="EN-US">    
+                2发声。如果设置为1，这两个</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">振荡器</span>都将直接发声<span lang="EN-US">。运算方式设置为0的情况下比较容易产生复杂的声音。(AM链接方式常用于需要高音量的鼓乐,如Bass Drum)</span></p>   
               </td>
               </tr>
             </tbody>
@@ -2015,8 +2015,8 @@
         </td>
         <td style="PADDING-RIGHT: 3.75pt; PADDING-LEFT: 3.75pt; PADDING-BOTTOM: 3.75pt; PADDING-TOP: 3.75pt" vAlign="top">
           
-        <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span lang="EN-US">振幅调制深度/    
-          颤音深度/ 节奏模式开关</span></p> 
+        <p class="MsoNormal" style="MARGIN-BOTTOM: 12pt"><span lang="EN-US">深振幅调(颤音)制开关/    
+          深频率调制(抖音)开关/ 节奏模式开关</span></p> 
           <table class="MsoNormalTable" style="mso-cellspacing: 1.5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt" cellPadding="0" border="1">
             <tbody>
               <tr style="mso-yfti-irow: 0">
@@ -2048,34 +2048,34 @@
               <tr style="mso-yfti-irow: 1; mso-yfti-lastrow: yes">
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
                   
-              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">调幅深度</span></p>
+              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">深调幅</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
                   
-              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">颤音深度</span></p>
+              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">深调频</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
-                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">节奏律模式开关</span></p>
-                </td>
-                <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
-                  
-              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">底鼓</span></p>
+                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">节奏模式开关</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
                   
-              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">军鼓</span></p>
+              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">底鼓(Base Drum)</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
                   
-              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">嗵鼓</span></p>
+              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">军鼓(Snare Drum)</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
                   
-              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">吊嚓</span></p>
+              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">嗵鼓(Tom Drum)</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
                   
-              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">踩嚓</span></p>
+              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">吊嚓(top CYMbal)</span></p>
+                </td>
+                <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 12%; PADDING-TOP: 0.75pt" width="12%">
+                  
+              <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span lang="EN-US">踩嚓(Hi-Hat)</span></p>
                 </td>
               </tr>
             </tbody>
@@ -2102,8 +2102,8 @@
                 </td>
                 
             <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt"> 
-              <p class="MsoNormal"><span lang="EN-US">设置：颤音深度为14音分<br>
-                清零：颤音深度为7音分</span></p>  
+              <p class="MsoNormal"><span lang="EN-US">设置：颤音深度为14cent<br>
+                清零：颤音深度为7cent</span></p>  
                 </td>
               </tr>
               <tr style="mso-yfti-irow: 2">
@@ -2113,8 +2113,8 @@
                 </td>
                 
             <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt"> 
-              <p class="MsoNormal"><span lang="EN-US">设置：启用节奏模式 （6 个旋律音）<br> 
-              清零：禁用节奏模式（9 个旋律音）</span></p>    
+              <p class="MsoNormal"><span lang="EN-US">设置：启用节奏模式 （6 个旋律通道）<br> 
+              清零：禁用节奏模式（9 个旋律通道）</span></p>    
                 </td>
               </tr>
               <tr style="mso-yfti-irow: 3">
@@ -2183,7 +2183,7 @@
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
                   
-              <p class="MsoNormal"><span lang="EN-US">如果想使用节奏模式，那么06、07、08通道的发音开关必须关掉。其他参数，比如</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">起音</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">衰减/延音</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">释音之类，也必须恰当地设置。</span></p>
+              <p class="MsoNormal"><span lang="EN-US">因为节奏模式是分裂6,7,8通道的两个OP,并加入一个噪声生成器,如果想使用节奏模式，那么06、07、08通道的发音开关必须关掉。其他参数，比如</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">起音</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">衰减/延音</span><span lang="EN-US">/</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">释音之类，也必须恰当地设置。</span></p>
                 </td>
               </tr>
             </tbody>
@@ -2235,7 +2235,7 @@
               </tr>
               <tr style="HEIGHT: 15.9pt; mso-yfti-irow: 1; mso-yfti-lastrow: yes">
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 44.78%; PADDING-TOP: 0.75pt; HEIGHT: 15.9pt" width="44%" colSpan="6">
-                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">未使用</span></p>
+                  <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">未定义</span></p>
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; WIDTH: 52.34%; PADDING-TOP: 0.75pt; HEIGHT: 15.9pt" width="52%" colSpan="2">
                   <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">波形选择</span></p>
@@ -2254,7 +2254,7 @@
                 </td>
                 <td style="PADDING-RIGHT: 0.75pt; PADDING-LEFT: 0.75pt; PADDING-BOTTOM: 0.75pt; PADDING-TOP: 0.75pt">
                   
-              <p class="MsoNormal"><span lang="EN-US">寄存器01的第5位为1时，输出波形决定于这两位的内容：</span></p>
+              <p class="MsoNormal"><span lang="EN-US">寄存器01的第5位为1时，输出波形决定于这两位的内容：通常名词为, Sine,Half-Sine,Abs-Sine,Quater/Pulse-Sine</span></p>
                 </td>
               </tr>
             </tbody>
@@ -2309,15 +2309,15 @@
   <p class="MsoNormal" style="TEXT-ALIGN: center" align="center"><b><span style="FONT-SIZE: 13.5pt; FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">声卡侦测</span></b></p>
   <p><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">依据</span><span lang="EN-US">AdLib</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">手册，检测声卡的“官方”方法如下：</span></p>
   <ol type="1">
-    <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">向寄存器</span><span lang="EN-US">4</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">写入</span><span lang="EN-US">60h</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，以重置两个定时器。</span>
+    <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">向寄存器</span><span lang="EN-US">4</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">写入</span><span lang="EN-US">60h</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，以重置两个计时器。</span>
     <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">向寄存器</span><span lang="EN-US">4</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">写入</span><span lang="EN-US">80h</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，启用中断。</span><span lang="EN-US"><br>
       </span><b style="mso-bidi-font-weight: normal"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">注意</span></b><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">：这一步必须和第一步分开来做。</span><span style="mso-spacerun: yes" lang="EN-US">&nbsp;</span>
     <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">读取状态寄存器</span><span lang="EN-US">（388h</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">端口</span><span lang="EN-US">）</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，并保存结果。</span>
-    <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">向寄存器</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">写入</span><span lang="EN-US">FFh（</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">定时器</span><span lang="EN-US">1）</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">。</span>
-    <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">向寄存器</span><span lang="EN-US">4</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">写入</span><span lang="EN-US">21h</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，启动定时器</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">。</span>
+    <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">向寄存器</span><span lang="EN-US">2</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">写入</span><span lang="EN-US">FFh（</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">计时器</span><span lang="EN-US">1）</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">。</span>
+    <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">向寄存器</span><span lang="EN-US">4</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">写入</span><span lang="EN-US">21h</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，启动计时器</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">。</span>
     <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">延时至少</span><span lang="EN-US">80</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">微秒。</span> 
     <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">读取状态寄存器</span><span lang="EN-US">（388h</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">端口</span><span lang="EN-US">）</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，并保存结果。</span>
-    <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">重置两个定时器和中断</span><span lang="EN-US">（</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">参见步骤</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">和</span><span lang="EN-US">2）</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">。</span>
+    <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">重置两个计时器和中断</span><span lang="EN-US">（</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">参见步骤</span><span lang="EN-US">1</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">和</span><span lang="EN-US">2）</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">。</span>
     <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; mso-list: l0 level1 lfo3; tab-stops: list 36.0pt"><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">将步骤</span><span lang="EN-US">3</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">和步骤</span><span lang="EN-US">7</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">保存下来的值与</span><span lang="EN-US">E0h</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">进行</span><span lang="EN-US">AND</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">运算，步骤</span><span lang="EN-US">3</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">的结果应该为</span><span lang="EN-US">00h</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，步骤</span><span lang="EN-US">7</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">的结果应该为</span><span lang="EN-US">C0h</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">。如果都正确的话，说明你的声卡兼容</span><span lang="EN-US">AdLib</span><span style="FONT-FAMILY: SimSun; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">。</span></li>
   </ol>
   <p class="MsoNormal"><span lang="EN-US"><o:p>

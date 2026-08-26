@@ -1,22 +1,22 @@
 WAVE ENABLE NO	波形启用
-NOTE SELECT NO	律音选择
-SPEECH SYNT NO	语音同步
-TREMOLO DEP NO	振音深度
-VIBRATO DEP NO	颤音深度
+NOTE SELECT NO	键选择中
+SPEECH SYNT NO	语音合成模式(OPL2特殊模式,CSM,复合正弦调制,全通道输出正弦波以合成人声)
+TREMOLO DEP NO	深颤音(振幅调制输出波形,使得输出音量震荡,默认深度 1 dB, 开启后深度为 4.8 dB)
+VIBRATO DEP NO	深"抖音"(频率调制输出波形,类似弹吉他/拉小提琴揉弦来使得音高/频率震荡, 默认以 7%(cent)深度震荡, 开启后深度变为 14%(cent) ) (tremolo和Vibrato都译作'颤音',但内容完全不一样,术语远古大坑.)
 
 振荡器1
 
-ATTACK  0x22		打击
-DECAY   0x28		衰减
-SUSTAIN LEVEL   0x24	延音度
-RELEASE   0x2A		释音
-KSL     NO		？？
-FM      0x1E		调频
-PC      0x1A		？？
-TREMOLO 0x2E		振音
-VIBRATO 0x30		颤音
-SUSTAIN  0x26		延音
-KS RATE  0x32		？速
+ATTACK          0x22	启振速率
+DECAY           0x28	衰减速率
+SUSTAIN LEVEL   0x24	延音电平
+RELEASE         0x2A	释音速率
+KSL             NO	  键缩放输出电平(Oct/BLOCKnum 越高, 输出电平越低,以模仿真实乐器表现)
+FM              0x1E  频率倍数(选择当前振荡器频率和Fnum键频率的倍数,有x0.5 x1 x2 等倍数.)
+PC              0x1A  链接方式(Parallel Connetion...看起来指的是和下一个OP的连接方式开启后变为AM式,同时输出而不调制对方....亏他们会发明名词...雅马哈叫algorithm算法.)
+TREMOLO         0x2E	是否启用颤音
+VIBRATO         0x30	是否启用抖音
+SUSTAIN         0x26	是否开启延音,等待KeyOFF再进入释音阶段,或直接进入释音阶段
+KS RATE         0x32  键缩放速率(OCT...越高,输出波形遍历ADSR包络的速率越快,以仿真真实乐器.)
 
-WAVE 0x38	波形
-OUT 0x2C	释出
+WAVE            0x38	波形选择
+OUT             0x2C  输出电平(注,为TL值,设置的是通道输出电平衰减的幅度, 越大,输出电平越小.)
