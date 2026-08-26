@@ -560,7 +560,8 @@ L5A3:    push bx  ; 0x05A3  53
          ret word 0x8  ; 0x05B9  c2 08 00
 L5BC:    push ax  ; 0x05BC  50
          push si  ; 0x05BD  56
-         db 0x90, 0x90, 0x90, 0x90, 0x90  ; 0x05BE  nop x5（原 mov al,0x5 + call L52F：向 331 发 0x05，UART 下被忽略，配套死代码一并清掉）
+         mov al,0x5  ; 0x05BE  b0 05
+         call L52F   ; 0x05C0  e8 6c ff
          mov si,0x0  ; 0x05C3  be 00 00
 L5C6:    mov ax,si  ; 0x05C6
          or al,0xb0  ; 0x05C8  0c b0
