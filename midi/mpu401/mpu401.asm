@@ -103,11 +103,11 @@ L1A3:    pushad  ; 0x01A3  66 60
          inc ax  ; 0x01C2  40
          cmp ax,0x3e8  ; 0x01C3  3d e8 03
          jnz L1D3  ; 0x01C6  75 0b
-         db 0x33, 0xC0  ; xor ax,ax  (0x01C8 raw)
+         xor ax,ax  ; 0x01C8
          inc cx  ; 0x01CA  41
          cmp cx,0x3c  ; 0x01CB  83 f9 3c
          jnz L1D3  ; 0x01CE  75 03
-         db 0x33, 0xC9  ; xor cx,cx  (0x01D0 raw)
+         xor cx,cx  ; 0x01D0
          inc dx  ; 0x01D2  42
 L1D3:    mov cs:[bx+0x1e],di  ; 0x01D3  2e 89 7f 1e
          mov cs:[bx+0x20],ax  ; 0x01D7  2e 89 47 20
@@ -121,11 +121,11 @@ L1D3:    mov cs:[bx+0x1e],di  ; 0x01D3  2e 89 7f 1e
          mov al,cs:[bx+0x36]  ; 0x01F4  2e 8a 47 36
          add cs:[bx+0x3d],al  ; 0x01F8  2e 00 47 3d
          mov al,cs:[bx+0x3d]  ; 0x01FC  2e 8a 47 3d
-         db 0x0A, 0xC0  ; or al,al  (0x0200 raw)
+         or al,al  ; 0x0200
          jnz L214  ; 0x0202  75 10
          mov byte cs:[bx+0x36],0x0  ; 0x0204  2e c6 47 36 00
          mov word cs:[bx+0x8],0x0  ; 0x0209  2e c7 47 08 00 00
-         db 0xE8, 0xAA, 0x03  ; call L5BC  (0x020F raw)
+         call L5BC  ; 0x020F
          jmp short L21F  ; 0x0212  eb 0b
 L214:    cmp al,cs:[bx+0x3e]  ; 0x0214  2e 3a 47 3e
          jnz L21F  ; 0x0218  75 05
@@ -133,10 +133,10 @@ L214:    cmp al,cs:[bx+0x3e]  ; 0x0214  2e 3a 47 3e
 L21F:    mov word cs:[bx+0x3b],0x0  ; 0x021F  2e c7 47 3b 00 00
          jmp short L22B  ; 0x0225  eb 04
 L227:    inc word cs:[bx+0x3b]  ; 0x0227  2e ff 47 3b
-L22B:    db 0x66, 0x33, 0xC0  ; xor eax,eax  (0x022B raw)
+L22B:    xor eax,eax  ; 0x022B
          mov ax,0x2710  ; 0x022E  b8 10 27
          add ax,cs:[bx+0x18]  ; 0x0231  2e 03 47 18
-         db 0x66, 0x2E, 0x29, 0x47, 0x1A  ; sub cs:[bx+0x1a],eax  (0x0235 raw)
+         sub cs:[bx+0x1a],eax  ; 0x0235
          jg L23F  ; 0x023A  7f 03
          call L2BE  ; 0x023C  e8 7f 00
 L23F:    popad  ; 0x023F  66 61
@@ -152,10 +152,10 @@ L242:    push bx  ; 0x0242  53
          mov al,cs:[bx+0x41]  ; 0x024C  2e 8a 47 41
          cmp al,0x0  ; 0x0250  3c 00
          jna L25C  ; 0x0252  76 08
-         db 0xE8, 0xF4, 0x06  ; call L94B  (0x0254 raw)
+         call L94B  ; 0x0254
          push cs  ; 0x0257  0e
          pop es  ; 0x0258  07
-         db 0xE8, 0x29, 0x07  ; call L985  (0x0259 raw)
+         call L985  ; 0x0259
 L25C:    mov word cs:[bx+0xc],ds  ; 0x025C  2e 8c 5f 0c
          mov word cs:[bx+0x10],ds  ; 0x0260  2e 8c 5f 10
          add si,0xc  ; 0x0264  83 c6 0c
@@ -170,10 +170,10 @@ L25C:    mov word cs:[bx+0xc],ds  ; 0x025C  2e 8c 5f 0c
          pop cx  ; 0x027B  59
          mov dx,0x7  ; 0x027C  ba 07 00
          mov ax,0xa120  ; 0x027F  b8 20 a1
-         db 0x0B, 0xC9  ; or cx,cx  (0x0282 raw)
+         or cx,cx  ; 0x0282
          jnz L28C  ; 0x0284  75 06
-         db 0x33, 0xC0  ; xor ax,ax  (0x0286 raw)
-         db 0x33, 0xD2  ; xor dx,dx  (0x0288 raw)
+         xor ax,ax  ; 0x0286
+         xor dx,dx  ; 0x0288
          jmp short L28E  ; 0x028A  eb 02
 L28C:    div cx  ; 0x028C  f7 f1
 L28E:    mov cs:[bx+0x16],ax  ; 0x028E  2e 89 47 16
@@ -199,9 +199,9 @@ L2BE:    push ds  ; 0x02BE  1e
          mov al,cs:[bx+0x41]  ; 0x02C9  2e 8a 47 41
          cmp al,0x0  ; 0x02CD  3c 00
          jna L2D4  ; 0x02CF  76 03
-         db 0xE8, 0xB1, 0x06  ; call L985  (0x02D1 raw)
+         call L985  ; 0x02D1
 L2D4:    cld  ; 0x02D4  fc
-         db 0x33, 0xC0  ; xor ax,ax  (0x02D5 raw)
+         xor ax,ax  ; 0x02D5
          lodsb  ; 0x02D7  ac
          cmp al,0xf0  ; 0x02D8  3c f0
          jnc L2EB  ; 0x02DA  73 0f
@@ -218,10 +218,10 @@ L2EB:    cmp al,0xff  ; 0x02EB  3c ff
          jnz L365  ; 0x02F4  75 6f
          lodsb  ; 0x02F6  ac
          mov ax,cs:[bx+0xa]  ; 0x02F7  2e 8b 47 0a
-         db 0x0B, 0xC0  ; or ax,ax  (0x02FB raw)
+         or ax,ax  ; 0x02FB
          jnz L30A  ; 0x02FD  75 0b
          mov word cs:[bx+0x8],0x0  ; 0x02FF  2e c7 47 08 00 00
-         db 0xE8, 0xB4, 0x02  ; call L5BC  (0x0305 raw)
+         call L5BC  ; 0x0305
          jmp short L34D  ; 0x0308  eb 43
 L30A:    cmp ax,0x1  ; 0x030A  83 f8 01
          jnz L321  ; 0x030D  75 12
@@ -248,53 +248,53 @@ L34D:    mov al,cs:[bx+0x41]  ; 0x034D  2e 8a 47 41
          cmp al,0x0  ; 0x0351  3c 00
          jna L35C  ; 0x0353  76 07
          sub si,SONG_BUFFER  ; 0x0355  81 ee ad 09
-         db 0xE8, 0x1B, 0x06  ; call L977  (0x0359 raw)
+         call L977  ; 0x0359
 L35C:    mov si,cs:[bx+0xe]  ; 0x035C  2e 8b 77 0e
-         db 0xE9, 0x90, 0x00  ; jmp near L3F3  (0x0360 raw)
-         db 0xEB, 0x42  ; jmp short L3A7  (0x0363 raw)
+         jmp near L3F3  ; 0x0360
+         jmp short L3A7  ; 0x0363
 L365:    cmp al,0x51  ; 0x0365  3c 51
          jnz L387  ; 0x0367  75 1e
          lodsb  ; 0x0369  ac
          mov cx,cs:[bx+0x14]  ; 0x036A  2e 8b 4f 14
          lodsb  ; 0x036E  ac
-         db 0x8B, 0xD0  ; mov dx,ax  (0x036F raw)
+         mov dx,ax  ; 0x036F
          lodsb  ; 0x0371  ac
          xchg ah,al  ; 0x0372  86 e0
          lodsb  ; 0x0374  ac
-         db 0x0B, 0xC9  ; or cx,cx  (0x0375 raw)
+         or cx,cx  ; 0x0375
          jnz L37F  ; 0x0377  75 06
-         db 0x33, 0xC0  ; xor ax,ax  (0x0379 raw)
-         db 0x33, 0xD2  ; xor dx,dx  (0x037B raw)
+         xor ax,ax  ; 0x0379
+         xor dx,dx  ; 0x037B
          jmp short L381  ; 0x037D  eb 02
 L37F:    div cx  ; 0x037F  f7 f1
 L381:    mov cs:[bx+0x16],ax  ; 0x0381  2e 89 47 16
-         db 0xEB, 0x20  ; jmp short L3A7  (0x0385 raw)
+         jmp short L3A7  ; 0x0385
 L387:    lodsb  ; 0x0387  ac
-         db 0x32, 0xE4  ; xor ah,ah  (0x0388 raw)
-         db 0x03, 0xF0  ; add si,ax  (0x038A raw)
-         db 0xEB, 0x19  ; jmp short L3A7  (0x038C raw)
-L38E:    db 0x8B, 0xF8  ; mov di,ax  (0x038E raw)
+         xor ah,ah  ; 0x0388
+         add si,ax  ; 0x038A
+         jmp short L3A7  ; 0x038C
+L38E:    mov di,ax  ; 0x038E
          and di,0xf  ; 0x0390  83 e7 0f
          mov byte cs:[bx+di+0x26],0x1  ; 0x0393  2e c6 41 26 01
-         db 0x8B, 0xF8  ; mov di,ax  (0x0398 raw)
+         mov di,ax  ; 0x0398
          shr di,byte 0x4  ; 0x039A  c1 ef 04
          sub di,0x8  ; 0x039D  83 ef 08
          shl di,1  ; 0x03A0  d1 e7
-         db 0x2E, 0xFF, 0x95, 0x3E, 0x00  ; call word near cs:[di+0x3e]  (0x03A2 raw)
-L3A7:    db 0x33, 0xC0  ; xor ax,ax  (0x03A7 raw)
-         db 0x33, 0xD2  ; xor dx,dx  (0x03A9 raw)
+         call word near cs:[di+0x3e]  ; 0x03A2
+L3A7:    xor ax,ax  ; 0x03A7
+         xor dx,dx  ; 0x03A9
 L3AB:    lodsb  ; 0x03AB  ac
          test al,0x80  ; 0x03AC  a8 80
          jnz L3B4  ; 0x03AE  75 04
          jmp short L3BC  ; 0x03B0  eb 0a
          jmp short L3BA  ; 0x03B2  eb 06
-L3B4:    db 0x8A, 0xF2  ; mov dh,dl  (0x03B4 raw)
-         db 0x8A, 0xD4  ; mov dl,ah  (0x03B6 raw)
-         db 0x8A, 0xE0  ; mov ah,al  (0x03B8 raw)
+L3B4:    mov dh,dl  ; 0x03B4
+         mov dl,ah  ; 0x03B6
+         mov ah,al  ; 0x03B8
 L3BA:    jmp short L3AB  ; 0x03BA  eb ef
-L3BC:    db 0x0B, 0xC0  ; or ax,ax  (0x03BC raw)
+L3BC:    or ax,ax  ; 0x03BC
          jnz L3C4  ; 0x03BE  75 04
-         db 0x0B, 0xD2  ; or dx,dx  (0x03C0 raw)
+         or dx,dx  ; 0x03C0
          jz L3F0  ; 0x03C2  74 2c
 L3C4:    shl dl,1  ; 0x03C4  d0 e2
          shr dx,1  ; 0x03C6  d1 ea
@@ -309,7 +309,7 @@ L3C4:    shl dl,1  ; 0x03C4  d0 e2
          push dx  ; 0x03D8  52
          push ax  ; 0x03D9  50
          mov ax,cs:[bx+0x16]  ; 0x03DA  2e 8b 47 16
-         db 0x33, 0xD2  ; xor dx,dx  (0x03DE raw)
+         xor dx,dx  ; 0x03DE
          push dx  ; 0x03E0  52
          push ax  ; 0x03E1  50
          call L58A  ; 0x03E2  e8 a5 01
@@ -324,27 +324,27 @@ L3F3:    mov cs:[bx+0xe],si  ; 0x03F3  2e 89 77 0e
          ret  ; 0x03F9  c3
 L3FA:    cmp word cs:[bx+0x8],0x2  ; 0x03FA  2e 83 7f 08 02
          jnz L405  ; 0x03FF  75 04
-         db 0x32, 0xC0  ; xor al,al  (0x0401 raw)
+         xor al,al  ; 0x0401
          jmp short L42C  ; 0x0403  eb 27
 L405:    push cx  ; 0x0405  51
          push dx  ; 0x0406  52
          push ax  ; 0x0407  50
-         db 0x33, 0xC9  ; xor cx,cx  (0x0408 raw)
-         db 0x32, 0xE4  ; xor ah,ah  (0x040A raw)
+         xor cx,cx  ; 0x0408
+         xor ah,ah  ; 0x040A
          mul byte cs:[bx+0x3d]  ; 0x040C  2e f6 67 3d
          mov cl,cs:[bx+0x3e]  ; 0x0410  2e 8a 4f 3e
          mul cx  ; 0x0414  f7 e1
-         db 0x0B, 0xC9  ; or cx,cx  (0x0416 raw)
+         or cx,cx  ; 0x0416
          jnz L420  ; 0x0418  75 06
-         db 0x33, 0xC0  ; xor ax,ax  (0x041A raw)
-         db 0x33, 0xD2  ; xor dx,dx  (0x041C raw)
+         xor ax,ax  ; 0x041A
+         xor dx,dx  ; 0x041C
          jmp short L422  ; 0x041E  eb 02
 L420:    div cx  ; 0x0420  f7 f1
 L422:    cwd  ; 0x0422  99
          mov cl,0x7f  ; 0x0423  b1 7f
          div cx  ; 0x0425  f7 f1
          pop dx  ; 0x0427  5a
-         db 0x8A, 0xE6  ; mov ah,dh  (0x0428 raw)
+         mov ah,dh  ; 0x0428
          pop dx  ; 0x042A  5a
          pop cx  ; 0x042B  59
 L42C:    ret  ; 0x042C  c3
@@ -395,7 +395,7 @@ L47F:    cmp al,0xf0  ; 0x047F  3c f0
          push si  ; 0x0485  56
          call L4D6  ; 0x0486  e8 4d 00
          add sp,0x4  ; 0x0489  83 c4 04
-         db 0x03, 0xF0  ; add si,ax  (0x048C raw)
+         add si,ax  ; 0x048C
          jmp short L4B9  ; 0x048E  eb 29
 L490:    cmp al,0xf1  ; 0x0490  3c f1
          jnz L49D  ; 0x0492  75 09
@@ -424,14 +424,14 @@ L4BE:    call L553  ; 0x04BE  e8 92 00
          jnz L4C8  ; 0x04C4  75 02
          jmp short L4CA  ; 0x04C6  eb 02
 L4C8:    loop L4BE  ; 0x04C8  e2 f4
-L4CA:    db 0x33, 0xC0  ; xor ax,ax  (0x04CA raw)
+L4CA:    xor ax,ax  ; 0x04CA
          mov al,0x3f  ; 0x04CC  b0 3f
          call L52F  ; 0x04CE  e8 5e 00
          call L574  ; 0x04D1  e8 a0 00
          pop cx  ; 0x04D4  59
          ret  ; 0x04D5  c3
 L4D6:    push bp  ; 0x04D6  55
-         db 0x8B, 0xEC  ; mov bp,sp  (0x04D7 raw)
+         mov bp,sp  ; 0x04D7
          push bx  ; 0x04D9  53
          push si  ; 0x04DA  56
          push ds  ; 0x04DB  1e
@@ -442,13 +442,13 @@ L4D6:    push bp  ; 0x04D6  55
          jnz L4F3  ; 0x04E3  75 0e
          call L4FD  ; 0x04E5  e8 15 00
 L4E8:    lodsb  ; 0x04E8  ac
-         db 0x8A, 0xD8  ; mov bl,al  (0x04E9 raw)
+         mov bl,al  ; 0x04E9
          call L4FD  ; 0x04EB  e8 0f 00
          cmp bl,0xf7  ; 0x04EE  80 fb f7
          jnz L4E8  ; 0x04F1  75 f5
 L4F3:    pop bx  ; 0x04F3  5b
-         db 0x8B, 0xC6  ; mov ax,si  (0x04F4 raw)
-         db 0x2B, 0xC3  ; sub ax,bx  (0x04F6 raw)
+         mov ax,si  ; 0x04F4
+         sub ax,bx  ; 0x04F6
          pop ds  ; 0x04F8  1f
          pop si  ; 0x04F9  5e
          pop bx  ; 0x04FA  5b
@@ -458,18 +458,18 @@ L4FD:    push cx  ; 0x04FD  51
          push dx  ; 0x04FE  52
          mov cx,0x800  ; 0x04FF  b9 00 08
          mov dx,cs:[0x170]  ; 0x0502  2e 8b 16 70 01
-         db 0x8A, 0xE0  ; mov ah,al  (0x0507 raw)
+         mov ah,al  ; 0x0507
 L509:    in al,dx  ; 0x0509  ec
          test al,0x40  ; 0x050A  a8 40
          jnz L51D  ; 0x050C  75 0f
          dec dx  ; 0x050E  4a
-         db 0x8A, 0xC4  ; mov al,ah  (0x050F raw)
+         mov al,ah  ; 0x050F
          out dx,al  ; 0x0511  ee
          inc dx  ; 0x0512  42
          mov cx,0xa  ; 0x0513  b9 0a 00
 L516:    in al,dx  ; 0x0516  ec
          loop L516  ; 0x0517  e2 fd
-         db 0x33, 0xC0  ; xor ax,ax  (0x0519 raw)
+         xor ax,ax  ; 0x0519
          jmp short L526  ; 0x051B  eb 09
 L51D:    test al,0x80  ; 0x051D  a8 80
          jnz L524  ; 0x051F  75 03
@@ -477,7 +477,7 @@ L51D:    test al,0x80  ; 0x051D  a8 80
          in al,dx  ; 0x0522  ec
          inc dx  ; 0x0523  42
 L524:    loop L509  ; 0x0524  e2 e3
-L526:    db 0x0B, 0xC9  ; or cx,cx  (0x0526 raw)
+L526:    or cx,cx  ; 0x0526
          jnz L52C  ; 0x0528  75 02
          mov al,0xff  ; 0x052A  b0 ff
 L52C:    pop dx  ; 0x052C  5a
@@ -487,16 +487,16 @@ L52F:    push cx  ; 0x052F  51
          push dx  ; 0x0530  52
          mov cx,0x800  ; 0x0531  b9 00 08
          mov dx,cs:[0x170]  ; 0x0534  2e 8b 16 70 01
-         db 0x8A, 0xE0  ; mov ah,al  (0x0539 raw)
+         mov ah,al  ; 0x0539
 L53B:    in al,dx  ; 0x053B  ec
          test al,0x40  ; 0x053C  a8 40
          jnz L547  ; 0x053E  75 07
-         db 0x8A, 0xC4  ; mov al,ah  (0x0540 raw)
+         mov al,ah  ; 0x0540
          out dx,al  ; 0x0542  ee
-         db 0x33, 0xC0  ; xor ax,ax  (0x0543 raw)
+         xor ax,ax  ; 0x0543
          jmp short L549  ; 0x0545  eb 02
 L547:    loop L53B  ; 0x0547  e2 f2
-L549:    db 0x0B, 0xC9  ; or cx,cx  (0x0549 raw)
+L549:    or cx,cx  ; 0x0549
          jnz L550  ; 0x054B  75 03
          mov ax,0xffff  ; 0x054D  b8 ff ff
 L550:    pop dx  ; 0x0550  5a
@@ -511,10 +511,10 @@ L55D:    in al,dx  ; 0x055D  ec
          jnz L568  ; 0x0560  75 06
          dec dx  ; 0x0562  4a
          in al,dx  ; 0x0563  ec
-         db 0x32, 0xE4  ; xor ah,ah  (0x0564 raw)
+         xor ah,ah  ; 0x0564
          jmp short L56A  ; 0x0566  eb 02
 L568:    loop L55D  ; 0x0568  e2 f3
-L56A:    db 0x0B, 0xC9  ; or cx,cx  (0x056A raw)
+L56A:    or cx,cx  ; 0x056A
          jnz L571  ; 0x056C  75 03
          mov ax,0xffff  ; 0x056E  b8 ff ff
 L571:    pop dx  ; 0x0571  5a
@@ -536,10 +536,10 @@ L581:    in al,dx  ; 0x0581  ec
          pop ax  ; 0x0588  58
          ret  ; 0x0589  c3
 L58A:    push bp  ; 0x058A  55
-         db 0x8B, 0xEC  ; mov bp,sp  (0x058B raw)
+         mov bp,sp  ; 0x058B
          mov ax,[bp+0x6]  ; 0x058D  8b 46 06
          mov cx,[bp+0xa]  ; 0x0590  8b 4e 0a
-         db 0x0B, 0xC8  ; or cx,ax  (0x0593 raw)
+         or cx,ax  ; 0x0593
          mov cx,[bp+0x8]  ; 0x0595  8b 4e 08
          jnz L5A3  ; 0x0598  75 09
          mov ax,[bp+0x4]  ; 0x059A  8b 46 04
@@ -548,13 +548,13 @@ L58A:    push bp  ; 0x058A  55
          ret word 0x8  ; 0x05A0  c2 08 00
 L5A3:    push bx  ; 0x05A3  53
          mul cx  ; 0x05A4  f7 e1
-         db 0x8B, 0xD8  ; mov bx,ax  (0x05A6 raw)
+         mov bx,ax  ; 0x05A6
          mov ax,[bp+0x4]  ; 0x05A8  8b 46 04
          mul word [bp+0xa]  ; 0x05AB  f7 66 0a
-         db 0x03, 0xD8  ; add bx,ax  (0x05AE raw)
+         add bx,ax  ; 0x05AE
          mov ax,[bp+0x4]  ; 0x05B0  8b 46 04
          mul cx  ; 0x05B3  f7 e1
-         db 0x03, 0xD3  ; add dx,bx  (0x05B5 raw)
+         add dx,bx  ; 0x05B5
          pop bx  ; 0x05B7  5b
          pop bp  ; 0x05B8  5d
          ret word 0x8  ; 0x05B9  c2 08 00
@@ -562,7 +562,7 @@ L5BC:    push ax  ; 0x05BC  50
          push si  ; 0x05BD  56
          db 0x90, 0x90, 0x90, 0x90, 0x90  ; 0x05BE  nop x5（原 mov al,0x5 + call L52F：向 331 发 0x05，UART 下被忽略，配套死代码一并清掉）
          mov si,0x0  ; 0x05C3  be 00 00
-L5C6:    db 0x8B, 0xC6  ; mov ax,si  (0x05C6 raw)
+L5C6:    mov ax,si  ; 0x05C6
          or al,0xb0  ; 0x05C8  0c b0
          call L4FD  ; 0x05CA  e8 30 ff
          mov al,0x7b  ; 0x05CD  b0 7b
@@ -571,7 +571,7 @@ L5C6:    db 0x8B, 0xC6  ; mov ax,si  (0x05C6 raw)
          call L4FD  ; 0x05D5  e8 25 ff
          call cc_reset  ; 0x05D8  e8 xx xx（原 mov al,0xd0 + call L52F，改为 CC#121 all controllers off）
          db 0x90, 0x90  ; 0x05DB  nop x2
-         db 0x8B, 0xC6  ; mov ax,si  (0x05DD raw)
+         mov ax,si  ; 0x05DD
          or al,0xb0  ; 0x05DF  0c b0
          call L4FD  ; 0x05E1  e8 19 ff  (修复3: 数据口)
          mov al,0x40  ; 0x05E4  b0 40
@@ -591,17 +591,17 @@ L5F8:    push bx  ; 0x05F8  53
          inc dx  ; 0x05FC  42
          mov cs:[0x170],dx  ; 0x05FD  2e 89 16 70 01
          call cc64_setup  ; 0x0602  e8 xx xx (原 call L4BA，初始化例程内部先做 UART 初始化)
-         db 0x33, 0xC9  ; xor cx,cx  (0x0605 raw)
-L607:    db 0x8B, 0xD9  ; mov bx,cx  (0x0607 raw)
+         xor cx,cx  ; 0x0605
+L607:    mov bx,cx  ; 0x0607
          shl bx,1  ; 0x0609  d1 e3
          mov bx,cs:[bx+0x156]  ; 0x060B  2e 8b 9f 56 01
          mov word cs:[bx+0x8],0x0  ; 0x0610  2e c7 47 08 00 00
          inc cx  ; 0x0616  41
          cmp cx,0x3  ; 0x0617  83 f9 03
          jnz L607  ; 0x061A  75 eb
-         db 0x33, 0xC9  ; xor cx,cx  (0x061C raw)
+         xor cx,cx  ; 0x061C
 L61E:    mov al,0xb0  ; 0x061E  b0 b0
-         db 0x0A, 0xC1  ; or al,cl  (0x0620 raw)
+         or al,cl  ; 0x0620
          call L4FD  ; 0x0622  e8 d8 fe
          mov al,0x7b  ; 0x0625  b0 7b
          call L4FD  ; 0x0627  e8 d3 fe
@@ -640,7 +640,7 @@ L656:    mov byte cs:[bx+si+0x26],0x0  ; 0x0656  2e c6 40 26 00
          call L242  ; 0x0675  e8 ca fb
          mov al,cs:[bx+0x3e]  ; 0x0678  2e 8a 47 3e
          mov cs:[bx+0x3d],al  ; 0x067C  2e 88 47 3d
-         db 0x0A, 0xC9  ; or cl,cl  (0x0680 raw)
+         or cl,cl  ; 0x0680
          jnz L698  ; 0x0682  75 14
          mov word cs:[bx+0xa],0x0  ; 0x0684  2e c7 47 0a 00 00
          mov byte cs:[bx+0x36],0x0  ; 0x068A  2e c6 47 36 00
@@ -704,7 +704,7 @@ L762:    push ax  ; 0x0762  50
          push bx  ; 0x0763  53
          shl bx,1  ; 0x0764  d1 e3
          mov bx,cs:[bx+0x156]  ; 0x0766  2e 8b 9f 56 01
-         db 0x0B, 0xC9  ; or cx,cx  (0x076B raw)
+         or cx,cx  ; 0x076B
          jnz L77A  ; 0x076D  75 0b
          mov word cs:[bx+0x8],0x0  ; 0x076F  2e c7 47 08 00 00
          call L5BC  ; 0x0775  e8 44 fe
@@ -733,7 +733,7 @@ L7BE:    pop bx  ; 0x07BE  5b
          pop ax  ; 0x07BF  58
          ret  ; 0x07C0  c3
 L7C1:    push bx  ; 0x07C1  53
-         db 0x8B, 0xC3  ; mov ax,bx  (0x07C2 raw)
+         mov ax,bx  ; 0x07C2
          shl bx,1  ; 0x07C4  d1 e3
          mov bx,cs:[bx+0x156]  ; 0x07C6  2e 8b 9f 56 01
          cmp byte cs:[bx+0x36],0x0  ; 0x07CB  2e 80 7f 36 00
@@ -741,7 +741,7 @@ L7C1:    push bx  ; 0x07C1  53
          mov cs:[bx+0x3e],dl  ; 0x07D2  2e 88 57 3e
          mov cs:[bx+0x3d],dl  ; 0x07D6  2e 88 57 3d
          mov dx,cs:[bx+0x37]  ; 0x07DA  2e 8b 57 37
-         db 0x8B, 0xD8  ; mov bx,ax  (0x07DE raw)
+         mov bx,ax  ; 0x07DE
          call L869  ; 0x07E0  e8 86 00
          mov ax,0x0  ; 0x07E3  b8 00 00
          jmp short L7EB  ; 0x07E6  eb 03
@@ -754,10 +754,10 @@ L7ED:    push bx  ; 0x07ED  53
          cmp word cs:[bx+0x8],0x0  ; 0x07F5  2e 83 7f 08 00
          jz L81C  ; 0x07FA  74 20
          mov ax,0x2710  ; 0x07FC  b8 10 27
-         db 0x3B, 0xD0  ; cmp dx,ax  (0x07FF raw)
+         cmp dx,ax  ; 0x07FF
          jg L817  ; 0x0801  7f 14
          neg ax  ; 0x0803  f7 d8
-         db 0x3B, 0xD0  ; cmp dx,ax  (0x0805 raw)
+         cmp dx,ax  ; 0x0805
          jl L812  ; 0x0807  7c 09
          mov cs:[bx+0x18],dx  ; 0x0809  2e 89 57 18
          mov ax,0x0  ; 0x080D  b8 00 00
@@ -773,7 +773,7 @@ L821:    shl bx,1  ; 0x0821  d1 e3
          mov bx,cs:[bx+0x156]  ; 0x0823  2e 8b 9f 56 01
          cmp word cs:[bx+0x8],0x0  ; 0x0828  2e 83 7f 08 00
          jna L865  ; 0x082D  76 36
-         db 0x0B, 0xC9  ; or cx,cx  (0x082F raw)
+         or cx,cx  ; 0x082F
          jnz L844  ; 0x0831  75 11
          xor word cs:[bx+0x8],0x3  ; 0x0833  2e 83 77 08 03
          cmp word cs:[bx+0x8],0x2  ; 0x0838  2e 83 7f 08 02
@@ -800,15 +800,15 @@ L869:    push bx  ; 0x0869  53
          cmp byte cs:[bx+0x36],0x0  ; 0x0873  2e 80 7f 36 00
          jnz L8A0  ; 0x0878  75 26
          mov cs:[bx+0x37],dx  ; 0x087A  2e 89 57 37
-         db 0x8B, 0xC2  ; mov ax,dx  (0x087E raw)
+         mov ax,dx  ; 0x087E
          mov cx,0x64  ; 0x0880  b9 64 00
          mul cx  ; 0x0883  f7 e1
-         db 0x32, 0xED  ; xor ch,ch  (0x0885 raw)
+         xor ch,ch  ; 0x0885
          mov cl,cs:[bx+0x3e]  ; 0x0887  2e 8a 4f 3e
-         db 0x0B, 0xC9  ; or cx,cx  (0x088B raw)
+         or cx,cx  ; 0x088B
          jnz L895  ; 0x088D  75 06
-         db 0x33, 0xC0  ; xor ax,ax  (0x088F raw)
-         db 0x33, 0xD2  ; xor dx,dx  (0x0891 raw)
+         xor ax,ax  ; 0x088F
+         xor dx,dx  ; 0x0891
          jmp short L897  ; 0x0893  eb 02
 L895:    div cx  ; 0x0895  f7 f1
 L897:    mov cs:[bx+0x39],ax  ; 0x0897  2e 89 47 39
@@ -840,7 +840,7 @@ L8D5:    push bx  ; 0x08D5  53
          mov bx,cs:[bx+0x156]  ; 0x08D8  2e 8b 9f 56 01
          cmp word cs:[bx+0x8],0x0  ; 0x08DD  2e 83 7f 08 00
          jz L918  ; 0x08E2  74 34
-         db 0x0B, 0xC9  ; or cx,cx  (0x08E4 raw)
+         or cx,cx  ; 0x08E4
          jnz L8F8  ; 0x08E6  75 10
          neg word cs:[bx+0x8]  ; 0x08E8  2e f7 5f 08
          cmp word cs:[bx+0x8],0xffffffffffffffff  ; 0x08EC  2e 83 7f 08 ff
@@ -893,7 +893,7 @@ L938:    pop es  ; 0x0938  07
 L94B:    cmp al,0x1  ; 0x094B  3c 01
          jnz L967  ; 0x094D  75 18
          mov cs:[bx+0x4c],si  ; 0x094F  2e 89 77 4c
-         db 0x66, 0x2E, 0xC7, 0x47, 0x4E, 0x00, 0x00, 0x00, 0x00  ; mov dword cs:[bx+0x4e],0x0  (0x0953 raw)
+         mov dword cs:[bx+0x4e],0x0  ; 0x0953
          mov si,SONG_BUFFER  ; 0x095C  be ad 09
          mov cs:[bx+0x54],si  ; 0x095F  2e 89 77 54
          mov word cs:[bx+0x56],cs  ; 0x0963  2e 8c 4f 56
@@ -913,7 +913,7 @@ L967:    push cs  ; 0x0967  0e
          ret  ; 0x0976  c3
 L977:    cmp al,0x1  ; 0x0977  3c 01
          jnz L984  ; 0x0979  75 09
-         db 0x66, 0x2E, 0xC7, 0x47, 0x4E, 0x00, 0x00, 0x00, 0x00  ; mov dword cs:[bx+0x4e],0x0  (0x097B raw)
+         mov dword cs:[bx+0x4e],0x0  ; 0x097B
 L984:    ret  ; 0x0984  c3
 L985:    push eax  ; 0x0985  66 50
          push bx  ; 0x0987  53
@@ -921,9 +921,9 @@ L985:    push eax  ; 0x0985  66 50
          sub si,SONG_BUFFER  ; 0x0989  81 ee ad 09
          cmp al,0x1  ; 0x098D  3c 01
          jnz L9A5  ; 0x098F  75 14
-         db 0x66, 0x33, 0xC0  ; xor eax,eax  (0x0991 raw)
-         db 0x8B, 0xC6  ; mov ax,si  (0x0994 raw)
-         db 0x66, 0x2E, 0x01, 0x47, 0x4E  ; add cs:[bx+0x4e],eax  (0x0996 raw)
+         xor eax,eax  ; 0x0991
+         mov ax,si  ; 0x0994
+         add cs:[bx+0x4e],eax  ; 0x0996
          lea si,[bx+0x48]  ; 0x099B  8d 77 48
          mov ah,0xb  ; 0x099E  b4 0b
          call word far cs:[0x172]  ; 0x09A0  2e ff 1e 72 01
