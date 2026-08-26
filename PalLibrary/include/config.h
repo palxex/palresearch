@@ -40,6 +40,10 @@ typedef	signed int		sint32;
 typedef	signed long long	sint64;
 #endif
 
+#ifdef __linux__
+    typedef int errno_t;
+#endif
+
 #ifndef	palerrno_t
 typedef	int	palerrno_t;
 #endif
