@@ -86,7 +86,7 @@
 作用：OPL2原理和资料
 作者：Jeffrey S. Lee
 翻译：BSPAL,中华大圣
-校正补完：中华大圣
+校正补完：中华大圣，GTR3QQ
 
 新增工具目录：rix/MakeRIX
 作用：RIX制作
@@ -99,6 +99,7 @@
 新增资料：rix/ins.txt
 作用：ins格式解析
 作者：中华大圣
+校正补完：GTR3QQ
 
 新增资料：rix/ins.h
 作用：adlib官方开发包中的ins格式
@@ -145,3 +146,5 @@
 新增目录：midi/mpu401
 作用：MPU401.DRV重建及修正
 作者：palxex
+鸣谢：PalMusicFan
+详细说明：https://github.com/palxex/palresearch/discussions/23
