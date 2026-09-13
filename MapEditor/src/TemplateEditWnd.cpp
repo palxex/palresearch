@@ -87,6 +87,9 @@ HDC		TEW_hDCTemplate				= NULL;
 
 // ºóÌ¨ÆÁÄ»
 HDC		TEW_hDCBack				= NULL;
+LONG		TEW_lBackWidth			= 0;
+LONG		TEW_lBackHeight			= 0;
+HBITMAP		TEW_hBackBitmap			= NULL;
 
 HWND		TEW_hTemplateEditWnd			= NULL;
 
@@ -323,9 +326,10 @@ LRESULT TemplateEditWnd_OnCreate(HWND hWnd, WPARAM wParam, LPARAM lParam)
 	hDCScreen	= ::GetDC(NULL);
 	TEW_hDCBack = ::CreateCompatibleDC(hDCScreen);
 
-	hBitmap = ::CreateCompatibleBitmap(hDCScreen, 1024, 768);
-	::SelectObject(TEW_hDCBack, hBitmap);
-	::DeleteObject(hBitmap);
+	TEW_hBackBitmap = ::CreateCompatibleBitmap(hDCScreen, 1024, 768);
+	::SelectObject(TEW_hDCBack, TEW_hBackBitmap);
+	TEW_lBackWidth  = 1024;
+	TEW_lBackHeight = 768;
 
 	hBrush = (HBRUSH)::GetStockObject(BLACK_BRUSH);
 	::SelectObject(TEW_hDCBack, hBrush);
@@ -450,6 +454,11 @@ LRESULT TemplateEditWnd_OnDestroy(HWND hWnd, WPARAM wParam, LPARAM lParam)
 	::DeleteDC(TEW_hDCBarrier);
 	::DeleteDC(TEW_hDCObject);
 	::DeleteDC(TEW_hDCBack);
+	if (TEW_hBackBitmap != NULL)
+	{
+		::DeleteObject(TEW_hBackBitmap);
+		TEW_hBackBitmap = NULL;
+	}
 
 	return ::DefMDIChildProc(hWnd, WM_DESTROY, wParam, lParam);
 }
@@ -523,6 +532,10 @@ LRESULT TemplateEditWnd_OnTimer(HWND hWnd, WPARAM wParam, LPARAM lParam)
 {
 	HDC hDC;
 	DRAWTILESTRUCT	DrawTile;
+	HDC		hDCScreen		= NULL;
+	RECT		rcBack		= { 0, 0, 0, 0 };
+	LONG		lDrawWidth	= 0;
+	LONG		lDrawHeight	= 0;
 
 	int cxScreen = ::GetSystemMetrics(SM_CXSCREEN);
 	int cyScreen = ::GetSystemMetrics(SM_CYSCREEN);
@@ -547,9 +560,38 @@ LRESULT TemplateEditWnd_OnTimer(HWND hWnd, WPARAM wParam, LPARAM lParam)
 	}
 
 	// ÇåÆÁ
-	::Rectangle(TEW_hDCBack, 0, 0, 1028, 768);
+	// Match the back buffer to the window client area
+	::GetClientRect(hWnd, &rcBack);
+	if (rcBack.right < 1) rcBack.right = 1;
+	if (rcBack.bottom < 1) rcBack.bottom = 1;
+	if (rcBack.right != TEW_lBackWidth || rcBack.bottom != TEW_lBackHeight)
+	{
+		if (TEW_hBackBitmap != NULL)
+		{
+			::DeleteObject(TEW_hBackBitmap);
+			TEW_hBackBitmap = NULL;
+		}
+		hDCScreen = ::GetDC(NULL);
+		TEW_hBackBitmap = ::CreateCompatibleBitmap(hDCScreen, rcBack.right, rcBack.bottom);
+		::ReleaseDC(NULL, hDCScreen);
+		if (TEW_hBackBitmap != NULL)
+		{
+			::SelectObject(TEW_hDCBack, TEW_hBackBitmap);
+			TEW_lBackWidth = rcBack.right;
+			TEW_lBackHeight = rcBack.bottom;
+		}
+	}
 
-	MapEx_Draw(TEW_hDCBack, 45, 30, (LPWORD)g_TemplateData, (HDC*)g_hDCTileImage, TEW_lxCamera, TEW_lyCamera);
+	// Clear the whole buffer
+	rcBack.left = 0;
+	rcBack.top = 0;
+	::FillRect(TEW_hDCBack, &rcBack, (HBRUSH)::GetStockObject(BLACK_BRUSH));
+
+	// One tile per 32 pixels, plus a margin for the isometric overhang
+	lDrawWidth	= TEW_lBackWidth  / 32 + 3;
+	lDrawHeight	= TEW_lBackHeight / 32 + 3;
+
+	MapEx_Draw(TEW_hDCBack, lDrawWidth, lDrawHeight, (LPWORD)g_TemplateData, (HDC*)g_hDCTileImage, TEW_lxCamera, TEW_lyCamera);
 
 	if (TEW_bShowObject)
 	{
@@ -572,7 +614,7 @@ LRESULT TemplateEditWnd_OnTimer(HWND hWnd, WPARAM wParam, LPARAM lParam)
 
 	if (TEW_bShowBarrier)
 	{
-		MapEx_MarkBarrier(TEW_hDCBack, 45, 30, (LPWORD)g_TemplateData, TEW_hDCBarrier, TEW_lxCamera, TEW_lyCamera);
+		MapEx_MarkBarrier(TEW_hDCBack, lDrawWidth, lDrawHeight, (LPWORD)g_TemplateData, TEW_hDCBarrier, TEW_lxCamera, TEW_lyCamera);
 	}
 
 	memset(&DrawTile, 0, sizeof(DRAWTILESTRUCT));
@@ -600,7 +642,7 @@ LRESULT TemplateEditWnd_OnTimer(HWND hWnd, WPARAM wParam, LPARAM lParam)
 
 	hDC = ::GetDC(hWnd);
 
-	::BitBlt(hDC, 0, 0, 1024, 768, TEW_hDCBack, 0, 0, SRCCOPY);
+	::BitBlt(hDC, 0, 0, TEW_lBackWidth, TEW_lBackHeight, TEW_hDCBack, 0, 0, SRCCOPY);
 
 	::ReleaseDC(hWnd, hDC);
 
