@@ -88,10 +88,47 @@ VOID CStatusBar::SetHead(LPCSTR lpsz)
 	SetText(0, lpsz, SBT_NOBORDERS);
 }
 
+//
+// x, y are the Tile coordinates of the tile under the mouse.
+//
+// The engine stores a world position as (XBlock, YBlock, Half). One editor tile column
+// covers a 32 pixel step on an 64 pixel wide sprite, so two tile columns make one block
+// and the second column is the "half" one:
+//     XBlock = tileX / 2,  Half = tileX % 2,  YBlock = tileY
+// The engine pixel position is then exactly half of the pixel position the editor uses
+// for that tile (Map_CalcXYTileToPixel):   x = tileX * 32,  y = tileY * 32 + (tileX % 2) * 16
+//     X = XBlock * 32 + Half * 16   (== tileX * 16)
+//     Y = YBlock * 16 + Half * 8    (== tileY * 16 + Half * 8)
+//
 VOID CStatusBar::SetXY(LONG x, LONG y)
 {
 	char Buffer[256];
-	::sprintf(Buffer, "X:%d, Y:%d", x, y);
+	LONG xBlock = 0;
+	LONG yBlock = 0;
+	LONG half   = 0;
+	LONG lWX		= 0;
+	LONG lWY		= 0;
+
+	// floored, so tiles off the top-left of the map still read sensibly
+	if (x >= 0)
+	{
+		xBlock = x / 2;
+		half   = x % 2;
+	}
+	else
+	{
+		xBlock = -((-x + 1) / 2);
+		half   = x - xBlock * 2;
+	}
+	yBlock = y;
+
+	lWX = xBlock * 32 + half * 16;
+	lWY = yBlock * 16 + half * 8;
+
+	::sprintf(Buffer,
+		"XBlock:%d(%x), YBlock:%d(%x), Half:%d, X:%d(%x), Y:%d(%x)",
+		(INT)xBlock, (INT)xBlock, (INT)yBlock, (INT)yBlock, (INT)half,
+		(INT)lWX, (INT)lWX, (INT)lWY, (INT)lWY);
 	SetText(1, Buffer, 0);
 }
 

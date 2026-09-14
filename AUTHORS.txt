@@ -62,6 +62,7 @@
 新增工具目录：MapEditor
 作用：修改仙剑的地图，查看遮挡等等
 作者：Baldur
+增补：palxex
 
 新增工具目录：MKF
 作用：MKF解包、打包

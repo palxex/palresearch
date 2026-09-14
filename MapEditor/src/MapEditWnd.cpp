@@ -339,9 +339,10 @@ LRESULT MapEditWnd_OnCreate(HWND hWnd, WPARAM wParam, LPARAM lParam)
 	hDCScreen	= ::GetDC(NULL);
 	MEW_hDCBack = ::CreateCompatibleDC(hDCScreen);
 
-	hBitmap = ::CreateCompatibleBitmap(hDCScreen, 1024, 768);
-	::SelectObject(MEW_hDCBack, hBitmap);
-	::DeleteObject(hBitmap);
+	MEW_hBackBitmap = ::CreateCompatibleBitmap(hDCScreen, 1024, 768);
+	::SelectObject(MEW_hDCBack, MEW_hBackBitmap);
+	MEW_lBackWidth  = 1024;
+	MEW_lBackHeight = 768;
 
 	hBrush = (HBRUSH)::GetStockObject(BLACK_BRUSH);
 	::SelectObject(MEW_hDCBack, hBrush);

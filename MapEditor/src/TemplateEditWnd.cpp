@@ -72,6 +72,12 @@ DWORD		TEW_dwCurEditLayer			= IDCMD_EDIT_LAYER0;
 // 鼠标左键是否被按下
 BOOL		TEW_bMouseLBDown			= FALSE;
 
+// drag-select of template tiles (left drag without CTRL)
+BOOL		TEW_bSelectDrag			= FALSE;
+BOOL		TEW_bSelectDragCtrl			= FALSE;
+LONG		TEW_lxSelectAnchor			= 0;
+LONG		TEW_lySelectAnchor			= 0;
+
 // 是否显示人物对象
 BOOL		TEW_bShowObject				= FALSE;
 
@@ -140,6 +146,13 @@ LRESULT TemplateEditWnd_OnMDIActivate(HWND hWnd, WPARAM wParam, LPARAM lParam);
 VOID TemplateEditWnd_UpdateCommandUI(VOID);
 
 VOID TemplateEditWnd_MarkTemplate(VOID);
+
+BOOL TemplateEditWnd_IsInTemplate(LONG lxTile, LONG lyTile);
+VOID TemplateEditWnd_AddToTemplate(LONG lxTile, LONG lyTile);
+VOID TemplateEditWnd_RemoveFromTemplate(LONG lxTile, LONG lyTile);
+VOID TemplateEditWnd_GetSelectRect(LPLONG lplx0, LPLONG lply0, LPLONG lplx1, LPLONG lply1);
+VOID TemplateEditWnd_ShowSelectPreview(VOID);
+VOID TemplateEditWnd_CommitSelectRect(BOOL bToggle);
 ////////////////////////////////////////////////////////////////////////////////
 //
 //				函数定义
@@ -638,6 +651,10 @@ LRESULT TemplateEditWnd_OnTimer(HWND hWnd, WPARAM wParam, LPARAM lParam)
 	Map_MarkTile(TEW_hDCBack, &DrawTile);
 
 	TemplateEditWnd_MarkTemplate();
+	if (TEW_bSelectDrag)
+	{
+		TemplateEditWnd_ShowSelectPreview();
+	}
 //	MapEx_DrawMiniMap(TEW_hDCBack, (LPWORD)g_TemplateData, g_hDCMiniTileImage);
 
 	hDC = ::GetDC(hWnd);
@@ -699,7 +716,9 @@ LRESULT TemplateEditWnd_OnMouseMove(HWND hWnd, WPARAM wParam, LPARAM lParam)
 		return 0;
 	}
 
-	if (TEW_bMouseLBDown)
+	// Suppress the per-mode painting while a template rubber band
+	// (plain or CTRL) is being dragged.
+	if (TEW_bMouseLBDown && !TEW_bSelectDrag)
 	{
 		switch (TEW_dwStatus)
 		{
@@ -781,25 +800,34 @@ LRESULT TemplateEditWnd_OnLButtonDown(HWND hWnd, WPARAM wParam, LPARAM lParam)
 		return 0;
 	}
 
-	if (wParam == (MK_CONTROL | MK_LBUTTON))
+	// CTRL + click / drag: toggle.  A single click toggles one tile;
+	// dragging toggles the whole rectangle (selected -> unselected,
+	// unselected -> selected).  Works in any tool mode.
+	if (wParam & MK_CONTROL)
 	{
-		if (g_dwTemplateCount < MAX_TEMPLATE)
-		{
-			// 加入数组中
-			g_Template[ g_dwTemplateCount ].lxTile = TEW_lxCurSelTile;
-			g_Template[ g_dwTemplateCount ].lyTile = TEW_lyCurSelTile;
-			g_Template[ g_dwTemplateCount ].wLayer0Data = g_TemplateData[ TEW_lyCurSelTile ][ TEW_lxCurSelTile ][ 0 ];
-			g_Template[ g_dwTemplateCount ].wLayer1Data = g_TemplateData[ TEW_lyCurSelTile ][ TEW_lxCurSelTile ][ 1 ];
-			g_Template[ g_dwTemplateCount ].hDCMark = TEW_hDCTemplate;
-			g_Template[ g_dwTemplateCount ].phDC = g_hDCTileImage;
-			g_dwTemplateCount++;
-		}
-		
+		TEW_bSelectDrag = TRUE;
+		TEW_bSelectDragCtrl = TRUE;
+		TEW_bMouseLBDown = TRUE;
+		::SetCapture(hWnd);
+		TEW_lxSelectAnchor = TEW_lxCurSelTile;
+		TEW_lySelectAnchor = TEW_lyCurSelTile;
+
 		return 0;
 	}
 
 	switch (TEW_dwStatus)
 	{
+	case IDCMD_EDIT_SELECT:
+		// No CTRL, Select mode: begin a rubber-band drag that adds the whole
+		// rectangle to the template selection on button-up (live preview in OnTimer).
+		TEW_bSelectDrag = TRUE;
+		TEW_bSelectDragCtrl = FALSE;
+		TEW_bMouseLBDown = TRUE;
+		::SetCapture(hWnd);
+		TEW_lxSelectAnchor = TEW_lxCurSelTile;
+		TEW_lySelectAnchor = TEW_lyCurSelTile;
+		break;
+
 	case IDCMD_EDIT_PEN:
 		lCurSelImage = ImageSelWnd_GetSelImage();
 		if (lCurSelImage < 0)
@@ -855,6 +883,12 @@ LRESULT TemplateEditWnd_OnLButtonDown(HWND hWnd, WPARAM wParam, LPARAM lParam)
 ////////////////////////////////////////////////////////////////////////////////
 LRESULT TemplateEditWnd_OnLButtonUp(HWND hWnd, WPARAM wParam, LPARAM lParam)
 {
+	if (TEW_bSelectDrag == TRUE)
+	{
+		TEW_bSelectDrag = FALSE;
+		TemplateEditWnd_CommitSelectRect(TEW_bSelectDragCtrl);
+		TEW_bSelectDragCtrl = FALSE;
+	}
 	if (TEW_bMouseLBDown == TRUE)
 	{
 		TEW_bMouseLBDown = FALSE;
@@ -1194,10 +1228,29 @@ VOID TemplateEditWnd_SetTitle(LPCSTR lpstrTitle)
 
 VOID TemplateEditWnd_MarkTemplate(VOID)
 {
-	DWORD	i	= 0;
+	DWORD	i		= 0;
+	LONG	lx0		= 0;
+	LONG	ly0		= 0;
+	LONG	lx1		= 0;
+	LONG	ly1		= 0;
+	BOOL	bSkipRect	= FALSE;
+
+	// While a CTRL toggle-drag is in progress, the tiles inside the
+	// rubber band are about to be un-selected: hide their marks live.
+	if (TEW_bSelectDrag && TEW_bSelectDragCtrl)
+	{
+		TemplateEditWnd_GetSelectRect(&lx0, &ly0, &lx1, &ly1);
+		bSkipRect = TRUE;
+	}
 
 	for (i = 0; i < g_dwTemplateCount; i++)
 	{
+		if (bSkipRect &&
+			g_Template[ i ].lxTile >= lx0 && g_Template[ i ].lxTile <= lx1 &&
+			g_Template[ i ].lyTile >= ly0 && g_Template[ i ].lyTile <= ly1)
+		{
+			continue;
+		}
 		g_Template[ i ].lxOrigin = TEW_lxCamera;
 		g_Template[ i ].lyOrigin = TEW_lyCamera;
 		Map_MarkTile(TEW_hDCBack, &g_Template[ i ]);
@@ -1213,4 +1266,202 @@ VOID TemplateEditWnd_ClearTemplate(VOID)
 BOOL TemplateEditWnd_IsActive(VOID)
 {
 	return TEW_bActive;
+}
+////////////////////////////////////////////////////////////////////////////////
+//
+//
+//                    Template selection helpers
+//
+//  TemplateEditWnd_IsInTemplate     - is the tile already in the template?
+//  TemplateEditWnd_AddToTemplate    - add one tile (no duplicates)
+//  TemplateEditWnd_RemoveFromTemplate - delete one tile, keep order
+//  TemplateEditWnd_GetSelectRect    - normalize the drag rectangle
+//  TemplateEditWnd_ShowSelectPreview- draw the rubber-band preview
+//  TemplateEditWnd_CommitSelectRect - add (or toggle) the whole rectangle
+//
+//  No-CTRL drag (select mode) adds a whole rectangle; CTRL click toggles
+//  one tile and CTRL drag toggles a whole rectangle (add what is outside,
+//  remove what is inside).  All three combine on the same g_Template set.
+//
+////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+BOOL TemplateEditWnd_IsInTemplate(LONG lxTile, LONG lyTile)
+{
+	DWORD	i		= 0;
+
+	for (i = 0; i < g_dwTemplateCount; i++)
+	{
+		if (g_Template[ i ].lxTile == lxTile &&
+			g_Template[ i ].lyTile == lyTile)
+		{
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+
+VOID TemplateEditWnd_AddToTemplate(LONG lxTile, LONG lyTile)
+{
+	if (g_dwTemplateCount >= MAX_TEMPLATE)
+	{
+		return;
+	}
+
+	if (TemplateEditWnd_IsInTemplate(lxTile, lyTile))
+	{
+		return;
+	}
+
+	// add into array
+	g_Template[ g_dwTemplateCount ].lxTile = lxTile;
+	g_Template[ g_dwTemplateCount ].lyTile = lyTile;
+	g_Template[ g_dwTemplateCount ].wLayer0Data = g_TemplateData[ lyTile ][ lxTile ][ 0 ];
+	g_Template[ g_dwTemplateCount ].wLayer1Data = g_TemplateData[ lyTile ][ lxTile ][ 1 ];
+	g_Template[ g_dwTemplateCount ].hDCMark = TEW_hDCTemplate;
+	g_Template[ g_dwTemplateCount ].phDC = g_hDCTileImage;
+	g_dwTemplateCount++;
+}
+
+
+VOID TemplateEditWnd_RemoveFromTemplate(LONG lxTile, LONG lyTile)
+{
+	DWORD	i		= 0;
+
+	for (i = 0; i < g_dwTemplateCount; i++)
+	{
+		if (g_Template[ i ].lxTile == lxTile &&
+			g_Template[ i ].lyTile == lyTile)
+		{
+			// shift the tail down to keep the array order (the first entry is
+			// the paste base tile, so do NOT swap-with-last here)
+			if (i + 1 < g_dwTemplateCount)
+			{
+				::MoveMemory(&g_Template[ i ], &g_Template[ i + 1 ],
+					sizeof(DRAWTILESTRUCT) * (g_dwTemplateCount - i - 1));
+			}
+			g_dwTemplateCount--;
+			memset(&g_Template[ g_dwTemplateCount ], 0, sizeof(DRAWTILESTRUCT));
+			return;
+		}
+	}
+}
+
+
+VOID TemplateEditWnd_GetSelectRect(LPLONG lplx0, LPLONG lply0, LPLONG lplx1, LPLONG lply1)
+{
+	LONG	lx0		= 0;
+	LONG	ly0		= 0;
+	LONG	lx1		= 0;
+	LONG	ly1		= 0;
+	LONG	lTmp		= 0;
+
+	lx0 = TEW_lxSelectAnchor;
+	ly0 = TEW_lySelectAnchor;
+	lx1 = TEW_lxMouseAtTile;
+	ly1 = TEW_lyMouseAtTile;
+
+	// When captured, moving outside the window reports wrapped (negative)
+	// coordinates; ignore them so the rubber band does not explode to the
+	// map edge, just freeze the current rect.
+	if (!Map_Assert(lx1, ly1))
+	{
+		lx1 = lx0;
+		ly1 = ly0;
+	}
+
+	if (lx0 > lx1)
+	{
+		lTmp = lx0; lx0 = lx1; lx1 = lTmp;
+	}
+	if (ly0 > ly1)
+	{
+		lTmp = ly0; ly0 = ly1; ly1 = lTmp;
+	}
+
+	// clamp to the map bounds
+	if (lx0 < 0)
+	{
+		lx0 = 0;
+	}
+	if (ly0 < 0)
+	{
+		ly0 = 0;
+	}
+	if (lx1 > 127)
+	{
+		lx1 = 127;
+	}
+	if (ly1 > 127)
+	{
+		ly1 = 127;
+	}
+
+	*lplx0 = lx0;
+	*lply0 = ly0;
+	*lplx1 = lx1;
+	*lply1 = ly1;
+}
+
+
+VOID TemplateEditWnd_ShowSelectPreview(VOID)
+{
+	LONG	lx0		= 0;
+	LONG	ly0		= 0;
+	LONG	lx1		= 0;
+	LONG	ly1		= 0;
+	LONG	lx		= 0;
+	LONG	ly		= 0;
+
+	TemplateEditWnd_GetSelectRect(&lx0, &ly0, &lx1, &ly1);
+
+	for (ly = ly0; ly <= ly1; ly++)
+	{
+		for (lx = lx0; lx <= lx1; lx++)
+		{
+			if (TemplateEditWnd_IsInTemplate(lx, ly))
+			{
+				continue;
+			}
+			DRAWTILESTRUCT	DrawTile;
+			memset(&DrawTile, 0, sizeof(DRAWTILESTRUCT));
+			DrawTile.lxOrigin = TEW_lxCamera;
+			DrawTile.lyOrigin = TEW_lyCamera;
+			DrawTile.lxTile = lx;
+			DrawTile.lyTile = ly;
+			DrawTile.hDCMark = TEW_hDCTemplate;
+			DrawTile.phDC = g_hDCTileImage;
+			Map_MarkTile(TEW_hDCBack, &DrawTile);
+		}
+	}
+}
+
+
+VOID TemplateEditWnd_CommitSelectRect(BOOL bToggle)
+{
+	LONG	lx0		= 0;
+	LONG	ly0		= 0;
+	LONG	lx1		= 0;
+	LONG	ly1		= 0;
+	LONG	lx		= 0;
+	LONG	ly		= 0;
+
+	TemplateEditWnd_GetSelectRect(&lx0, &ly0, &lx1, &ly1);
+
+	for (ly = ly0; ly <= ly1; ly++)
+	{
+		for (lx = lx0; lx <= lx1; lx++)
+		{
+			if (bToggle && TemplateEditWnd_IsInTemplate(lx, ly))
+			{
+				TemplateEditWnd_RemoveFromTemplate(lx, ly);
+			}
+			else
+			{
+				TemplateEditWnd_AddToTemplate(lx, ly);
+			}
+		}
+	}
 }
