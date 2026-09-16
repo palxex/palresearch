@@ -149,3 +149,7 @@
 作者：palxex
 鸣谢：PalMusicFan
 详细说明：https://github.com/palxex/palresearch/discussions/23
+
+新增目录：RIXROL
+作者：PalMusicFan
+协作：palxex
