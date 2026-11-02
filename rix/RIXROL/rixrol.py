@@ -267,18 +267,6 @@ def write_bnk(path: Path, patches: dict[int, bytes], names: dict[int, str] | Non
     assert len(out) == offset_data + count * patch_size
     path.write_bytes(out)
 
-def _rms_at(bpm, points, tick_beat):
-    if not points:
-        return 0.0
-    k = tick_beat / float(60 * RIX_UNITS_PER_SEC)
-    s = 0.0
-    for u in points:
-        x = k * bpm * u
-        e = x - math.floor(x + 0.5)
-        s += e * e
-    return math.sqrt(s / len(points))
-
-
 def build_segment_model(multiplier, tick_beat, segs, duration_units,
                         base_bpm_hint=None):
     """
@@ -318,6 +306,35 @@ def build_segment_model(multiplier, tick_beat, segs, duration_units,
         raise ValueError("segments must start at u0 == 0")
     us = [s["u0"] for s in segs]
     bpms = [s["bpm"] for s in segs]
+    # Snap each segment's tempo to the phrase period it was measured from.
+    #
+    # A segment's onsets are phrase heads whose spacing IS the beat the
+    # composer wrote.  Fitting bpm by RMS over all onsets lets a grace-note
+    # echo pull the value a couple of percent off, and under a scaled grid
+    # that few percent becomes a whole tick of drift per note -- MUS61 fitted
+    # 49.907 bpm against a clean 295 ms period, so 590 ms landed on tick 31.4
+    # instead of 32 and the staff could not line up to bars.
+    #
+    # When the heads share one spacing (the common case) that spacing is the
+    # tick length and the tempo follows from it exactly; the fitted value is
+    # kept when the heads are irregular, which means there is no clean
+    # period to snap to.
+    snapped = 0
+    for i, sg in enumerate(segs):
+        heads = sorted(set(sg.get("heads") or sg["rpts"]))
+        gaps = [b - a for a, b in zip(heads, heads[1:]) if b > a]
+        if len(gaps) < 2:
+            continue
+        counts = {}
+        for g in gaps:
+            counts[g] = counts.get(g, 0) + 1
+        period, n = max(counts.items(), key=lambda kv: (kv[1], -kv[0]))
+        if n / float(len(gaps)) < 0.75:
+            continue                      # irregular heads: keep the fit
+        cand = 60000.0 / (period * tick_beat)
+        if abs(cand - bpms[i]) / bpms[i] < 0.35:
+            bpms[i] = cand
+            snapped += 1
     for i in range(1, len(bpms)):
         bpms[i] = _octave_align(bpms[i], bpms[i - 1])
     beat_bpms = list(bpms)          # played (beat-level) tempi
@@ -338,6 +355,25 @@ def build_segment_model(multiplier, tick_beat, segs, duration_units,
         t += (duration_units - us[-1]) * b0[-1] / 60.0 * tick_beat / 1000.0
         return t
 
+    # Grid resolution: the smallest power of two that lets every onset gap
+    # fill at least one whole tick.
+    #
+    # The test is >= 1.0, not the looser >= 0.5 that nearest-rounding alone
+    # would allow.  Rounding does keep a gap of 0.68 tick on its own tick, so
+    # a looser test still preserves every NOTE -- but it does not preserve
+    # every note's LENGTH.  Measured on MUS61:
+    #
+    #     tickBeat  tick     notes kept  duration error (mean / worst)
+    #     16        73.75ms  36/48       20.0% / 51%
+    #     32        36.88ms  48/48       21.0% / 49%
+    #     64        18.44ms  48/48       10.6% / 26%
+    #
+    # At 32 a grace note occupies a single 36.9 ms tick while really lasting
+    # 17-25 ms, so every short note is stretched; at 64 the tick is 18.4 ms
+    # and the same note is placed within half a tick of its true length.
+    # Collapsing notes is not the only cost of a coarse grid, so the extra
+    # resolution is worth the larger tickBeat.  Consumers read tickBeat as
+    # the subdivision of one beat, which is why this is reported, not hidden.
     m = None
     for o in range(0, 9):
         cand = [b * 2 ** o for b in bpms]
@@ -358,7 +394,13 @@ def build_segment_model(multiplier, tick_beat, segs, duration_units,
                     abs(bpms[0] * 2 ** m - base_bpm_hint):
                 m = o
     scale = 2 ** m
-    bpms = [b * scale for b in bpms]
+    # Raise the grid by `scale` so every onset gap fills at least one tick.
+    # Express the finer grid by multiplying tickBeat, NOT by multiplying the
+    # tempi: ticks/sec is b/60*tickBeat, so scaling tickBeat alone leaves the
+    # tick stream identical while basicTempo keeps the musical value the
+    # segments were fitted at (49.9 for MUS61 instead of 798.5).  Scaling
+    # both at once multiplied ticks/sec twice and stretched playback.
+    tick_beat = tick_beat * scale
     collisions = [i for i, (g, b) in enumerate(zip(seg_gaps, bpms))
                   if g * b * tick_beat / 60000.0 < 1.0]
 
@@ -374,8 +416,11 @@ def build_segment_model(multiplier, tick_beat, segs, duration_units,
             cum.append(float(bounds[-1]))
     if bounds[-1] > 0xFFFE:
         raise ValueError("tempo-map tick stream exceeds the 16-bit space")
-    basic = bpms[0] / multiplier
-    mults = [round(multiplier * b / bpms[0], 6) for b in bpms]
+    # tickBeat already carries the grid scale, so basicTempo must stay at the
+    # musical tempo: writing bpms[0]/multiplier here (with the scaled bpms)
+    # was what produced MUS61's 798.5 BPM header.
+    basic = beat_bpms[0] / multiplier
+    mults = [round(multiplier * b / beat_bpms[0], 6) for b in beat_bpms]
     for m in mults:
         if not (0.01 <= m <= 10.0):
             raise ValueError(f"segment multiplier {m} outside 0.01..10.0")
@@ -664,76 +709,6 @@ def rix_note_events(rix):
         else:
             out[e.channel].append((e.time_rix, value))
     return out
-
-
-def match_bpm(rix, rol, bpm: float):
-    """Compare RIX note-select positions against a reference ROL."""
-    tick_rate = bpm / 60.0 * rol["tick_beat"]
-    rr = rix_note_events(rix)
-    ref = reference_note_starts(rol)
-    exact = 0
-    total = 0
-    errors = []
-    mismatched_channels = []
-
-    for ch in range(11):
-        if len(rr[ch]) != len(ref[ch]):
-            mismatched_channels.append((ch, len(rr[ch]), len(ref[ch])))
-        n = min(len(rr[ch]), len(ref[ch]))
-        for i in range(n):
-            time_ms, note = rr[ch][i]
-            ref_tick, ref_note = ref[ch][i]
-            predicted = int(math.floor(time_ms * tick_rate / 1000.0 + 0.5))
-            error = ref_tick - predicted
-            errors.append(error)
-            total += 1
-            if predicted == ref_tick and note == ref_note:
-                exact += 1
-
-    if errors:
-        rms = math.sqrt(sum(e * e for e in errors) / len(errors))
-        max_abs = max(abs(e) for e in errors)
-        jumps = [abs(errors[i] - errors[i-1]) for i in range(1, len(errors))]
-        max_jump = max(jumps, default=0)
-        large_jumps = sum(1 for j in jumps if j > 1.0)
-    else:
-        rms = max_abs = max_jump = 0.0
-        large_jumps = 0
-
-    return {
-        "bpm": bpm,
-        "exact": exact,
-        "total": total,
-        "ratio": exact / total if total else 0.0,
-        "rms": rms,
-        "max_abs": max_abs,
-        "max_jump": max_jump,
-        "large_jumps": large_jumps,
-        "mismatched_channels": mismatched_channels,
-    }
-
-
-def scan_bpm(rix, rol, bpm_min: float, bpm_max: float, step: float):
-    if step <= 0 or bpm_max < bpm_min:
-        raise ValueError("invalid BPM scan range")
-    results = []
-    bpm = bpm_min
-    # Integer-index stepping avoids accumulating floating-point step error.
-    count = int(math.floor((bpm_max - bpm_min) / step + 1e-9))
-    for i in range(count + 1):
-        b = bpm_min + i * step
-        results.append(match_bpm(rix, rol, b))
-    results.sort(key=lambda x: (-x["exact"], x["rms"], x["max_abs"], x["max_jump"], abs(x["bpm"])))
-    return results
-
-
-def print_match_report(results, limit=20):
-    print("BPM matching results (sorted by exact matches, RMS, max error, max jump):")
-    print("  BPM         exact/total    match%       RMS      maxErr   maxJump  jumps>1")
-    for r in results[:limit]:
-        print(f"  {r['bpm']:9.4f}  {r['exact']:5d}/{r['total']:<5d}  "
-              f"{r['ratio']*100:8.3f}%  {r['rms']:8.4f}  "
-              f"{r['max_abs']:7.3f}  {r['max_jump']:7.3f}  {r['large_jumps']:7d}")
 
 
 def bpm_tick_fit(rix, bpm: float, tick_beat: int):
@@ -1757,7 +1732,12 @@ def main():
     if map_model is not None:
         # The anchor segment defines the effective tempo for all reporting;
         # per-event ticks come from the piecewise model inside reconstruct.
-        args.bpm = map_model["bpms"][0]
+        # The model may have raised tickBeat to keep basicTempo musical, so
+        # take that value rather than the command-line one.
+        args.tick_beat = map_model.get("tick_beat", args.tick_beat)
+        # beat_bpms holds the unscaled, musical tempi; bpms is the
+        # grid-scaled variant and must not leak into the header.
+        args.bpm = map_model["beat_bpms"][0]
         tempo_events = [(bnd, mult) for bnd, mult in
                         zip(map_model["bounds"], map_model["mults"])]
     else:
@@ -1772,6 +1752,10 @@ def main():
 
     rol = build_rol(rix, rec, args.bpm, args.tick_beat, args.beat_measure,
                     args.tempo_multiplier, tempo_events=tempo_events)
+    if args.no_build:
+        # --no-build: stop after solving the tempo, write nothing.
+        print("(no-build: nothing written)")
+        return
     out.write_bytes(rol)
 
     patches = {
