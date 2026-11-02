@@ -6,12 +6,6 @@ Test-oriented converter based on a minimal known RIX/ROL pair.
 
 Important reconstructed rule:
     RIX delay units are 1/1000 second, so one RIX delay unit is about 1.0 ms.
-    (v11 used the disassembly-derived clock 70 Hz x 14 units = 980 units/s;
-    v12+ use the logical millisecond clock 1000 units/s.  Every constant in
-    this file -- tick_converter, bpm_tick_fit (rate = bpm*tickBeat/60000) and
-    the analytic plateau solver (plateau_bounds / refine_rms_minimum)
-    -- all assume the SAME clock;
-    the two conventions are never mixed.)
     ROL timing is reconstructed from:
         tickBeat = ticks per beat
         actual BPM = supplied/measured playback BPM
@@ -38,21 +32,6 @@ The script writes:
 The BNK writer is intentionally conservative. If a matching original
 INS/BNK is available, use it for comparison; the ROL itself references
 the generated instrument names.
-
-v14 adds ONE manual switch: --tempo-map.
-  OFF (default): behaviour is byte-identical to v13.  When the sliding-window
-      detector measures the piece as re-tempoed mid-song, a short advisory is
-      appended to stdout recommending --tempo-map (advisory only; artifacts
-      are untouched).
-  ON: treat the piece as a variable-tempo composition.  fit_tempo_segments()
-      splits the onset stream at phrase-period breaks, each segment is
-      fitted with local_onset_fit(), octave jumps in notation are folded to
-      beat level, and the whole map is written as a multi-event ROL tempo
-      track (basicTempo at the grid tempo + one multiplier per segment).
-      The grid scale (power of two) is the smallest that lets every same-
-      segment onset gap fill at least one tick; playback timing is
-      scale-invariant.  If no reliable boundaries are found the v13 path
-      runs instead.  --tempo-map is mutually exclusive.
 """
 
 from __future__ import annotations
@@ -66,8 +45,7 @@ from dataclasses import dataclass
 from fractions import Fraction
 from pathlib import Path
 
-# Single source of truth for the RIX clock. v11 used 70*14 = 980 units/s
-# (disassembly); v12+ use the logical millisecond clock 1000 units/s.
+# Single source of truth for the RIX clock, the logical millisecond clock 1000 units/s.
 # tick_converter, bpm_tick_fit and the plateau solver all derive from this one.
 RIX_UNITS_PER_SEC = 1000
 
@@ -314,12 +292,12 @@ def build_segment_model(multiplier, tick_beat, segs, duration_units,
 
     The written track carries basicTempo = bpm0/multiplier plus a multiplier
     event (bpm_i/bpm0) at each segment-start tick: ROL playback bpm at tick
-    t = basicTempo * last tempo event at or before t, so v13's single-event
+    t = basicTempo * last tempo event at or before t, so single-event
     track is the one-event special case.
 
     Musical octave: doubling a segment's bpm doubles its tick stream AND
     the playback tempo (wall-clock fit unchanged, music one octave faster),
-    so the octave is a reading choice, exactly like v13's plateau octave
+    so the octave is a reading choice, exactly like plateau octave
     picked by --bpm.  Each segment is first folded to its neighbour octave
     ((0.5, 2] around the previous segment via _octave_align): notation-level
     jumps that are really the same beat pulse (MUS61: 16th runs at 257 BPM
@@ -514,7 +492,7 @@ def tempo_track(actual_bpm: float, tempo_multiplier: float, tempo_events=None):
     # ROL playback speed is controlled by basicTempo * multiplier.
     # Keep the multiplier and solve for the Basic Tempo that produces the
     # requested actual BPM.  The tempo event is placed at tick 0.
-    # v14: tempo_events (list of (at_tick, multiplier)) builds a piecewise
+    # tempo_events (list of (at_tick, multiplier)) builds a piecewise
     # tempo track; actual_bpm is then ignored (basicTempo comes from the
     # segment model) and the first event MUST be (0, base_multiplier).
     if tempo_events is not None:
@@ -829,7 +807,7 @@ def bpm_tick_fit(rix, bpm: float, tick_beat: int):
 
 
 # ---------------------------------------------------------------------------
-# v14: tempo-map detection (multi-tempo RIX guard)
+# tempo-map detection (multi-tempo RIX guard)
 # ---------------------------------------------------------------------------
 #
 # A single-tempo song -- even one that NO single BPM quantizes cleanly
@@ -865,7 +843,7 @@ def _octave_down(points, tick_beat, b, r):
 def local_onset_fit(points, tick_beat, lo=10.0, hi=250.0, coarse=0.5):
     """Best single-BPM tick-grid fit for ONE window of absolute onsets.
     Coarse sweep + analytic plateau-vertex polish (same solver class as the
-    global v13 descent, just on a subset).  Returns (bpm, rmsfrac)."""
+    global descent, just on a subset).  Returns (bpm, rmsfrac)."""
     k = tick_beat / float(60 * RIX_UNITS_PER_SEC)
     n = len(points)
     if n < 2:
@@ -931,7 +909,7 @@ def detect_tempo_map(rix, tick_beat=4, mad_gate=0.02, rms_gate=0.10,
     Classify a RIX as single-tempo vs tempo-map.  Ambiguity resolves toward
     'single' on every bail-out path (few onsets, few good windows): the
     detector only ever ADDS a hint (default mode) or gates an opt-in build
-    (--tempo-map); it never rewrites v13 results.
+    (--tempo-map); it never rewrites results.
     """
     positions = sorted(set(rix_note_positions(rix)))
     n = len(positions)
@@ -1081,7 +1059,7 @@ def fit_tempo_segments(rix, tick_beat=4, run_tol=0.04, min_run=2):
 
 
 # ---------------------------------------------------------------------------
-# v13: analytic plateau + recursive-descent (steepest-vertex) BPM refinement
+# analytic plateau + recursive-descent (steepest-vertex) BPM refinement
 # ---------------------------------------------------------------------------
 #
 # Math (all under the 1000 units/s clock):
@@ -1178,7 +1156,7 @@ def refine_rms_minimum(rix, center_bpm: float, tick_beat: int,
     def fit_at(b):
         return bpm_tick_fit(rix, float(b), tick_beat)
 
-    # Coarse pass: identical to the v12 fixed-resolution scan.  It is both the
+    # Coarse pass: identical to the fixed-resolution scan.  It is both the
     # report table and the seed set; it may miss a minimum that lives in a
     # narrow spike between grid points -- the descent below fixes that.
     results = []
@@ -1300,14 +1278,6 @@ def select_from_plateau(best, rix, tick_beat):
     """
     Canonical output BPM for the refined optimum.
 
-    v11/v12 had no exact minimizer, so they cosmetically preferred the
-    plateau member nearest to the user's center BPM.  v13 does have one:
-    inside a plateau every BPM yields the IDENTICAL integer tick sequence,
-    so the vertex (the RMS minimizer) is the strictly better representative
-    -- it centers all quantization residuals at ~0 and maximizes the margin
-    to any tick flip.  The nearest-to-center cosmetic remains available
-    through the exact v11/v12 path via --no-refine.
-
     Re-fit the vertex in double-precision arithmetic; if rounding survives
     (ticks unchanged) use it, else fall back to the plateau midpoint, else
     keep the descent point.
@@ -1329,22 +1299,144 @@ def select_from_plateau(best, rix, tick_beat):
     return best, lo, hi
 
 
+
+# ---------------------------------------------------------------------------
+# analytic tick length
+# ---------------------------------------------------------------------------
+
+MIN_TICK_MS = 15.0   # 1000 BPM at tickBeat 4; nothing above that is a tick
+
+
+def analytic_tick_ms(rix, tol_ms=1.5):
+    """(tick_ms, method, note); tick_ms is None when no single tick exists.
+
+    method "gaps" -- the shortest gap divides every gap
+    method "mode" -- the dominant gap divides >= 90% of them
+    """
+    pos = sorted(set(rix_note_positions(rix)))
+    if len(pos) < 3:
+        return None, None, "too few note onsets to measure a tempo"
+    gaps = [b - a for a, b in zip(pos, pos[1:])]
+    mn = min(gaps)
+    if mn < MIN_TICK_MS:
+        return None, None, ("shortest gap %.1f ms is below the tick floor"
+                            % mn)
+    worst = 0.0
+    for g in gaps:
+        k = round(g / mn)
+        if k < 1:
+            k = 1
+        worst = max(worst, abs(g - k * mn))
+    if worst <= tol_ms:
+        return mn, "gaps", ("%d gaps, all multiples of %.1f ms (worst "
+                            "residual %.2f ms)" % (len(gaps), mn, worst))
+    hist = {}
+    for g in gaps:
+        hist[g] = hist.get(g, 0) + 1
+    mode, cnt = max(hist.items(), key=lambda kv: (kv[1], -kv[0]))
+    if mode >= MIN_TICK_MS and cnt / float(len(gaps)) >= 0.50:
+        cover = sum(1 for g in gaps if g % mode == 0) / float(len(gaps))
+        if cover >= 0.90:
+            return mode, "mode", ("dominant gap %.1f ms (%d/%d gaps, "
+                                  "%.0f%% of the rest are its multiples)"
+                                  % (mode, cnt, len(gaps), cover * 100))
+
+    # Half-integer tick.  16-bit RIX delays are whole milliseconds, but the
+    # tick they came from can be x.5 -- a fractional tempo whose multiples
+    # round to neighbouring integers (MUS5: 124.5; MUS6/MUS33: 130.5).
+    # Only .5 is tried, not arbitrary fractions: a generic rational search
+    # fits almost anything and would start inventing tempos.
+    cands = []
+    if mn == int(mn):
+        cands.append(mn + 0.5)
+    if abs(mn - round(mn)) > 0.25:
+        cands.append(round(mn) + 0.5)
+    for half in cands:
+        if half < MIN_TICK_MS:
+            continue
+        cover = sum(1 for g in gaps
+                    if abs(g - round(g / half) * half) <= tol_ms)
+        if cover / float(len(gaps)) >= 0.90:
+            return half, "half", ("%.1f ms tick divides %d/%d gaps (%.0f%%)"
+                                  % (half, cover, len(gaps),
+                                     cover * 100.0 / len(gaps)))
+
+    return None, None, ("shortest gap %.1f ms does not divide the others "
+                        "(worst residual %.1f ms)" % (mn, worst))
+
+
+def analytic_bpm(rix, tick_beat, lo=25.0, hi=200.0):
+    """BPM from the analytic tick length, folded into a playable range.
+
+    Doubling rescales ticks and ticks-per-second together, so playback is
+    unchanged -- the fold is a notation choice, as plateau octave was.
+    """
+    m, method, note = analytic_tick_ms(rix)
+    if m is None:
+        return None, None, note
+    b = 60000.0 / (m * tick_beat)
+    while b < lo:
+        b *= 2.0
+    while b > hi:
+        b /= 2.0
+    return b, method, note
+
+
+def explain_no_tempo(rix, tick_beat):
+    """Why the tempo cannot be derived, in terms a musician can act on."""
+    b, _m, note = analytic_bpm(rix, tick_beat)
+    if b is not None:
+        return None
+    pos = sorted(set(rix_note_positions(rix)))
+    if len(pos) < 3:
+        return ("This RIX has too few note onsets to measure a tempo "
+                "(found %d)." % len(pos))
+    gaps = [b2 - a for a, b2 in zip(pos, pos[1:])]
+    hist = {}
+    for g in gaps:
+        hist[g] = hist.get(g, 0) + 1
+    mode, cnt = max(hist.items(), key=lambda kv: (kv[1], -kv[0]))
+    return ("Cannot derive a single tempo:\n"
+            "  shortest note gap : %.1f ms\n"
+            "  most common gap   : %.1f ms (%d of %d gaps, %.0f%%)\n"
+            "  distinct gap values: %d\n"
+            "  %s\n"
+            "  This piece is not one constant tempo, or its timing sits off "
+            "the tick grid."
+            % (min(gaps), mode, cnt, len(gaps),
+               cnt * 100.0 / len(gaps), len(hist), note))
+
+
 def scan_bpm_intrinsic(rix, center_bpm: float, tick_beat: int,
                        radius: float = 1.0, step: float = 0.1,
-                       refine: bool = True):
+                       refine: bool = True, analytic: bool = True):
     """
     Scan BPM around the user's measured value without using a reference ROL.
 
     Stage 1 (coarse): fixed-step grid, reported as a table.
-    Stage 2 (v13, refine=True): recursive plateau-vertex descent to the exact
+    Stage 2 (refine=True): recursive plateau-vertex descent to the exact
     minimum of RMSfrac -- resolution-independent, no shrinking-step loop that
     can stall between grid points.
     Stage 3: `selected` = the exact minimizer of RMSfrac.  All members of its
     plateau generate the identical integer tick sequence, so stage 3 never
     changes the output ROL timing, only the literal Basic Tempo value that
     gets written.  With refine=False stages 2/3 collapse to the exact
-    v11/v12 behaviour (grid best + nearest-to-center plateau member).
+    behaviour as before (grid best + nearest-to-center plateau member).
     """
+    # closed form first; it needs neither a guess nor a scan.
+    if analytic:
+        b, method, note = analytic_bpm(rix, tick_beat)
+        if b is not None:
+            fit = bpm_tick_fit(rix, b, tick_beat)
+            lo, hi, _v = plateau_bounds(
+                rix_note_positions(rix), fit["ticks"], tick_beat)
+            sel = dict(fit)
+            sel["plateau"] = (lo, hi)
+            sel["method"] = method
+            sel["note"] = note
+            sel["analytic"] = True
+            return [], sel, (lo, hi), sel
+
     if center_bpm <= 0 or radius < 0 or step <= 0:
         raise ValueError("invalid BPM scan parameters")
 
@@ -1370,6 +1462,17 @@ def scan_bpm_intrinsic(rix, center_bpm: float, tick_beat: int,
 
 
 def print_intrinsic_report(results, best, plateau, selected, refine=True):
+    if selected is not None and selected.get("analytic"):
+        lo, hi = plateau if plateau else (None, None)
+        print("\nAnalytic tick length (no search):")
+        print("  %s" % selected["note"])
+        print("  derived BPM = %.6f" % selected["bpm"])
+        print("  rms = %.3e   total ticks = %d"
+              % (selected["rms"], selected["total_ticks"]))
+        if lo is not None:
+            print("  zero-error plateau [%.6f, %.6f)"
+                  % (float(lo), float(hi)))
+        return
     print("\nIntrinsic BPM scan (no reference ROL):")
     print("  BPM       RMSfrac    MeanAbs    MaxAbs     Drift      TotalTicks")
     for r in results:
@@ -1417,6 +1520,64 @@ def print_intrinsic_report(results, best, plateau, selected, refine=True):
                   f"({len(plateau)} scanned values)")
         print(f"  Selected BPM for output: {selected['bpm']:.2f}")
 
+def reenter(rix, args):
+    """Run the tempo-map build for an already-parsed rix/args pair.
+
+    Returns the map model, or None when even segmentation finds nothing.
+    Every option in `args` is used as given -- this is the retry step of the
+    analytic failure path, not a second CLI parse.
+    """
+    from pathlib import Path as _P
+    segs = fit_tempo_segments(rix, args.tick_beat)
+    detection = detect_tempo_map(rix, args.tick_beat)
+    if len(segs) >= 2:
+        hint = args.bpm
+        if hint is None and detection.get("center_bpm"):
+            hint = detection["center_bpm"]
+        basic, base_tps, model = build_segment_model(
+            args.tempo_multiplier, args.tick_beat, segs,
+            rix["duration_rix"], base_bpm_hint=hint)
+        print("\nTempo-map build (automatic retry):")
+        print("  detector: " + (
+            "tempo-map (mad %.4f)" % detection["mad"]
+            if detection["verdict"] == "tempo-map" else
+            "%s (%s)" % (detection["verdict"], detection.get("why", "ok"))))
+        for i, sg in enumerate(segs):
+            print("  seg%d: u0=%6d (%7.3fs) tick0=%6d  bpm=%10.6f  "
+                  "mult=%.6f  rms=%.6f  n=%d"
+                  % (i, sg["u0"], sg["u0"] / 1000.0, model["bounds"][i],
+                     model["beat_bpms"][i], model["mults"][i], sg["rms"],
+                     len(sg["rpts"])))
+        print("  grid scale x%d (playback unchanged)" % model["scale"])
+        bb = model["beat_bpms"]
+        print("  played beat-level: %.1f .. %.1f BPM" % (min(bb), max(bb)))
+        print("  written track: basicTempo %.6f with %d tempo multiplier "
+              "events" % (basic, len(model["mults"])))
+        args.tempo_map = True
+        return model
+    one = fit_single_segment(rix, args.tick_beat)
+    if one is not None:
+        print("\nTempo-map build (automatic retry):")
+        print("  no reliable change point (%d segment(s)); single-tempo "
+              "local fit:" % len(segs))
+        print("  seg0: u0=%6d (  0.000s) tick0=     0  bpm=%10.6f  "
+              "mult=1.000000  rms=%.6f  n=%d"
+              % (one["u0"], one["bpm"], one["rms"], len(one["rpts"])))
+        args.bpm = one["bpm"]
+        args.tempo_map = True
+        # Return a dict shaped like build_segment_model's so downstream
+        # reporting can treat a single-segment retry as a 1-entry map with no
+        # tempo events.  Returning the raw fit dict crashed with
+        # KeyError: 'bpms' (hit by Rx/Ri000).
+        tps = one["bpm"] / 60.0 * args.tick_beat
+        return {"bounds": [0], "cum": [0.0], "tps": [tps], "us": [0],
+                "bpms": [one["bpm"]], "beat_bpms": [one["bpm"]],
+                "mults": [1.0], "scale": 1, "seg_gaps": [1],
+                "collisions": [], "tick_beat": args.tick_beat,
+                "basic_tempo": one["bpm"], "base_tps": tps}
+    return None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("rix", type=Path)
@@ -1427,12 +1588,11 @@ def main():
     ap.add_argument("--scan-step", type=float, default=0.1,
                     help="Intrinsic BPM coarse-scan step (default: 0.1)")
     ap.add_argument("--no-refine", action="store_true",
-                    help="Disable v13 recursive-descent refinement; report the "
-                         "fixed-grid result exactly as v11/v12 did")
+                    help="Disable recursive-descent refinement")
     ap.add_argument("--tempo-map", action="store_true",
-                    help="v14: build this RIX as a multi-tempo piece: fit "
+                    help="build this RIX as a multi-tempo piece: fit "
                          "constant-tempo segments and write a piecewise ROL "
-                         "tempo track.  Without it the v13 single-tempo path "
+                         "tempo track.  Without it the single-tempo path "
                          "runs unchanged (a hint is printed if the piece "
                          "looks re-tempoed mid-song).")
     ap.add_argument("--tempo-multiplier", type=float, default=1.0,
@@ -1454,7 +1614,7 @@ def main():
 
     rix = read_rix(args.rix)
 
-    # v14: tempo-map analysis.  Detection is cheap and side-effect free; it
+    # tempo-map analysis.  Detection is cheap and side-effect free; it
     # only ever adds an advisory (off) or gates the map build (on).
     detection = None
     map_model = None
@@ -1473,7 +1633,7 @@ def main():
                 args.tempo_multiplier, args.tick_beat, segs,
                 rix["duration_rix"], base_bpm_hint=hint)
             map_segments = {"segs": segs, "model": map_model}
-            print("\nTempo-map build (v14 --tempo-map):")
+            print("\nTempo-map build (--tempo-map):")
             if detection is not None:
                 print("  detector: " + (
                     f"tempo-map (mad {detection['mad']:.4f})"
@@ -1505,7 +1665,7 @@ def main():
                    else fit_single_segment(rix, args.tick_beat))
             if one is not None:
                 single_fit = one
-                print("\nTempo-map build (v14 --tempo-map):")
+                print("\nTempo-map build (--tempo-map):")
                 if detection is not None:
                     print("  detector: " + (
                         f"tempo-map (mad {detection['mad']:.4f})"
@@ -1525,7 +1685,7 @@ def main():
             else:
                 print("\n--tempo-map: no reliable tempo-change boundaries "
                       f"found ({len(segs)} segment(s)); falling back to the "
-                      "v13 single-tempo path.")
+                      "single-tempo path.")
 
     standard_bnk = find_standard_bnk(args.rix)
     instrument_names, standard_matches, standard_count = match_standard_instruments(
@@ -1546,10 +1706,34 @@ def main():
         print("STANDARD.BNK not found in RIX directory; using RIX## names.")
 
     # Estimate the BPM from the RIX event grid itself.
-    if (args.bpm is not None and map_model is None
-            and single_fit is None):
+    #
+    # the analytic path needs no --bpm, so try it whenever nothing else
+    # has already fixed the tempo.  When it fails AND no --bpm anchors the
+    # scan, the piece is not single-tempo: retry with the tempo-map build,
+    # keeping every other command-line option, rather than raising an
+    # internal ValueError.
+    if map_model is None and single_fit is None:
+        if args.bpm is None:
+            b_probe, _m, _n = analytic_bpm(rix, args.tick_beat)
+            if b_probe is None:
+                print(explain_no_tempo(rix, args.tick_beat))
+                print("  -> retrying with --tempo-map (all other options "
+                      "unchanged)")
+                args.tempo_map = True
+                detection = detect_tempo_map(rix, args.tick_beat)
+                map_model = reenter(rix, args)
+                if map_model is None:
+                    ap.error("this RIX needs --tempo-map, which produced "
+                             "no usable tempo track either; pass --bpm to "
+                             "set the tempo yourself")
+
+    if map_model is None and single_fit is None and not args.tempo_map:
+        # with --bpm absent the analytic path still applies; center_bpm
+        # only seeds the scan.  Once the retry has switched to tempo-map,
+        # there is nothing left to scan for.
         results, best_fit, plateau, selected = scan_bpm_intrinsic(
-            rix, args.bpm, args.tick_beat, args.scan_radius, args.scan_step,
+            rix, args.bpm if args.bpm is not None else 0.0,
+            args.tick_beat, args.scan_radius, args.scan_step,
             refine=not args.no_refine)
         print_intrinsic_report(results, best_fit, plateau, selected,
                                refine=not args.no_refine)
@@ -1628,7 +1812,7 @@ def main():
         print("Tempo events:",
               ", ".join(f"tick{t} x{m:g}" for t, m in tempo_events))
 
-    # v14 advisory: the default path stays EXACTLY v13, but when the piece
+    # advisory: the default path stays EXACTLY as before, but when the piece
     # measures as re-tempoed mid-song, tell the user the switch exists.
     if (detection is not None and detection["verdict"] == "tempo-map"
             and tempo_events is None):
